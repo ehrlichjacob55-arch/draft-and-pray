@@ -1,3 +1,4 @@
+import type { ErrorCode } from "@dnp/contract";
 import type { TransactionCanceledException } from "@aws-sdk/client-dynamodb";
 import { TransactionCanceledException as TCE } from "@aws-sdk/client-dynamodb";
 import { TransactWriteCommand, type DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
@@ -76,5 +77,15 @@ export async function transactWrite(
       throw new TransactionConflictError(mapped, err);
     }
     throw err;
+  }
+}
+
+/** A business-rule failure the API maps to an HTTP status (codes are @dnp/contract ErrorCode). */
+export class DomainError extends Error {
+  readonly code: ErrorCode;
+  constructor(code: ErrorCode, message?: string) {
+    super(message ?? code);
+    this.name = "DomainError";
+    this.code = code;
   }
 }

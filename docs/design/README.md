@@ -19,6 +19,7 @@
 | 08 | [Open Questions](08-open-questions.md) | Decisions still needed from the league |
 | 09 | [AWS Architecture](09-aws-architecture.md) | AWS + Terraform stack, repo layout, build/deploy contract (supersedes parts of 05) |
 | 10 | [DynamoDB Data Model](10-dynamodb-data-model.md) | Single-table keys, access patterns, transactions for picks/undo/recompute (storage for 02) |
+| 11 | [Sign-in, Invites & League Setup](11-auth-and-league-setup.md) | Task 3: Cognito email-OTP sign-in, invite links, season/team setup, test users (DEV/TEST only) |
 
 ## League at a glance
 

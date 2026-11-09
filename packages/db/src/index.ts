@@ -6,3 +6,6 @@ export * from "./ids";
 export * from "./errors";
 export * from "./repos/season";
 export * from "./repos/draft";
+export * from "./repos/leagues";
+export * from "./repos/invites";
+export * from "./repos/teams";

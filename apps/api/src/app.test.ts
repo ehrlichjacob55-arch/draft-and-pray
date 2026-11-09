@@ -29,12 +29,11 @@ describe("http app", () => {
     expect(testEndpoint()).toMatch(/^http:\/\/localhost:\d+$/);
   });
 
-  it("GET /api/me returns the fake local user when auth is disabled", async () => {
+  it("GET /api/me returns user null for an unknown local dev user", async () => {
     const app = createApp({ config: loadConfig({}), db });
     const res = await app.request("/api/me");
     expect(res.status).toBe(200);
-    const body = (await res.json()) as { user: { sub: string } };
-    expect(body.user.sub).toBe("local-user");
+    expect(await res.json()).toEqual({ user: null, leagues: [] });
   });
 
   it("rejects /api/me without a token when Cognito is configured", async () => {
@@ -50,6 +49,6 @@ describe("http app", () => {
     const app = createApp({ config: loadConfig({}), db });
     const res = await app.request("/api/nope");
     expect(res.status).toBe(404);
-    expect(await res.json()).toEqual({ error: "Not Found" });
+    expect(await res.json()).toEqual({ error: { code: "not_found", message: "Not Found" } });
   });
 });

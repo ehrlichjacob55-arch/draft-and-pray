@@ -62,6 +62,7 @@ Decided 2026-11-09: the database is **DynamoDB**, so everything stays in AWS. Th
 | A9 | Audit log, newest first | `Query begins_with(sk, "AUDIT#")`, `ScanIndexForward=false` |
 | A10 | Standings | `Query begins_with(sk, "TEAMSCORE#")` + teams + NFL teams (or A1) |
 | A11 | Player page | `Query begins_with(sk, "POINTS#")` filtered in memory by playerId, plus `STATS#` / `OVERRIDE#` for the games (small enough to filter in memory) |
+| A12 | Invites for a season (doc 11) | `Query gsi1 gsi1pk = SEASONINV#<seasonId>` |
 
 No Scans anywhere.
 

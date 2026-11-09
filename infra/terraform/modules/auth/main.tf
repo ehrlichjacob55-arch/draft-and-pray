@@ -13,6 +13,12 @@ variable "name_prefix" {
 
 # Email OTP may require SES as the sender instead of COGNITO_DEFAULT; see
 # docs/design/09-aws-architecture.md section 7. Leave null to use Cognito's default sender.
+variable "is_prod" {
+  description = "The test-users group (docs/design/11 section 3.4) is created only outside prod."
+  type        = bool
+  default     = true
+}
+
 variable "ses_identity_arn" {
   type    = string
   default = null
@@ -80,6 +86,15 @@ resource "aws_cognito_user_pool_client" "web" {
     id_token      = "minutes"
     refresh_token = "days"
   }
+}
+
+# Generated test users (scripts/admin test-users). Never exists in prod.
+resource "aws_cognito_user_group" "test_users" {
+  count = var.is_prod ? 0 : 1
+
+  name         = "test-users"
+  user_pool_id = aws_cognito_user_pool.this.id
+  description  = "Generated test users for smoke tests (never in prod)"
 }
 
 output "user_pool_id" {

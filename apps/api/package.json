@@ -15,8 +15,10 @@
   },
   "dependencies": {
     "@aws-sdk/client-apigatewaymanagementapi": "^3.1164.0",
+    "@aws-sdk/client-cognito-identity-provider": "^3.1164.0",
     "@aws-sdk/client-dynamodb": "^3.1164.0",
     "@aws-sdk/lib-dynamodb": "^3.1164.0",
+    "@dnp/contract": "workspace:*",
     "@dnp/db": "workspace:*",
     "@dnp/domain": "workspace:*",
     "@hono/node-server": "^2.1.6",

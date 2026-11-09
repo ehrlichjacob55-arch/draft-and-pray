@@ -69,6 +69,7 @@ module "auth" {
   source = "../auth"
 
   name_prefix      = local.name_prefix
+  is_prod          = var.is_prod
   ses_identity_arn = var.ses_identity_arn
   ses_from_email   = var.ses_from_email
 }
@@ -112,6 +113,7 @@ module "api" {
   app_table_arn           = module.data.table_arn
   app_table_index_arn     = module.data.index_arn_pattern
   cognito_user_pool_id    = module.auth.user_pool_id
+  cognito_user_pool_arn   = module.auth.user_pool_arn
   cognito_client_id       = module.auth.client_id
   ws_table_name           = module.realtime.table_name
   ws_table_arn            = module.realtime.table_arn

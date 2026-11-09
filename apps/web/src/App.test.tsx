@@ -1,45 +1,44 @@
-import { render, screen } from "@testing-library/react";
-import { createMemoryRouter } from "react-router";
-import { afterEach, describe, expect, it, vi } from "vitest";
-import { App } from "./App";
-import { routes } from "./routes";
-
-const config = {
-  apiBaseUrl: "/api",
-  wsUrl: "ws://localhost:3002",
-  cognitoUserPoolId: "",
-  cognitoClientId: "",
-  region: "us-east-1",
-  env: "local",
-};
-
-function mockFetch(health: unknown) {
-  vi.stubGlobal(
-    "fetch",
-    vi.fn(async (url: string) => {
-      const body = url === "/config.json" ? config : health;
-      return new Response(JSON.stringify(body), { status: 200 });
-    }),
-  );
-}
-
-afterEach(() => vi.unstubAllGlobals());
+import { screen } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
+import { meMember, renderRoute } from "./test/utils";
 
 describe("App shell", () => {
-  it("renders header, nav and API health", async () => {
-    mockFetch({ status: "ok", env: "local", db: "ok" });
-    render(<App router={createMemoryRouter(routes, { initialEntries: ["/"] })} />);
-
+  it("shows header, email, sign out and nav for a signed-in manager", async () => {
+    renderRoute("/", {
+      api: { me: vi.fn(async () => ({ user: null, leagues: [] })) },
+    });
     expect(await screen.findByRole("heading", { name: "Draft & Pray" })).toBeInTheDocument();
-    for (const name of ["Draft room", "Standings", "My team", "Rules", "Commissioner", "Sign in"]) {
+    expect(screen.getByText("me@example.com")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Sign out" })).toBeInTheDocument();
+    for (const name of ["Home", "Draft room", "Standings", "My team", "Rules"]) {
       expect(screen.getByRole("link", { name })).toBeInTheDocument();
     }
-    expect(await screen.findByText("ok (local)")).toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: "Commissioner" })).not.toBeInTheDocument();
   });
 
-  it("shows an error when the db is unhealthy", async () => {
-    mockFetch({ status: "ok", env: "local", db: "error" });
-    render(<App router={createMemoryRouter(routes, { initialEntries: ["/"] })} />);
-    expect(await screen.findByText("error")).toBeInTheDocument();
+  it("shows the Commissioner link only to commissioners", async () => {
+    renderRoute("/", { api: { me: async () => meMember("commissioner"), season: neverEnding } });
+    expect(await screen.findByRole("link", { name: "Commissioner" })).toBeInTheDocument();
+  });
+
+  it("keeps placeholder pages reachable", async () => {
+    renderRoute("/standings", { api: { me: async () => ({ user: null, leagues: [] }) } });
+    expect(await screen.findByRole("heading", { name: "Standings" })).toBeInTheDocument();
+  });
+
+  it("redirects signed-out visitors of protected routes to /signin?next=", async () => {
+    const { router } = renderRoute("/commissioner", { auth: { status: "signedOut", email: null } });
+    expect(await screen.findByRole("heading", { name: "Sign in" })).toBeInTheDocument();
+    expect(router.state.location.pathname).toBe("/signin");
+    expect(router.state.location.search).toBe("?next=%2Fcommissioner");
+  });
+
+  it("shows a loading state while the session is being discovered", () => {
+    renderRoute("/", { auth: { status: "loading", email: null } });
+    expect(screen.getByRole("status")).toHaveTextContent("Loading");
   });
 });
+
+function neverEnding() {
+  return new Promise<never>(() => {});
+}
