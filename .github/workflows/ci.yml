@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  app:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+      - name: Cache DynamoDB Local
+        uses: actions/cache@v4
+        with:
+          path: .dynamodb-local
+          key: dynamodb-local-v2
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm format:check
+      - run: pnpm lint
+      - run: pnpm typecheck
+      - run: pnpm test
+      - run: pnpm build
+
+  terraform:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "~> 1.10"
+      - name: Format check
+        run: terraform fmt -check -recursive infra/terraform
+      - name: Validate
+        run: |
+          for dir in bootstrap envs/dev envs/prod; do
+            echo "::group::$dir"
+            terraform -chdir="infra/terraform/$dir" init -backend=false -input=false
+            terraform -chdir="infra/terraform/$dir" validate
+            echo "::endgroup::"
+          done

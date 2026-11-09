@@ -1,0 +1,22 @@
+{
+  "name": "@dnp/db",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./testing": "./src/testing/index.ts",
+    "./testing/global-setup": "./src/testing/global-setup.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.1164.0",
+    "@aws-sdk/lib-dynamodb": "^3.1164.0",
+    "@aws-sdk/util-dynamodb": "^3.996.9",
+    "@dnp/domain": "workspace:*",
+    "ulid": "^3.0.1",
+    "zod": "^4.6.7"
+  }
+}

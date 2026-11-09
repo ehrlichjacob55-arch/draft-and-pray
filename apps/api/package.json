@@ -1,0 +1,27 @@
+{
+  "name": "@dnp/api",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/local.ts",
+    "build": "node scripts/build.mjs",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.164",
+    "aws-sdk-client-mock": "^4.1.0",
+    "esbuild": "^0.28.2"
+  },
+  "dependencies": {
+    "@aws-sdk/client-apigatewaymanagementapi": "^3.1164.0",
+    "@aws-sdk/client-dynamodb": "^3.1164.0",
+    "@aws-sdk/lib-dynamodb": "^3.1164.0",
+    "@dnp/db": "workspace:*",
+    "@dnp/domain": "workspace:*",
+    "@hono/node-server": "^2.1.6",
+    "aws-jwt-verify": "^5.2.1",
+    "hono": "^4.13.17",
+    "zod": "^4.6.7"
+  }
+}

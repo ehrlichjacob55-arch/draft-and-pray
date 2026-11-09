@@ -1,0 +1,17 @@
+node_modules
+dist
+coverage
+.dynamodb-local/
+.env*
+!.env.example
+*.tsbuildinfo
+.DS_Store
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+infra/**/backend.hcl
+*.tfvars
+!*.tfvars.example
+infra/terraform/**/build/
