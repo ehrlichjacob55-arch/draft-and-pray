@@ -33,7 +33,7 @@ describe("http app", () => {
     const app = createApp({ config: loadConfig({}), db });
     const res = await app.request("/api/me");
     expect(res.status).toBe(200);
-    expect(await res.json()).toEqual({ user: null, leagues: [] });
+    expect(await res.json()).toEqual({ user: null, leagues: [], justClaimed: [] });
   });
 
   it("rejects /api/me without a token when Cognito is configured", async () => {

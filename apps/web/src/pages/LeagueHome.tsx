@@ -1,9 +1,9 @@
-import { MAX_TEAMS } from "@dnp/contract";
+import { MAX_TEAMS, type JustClaimed } from "@dnp/contract";
 import { useState } from "react";
 import { Link } from "react-router";
 import { useApi } from "../api";
 import { TeamNameForm } from "../components/TeamNameForm";
-import { btnSecondary, Card, ErrorWithRetry, Loading } from "../components/ui";
+import { btnPrimary, btnSecondary, Card, ErrorWithRetry, Loading } from "../components/ui";
 import { friendlyError } from "../lib/messages";
 import { useLeague } from "../league/LeagueProvider";
 import { useQuery } from "../useQuery";
@@ -25,15 +25,82 @@ export function LeagueHome() {
       <section className="space-y-2">
         <h2 className="text-xl font-semibold">League home</h2>
         <p>
-          You are not in a league yet. Ask your commissioner for an invite link and open it to join.
+          You are not in a league yet. Ask your commissioner to add you; you will get an email with
+          a link.
         </p>
       </section>
     );
   }
-  return <SeasonHome seasonId={league.season.seasonId} />;
+  const claim = (league.me?.justClaimed ?? []).filter(
+    (c) => c.seasonId === league.season?.seasonId,
+  );
+  return (
+    <SeasonHome
+      seasonId={league.season.seasonId}
+      userId={league.me?.user?.userId ?? ""}
+      claim={claim}
+    />
+  );
 }
 
-function SeasonHome({ seasonId }: { seasonId: string }) {
+const CLAIM_KEY = "dnp.welcome.claim";
+const dismissedKey = (userId: string, c: JustClaimed) =>
+  `dnp.welcome.dismissed.${userId}.${c.seasonId}.${c.teamId}`;
+
+function storageGet(key: string): string | null {
+  try {
+    return sessionStorage.getItem(key);
+  } catch {
+    return null;
+  }
+}
+function storageSet(key: string, value: string): void {
+  try {
+    sessionStorage.setItem(key, value);
+  } catch {
+    /* storage unavailable: the card just reappears after a reload */
+  }
+}
+
+/**
+ * /me only reports justClaimed on the request that did the claim, so remember it for this tab session
+ * (team id and name only, no personal data) to survive a reload until dismissed.
+ */
+function useWelcomeClaim(userId: string, seasonId: string, fresh: JustClaimed[]) {
+  const [dismissed, setDismissed] = useState(false);
+  let claim: JustClaimed | undefined = fresh[0];
+  if (claim) storageSet(`${CLAIM_KEY}.${userId}`, JSON.stringify(claim));
+  else {
+    try {
+      const saved = JSON.parse(
+        storageGet(`${CLAIM_KEY}.${userId}`) ?? "null",
+      ) as JustClaimed | null;
+      if (saved && saved.seasonId === seasonId) claim = saved;
+    } catch {
+      /* ignore corrupt value */
+    }
+  }
+  const isDismissed =
+    dismissed || (claim ? storageGet(dismissedKey(userId, claim)) === "1" : false);
+  return {
+    claim: isDismissed ? undefined : claim,
+    dismiss: () => {
+      if (claim) storageSet(dismissedKey(userId, claim), "1");
+      setDismissed(true);
+    },
+  };
+}
+
+function SeasonHome({
+  seasonId,
+  userId,
+  claim: fresh,
+}: {
+  seasonId: string;
+  userId: string;
+  claim: JustClaimed[];
+}) {
+  const welcome = useWelcomeClaim(userId, seasonId, fresh);
   const api = useApi();
   const [renaming, setRenaming] = useState(false);
   const query = useQuery(`season:${seasonId}`, () => api.season(seasonId));
@@ -43,10 +110,32 @@ function SeasonHome({ seasonId }: { seasonId: string }) {
     return <ErrorWithRetry message={friendlyError(query.error)} onRetry={query.reload} />;
 
   const { season, teams, myTeamId, myRole, maxTeams } = query.data;
-  const mine = teams.find((t) => t.teamId === myTeamId);
+  const mine = teams.find((t) => t.teamId === myTeamId || t.isMine);
+
+  const welcomed = welcome.claim && teams.find((t) => t.teamId === welcome.claim?.teamId);
 
   return (
     <section className="space-y-4">
+      {welcome.claim && (
+        <Card className="space-y-3 border-accent" data-testid="welcome-card">
+          <h3 className="text-lg font-semibold">
+            Welcome to {season.leagueName} {season.year}! Your team is{" "}
+            <strong>{welcomed?.name ?? welcome.claim.teamName}</strong>
+          </h3>
+          <TeamNameForm
+            initial={welcomed?.name ?? welcome.claim.teamName}
+            label="Rename your team (optional)"
+            submitLabel="Save name"
+            onSubmit={async (name) => {
+              await api.renameTeam(seasonId, welcome.claim!.teamId, name);
+              query.reload();
+            }}
+          />
+          <button type="button" className={btnPrimary} onClick={welcome.dismiss}>
+            Looks good
+          </button>
+        </Card>
+      )}
       <Card>
         <h2 className="text-xl font-semibold">{season.leagueName}</h2>
         <p className="text-sm text-muted">
@@ -84,7 +173,7 @@ function SeasonHome({ seasonId }: { seasonId: string }) {
           )
         ) : (
           <p className="mt-1 text-muted">
-            You have not joined this season with a team yet. Open your invite link to join.
+            You do not have a team in this season yet. Ask your commissioner to add you.
           </p>
         )}
       </Card>
@@ -97,13 +186,13 @@ function SeasonHome({ seasonId }: { seasonId: string }) {
           </span>
         </h3>
         {teams.length === 0 ? (
-          <p className="mt-1 text-muted">No teams yet. Invites go out from the commissioner.</p>
+          <p className="mt-1 text-muted">No teams yet. The commissioner adds managers.</p>
         ) : (
           <ul className="mt-2 divide-y divide-border">
             {teams.map((t) => (
               <li key={t.teamId} className="flex justify-between gap-2 py-2">
                 <span>{t.name}</span>
-                <span className="text-sm text-muted">{t.managerDisplayName ?? "—"}</span>
+                {t.isMine && <span className="text-sm text-muted">you</span>}
               </li>
             ))}
           </ul>

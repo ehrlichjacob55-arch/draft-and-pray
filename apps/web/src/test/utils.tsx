@@ -26,6 +26,7 @@ export function fakeAuth(over: Partial<AuthContextValue> = {}): AuthContextValue
     startSignIn: vi.fn(async () => "code" as const),
     confirmCode: vi.fn(async () => {}),
     resendCode: vi.fn(async () => {}),
+    welcomeSignIn: vi.fn(async () => {}),
     devSignIn: vi.fn(),
     ...over,
   };
@@ -36,18 +37,20 @@ export function fakeApi(over: Partial<Api> = {}): Api {
   return {
     me: unexpected("me"),
     season: unexpected("season"),
-    listInvites: unexpected("listInvites"),
-    createInvites: unexpected("createInvites"),
-    revokeInvite: unexpected("revokeInvite"),
-    previewInvite: unexpected("previewInvite"),
-    register: unexpected("register"),
-    acceptInvite: unexpected("acceptInvite"),
+    listManagers: unexpected("listManagers"),
+    addManager: unexpected("addManager"),
+    resendManager: unexpected("resendManager"),
+    updateManager: unexpected("updateManager"),
+    removeManager: unexpected("removeManager"),
     renameTeam: unexpected("renameTeam"),
     ...over,
   } as Api;
 }
 
-export const meMember = (role: "commissioner" | "manager" = "manager") => ({
+export const meMember = (
+  role: "commissioner" | "manager" = "manager",
+  justClaimed: { seasonId: string; teamId: string; teamName: string }[] = [],
+) => ({
   user: { userId: "u1", email: "me@example.com", displayName: "me" },
   leagues: [
     {
@@ -60,6 +63,7 @@ export const meMember = (role: "commissioner" | "manager" = "manager") => ({
       ],
     },
   ],
+  justClaimed,
 });
 
 export const seasonData = (over: Record<string, unknown> = {}) => ({
@@ -71,8 +75,8 @@ export const seasonData = (over: Record<string, unknown> = {}) => ({
     status: "setup" as const,
   },
   teams: [
-    { teamId: "t1", name: "Gridiron Gang", managerUserId: "u1", managerDisplayName: "me" },
-    { teamId: "t2", name: "Pray Hard", managerUserId: "u2", managerDisplayName: "pat" },
+    { teamId: "t1", name: "Gridiron Gang", isMine: true },
+    { teamId: "t2", name: "Pray Hard", isMine: false },
   ],
   myTeamId: "t1" as string | null,
   myRole: "manager" as const,

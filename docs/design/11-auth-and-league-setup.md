@@ -1,5 +1,7 @@
 # 11 — Sign-in, Invites & League Setup (Task 3)
 
+> **Superseded in part (2026-11-09):** the invite-link flow (§2 invite items, §4 invite routes, §5 `/join`) is replaced by one-step onboarding in [13-manager-onboarding](13-manager-onboarding.md). Sign-in, dev sign-in, bootstrap and test users below still apply.
+
 Implements FR-1, FR-2 and part of FR-3/FR-4 from [01](01-requirements.md), on the storage in [10](10-dynamodb-data-model.md) and the stack in [09](09-aws-architecture.md). Draft order, draft time and the ruleset lock come later (tasks 6 and 8).
 
 **Done when** (on DEV): the commissioner creates invite links for the 2026 season; each manager opens a link, enters their email, signs in with an emailed code and names their team; League home shows all teams (x/9). The commissioner can rename teams and revoke unused invites.

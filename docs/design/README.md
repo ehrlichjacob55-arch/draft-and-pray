@@ -20,6 +20,7 @@
 | 09 | [AWS Architecture](09-aws-architecture.md) | AWS + Terraform stack, repo layout, build/deploy contract (supersedes parts of 05) |
 | 10 | [DynamoDB Data Model](10-dynamodb-data-model.md) | Single-table keys, access patterns, transactions for picks/undo/recompute (storage for 02) |
 | 11 | [Sign-in, Invites & League Setup](11-auth-and-league-setup.md) | Task 3: Cognito email-OTP sign-in, invite links, season/team setup, test users (DEV/TEST only) |
+| 13 | [One-Step Manager Onboarding](13-manager-onboarding.md) | Commissioner adds managers; one email + one click signs in, verifies and assigns the team; PII rules (supersedes 11's invite links) |
 
 ## League at a glance
 

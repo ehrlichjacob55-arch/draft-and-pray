@@ -5,18 +5,8 @@ import { friendlyError } from "../lib/messages";
 import { ApiError } from "../api";
 import { btnPrimary, btnSecondary, ErrorNote, inputCls } from "./ui";
 
-/**
- * Email -> emailed code sign-in (Cognito), or email-only "Dev sign-in" locally.
- * `beforeSend` runs after the email is entered and before the code is requested
- * (the join flow registers the email on the invite there).
- */
-export function EmailCodeSignIn({
-  beforeSend,
-  onSignedIn,
-}: {
-  beforeSend?: (email: string) => Promise<void>;
-  onSignedIn?: () => void;
-}) {
+/** Email -> emailed code sign-in (Cognito), or email-only "Dev sign-in" locally. */
+export function EmailCodeSignIn({ onSignedIn }: { onSignedIn?: () => void }) {
   const auth = useAuth();
   const emailId = useId();
   const codeId = useId();
@@ -46,7 +36,6 @@ export function EmailCodeSignIn({
     const normalized = normalizeEmail(email);
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalized)) return setError("Enter a valid email.");
     void run(async () => {
-      await beforeSend?.(normalized);
       if (local) {
         auth.devSignIn(normalized);
         onSignedIn?.();

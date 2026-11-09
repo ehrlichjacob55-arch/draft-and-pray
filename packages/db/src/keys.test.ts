@@ -23,7 +23,12 @@ describe("keys", () => {
       gsi1sk: "LEAGUE#L",
     });
     expect(k.seasonPointerKey("L", 2026).sk).toBe("SEASON#2026");
-    expect(k.inviteKey("tok")).toEqual({ pk: "INVITE#tok", sk: "META" });
+    expect(k.managerPrivateKey("S", "T")).toEqual({ pk: "SEASON#S", sk: "PRIVATE#MANAGER#T" });
+    expect(k.pendingManagerGsi1("a@b.c", "S")).toEqual({
+      gsi1pk: "PENDING#a@b.c",
+      gsi1sk: "SEASON#S",
+    });
+    expect(k.gsiPendingPk("a@b.c")).toBe("PENDING#a@b.c");
     expect(k.rosterEntryKey("S", "T", "FLEX1", 1).sk).toBe("ROSTER#T#FLEX1#1");
     expect(k.statsKey("S", "g", "p").sk).toBe("STATS#g#p");
     expect(k.overrideKey("S", "g", "p", "rushYds").sk).toBe("OVERRIDE#g#p#rushYds");

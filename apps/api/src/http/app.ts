@@ -1,45 +1,44 @@
 import { GetCommand } from "@aws-sdk/lib-dynamodb";
 import {
   MAX_TEAMS,
-  acceptInviteRequest,
-  createInvitesRequest,
-  registerRequest,
+  addManagerRequest,
   renameTeamRequest,
-  type CreateInvitesResponse,
-  type InvitePreviewResponse,
-  type InviteView,
-  type ListInvitesResponse,
+  updateManagerRequest,
+  type ManagerView,
+  type ManagerWithDelivery,
   type MeResponse,
   type SeasonResponse,
 } from "@dnp/contract";
 import {
-  acceptInvite,
-  bindPendingEmail,
-  assertInviteUsable,
-  createInvites,
-  getInvite,
+  DomainError,
+  claimPendingAssignments,
+  addManager,
+  auditManagerResent,
   getLeague,
-  getSeasonMeta,
+  getPendingManager,
   getUser,
-  getUsers,
-  inviteStatus,
+  listManagers,
   listMemberships,
-  listSeasonInvites,
+  listPendingAssignments,
   listSeasonPointers,
   listTeams,
+  managerStatus,
+  recordManagerInvite,
+  removePendingManager,
   renameTeam,
-  revokeInvite,
+  updatePendingManager,
   type Dynamo,
-  type InviteItem,
+  type ManagerRow,
 } from "@dnp/db";
 import { Hono } from "hono";
 import { HTTPException } from "hono/http-exception";
 import { noopCognito, type CognitoAdmin } from "../cognito";
 import type { Config } from "../config";
+import { logError } from "../redact";
 import { authMiddleware, isPublicRoute, type AppEnv, type TokenVerifier } from "./auth";
 import { loadSeasonMeta, requireCommissioner, requireMember } from "./authz";
 import { errorBody, forbidden, notFound, parseBody, toErrorResponse } from "./errors";
-import { inviteUrl, maskEmail, publicOrigin } from "./origin";
+import { resolveTestSuppress, testModeAllowed } from "./test-suppress";
 
 export interface AppDeps {
   config: Config;
@@ -63,7 +62,7 @@ export function createApp({ config, db, cognito = noopCognito, verifyToken, now 
       return c.json(errorBody(code, err.message), err.status);
     }
     const { status, body } = toErrorResponse(err);
-    if (status >= 500) console.error("Unhandled error", err);
+    if (status >= 500) logError("Unhandled error", err);
     return c.json(body, status as 400);
   });
   app.notFound((c) => c.json(errorBody("not_found", "Not Found"), 404));
@@ -82,7 +81,7 @@ export function createApp({ config, db, cognito = noopCognito, verifyToken, now 
         new GetCommand({ TableName: db.tableName, Key: { pk: "HEALTH", sk: "HEALTH" } }),
       );
     } catch (err) {
-      console.error("Health check db error", err);
+      logError("Health check db error", err);
       dbStatus = "error";
     }
     return c.json(
@@ -93,9 +92,14 @@ export function createApp({ config, db, cognito = noopCognito, verifyToken, now 
 
   // ---- GET /me ----
   app.get("/me", async (c) => {
-    const { sub } = c.get("user");
+    const { sub, email, emailVerified } = c.get("user");
+    // docs/design/13 §1.4: a verified email picks up the teams a commissioner assigned to it.
+    const justClaimed =
+      email && emailVerified !== false
+        ? await claimPendingAssignments(db, { userId: sub, email, now: clock() })
+        : [];
     const user = await getUser(db, sub);
-    if (!user) return c.json({ user: null, leagues: [] } satisfies MeResponse);
+    if (!user) return c.json({ user: null, leagues: [], justClaimed } satisfies MeResponse);
     const memberships = await listMemberships(db, sub);
     const leagues = await Promise.all(
       memberships.map(async (m) => {
@@ -114,10 +118,11 @@ export function createApp({ config, db, cognito = noopCognito, verifyToken, now 
     return c.json({
       user: { userId: user.userId, email: user.email, displayName: user.displayName },
       leagues,
+      justClaimed,
     } satisfies MeResponse);
   });
 
-  // ---- GET /seasons/:seasonId ----
+  // ---- GET /seasons/:seasonId (member-facing: team names only, no PII) ----
   app.get("/seasons/:seasonId", async (c) => {
     const user = c.get("user");
     const meta = await loadSeasonMeta(db, c.req.param("seasonId"));
@@ -126,10 +131,6 @@ export function createApp({ config, db, cognito = noopCognito, verifyToken, now 
       getLeague(db, meta.leagueId),
       listTeams(db, meta.seasonId),
     ]);
-    const users = await getUsers(
-      db,
-      teams.flatMap((t) => (t.managerUserId ? [t.managerUserId] : [])),
-    );
     return c.json({
       season: {
         seasonId: meta.seasonId,
@@ -141,10 +142,7 @@ export function createApp({ config, db, cognito = noopCognito, verifyToken, now 
       teams: teams.map((t) => ({
         teamId: t.teamId,
         name: t.name,
-        managerUserId: t.managerUserId,
-        managerDisplayName: t.managerUserId
-          ? (users.get(t.managerUserId)?.displayName ?? null)
-          : null,
+        isMine: t.managerUserId === user.sub,
       })),
       myTeamId: teams.find((t) => t.managerUserId === user.sub)?.teamId ?? null,
       myRole: member.role,
@@ -152,107 +150,202 @@ export function createApp({ config, db, cognito = noopCognito, verifyToken, now 
     } satisfies SeasonResponse);
   });
 
-  const toInviteView = (
-    c: Parameters<typeof publicOrigin>[0],
-    invite: InviteItem,
-    names: Map<string, { displayName: string }>,
-  ): InviteView => ({
-    token: invite.token,
-    url: inviteUrl(publicOrigin(c, config), invite.token),
-    status: inviteStatus(invite, clock()),
-    ...(invite.pendingEmail ? { pendingEmail: invite.pendingEmail } : {}),
-    ...(invite.usedBy && names.get(invite.usedBy)
-      ? { usedByDisplayName: names.get(invite.usedBy)!.displayName }
-      : {}),
-    createdAt: invite.createdAt,
-    expiresAt: new Date(invite.expiresAt * 1000).toISOString(),
+  // ---- Commissioner: managers (docs/design/13 §5). Bodies are never logged. ----
+  const toManagerView = ({ manager, team }: ManagerRow): ManagerView => ({
+    teamId: team.teamId,
+    teamName: team.name,
+    firstName: manager.firstName,
+    lastName: manager.lastName,
+    email: manager.email,
+    status: managerStatus(manager, clock()),
+    invitedAt: manager.invitedAt,
+    lastSentAt: manager.lastSentAt ?? null,
+    claimedAt: manager.claimedAt ?? null,
   });
+  const reload = async (seasonId: string, teamId: string): Promise<ManagerRow> => {
+    const row = (await listManagers(db, seasonId)).find((r) => r.team.teamId === teamId);
+    if (!row) throw notFound("Manager not found");
+    return row;
+  };
+  const inviteMetadata = async (meta: { leagueId: string; year: number }, teamName: string) => ({
+    leagueName: (await getLeague(db, meta.leagueId))?.name ?? "",
+    seasonYear: String(meta.year),
+    teamName,
+  });
+  const inviteFailed = (err: unknown) => {
+    logError("Invitation failed", err);
+    return new DomainError("invite_failed", "Could not send the invitation. Try again.");
+  };
 
-  // ---- Commissioner: invites ----
-  app.get("/seasons/:seasonId/invites", async (c) => {
+  app.get("/seasons/:seasonId/managers", async (c) => {
     const meta = await loadSeasonMeta(db, c.req.param("seasonId"));
     await requireCommissioner(db, meta.leagueId, c.get("user"));
-    const invites = await listSeasonInvites(db, meta.seasonId);
-    const names = await getUsers(
-      db,
-      invites.flatMap((i) => (i.usedBy ? [i.usedBy] : [])),
-    );
-    return c.json(invites.map((i) => toInviteView(c, i, names)) satisfies ListInvitesResponse);
+    const rows = await listManagers(db, meta.seasonId);
+    return c.json(rows.map(toManagerView));
   });
 
-  app.post("/seasons/:seasonId/invites", async (c) => {
+  app.post("/seasons/:seasonId/managers", async (c) => {
     const user = c.get("user");
     const meta = await loadSeasonMeta(db, c.req.param("seasonId"));
     await requireCommissioner(db, meta.leagueId, user);
-    const { count } = await parseBody(c, createInvitesRequest);
-    const created = await createInvites(db, {
+    const body = await parseBody(c, addManagerRequest);
+    const added = await addManager(db, {
       seasonId: meta.seasonId,
-      leagueId: meta.leagueId,
-      count,
-      createdBy: user.sub,
-      now: clock(),
-    });
-    return c.json(
-      created.map((i) => toInviteView(c, i, new Map())) satisfies CreateInvitesResponse,
-      201,
-    );
-  });
-
-  app.delete("/seasons/:seasonId/invites/:token", async (c) => {
-    const user = c.get("user");
-    const meta = await loadSeasonMeta(db, c.req.param("seasonId"));
-    await requireCommissioner(db, meta.leagueId, user);
-    await revokeInvite(db, {
-      seasonId: meta.seasonId,
-      token: c.req.param("token"),
+      firstName: body.firstName,
+      lastName: body.lastName,
+      email: body.email,
       actorUserId: user.sub,
       now: clock(),
     });
-    return c.json({ ok: true as const });
+    let emailSent: boolean;
+    try {
+      const result = await cognito.inviteNewUser({
+        email: body.email,
+        clientMetadata: await inviteMetadata(meta, added.team.name),
+        testSuppress: resolveTestSuppress({
+          config,
+          user,
+          testSuppressQuery: c.req.query("testSuppress"),
+          testTemporaryPassword: body.testTemporaryPassword,
+        }),
+      });
+      emailSent = result.emailSent;
+      await recordManagerInvite(db, {
+        seasonId: meta.seasonId,
+        teamId: added.team.teamId,
+        cognitoUsername: result.username,
+        lastSentAt: result.emailSent ? clock() : undefined,
+      });
+    } catch (err) {
+      // Keep the data consistent with what the commissioner sees: no invitation, no team.
+      await removePendingManager(db, {
+        seasonId: meta.seasonId,
+        teamId: added.team.teamId,
+        actorUserId: user.sub,
+        now: clock(),
+      }).catch((e: unknown) => logError("Rollback after failed invitation failed", e));
+      throw inviteFailed(err);
+    }
+    const row = await reload(meta.seasonId, added.team.teamId);
+    return c.json({ ...toManagerView(row), emailSent } satisfies ManagerWithDelivery, 201);
   });
 
-  // ---- Public: invite preview + register ----
-  app.get("/invites/:token", async (c) => {
-    const invite = await getInvite(db, c.req.param("token"), { consistentRead: false });
-    if (!invite)
-      return c.json({ valid: false, reason: "not_found" } satisfies InvitePreviewResponse);
-    const status = inviteStatus(invite, clock());
-    if (status === "revoked" || status === "used" || status === "expired")
-      return c.json({ valid: false, reason: status } satisfies InvitePreviewResponse);
-    const [meta, league] = await Promise.all([
-      getSeasonMeta(db, invite.seasonId),
-      getLeague(db, invite.leagueId),
-    ]);
-    return c.json({
-      valid: true,
-      leagueName: league?.name,
-      seasonYear: meta?.year,
-      ...(invite.pendingEmail ? { pendingEmail: maskEmail(invite.pendingEmail) } : {}),
-    } satisfies InvitePreviewResponse);
-  });
-
-  app.post("/invites/:token/register", async (c) => {
-    const token = c.req.param("token");
-    const { email } = await parseBody(c, registerRequest);
-    assertInviteUsable(await getInvite(db, token), clock());
-    await bindPendingEmail(db, token, email, clock());
-    await cognito.ensureOtpReadyUser(email);
-    return c.json({ ok: true as const });
-  });
-
-  // ---- Accept ----
-  app.post("/invites/:token/accept", async (c) => {
+  app.post("/seasons/:seasonId/managers/:teamId/resend", async (c) => {
     const user = c.get("user");
-    if (!user.email) throw forbidden("Your account has no email address");
-    const { teamName } = await parseBody(c, acceptInviteRequest);
-    const result = await acceptInvite(db, {
-      token: c.req.param("token"),
-      userId: user.sub,
-      email: user.email,
-      teamName,
+    const meta = await loadSeasonMeta(db, c.req.param("seasonId"));
+    await requireCommissioner(db, meta.leagueId, user);
+    const { manager, team } = await getPendingManager(db, meta.seasonId, c.req.param("teamId"));
+    let emailSent = false;
+    if (testModeAllowed({ config, user, testSuppressQuery: c.req.query("testSuppress") })) {
+      // Test mode never emails: pretend the resend happened so the flow can be exercised.
+      await recordManagerInvite(db, {
+        seasonId: meta.seasonId,
+        teamId: team.teamId,
+        lastSentAt: clock(),
+      });
+    } else {
+      try {
+        const result = await cognito.resendInvite({
+          email: manager.email,
+          username: manager.cognitoUsername,
+          clientMetadata: await inviteMetadata(meta, team.name),
+        });
+        emailSent = result.emailSent;
+        await recordManagerInvite(db, {
+          seasonId: meta.seasonId,
+          teamId: team.teamId,
+          cognitoUsername: result.username,
+          lastSentAt: result.emailSent ? clock() : undefined,
+        });
+      } catch (err) {
+        throw inviteFailed(err);
+      }
+    }
+    await auditManagerResent(db, {
+      seasonId: meta.seasonId,
+      teamId: team.teamId,
+      actorUserId: user.sub,
       now: clock(),
     });
-    return c.json({ seasonId: result.seasonId, teamId: result.teamId });
+    return c.json({
+      ...toManagerView(await reload(meta.seasonId, team.teamId)),
+      emailSent,
+    } satisfies ManagerWithDelivery);
+  });
+
+  app.patch("/seasons/:seasonId/managers/:teamId", async (c) => {
+    const user = c.get("user");
+    const meta = await loadSeasonMeta(db, c.req.param("seasonId"));
+    await requireCommissioner(db, meta.leagueId, user);
+    const body = await parseBody(c, updateManagerRequest);
+    const updated = await updatePendingManager(db, {
+      seasonId: meta.seasonId,
+      teamId: c.req.param("teamId"),
+      firstName: body.firstName,
+      lastName: body.lastName,
+      email: body.email,
+      actorUserId: user.sub,
+      now: clock(),
+    });
+    let emailSent = false;
+    if (updated.emailChanged) {
+      // The old address never joined: drop its pending Cognito user (unless another season
+      // still waits on it), then invite the new address.
+      if (updated.previous.cognitoUsername) {
+        const stillPending = (await listPendingAssignments(db, updated.previous.email)).length > 0;
+        if (!stillPending)
+          await cognito
+            .deleteIfUnconfirmed(updated.previous.cognitoUsername)
+            .catch((e: unknown) => logError("Could not delete the old pending user", e));
+      }
+      try {
+        const result = await cognito.inviteNewUser({
+          email: updated.manager.email,
+          clientMetadata: await inviteMetadata(meta, updated.team.name),
+          testSuppress: resolveTestSuppress({
+            config,
+            user,
+            testSuppressQuery: c.req.query("testSuppress"),
+            testTemporaryPassword: body.testTemporaryPassword,
+          }),
+        });
+        emailSent = result.emailSent;
+        await recordManagerInvite(db, {
+          seasonId: meta.seasonId,
+          teamId: updated.team.teamId,
+          cognitoUsername: result.username,
+          lastSentAt: result.emailSent ? clock() : undefined,
+        });
+      } catch (err) {
+        // Data stays updated; the commissioner can use Resend, which re-creates the user.
+        throw inviteFailed(err);
+      }
+    }
+    return c.json({
+      ...toManagerView(await reload(meta.seasonId, updated.team.teamId)),
+      emailSent,
+    } satisfies ManagerWithDelivery);
+  });
+
+  app.delete("/seasons/:seasonId/managers/:teamId", async (c) => {
+    const user = c.get("user");
+    const meta = await loadSeasonMeta(db, c.req.param("seasonId"));
+    await requireCommissioner(db, meta.leagueId, user);
+    const removed = await removePendingManager(db, {
+      seasonId: meta.seasonId,
+      teamId: c.req.param("teamId"),
+      actorUserId: user.sub,
+      now: clock(),
+    });
+    if (removed.cognitoUsername) {
+      try {
+        const stillPending = (await listPendingAssignments(db, removed.email)).length > 0;
+        if (!stillPending) await cognito.deleteIfUnconfirmed(removed.cognitoUsername);
+      } catch (err) {
+        logError("Could not delete the pending user", err);
+      }
+    }
+    return c.json({ ok: true as const });
   });
 
   // ---- Rename team ----

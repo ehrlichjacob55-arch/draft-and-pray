@@ -112,4 +112,11 @@ export const TEST_GROUP = "test-users";
 export const TEST_LEAGUE_NAME = "Test League";
 export const TEST_YEAR = 2026;
 export const testUserEmail = (i: number) => `dnp-test-${String(i).padStart(2, "0")}@example.com`;
-export const isTestUserEmail = (email: string) => /^dnp-test-\d{2}@example\.com$/.test(email);
+/** Fresh users the smoke test creates through the invitation flow (docs/design/13 §7). */
+export const NEW_TEST_PREFIX = "dnp-new-";
+export const newTestUserEmail = (run: string, i: number) =>
+  `${NEW_TEST_PREFIX}${run}-${i}@example.com`;
+export const isNewTestUserEmail = (email: string) =>
+  /^dnp-new-[a-z0-9-]+@example\.com$/.test(email);
+export const isTestUserEmail = (email: string) =>
+  /^dnp-test-\d{2}@example\.com$/.test(email) || isNewTestUserEmail(email);

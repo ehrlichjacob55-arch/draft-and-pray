@@ -5,7 +5,7 @@ import { meMember, renderRoute } from "./test/utils";
 describe("App shell", () => {
   it("shows header, email, sign out and nav for a signed-in manager", async () => {
     renderRoute("/", {
-      api: { me: vi.fn(async () => ({ user: null, leagues: [] })) },
+      api: { me: vi.fn(async () => ({ user: null, leagues: [], justClaimed: [] })) },
     });
     expect(await screen.findByRole("heading", { name: "Draft & Pray" })).toBeInTheDocument();
     expect(screen.getByText("me@example.com")).toBeInTheDocument();
@@ -22,7 +22,9 @@ describe("App shell", () => {
   });
 
   it("keeps placeholder pages reachable", async () => {
-    renderRoute("/standings", { api: { me: async () => ({ user: null, leagues: [] }) } });
+    renderRoute("/standings", {
+      api: { me: async () => ({ user: null, leagues: [], justClaimed: [] }) },
+    });
     expect(await screen.findByRole("heading", { name: "Standings" })).toBeInTheDocument();
   });
 

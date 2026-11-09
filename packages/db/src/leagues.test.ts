@@ -1,6 +1,6 @@
 import { beforeAll, describe, expect, it } from "vitest";
 import type { Dynamo } from "./client";
-import { gsiSeasonInvitesPk, inviteKeys, teamOwnerKey } from "./keys";
+import { teamOwnerKey } from "./keys";
 import {
   bootstrapLeague,
   getLeague,
@@ -21,14 +21,7 @@ beforeAll(async () => {
 });
 
 describe("keys", () => {
-  it("builds invite gsi1 and team owner keys", () => {
-    expect(inviteKeys("tok", "S1", "2026-01-01T00:00:00.000Z")).toEqual({
-      pk: "INVITE#tok",
-      sk: "META",
-      gsi1pk: "SEASONINV#S1",
-      gsi1sk: "2026-01-01T00:00:00.000Z",
-    });
-    expect(gsiSeasonInvitesPk("S1")).toBe("SEASONINV#S1");
+  it("builds team owner keys", () => {
     expect(teamOwnerKey("S1", "u1")).toEqual({ pk: "SEASON#S1", sk: "TEAMOWNER#u1" });
   });
 });

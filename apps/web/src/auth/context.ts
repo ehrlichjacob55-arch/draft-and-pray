@@ -14,6 +14,11 @@ export interface AuthContextValue {
   startSignIn(email: string): Promise<SignInStep>;
   confirmCode(code: string): Promise<void>;
   resendCode(): Promise<void>;
+  /**
+   * One-step onboarding (docs/design/13 §1.3): signs in with the emailed temporary code, sets a random
+   * throwaway password and ends signed in. Cognito mode only.
+   */
+  welcomeSignIn(username: string, code: string): Promise<void>;
   /** Local mode only. */
   devSignIn(email: string): void;
 }

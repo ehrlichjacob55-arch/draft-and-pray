@@ -2,10 +2,10 @@ import type { RouteObject } from "react-router";
 import { Layout } from "./components/Layout";
 import { RequireAuth } from "./components/RequireAuth";
 import { Commissioner } from "./pages/Commissioner";
-import { Join } from "./pages/Join";
 import { LeagueHome } from "./pages/LeagueHome";
 import { Placeholder } from "./pages/Placeholder";
 import { SignIn } from "./pages/SignIn";
+import { Welcome } from "./pages/Welcome";
 
 export const routes: RouteObject[] = [
   {
@@ -13,7 +13,7 @@ export const routes: RouteObject[] = [
     element: <Layout />,
     children: [
       { path: "signin", element: <SignIn /> },
-      { path: "join/:token", element: <Join /> },
+      { path: "welcome", element: <Welcome /> },
       {
         element: <RequireAuth />,
         children: [

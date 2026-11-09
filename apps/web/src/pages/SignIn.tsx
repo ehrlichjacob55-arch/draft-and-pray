@@ -24,7 +24,7 @@ export function SignIn() {
         <EmailCodeSignIn />
       </Card>
       <p className="text-sm text-muted">
-        New here? Ask your commissioner for an invite link — there is no public sign-up.
+        New here? Your commissioner adds you and emails you a link — there is no public sign-up.
       </p>
     </section>
   );

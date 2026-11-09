@@ -29,6 +29,13 @@ variable "ses_from_email" {
   default = null
 }
 
+# CustomMessage trigger Lambda (docs/design/13 section 3). It is created outside this module (it
+# needs the CloudFront domain, and the web config needs this pool) and passed in by ARN.
+variable "custom_message_lambda_arn" {
+  type    = string
+  default = null
+}
+
 locals {
   use_ses = var.ses_identity_arn != null
 }
@@ -47,6 +54,24 @@ resource "aws_cognito_user_pool" "this" {
 
   admin_create_user_config {
     allow_admin_create_user_only = true
+  }
+
+  # Invitation codes (temporary passwords) stay valid for 7 days; the UI and docs say so.
+  password_policy {
+    minimum_length                   = 8
+    require_lowercase                = true
+    require_numbers                  = true
+    require_symbols                  = true
+    require_uppercase                = true
+    temporary_password_validity_days = 7
+  }
+
+  dynamic "lambda_config" {
+    for_each = var.custom_message_lambda_arn == null ? [] : [1]
+
+    content {
+      custom_message = var.custom_message_lambda_arn
+    }
   }
 
   account_recovery_setting {

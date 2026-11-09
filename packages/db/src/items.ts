@@ -42,25 +42,6 @@ export const seasonPointerItem = z.object({
   seasonId: z.string(),
   status: seasonStatus,
 });
-export const inviteItem = z.object({
-  ...base,
-  ...gsi1,
-  type: z.literal("Invite"),
-  token: z.string(),
-  leagueId: z.string(),
-  seasonId: z.string(),
-  createdBy: z.string(),
-  createdAt: isoDate,
-  /** Epoch seconds (DynamoDB TTL). */
-  expiresAt: z.number().int(),
-  /** Normalized email bound at register. */
-  pendingEmail: z.string().optional(),
-  usedBy: z.string().optional(),
-  usedAt: isoDate.optional(),
-  revokedAt: isoDate.optional(),
-  teamId: z.string().optional(),
-});
-
 // ---- Season partition ----
 export const seasonMetaItem = z.object({
   ...base,
@@ -87,6 +68,25 @@ export const teamItem = z.object({
   managerUserId: z.string().nullable(),
   /** Null until the commissioner sets the draft order (task 6). */
   draftPosition: z.number().int().nullable(),
+});
+/** Commissioner-only (docs/design/13 §4). `gsi1pk/gsi1sk` are present only while unclaimed. */
+export const managerPrivateItem = z.object({
+  ...base,
+  ...gsi1,
+  type: z.literal("ManagerPrivate"),
+  seasonId: z.string(),
+  leagueId: z.string(),
+  teamId: z.string(),
+  firstName: z.string(),
+  lastName: z.string(),
+  /** Normalized. */
+  email: z.string(),
+  /** Opaque Cognito username (UUID); absent when no invitation was created. */
+  cognitoUsername: z.string().optional(),
+  invitedAt: isoDate,
+  lastSentAt: isoDate.optional(),
+  claimedAt: isoDate.optional(),
+  claimedByUserId: z.string().optional(),
 });
 export const teamOwnerItem = z.object({
   ...base,
@@ -251,10 +251,10 @@ export const anyItem = z.discriminatedUnion("type", [
   leagueItem,
   leagueMemberItem,
   seasonPointerItem,
-  inviteItem,
   seasonMetaItem,
   rulesetItem,
   teamItem,
+  managerPrivateItem,
   teamOwnerItem,
   draftItem,
   pickItem,
@@ -276,10 +276,10 @@ export type UserItem = z.infer<typeof userItem>;
 export type LeagueItem = z.infer<typeof leagueItem>;
 export type LeagueMemberItem = z.infer<typeof leagueMemberItem>;
 export type SeasonPointerItem = z.infer<typeof seasonPointerItem>;
-export type InviteItem = z.infer<typeof inviteItem>;
 export type SeasonMetaItem = z.infer<typeof seasonMetaItem>;
 export type RulesetItem = z.infer<typeof rulesetItem>;
 export type TeamItem = z.infer<typeof teamItem>;
+export type ManagerPrivateItem = z.infer<typeof managerPrivateItem>;
 export type TeamOwnerItem = z.infer<typeof teamOwnerItem>;
 export type DraftItem = z.infer<typeof draftItem>;
 export type PickItem = z.infer<typeof pickItem>;
