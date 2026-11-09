@@ -130,7 +130,7 @@ Terraform zips each directory with `archive_file` from `var.lambda_dist_dir` (de
 ### Web runtime config
 The SPA fetches `/config.json` at startup:
 ```json
-{ "apiBaseUrl": "/api", "wsUrl": "wss://…", "cognitoUserPoolId": "…", "cognitoClientId": "…", "region": "us-east-1", "env": "dev" }
+{ "apiBaseUrl": "/api", "wsUrl": "wss://…", "cognitoUserPoolId": "…", "cognitoClientId": "…", "region": "us-east-2", "env": "dev" }
 ```
 Locally it's served from `apps/web/public/config.json` (committed, local values). In AWS, Terraform writes `config.json` to the bucket; `deploy.sh` syncs `apps/web/dist` with `--exclude config.json`.
 
@@ -141,7 +141,7 @@ Locally it's served from `apps/web/public/config.json` (committed, local values)
 
 ## 5. Terraform conventions
 - Name prefix `dnp-${var.env}`; provider `default_tags` = `{ Project = "draft-and-pray", Environment = var.env, ManagedBy = "terraform" }`.
-- Region variable, default `us-east-1` (CloudFront ACM certs, if a custom domain is added later, must be in us-east-1 anyway).
+- Region variable, default `us-east-2` (decided 2026-11-09 to match the owner's CLI profile). If a custom domain is added later, its CloudFront ACM certificate must be created in us-east-1 via a provider alias.
 - Backend: `backend "s3" {}` with partial config from `backend.hcl` (`backend.hcl.example` committed). CI uses `terraform init -backend=false`.
 - `.terraform.lock.hcl` is committed; `.terraform/`, `*.tfstate*`, `backend.hcl` and `*.tfvars` (except `*.tfvars.example`) are gitignored.
 - Log groups are created explicitly (14-day retention dev, 90 prod).
