@@ -5,6 +5,7 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  workflow_call:
 
 permissions:
   contents: read
@@ -46,7 +47,7 @@ jobs:
         run: terraform fmt -check -recursive infra/terraform
       - name: Validate
         run: |
-          for dir in bootstrap envs/dev envs/prod; do
+          for dir in bootstrap envs/dev envs/test envs/prod; do
             echo "::group::$dir"
             terraform -chdir="infra/terraform/$dir" init -backend=false -input=false
             terraform -chdir="infra/terraform/$dir" validate

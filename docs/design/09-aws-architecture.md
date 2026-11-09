@@ -85,10 +85,10 @@ All three funnel into the same pick transaction (doc 10 §4.1), whose `currentPi
 ├── infra/terraform/
 │   ├── bootstrap/           state bucket (local state, run once per account)
 │   ├── modules/             auth, data, api, realtime, web, jobs, lambda_function, app
-│   └── envs/{dev,prod}/     root modules
+│   └── envs/{dev,test,prod}/ root modules
 ├── scripts/deploy.sh        build → terraform apply → s3 sync → invalidate
 ├── docs/design/             these docs
-└── .github/workflows/ci.yml
+└── .github/workflows/     ci.yml (checks), deploy.yml (dev/test/prod pipeline)
 ```
 
 pnpm workspaces; package scope `@dnp/*`; Node ≥ 22 (`.nvmrc` = 22).
@@ -153,3 +153,46 @@ Effectively **$0–1/month** all year. DynamoDB on-demand, Lambda, API Gateway, 
 
 ## 7. Things to verify at first `terraform apply`
 - Cognito email OTP may require SES as the sender (not `COGNITO_DEFAULT`). The auth module takes an optional `ses_from_email` / SES identity ARN.
+
+## 8. Environments & deployment pipeline
+
+Decided 2026-11-09: three environments in **one AWS account**, isolated by name prefix (`dnp-dev-*`, `dnp-test-*`, `dnp-prod-*`), a separate Terraform state key, and a separate GitHub Environment + deploy role each.
+
+| Env | Purpose | Stability | Deployed by | `is_prod` |
+|---|---|---|---|---|
+| **dev** | Integration of everything merged to `main` | May break | Every push to `main` (after CI passes) | false |
+| **test** | Release candidate the league can try (mock draft) | Stable | Pushing a version tag `vX.Y.Z` | false |
+| **prod** | The live league | Stable | Same tag, after a manual approval in GitHub | true |
+
+### Promotion flow
+
+```mermaid
+flowchart LR
+    PR[Pull request] -->|ci.yml| CI{lint · typecheck · test · build · tf validate}
+    CI -->|merge| MAIN[main]
+    MAIN -->|deploy.yml| DEV[(DEV)]
+    MAIN -->|git tag v1.2.0| TAG[tag]
+    TAG -->|deploy.yml| TEST[(TEST)]
+    TEST -->|required reviewer approves| PROD[(PROD)]
+```
+
+- **Build once, promote the artifact.** In a tag run, one `build` job produces `apps/api/dist` + `apps/web/dist` and uploads them as a workflow artifact. Both the `test` and `prod` jobs deploy **that same artifact**, so PROD runs exactly what was tested.
+- **The prod gate** is the GitHub Environment `prod` with a required reviewer (the repo owner). The prod job waits after TEST succeeds until it's approved. Required reviewers on the free plan need the repo to be public; for a private repo this needs GitHub Pro/Team, or the gate must change.
+- **Redeploy / rollback:** `workflow_dispatch` with input `environment` (dev|test|prod); the source is the ref chosen in "Use workflow from" (environment policies are evaluated against it): `main` for dev, a `v*` tag for test/prod. Rolling back PROD = dispatch from the previous tag (`gh workflow run deploy.yml --ref v0.1.0 -f environment=prod`); it still goes through the prod approval.
+- **Concurrency:** one deploy per environment at a time (`concurrency: deploy-<env>`, no cancel-in-progress).
+
+### AWS authentication (no long-lived keys)
+- GitHub OIDC provider (`token.actions.githubusercontent.com`) created once in `infra/terraform/bootstrap`.
+- One IAM role per env, `dnp-github-deploy-<env>`. Its trust policy requires `aud = sts.amazonaws.com` **and** `sub = repo:<owner>/<repo>:environment:<env>`, so only jobs running in that GitHub Environment can assume it.
+- GitHub Environment deployment policies: `dev` allows branch `main` only; `test` and `prod` allow tags `v*` only. Fork PRs never get these credentials.
+- Role permissions: v1 attaches `AdministratorAccess` (Terraform creates IAM roles, Lambda, Cognito, CloudFront…). This is acceptable for a one-person hobby account because the trust policy and environment rules are the real boundary; a scoped policy is a later hardening task. State bucket access is included.
+
+### Configuration (no secrets in the repo)
+GitHub **repository variables:** `AWS_REGION`, `TF_STATE_BUCKET`.
+GitHub **environment variables** (per env): `AWS_DEPLOY_ROLE_ARN`.
+CI writes `backend.hcl` at runtime (`bucket`, `key = draft-and-pray/<env>.tfstate`, `region`, `use_lockfile = true`, `encrypt = true`). Optional per-env Terraform inputs (e.g. `ses_from_email`, `ingest_enabled`) come from `envs/<env>/terraform.tfvars`, which is **committed** for non-secret values. Secrets (stats API key) stay in SSM and are set by hand.
+
+### Bootstrap order (one time, by a human with admin credentials)
+1. `terraform -chdir=infra/terraform/bootstrap apply`: state bucket + OIDC provider + 3 deploy roles.
+2. `scripts/setup-github.sh`: creates the GitHub Environments and their deployment policies, adds the prod reviewer, and sets the variables from bootstrap outputs (uses `gh`).
+3. Push to `main` → DEV deploys. Tag `v0.1.0` → TEST deploys → approve → PROD deploys.

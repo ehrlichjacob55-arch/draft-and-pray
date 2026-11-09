@@ -1,3 +1,4 @@
+# Committed, non-secret inputs only (docs/design/09 section 8). Secrets live in SSM.
 region = "us-east-1"
 
 # Flip on only when needed.

@@ -1,0 +1,58 @@
+name: Deploy environment (reusable)
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        description: dev | test | prod
+        required: true
+        type: string
+      sha:
+        description: Commit SHA to check out
+        required: true
+        type: string
+      artifact:
+        description: Name of the build artifact to deploy
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: ${{ inputs.environment }}
+      url: ${{ steps.url.outputs.url }}
+    concurrency:
+      group: deploy-${{ inputs.environment }}
+      cancel-in-progress: false
+    permissions:
+      contents: read
+      id-token: write
+    env:
+      AWS_REGION: ${{ vars.AWS_REGION }}
+      TF_STATE_BUCKET: ${{ vars.TF_STATE_BUCKET }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.sha }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: ${{ inputs.artifact }}
+          path: apps
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.16.x"
+          terraform_wrapper: false
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION }}
+      - name: Deploy
+        run: scripts/deploy.sh "${{ inputs.environment }}" --auto-approve --skip-build
+      - name: Resolve URL
+        id: url
+        run: |
+          echo "url=https://$(terraform -chdir="infra/terraform/envs/${{ inputs.environment }}" output -raw cloudfront_domain)" >> "$GITHUB_OUTPUT"
