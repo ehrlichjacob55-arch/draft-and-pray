@@ -19,6 +19,7 @@ import {
   type SeasonMetaItem,
   type StatLineItem,
   type TeamItem,
+  type TeamOwnerItem,
   type TeamScoreItem,
 } from "../items";
 
@@ -67,6 +68,7 @@ export interface SeasonSnapshot {
   meta?: SeasonMetaItem;
   rulesets: RulesetItem[];
   teams: TeamItem[];
+  teamOwners: TeamOwnerItem[];
   draft?: DraftItem;
   picks: PickItem[];
   queues: QueueItem[];
@@ -99,6 +101,7 @@ export async function loadSeason(
     seasonId,
     rulesets: [],
     teams: [],
+    teamOwners: [],
     picks: [],
     queues: [],
     rosterEntries: [],
@@ -124,6 +127,9 @@ export async function loadSeason(
         break;
       case "Team":
         snap.teams.push(item);
+        break;
+      case "TeamOwner":
+        snap.teamOwners.push(item);
         break;
       case "Draft":
         snap.draft = item;

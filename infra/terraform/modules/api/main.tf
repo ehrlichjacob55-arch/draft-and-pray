@@ -41,6 +41,11 @@ variable "cognito_user_pool_id" {
   type = string
 }
 
+variable "cognito_user_pool_arn" {
+  description = "Allows the http Lambda to make invited emails OTP-ready (docs/design/11 section 3.3)."
+  type        = string
+}
+
 variable "cognito_client_id" {
   type = string
 }
@@ -108,6 +113,15 @@ data "aws_iam_policy_document" "http" {
       "dynamodb:BatchWriteItem",
     ]
     resources = [var.ws_table_arn]
+  }
+
+  statement {
+    actions = [
+      "cognito-idp:AdminGetUser",
+      "cognito-idp:AdminCreateUser",
+      "cognito-idp:AdminSetUserPassword",
+    ]
+    resources = [var.cognito_user_pool_arn]
   }
 
   statement {

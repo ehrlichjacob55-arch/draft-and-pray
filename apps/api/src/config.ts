@@ -6,11 +6,13 @@ const optional = z
   .transform((v) => (v === "" ? undefined : v));
 
 const envSchema = z.object({
-  APP_ENV: z.enum(["local", "dev", "prod"]).default("local"),
+  APP_ENV: z.enum(["local", "dev", "test", "prod"]).default("local"),
   APP_TABLE: optional,
   DYNAMODB_ENDPOINT: optional,
   COGNITO_USER_POOL_ID: optional,
   COGNITO_CLIENT_ID: optional,
+  /** Origin used in invite links (e.g. https://d123.cloudfront.net); falls back to request headers. */
+  PUBLIC_BASE_URL: optional,
   WS_CONNECTIONS_TABLE: optional,
   WS_MANAGEMENT_ENDPOINT: optional,
   SCHEDULER_GROUP: optional,

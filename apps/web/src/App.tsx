@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { createBrowserRouter, RouterProvider, type RouteObject } from "react-router";
+import { ApiProvider } from "./ApiProvider";
+import { AuthProvider } from "./auth";
 import { ConfigContext, loadConfig, type AppConfig } from "./config";
 import { routes } from "./routes";
 
@@ -26,7 +28,11 @@ export function App({ router }: { router?: ReturnType<typeof createBrowserRouter
 
   return (
     <ConfigContext.Provider value={config}>
-      <RouterProvider router={(router ?? defaultRouter)!} />
+      <AuthProvider>
+        <ApiProvider>
+          <RouterProvider router={(router ?? defaultRouter)!} />
+        </ApiProvider>
+      </AuthProvider>
     </ConfigContext.Provider>
   );
 }

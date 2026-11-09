@@ -41,6 +41,14 @@ export const seasonPointerKey = (leagueId: string, year: number): Key => ({
   sk: `SEASON#${year}`,
 });
 export const inviteKey = (token: string): Key => ({ pk: `INVITE#${token}`, sk: "META" });
+/** Invite item keys incl. the A12 index entry (invites of a season, ordered by createdAt). */
+export const inviteKeys = (token: string, seasonId: string, createdAt: string): KeyWithGsi1 => ({
+  ...inviteKey(token),
+  gsi1pk: gsiSeasonInvitesPk(seasonId),
+  gsi1sk: createdAt,
+});
+/** A12 query key. */
+export const gsiSeasonInvitesPk = (seasonId: string) => `SEASONINV#${seasonId}`;
 
 // ---- Season partition ----
 export const seasonMetaKey = (seasonId: string): Key => ({ pk: seasonPk(seasonId), sk: "META" });
@@ -51,6 +59,11 @@ export const rulesetKey = (seasonId: string, version: number): Key => ({
 export const teamKey = (seasonId: string, teamId: string): Key => ({
   pk: seasonPk(seasonId),
   sk: `TEAM#${teamId}`,
+});
+/** One team per user per season (docs/design/11 §2). */
+export const teamOwnerKey = (seasonId: string, userId: string): Key => ({
+  pk: seasonPk(seasonId),
+  sk: `TEAMOWNER#${userId}`,
 });
 export const draftKey = (seasonId: string): Key => ({ pk: seasonPk(seasonId), sk: "DRAFT" });
 export const pickKey = (seasonId: string, overallPick: number): Key => ({
@@ -115,6 +128,9 @@ export const skPrefix = {
   picks: "PICK#",
   players: "PLAYER#",
   teams: "TEAM#",
+  teamOwners: "TEAMOWNER#",
+  seasonPointers: "SEASON#",
+  members: "MEMBER#",
   audit: "AUDIT#",
   teamScores: "TEAMSCORE#",
   points: "POINTS#",

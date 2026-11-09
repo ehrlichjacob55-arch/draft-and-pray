@@ -44,13 +44,21 @@ export const seasonPointerItem = z.object({
 });
 export const inviteItem = z.object({
   ...base,
+  ...gsi1,
   type: z.literal("Invite"),
   token: z.string(),
   leagueId: z.string(),
   seasonId: z.string(),
+  createdBy: z.string(),
+  createdAt: isoDate,
   /** Epoch seconds (DynamoDB TTL). */
   expiresAt: z.number().int(),
+  /** Normalized email bound at register. */
+  pendingEmail: z.string().optional(),
   usedBy: z.string().optional(),
+  usedAt: isoDate.optional(),
+  revokedAt: isoDate.optional(),
+  teamId: z.string().optional(),
 });
 
 // ---- Season partition ----
@@ -77,7 +85,14 @@ export const teamItem = z.object({
   teamId: z.string(),
   name: z.string(),
   managerUserId: z.string().nullable(),
-  draftPosition: z.number().int(),
+  /** Null until the commissioner sets the draft order (task 6). */
+  draftPosition: z.number().int().nullable(),
+});
+export const teamOwnerItem = z.object({
+  ...base,
+  type: z.literal("TeamOwner"),
+  userId: z.string(),
+  teamId: z.string(),
 });
 export const draftStatus = z.enum(["scheduled", "lobby", "in_progress", "paused", "complete"]);
 export const draftItem = z.object({
@@ -240,6 +255,7 @@ export const anyItem = z.discriminatedUnion("type", [
   seasonMetaItem,
   rulesetItem,
   teamItem,
+  teamOwnerItem,
   draftItem,
   pickItem,
   queueItem,
@@ -264,6 +280,7 @@ export type InviteItem = z.infer<typeof inviteItem>;
 export type SeasonMetaItem = z.infer<typeof seasonMetaItem>;
 export type RulesetItem = z.infer<typeof rulesetItem>;
 export type TeamItem = z.infer<typeof teamItem>;
+export type TeamOwnerItem = z.infer<typeof teamOwnerItem>;
 export type DraftItem = z.infer<typeof draftItem>;
 export type PickItem = z.infer<typeof pickItem>;
 export type QueueItem = z.infer<typeof queueItem>;

@@ -1,54 +1,71 @@
+/** Authentication (docs/design/11 §3.1/§3.2): Cognito ID tokens, or a dev header locally only. */
+import { normalizeEmail } from "@dnp/contract";
+import { localSub } from "@dnp/db";
 import { CognitoJwtVerifier } from "aws-jwt-verify";
 import type { MiddlewareHandler } from "hono";
-import { HTTPException } from "hono/http-exception";
 import type { Config } from "../config";
+import { unauthorized } from "./errors";
 
 export interface AuthUser {
   sub: string;
+  /** Normalized; may be undefined if the token carries no email claim. */
   email?: string;
-  claims: Record<string, unknown>;
 }
 
 export type AppEnv = { Variables: { user: AuthUser } };
 
-const LOCAL_USER: AuthUser = {
-  sub: "local-user",
-  email: "local@example.com",
-  claims: { sub: "local-user", email: "local@example.com", local: true },
-};
+export type TokenVerifier = (token: string) => Promise<AuthUser>;
 
-export function authMiddleware(config: Config): MiddlewareHandler<AppEnv> {
-  const { COGNITO_USER_POOL_ID: userPoolId, COGNITO_CLIENT_ID: clientId } = config;
+export const DEV_EMAIL_HEADER = "x-dev-user-email";
+export const DEFAULT_DEV_EMAIL = "dev@local.test";
 
-  if (!userPoolId) {
-    let warned = false;
+/** True only for local development without Cognito. Must never be true in AWS. */
+export const isLocalDevAuth = (config: Config): boolean =>
+  config.APP_ENV === "local" && !config.COGNITO_USER_POOL_ID;
+
+export function cognitoVerifier(userPoolId: string, clientId: string): TokenVerifier {
+  const verifier = CognitoJwtVerifier.create({ userPoolId, tokenUse: "id", clientId });
+  return async (token) => {
+    const payload = await verifier.verify(token);
+    const email = typeof payload.email === "string" ? normalizeEmail(payload.email) : undefined;
+    return { sub: payload.sub, email };
+  };
+}
+
+export function authMiddleware(
+  config: Config,
+  verifyOverride?: TokenVerifier,
+): MiddlewareHandler<AppEnv> {
+  if (isLocalDevAuth(config)) {
     return async (c, next) => {
-      if (!warned) {
-        warned = true;
-        console.warn("COGNITO_USER_POOL_ID unset: auth disabled, using fake local user");
-      }
-      c.set("user", LOCAL_USER);
+      const email = normalizeEmail(c.req.header(DEV_EMAIL_HEADER) || DEFAULT_DEV_EMAIL);
+      c.set("user", { sub: localSub(email), email });
       await next();
     };
   }
 
-  const verifier = CognitoJwtVerifier.create({
-    userPoolId,
-    tokenUse: "id",
-    clientId: clientId ?? null,
-  });
+  const { COGNITO_USER_POOL_ID: userPoolId, COGNITO_CLIENT_ID: clientId } = config;
+  const verify =
+    verifyOverride ?? (userPoolId && clientId ? cognitoVerifier(userPoolId, clientId) : undefined);
 
   return async (c, next) => {
     const header = c.req.header("authorization") ?? "";
     const token = header.toLowerCase().startsWith("bearer ") ? header.slice(7).trim() : "";
-    if (!token) throw new HTTPException(401, { message: "Missing bearer token" });
+    if (!token) throw unauthorized("Missing bearer token");
+    if (!verify) throw unauthorized("Authentication is not configured");
     try {
-      const payload = await verifier.verify(token);
-      const email = typeof payload.email === "string" ? payload.email : undefined;
-      c.set("user", { sub: payload.sub, email, claims: { ...payload } });
+      c.set("user", await verify(token));
     } catch {
-      throw new HTTPException(401, { message: "Invalid token" });
+      throw unauthorized("Invalid token");
     }
     await next();
   };
+}
+
+/** Routes reachable without a session. */
+export function isPublicRoute(method: string, path: string): boolean {
+  if (method === "GET" && path === "/api/health") return true;
+  if (method === "GET" && /^\/api\/invites\/[^/]+$/.test(path)) return true;
+  if (method === "POST" && /^\/api\/invites\/[^/]+\/register$/.test(path)) return true;
+  return false;
 }
