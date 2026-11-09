@@ -12,7 +12,7 @@ terraform {
 variable "region" {
   description = "AWS region for the state bucket."
   type        = string
-  default     = "us-east-1"
+  default     = "us-east-2"
 }
 
 provider "aws" {
@@ -99,6 +99,47 @@ resource "aws_s3_bucket_policy" "state" {
   depends_on = [aws_s3_bucket_public_access_block.state]
 }
 
+variable "environments" {
+  description = "Environments that get a GitHub deploy IAM user."
+  type        = set(string)
+  default     = ["dev", "test", "prod"]
+}
+
+# One IAM user per environment for GitHub Actions (docs/design/09 section 8). The org SCP denies
+# iam:CreateOpenIDConnectProvider, so OIDC roles are not possible; static access keys are used.
+#
+# Deliberately NO aws_iam_access_key resource: Terraform would store the secret key in plaintext
+# in state. Keys are created by scripts/setup-github.sh and piped straight into GitHub
+# environment secrets.
+resource "aws_iam_user" "github_deploy" {
+  for_each = var.environments
+
+  name = "dnp-github-deploy-${each.key}"
+  path = "/"
+
+  tags = {
+    Environment = each.key
+  }
+}
+
+# v1: AdministratorAccess (Terraform creates IAM, Lambda, Cognito, CloudFront...). Narrowing this
+# is a later hardening task; see docs/design/09-aws-architecture.md section 8.
+resource "aws_iam_user_policy_attachment" "github_deploy_admin" {
+  for_each = var.environments
+
+  user       = aws_iam_user.github_deploy[each.key].name
+  policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
+}
+
 output "state_bucket" {
   value = aws_s3_bucket.state.id
+}
+
+output "region" {
+  value = var.region
+}
+
+output "deploy_user_names" {
+  description = "Environment name to GitHub deploy IAM user name."
+  value       = { for env, user in aws_iam_user.github_deploy : env => user.name }
 }

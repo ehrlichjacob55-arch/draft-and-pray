@@ -1,0 +1,94 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Environment to deploy. Pick the source in 'Use workflow from': main for dev, a v* tag for test/prod (rollback = an older tag)."
+        type: choice
+        options: [dev, test, prod]
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  # Skipped on manual dispatch so a rollback is never blocked by the current state of main.
+  ci:
+    if: github.event_name != 'workflow_dispatch'
+    uses: ./.github/workflows/ci.yml
+
+  build:
+    needs: ci
+    if: ${{ !cancelled() && (needs.ci.result == 'success' || needs.ci.result == 'skipped') }}
+    runs-on: ubuntu-latest
+    outputs:
+      sha: ${{ steps.sha.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - id: sha
+        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: app-dist-${{ github.sha }}
+          path: |
+            apps/api/dist
+            apps/web/dist
+          retention-days: 30
+          if-no-files-found: error
+
+  deploy-dev:
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch' && inputs.environment == 'dev'
+    permissions:
+      contents: read
+    # No `secrets: inherit`: AWS keys are environment secrets, resolved inside the called
+    # workflow's job via its own `environment:`. We use no repository/organization secrets.
+    uses: ./.github/workflows/_deploy-env.yml
+    with:
+      environment: dev
+      sha: ${{ needs.build.outputs.sha }}
+      artifact: app-dist-${{ github.sha }}
+
+  deploy-test:
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/v') && github.event_name == 'push' || github.event_name == 'workflow_dispatch' && inputs.environment == 'test'
+    permissions:
+      contents: read
+    # No `secrets: inherit`: AWS keys are environment secrets, resolved inside the called
+    # workflow's job via its own `environment:`. We use no repository/organization secrets.
+    uses: ./.github/workflows/_deploy-env.yml
+    with:
+      environment: test
+      sha: ${{ needs.build.outputs.sha }}
+      artifact: app-dist-${{ github.sha }}
+
+  deploy-prod:
+    needs: [build, deploy-test]
+    # Tag push: only after deploy-test succeeded. Dispatch to prod: deploy-test is skipped, run anyway.
+    if: >-
+      always() && needs.build.result == 'success' && (
+        (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v') && needs.deploy-test.result == 'success') ||
+        (github.event_name == 'workflow_dispatch' && inputs.environment == 'prod')
+      )
+    permissions:
+      contents: read
+    # No `secrets: inherit`: AWS keys are environment secrets, resolved inside the called
+    # workflow's job via its own `environment:`. We use no repository/organization secrets.
+    uses: ./.github/workflows/_deploy-env.yml
+    with:
+      environment: prod
+      sha: ${{ needs.build.outputs.sha }}
+      artifact: app-dist-${{ github.sha }}

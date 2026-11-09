@@ -14,4 +14,6 @@ coverage
 infra/**/backend.hcl
 *.tfvars
 !*.tfvars.example
+# Per-env non-secret inputs are committed (docs/design/09 section 8)
+!infra/terraform/envs/*/terraform.tfvars
 infra/terraform/**/build/

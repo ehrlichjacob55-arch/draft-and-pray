@@ -33,6 +33,13 @@ terraform -chdir=infra/terraform/envs/dev validate
 scripts/deploy.sh dev    # requires AWS credentials + backend.hcl
 ```
 
+## Environments & releases (09 §8)
+
+- **dev**: auto-deploys on every push to `main`; may be unstable.
+- **test**: deploys when a `vX.Y.Z` tag is pushed; must stay stable.
+- **prod**: deploys the same tag after manual approval in GitHub.
+- Work on a branch and open a PR. Never push straight to `main`, and never create release tags unless the user asks.
+
 ## Rules
 
 - The server is the source of truth for the draft; clients never advance it. Draft/scoring rules live in `packages/domain` as pure functions.

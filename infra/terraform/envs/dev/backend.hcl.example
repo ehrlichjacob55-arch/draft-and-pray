@@ -1,6 +1,6 @@
 # Copy to backend.hcl and replace <account_id>.
 bucket       = "dnp-tfstate-<account_id>"
 key          = "draft-and-pray/dev.tfstate"
-region       = "us-east-1"
+region       = "us-east-2"
 use_lockfile = true
 encrypt      = true

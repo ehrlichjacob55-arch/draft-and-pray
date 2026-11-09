@@ -62,7 +62,7 @@ There's no VPC, no NAT, no database server, and nothing billed by the hour.
 | Schema changes | None (schema in code, zod-validated items) | One-off backfill scripts if an item shape changes. |
 | Local dev | **DynamoDB Local** (Java) on :8000 + `@hono/node-server` on :3001 + Vite on :5173 (proxies `/api`) | `pnpm ddb:local`. Realtime and Cognito are stubbed locally. Tests start their own in-memory DynamoDB Local. |
 | IaC | Terraform ≥ 1.10, AWS provider `~> 6.0`, S3 backend with `use_lockfile = true` | |
-| CI | GitHub Actions: lint, typecheck, test (with DynamoDB Local, Java 21), build; `terraform fmt -check` + `validate` | Deploy job added later (needs an OIDC role). |
+| CI | GitHub Actions: lint, typecheck, test (with DynamoDB Local, Java 21), build; `terraform fmt -check` + `validate` | Deploys via `deploy.yml` (§8). |
 
 ### Draft clock on AWS (replaces 05 §6)
 Same stored-deadline + idempotent `tick` design. Three triggers, any of which may fire, and all are safe to fire together:
@@ -85,10 +85,10 @@ All three funnel into the same pick transaction (doc 10 §4.1), whose `currentPi
 ├── infra/terraform/
 │   ├── bootstrap/           state bucket (local state, run once per account)
 │   ├── modules/             auth, data, api, realtime, web, jobs, lambda_function, app
-│   └── envs/{dev,prod}/     root modules
+│   └── envs/{dev,test,prod}/ root modules
 ├── scripts/deploy.sh        build → terraform apply → s3 sync → invalidate
 ├── docs/design/             these docs
-└── .github/workflows/ci.yml
+└── .github/workflows/     ci.yml (checks), deploy.yml (dev/test/prod pipeline)
 ```
 
 pnpm workspaces; package scope `@dnp/*`; Node ≥ 22 (`.nvmrc` = 22).
@@ -130,7 +130,7 @@ Terraform zips each directory with `archive_file` from `var.lambda_dist_dir` (de
 ### Web runtime config
 The SPA fetches `/config.json` at startup:
 ```json
-{ "apiBaseUrl": "/api", "wsUrl": "wss://…", "cognitoUserPoolId": "…", "cognitoClientId": "…", "region": "us-east-1", "env": "dev" }
+{ "apiBaseUrl": "/api", "wsUrl": "wss://…", "cognitoUserPoolId": "…", "cognitoClientId": "…", "region": "us-east-2", "env": "dev" }
 ```
 Locally it's served from `apps/web/public/config.json` (committed, local values). In AWS, Terraform writes `config.json` to the bucket; `deploy.sh` syncs `apps/web/dist` with `--exclude config.json`.
 
@@ -141,7 +141,7 @@ Locally it's served from `apps/web/public/config.json` (committed, local values)
 
 ## 5. Terraform conventions
 - Name prefix `dnp-${var.env}`; provider `default_tags` = `{ Project = "draft-and-pray", Environment = var.env, ManagedBy = "terraform" }`.
-- Region variable, default `us-east-1` (CloudFront ACM certs, if a custom domain is added later, must be in us-east-1 anyway).
+- Region variable, default `us-east-2` (decided 2026-11-09 to match the owner's CLI profile). If a custom domain is added later, its CloudFront ACM certificate must be created in us-east-1 via a provider alias.
 - Backend: `backend "s3" {}` with partial config from `backend.hcl` (`backend.hcl.example` committed). CI uses `terraform init -backend=false`.
 - `.terraform.lock.hcl` is committed; `.terraform/`, `*.tfstate*`, `backend.hcl` and `*.tfvars` (except `*.tfvars.example`) are gitignored.
 - Log groups are created explicitly (14-day retention dev, 90 prod).
@@ -153,3 +153,49 @@ Effectively **$0–1/month** all year. DynamoDB on-demand, Lambda, API Gateway, 
 
 ## 7. Things to verify at first `terraform apply`
 - Cognito email OTP may require SES as the sender (not `COGNITO_DEFAULT`). The auth module takes an optional `ses_from_email` / SES identity ARN.
+
+## 8. Environments & deployment pipeline
+
+Decided 2026-11-09: three environments in **one AWS account**, isolated by name prefix (`dnp-dev-*`, `dnp-test-*`, `dnp-prod-*`), a separate Terraform state key, and a separate GitHub Environment + deploy role each.
+
+| Env | Purpose | Stability | Deployed by | `is_prod` |
+|---|---|---|---|---|
+| **dev** | Integration of everything merged to `main` | May break | Every push to `main` (after CI passes) | false |
+| **test** | Release candidate the league can try (mock draft) | Stable | Pushing a version tag `vX.Y.Z` | false |
+| **prod** | The live league | Stable | Same tag, after a manual approval in GitHub | true |
+
+### Promotion flow
+
+```mermaid
+flowchart LR
+    PR[Pull request] -->|ci.yml| CI{lint · typecheck · test · build · tf validate}
+    CI -->|merge| MAIN[main]
+    MAIN -->|deploy.yml| DEV[(DEV)]
+    MAIN -->|git tag v1.2.0| TAG[tag]
+    TAG -->|deploy.yml| TEST[(TEST)]
+    TEST -->|required reviewer approves| PROD[(PROD)]
+```
+
+- **Build once, promote the artifact.** In a tag run, one `build` job produces `apps/api/dist` + `apps/web/dist` and uploads them as a workflow artifact. Both the `test` and `prod` jobs deploy **that same artifact**, so PROD runs exactly what was tested.
+- **The prod gate** is the GitHub Environment `prod` with a required reviewer (the repo owner). The prod job waits after TEST succeeds until it's approved. Required reviewers on the free plan need the repo to be public; for a private repo this needs GitHub Pro/Team, or the gate must change.
+- **Redeploy / rollback:** `workflow_dispatch` with input `environment` (dev|test|prod); the source is the ref chosen in "Use workflow from" (environment policies are evaluated against it): `main` for dev, a `v*` tag for test/prod. Rolling back PROD = dispatch from the previous tag (`gh workflow run deploy.yml --ref v0.1.0 -f environment=prod`); it still goes through the prod approval.
+- **Concurrency:** one deploy per environment at a time (`concurrency: deploy-<env>`, no cancel-in-progress).
+
+### AWS authentication (IAM users + access keys)
+**Why not OIDC:** the AWS account (`785973601333`) is a member of an AWS Organization whose service control policy explicitly denies `iam:CreateOpenIDConnectProvider` (found at first bootstrap, 2026-11-09). GitHub OIDC roles are therefore impossible; the owner chose long-lived access keys instead. If the SCP is ever lifted, switch back to OIDC (stronger: no stored secrets).
+
+- One IAM user per env, `dnp-github-deploy-<env>`, created by `infra/terraform/bootstrap` **without access keys** (Terraform would store the secret in plain text in its state).
+- Access keys are created by `scripts/setup-github.sh` and piped directly into **GitHub environment secrets** `AWS_ACCESS_KEY_ID` / `AWS_SECRET_ACCESS_KEY` on the matching environment. They are never printed, written to disk or committed.
+- **Rotation:** `scripts/setup-github.sh --rotate-keys` creates a new key, updates the secret, then deletes the old key. Rotate every 90 days, and immediately if a key may have leaked. IAM allows at most 2 keys per user.
+- GitHub Environment deployment policies: `dev` allows branch `main` only; `test` and `prod` allow tags `v*` only. Secrets are only exposed to jobs running in that environment; fork PRs never get them.
+- User permissions: v1 attaches `AdministratorAccess` (Terraform creates IAM roles, Lambda, Cognito, CloudFront…). Narrowing this is a later hardening task; with static keys it matters more than it did with OIDC.
+
+### Configuration (no secrets in the repo)
+GitHub **repository variables:** `AWS_REGION`, `TF_STATE_BUCKET`.
+GitHub **environment secrets** (per env): `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`.
+CI writes `backend.hcl` at runtime (`bucket`, `key = draft-and-pray/<env>.tfstate`, `region`, `use_lockfile = true`, `encrypt = true`). Optional per-env Terraform inputs (e.g. `ses_from_email`, `ingest_enabled`) come from `envs/<env>/terraform.tfvars`, which is **committed** for non-secret values. Secrets (stats API key) stay in SSM and are set by hand.
+
+### Bootstrap order (one time, by a human with admin credentials)
+1. `terraform -chdir=infra/terraform/bootstrap apply`: state bucket + 3 deploy IAM users (no keys).
+2. `scripts/setup-github.sh`: creates the GitHub Environments and their deployment policies, adds the prod reviewer, sets the variables from bootstrap outputs, and creates each user's access key straight into its environment secrets (uses `gh` and `aws`).
+3. Push to `main` → DEV deploys. Tag `v0.1.0` → TEST deploys → approve → PROD deploys.
