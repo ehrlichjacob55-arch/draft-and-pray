@@ -62,7 +62,7 @@ There's no VPC, no NAT, no database server, and nothing billed by the hour.
 | Schema changes | None (schema in code, zod-validated items) | One-off backfill scripts if an item shape changes. |
 | Local dev | **DynamoDB Local** (Java) on :8000 + `@hono/node-server` on :3001 + Vite on :5173 (proxies `/api`) | `pnpm ddb:local`. Realtime and Cognito are stubbed locally. Tests start their own in-memory DynamoDB Local. |
 | IaC | Terraform ≥ 1.10, AWS provider `~> 6.0`, S3 backend with `use_lockfile = true` | |
-| CI | GitHub Actions: lint, typecheck, test (with DynamoDB Local, Java 21), build; `terraform fmt -check` + `validate` | Deploy job added later (needs an OIDC role). |
+| CI | GitHub Actions: lint, typecheck, test (with DynamoDB Local, Java 21), build; `terraform fmt -check` + `validate` | Deploys via `deploy.yml` (§8). |
 
 ### Draft clock on AWS (replaces 05 §6)
 Same stored-deadline + idempotent `tick` design. Three triggers, any of which may fire, and all are safe to fire together:
@@ -181,18 +181,21 @@ flowchart LR
 - **Redeploy / rollback:** `workflow_dispatch` with input `environment` (dev|test|prod); the source is the ref chosen in "Use workflow from" (environment policies are evaluated against it): `main` for dev, a `v*` tag for test/prod. Rolling back PROD = dispatch from the previous tag (`gh workflow run deploy.yml --ref v0.1.0 -f environment=prod`); it still goes through the prod approval.
 - **Concurrency:** one deploy per environment at a time (`concurrency: deploy-<env>`, no cancel-in-progress).
 
-### AWS authentication (no long-lived keys)
-- GitHub OIDC provider (`token.actions.githubusercontent.com`) created once in `infra/terraform/bootstrap`.
-- One IAM role per env, `dnp-github-deploy-<env>`. Its trust policy requires `aud = sts.amazonaws.com` **and** `sub = repo:<owner>/<repo>:environment:<env>`, so only jobs running in that GitHub Environment can assume it.
-- GitHub Environment deployment policies: `dev` allows branch `main` only; `test` and `prod` allow tags `v*` only. Fork PRs never get these credentials.
-- Role permissions: v1 attaches `AdministratorAccess` (Terraform creates IAM roles, Lambda, Cognito, CloudFront…). This is acceptable for a one-person hobby account because the trust policy and environment rules are the real boundary; a scoped policy is a later hardening task. State bucket access is included.
+### AWS authentication (IAM users + access keys)
+**Why not OIDC:** the AWS account (`785973601333`) is a member of an AWS Organization whose service control policy explicitly denies `iam:CreateOpenIDConnectProvider` (found at first bootstrap, 2026-11-09). GitHub OIDC roles are therefore impossible; the owner chose long-lived access keys instead. If the SCP is ever lifted, switch back to OIDC (stronger: no stored secrets).
+
+- One IAM user per env, `dnp-github-deploy-<env>`, created by `infra/terraform/bootstrap` **without access keys** (Terraform would store the secret in plain text in its state).
+- Access keys are created by `scripts/setup-github.sh` and piped directly into **GitHub environment secrets** `AWS_ACCESS_KEY_ID` / `AWS_SECRET_ACCESS_KEY` on the matching environment. They are never printed, written to disk or committed.
+- **Rotation:** `scripts/setup-github.sh --rotate-keys` creates a new key, updates the secret, then deletes the old key. Rotate every 90 days, and immediately if a key may have leaked. IAM allows at most 2 keys per user.
+- GitHub Environment deployment policies: `dev` allows branch `main` only; `test` and `prod` allow tags `v*` only. Secrets are only exposed to jobs running in that environment; fork PRs never get them.
+- User permissions: v1 attaches `AdministratorAccess` (Terraform creates IAM roles, Lambda, Cognito, CloudFront…). Narrowing this is a later hardening task; with static keys it matters more than it did with OIDC.
 
 ### Configuration (no secrets in the repo)
 GitHub **repository variables:** `AWS_REGION`, `TF_STATE_BUCKET`.
-GitHub **environment variables** (per env): `AWS_DEPLOY_ROLE_ARN`.
+GitHub **environment secrets** (per env): `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`.
 CI writes `backend.hcl` at runtime (`bucket`, `key = draft-and-pray/<env>.tfstate`, `region`, `use_lockfile = true`, `encrypt = true`). Optional per-env Terraform inputs (e.g. `ses_from_email`, `ingest_enabled`) come from `envs/<env>/terraform.tfvars`, which is **committed** for non-secret values. Secrets (stats API key) stay in SSM and are set by hand.
 
 ### Bootstrap order (one time, by a human with admin credentials)
-1. `terraform -chdir=infra/terraform/bootstrap apply`: state bucket + OIDC provider + 3 deploy roles.
-2. `scripts/setup-github.sh`: creates the GitHub Environments and their deployment policies, adds the prod reviewer, and sets the variables from bootstrap outputs (uses `gh`).
+1. `terraform -chdir=infra/terraform/bootstrap apply`: state bucket + 3 deploy IAM users (no keys).
+2. `scripts/setup-github.sh`: creates the GitHub Environments and their deployment policies, adds the prod reviewer, sets the variables from bootstrap outputs, and creates each user's access key straight into its environment secrets (uses `gh` and `aws`).
 3. Push to `main` → DEV deploys. Tag `v0.1.0` → TEST deploys → approve → PROD deploys.

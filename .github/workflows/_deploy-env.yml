@@ -30,7 +30,6 @@ jobs:
       cancel-in-progress: false
     permissions:
       contents: read
-      id-token: write
     env:
       AWS_REGION: ${{ vars.AWS_REGION }}
       TF_STATE_BUCKET: ${{ vars.TF_STATE_BUCKET }}
@@ -46,9 +45,21 @@ jobs:
         with:
           terraform_version: "1.16.x"
           terraform_wrapper: false
+      - name: Check AWS credentials are configured
+        env:
+          HAS_KEY: ${{ secrets.AWS_ACCESS_KEY_ID != '' }}
+          HAS_SECRET: ${{ secrets.AWS_SECRET_ACCESS_KEY != '' }}
+        run: |
+          if [[ "$HAS_KEY" != "true" || "$HAS_SECRET" != "true" ]]; then
+            echo "::error::AWS_ACCESS_KEY_ID / AWS_SECRET_ACCESS_KEY are missing in the '${{ inputs.environment }}' GitHub environment. Run scripts/setup-github.sh."
+            exit 1
+          fi
+      # These are ENVIRONMENT secrets: because this job declares `environment:`, they resolve from
+      # that environment (so the caller needs no `secrets: inherit`).
       - uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ vars.AWS_REGION }}
       - name: Deploy
         run: scripts/deploy.sh "${{ inputs.environment }}" --auto-approve --skip-build

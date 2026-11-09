@@ -3,7 +3,7 @@
 Terraform for the AWS stack described in `docs/design/09-aws-architecture.md`.
 
 ```
-bootstrap/        S3 state bucket + GitHub OIDC provider + deploy roles (local state, run once per account)
+bootstrap/        S3 state bucket + 3 GitHub deploy IAM users (local state, run once per account)
 modules/          data, auth, api, realtime, web, jobs, lambda_function (internal), app (composition)
 envs/dev|test|prod  thin root modules over modules/app; each has a committed terraform.tfvars
 ```
@@ -32,22 +32,36 @@ terraform init
 terraform apply
 ```
 
-Creates the state bucket `dnp-tfstate-<account_id>` (versioned, SSE-S3, private, TLS-only), the
-GitHub OIDC provider, and roles `dnp-github-deploy-{dev,test,prod}`. Each role trusts only
-`repo:<owner>/<repo>:environment:<env>` (plus `aud = sts.amazonaws.com`) and has
-`AdministratorAccess` for now (scope down later). State stays local (`terraform.tfstate`,
-gitignored); keep it or re-import if lost.
+Creates the state bucket `dnp-tfstate-<account_id>` (versioned, SSE-S3, private, TLS-only) and
+three IAM users `dnp-github-deploy-{dev,test,prod}` with `AdministratorAccess` for now (scope down
+later). **No access keys are created here**: Terraform would store the secret in plaintext in
+state. State stays local (`terraform.tfstate`, gitignored); keep it or re-import if lost.
+
+**Why IAM users, not OIDC:** the AWS account belongs to an AWS Organization whose SCP denies
+`iam:CreateOpenIDConnectProvider`, so GitHub OIDC roles are impossible. If the SCP is ever lifted,
+OIDC is preferable (no stored secrets). See `docs/design/09-aws-architecture.md` section 8.
 
 ## 2. Configure GitHub (once, after bootstrap)
 
 ```
 scripts/setup-github.sh --dry-run   # inspect the calls
-scripts/setup-github.sh             # needs gh (authenticated as repo admin), jq, terraform
+scripts/setup-github.sh             # needs gh (repo admin), jq, terraform, aws (admin credentials)
 ```
 
 Creates the `dev`, `test`, `prod` Environments (dev: branch `main` only; test/prod: tags `v*`
 only; prod: required reviewer = repo owner, self-review allowed) and sets `AWS_REGION`,
-`TF_STATE_BUCKET` (repo variables) and `AWS_DEPLOY_ROLE_ARN` (per environment). Re-running is safe.
+`TF_STATE_BUCKET` (repo variables). For each environment it also creates an access key for the
+matching deploy user and pipes it straight into the environment secrets `AWS_ACCESS_KEY_ID` /
+`AWS_SECRET_ACCESS_KEY` (never printed or written to disk). Re-running is safe: environments that
+already have the secret are skipped.
+
+### Key rotation and leaks
+
+- Rotate every 90 days: `scripts/setup-github.sh --rotate-keys` creates a new key, updates the
+  secrets, then deletes the old key. (IAM allows at most 2 keys per user.)
+- If a key may have leaked: rotate immediately with `--rotate-keys`, or delete the key in the IAM
+  console (Users -> `dnp-github-deploy-<env>` -> Security credentials) and then re-run the script
+  to create a fresh one.
 
 **Public repo note:** required reviewers on the free plan only work for public repos. If the repo
 goes private, you need GitHub Pro/Team or the prod gate must change.

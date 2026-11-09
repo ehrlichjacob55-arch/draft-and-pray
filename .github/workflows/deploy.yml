@@ -54,7 +54,8 @@ jobs:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch' && inputs.environment == 'dev'
     permissions:
       contents: read
-      id-token: write
+    # No `secrets: inherit`: AWS keys are environment secrets, resolved inside the called
+    # workflow's job via its own `environment:`. We use no repository/organization secrets.
     uses: ./.github/workflows/_deploy-env.yml
     with:
       environment: dev
@@ -66,7 +67,8 @@ jobs:
     if: startsWith(github.ref, 'refs/tags/v') && github.event_name == 'push' || github.event_name == 'workflow_dispatch' && inputs.environment == 'test'
     permissions:
       contents: read
-      id-token: write
+    # No `secrets: inherit`: AWS keys are environment secrets, resolved inside the called
+    # workflow's job via its own `environment:`. We use no repository/organization secrets.
     uses: ./.github/workflows/_deploy-env.yml
     with:
       environment: test
@@ -83,7 +85,8 @@ jobs:
       )
     permissions:
       contents: read
-      id-token: write
+    # No `secrets: inherit`: AWS keys are environment secrets, resolved inside the called
+    # workflow's job via its own `environment:`. We use no repository/organization secrets.
     uses: ./.github/workflows/_deploy-env.yml
     with:
       environment: prod
