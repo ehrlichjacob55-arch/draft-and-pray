@@ -212,7 +212,9 @@ describe("authentication", () => {
       { APP_ENV: "local", COGNITO_USER_POOL_ID: "us-east-2_abc123", COGNITO_CLIENT_ID: "c" },
     ]) {
       const app = createApp({ config: loadConfig(env), db });
-      const res = await app.request("/api/me", { headers: { "X-Dev-User-Email": "a@example.com" } });
+      const res = await app.request("/api/me", {
+        headers: { "X-Dev-User-Email": "a@example.com" },
+      });
       expect(res.status, JSON.stringify(env)).toBe(401);
     }
   });
