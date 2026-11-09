@@ -34,8 +34,21 @@ export function ErrorWithRetry({ message, onRetry }: { message: string; onRetry:
   );
 }
 
-export function Card({ children, className = "" }: { children: ReactNode; className?: string }) {
+export function Card({
+  children,
+  className = "",
+  "data-testid": testId,
+}: {
+  children: ReactNode;
+  className?: string;
+  "data-testid"?: string;
+}) {
   return (
-    <div className={`rounded border border-border bg-surface p-4 ${className}`}>{children}</div>
+    <div
+      className={`rounded border border-border bg-surface p-4 ${className}`}
+      data-testid={testId}
+    >
+      {children}
+    </div>
   );
 }

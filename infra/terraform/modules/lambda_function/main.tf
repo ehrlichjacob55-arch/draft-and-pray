@@ -28,8 +28,9 @@ variable "dist_dir" {
 }
 
 variable "policy_json" {
-  description = "Inline IAM policy document (JSON) granting the function's permissions, in addition to basic logging."
+  description = "Inline IAM policy document (JSON) granting the function's permissions, in addition to basic logging. Null = logging only."
   type        = string
+  default     = null
 }
 
 variable "environment" {
@@ -100,6 +101,8 @@ resource "aws_iam_role_policy" "logging" {
 # NOTE: the function does not depend on this policy, so policies may reference
 # resources that in turn depend on the function (no cycles).
 resource "aws_iam_role_policy" "permissions" {
+  count = var.policy_json == null ? 0 : 1
+
   name   = "permissions"
   role   = aws_iam_role.this.id
   policy = var.policy_json

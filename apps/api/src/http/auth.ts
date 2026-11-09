@@ -10,6 +10,10 @@ export interface AuthUser {
   sub: string;
   /** Normalized; may be undefined if the token carries no email claim. */
   email?: string;
+  /** False only when the token says the email is unverified; claims are skipped then. */
+  emailVerified?: boolean;
+  /** `cognito:groups` from the ID token (e.g. `test-users`). Empty/absent for local dev auth. */
+  groups?: string[];
 }
 
 export type AppEnv = { Variables: { user: AuthUser } };
@@ -28,7 +32,11 @@ export function cognitoVerifier(userPoolId: string, clientId: string): TokenVeri
   return async (token) => {
     const payload = await verifier.verify(token);
     const email = typeof payload.email === "string" ? normalizeEmail(payload.email) : undefined;
-    return { sub: payload.sub, email };
+    const groups = Array.isArray(payload["cognito:groups"])
+      ? payload["cognito:groups"].filter((g): g is string => typeof g === "string")
+      : [];
+    const emailVerified = payload.email_verified === true;
+    return { sub: payload.sub, email, emailVerified, groups };
   };
 }
 
@@ -39,7 +47,7 @@ export function authMiddleware(
   if (isLocalDevAuth(config)) {
     return async (c, next) => {
       const email = normalizeEmail(c.req.header(DEV_EMAIL_HEADER) || DEFAULT_DEV_EMAIL);
-      c.set("user", { sub: localSub(email), email });
+      c.set("user", { sub: localSub(email), email, emailVerified: true, groups: [] });
       await next();
     };
   }
@@ -65,7 +73,5 @@ export function authMiddleware(
 /** Routes reachable without a session. */
 export function isPublicRoute(method: string, path: string): boolean {
   if (method === "GET" && path === "/api/health") return true;
-  if (method === "GET" && /^\/api\/invites\/[^/]+$/.test(path)) return true;
-  if (method === "POST" && /^\/api\/invites\/[^/]+\/register$/.test(path)) return true;
   return false;
 }

@@ -1,6 +1,6 @@
 import { QueryCommand } from "@aws-sdk/lib-dynamodb";
 import type { Dynamo } from "../client";
-import { seasonPk } from "../keys";
+import { seasonPk, skPrefix } from "../keys";
 import {
   parseItem,
   type AuditItem,
@@ -96,7 +96,10 @@ export async function loadSeason(
   seasonId: string,
   opts: LoadSeasonOptions = {},
 ): Promise<SeasonSnapshot> {
-  const raw = await queryPrefix(db, seasonPk(seasonId), undefined, opts);
+  // PRIVATE#… items (manager names/emails) are commissioner-only and never part of a snapshot.
+  const raw = (await queryPrefix(db, seasonPk(seasonId), undefined, opts)).filter(
+    (r) => !String(r.sk).startsWith(skPrefix.private),
+  );
   const snap: SeasonSnapshot = {
     seasonId,
     rulesets: [],

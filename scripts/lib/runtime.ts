@@ -5,6 +5,7 @@ import {
   AdminGetUserCommand,
   CognitoIdentityProviderClient,
   InitiateAuthCommand,
+  ListUsersCommand,
   RespondToAuthChallengeCommand,
 } from "@aws-sdk/client-cognito-identity-provider";
 import {
@@ -15,7 +16,7 @@ import {
 } from "@aws-sdk/client-ssm";
 import { createDynamo, ensureTable, localSub, type Dynamo } from "@dnp/db";
 import type { EnvConfig } from "./env";
-import { testUsersParam } from "./env";
+import { NEW_TEST_PREFIX, isNewTestUserEmail, testUsersParam } from "./env";
 
 export interface TestUser {
   email: string;
@@ -144,4 +145,83 @@ export async function subFor(cfg: EnvConfig, email: string): Promise<string> {
   if (cfg.env === "local") return localSub(email);
   const { userPoolId } = requirePool(cfg);
   return cognitoSub(openCognito(cfg), userPoolId, email);
+}
+
+/**
+ * First sign-in of an invited user (docs/design/13 §1.3): USER_AUTH + PASSWORD with the temporary
+ * password -> NEW_PASSWORD_REQUIRED -> a new random password (kept only in memory by the caller).
+ * Returns the ID token.
+ */
+export async function signInNewUser(
+  client: CognitoIdentityProviderClient,
+  clientId: string,
+  user: { email: string; temporaryPassword: string; newPassword: string },
+): Promise<string> {
+  const first = await client.send(
+    new InitiateAuthCommand({
+      AuthFlow: "USER_AUTH",
+      ClientId: clientId,
+      AuthParameters: {
+        USERNAME: user.email,
+        PREFERRED_CHALLENGE: "PASSWORD",
+        PASSWORD: user.temporaryPassword,
+      },
+    }),
+  );
+  let step = first;
+  if (step.ChallengeName === "PASSWORD" && step.Session) {
+    step = await client.send(
+      new RespondToAuthChallengeCommand({
+        ClientId: clientId,
+        ChallengeName: "PASSWORD",
+        Session: step.Session,
+        ChallengeResponses: { USERNAME: user.email, PASSWORD: user.temporaryPassword },
+      }),
+    );
+  }
+  if (step.ChallengeName !== "NEW_PASSWORD_REQUIRED" || !step.Session)
+    throw new Error(`Expected NEW_PASSWORD_REQUIRED (got ${step.ChallengeName ?? "none"})`);
+  const username = step.ChallengeParameters?.USER_ID_FOR_SRP ?? user.email;
+  const done = await client.send(
+    new RespondToAuthChallengeCommand({
+      ClientId: clientId,
+      ChallengeName: "NEW_PASSWORD_REQUIRED",
+      Session: step.Session,
+      ChallengeResponses: { USERNAME: username, NEW_PASSWORD: user.newPassword },
+    }),
+  );
+  const token = done.AuthenticationResult?.IdToken;
+  if (!token) throw new Error("Setting the new password did not sign the user in");
+  return token;
+}
+
+/**
+ * Deletes every Cognito user whose email is a `dnp-new-*@example.com` smoke user (ListUsers with
+ * a prefix filter; the regex is re-checked before each delete). Returns the emails it deleted.
+ */
+export async function deleteNewTestCognitoUsers(
+  client: CognitoIdentityProviderClient,
+  userPoolId: string,
+): Promise<string[]> {
+  const deleted: string[] = [];
+  let token: string | undefined;
+  do {
+    const res = await client.send(
+      new ListUsersCommand({
+        UserPoolId: userPoolId,
+        Filter: `email ^= "${NEW_TEST_PREFIX}"`,
+        PaginationToken: token,
+      }),
+    );
+    for (const u of res.Users ?? []) {
+      const email = u.Attributes?.find((a) => a.Name === "email")?.Value ?? "";
+      if (!u.Username || !isNewTestUserEmail(email)) continue;
+      await client.send(
+        new AdminDeleteUserCommand({ UserPoolId: userPoolId, Username: u.Username }),
+      );
+      deleted.push(email);
+    }
+    token = res.PaginationToken;
+  } while (token);
+  return deleted;
 }

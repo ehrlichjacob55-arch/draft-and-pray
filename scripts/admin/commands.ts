@@ -40,7 +40,7 @@ export const defaultDeps: Deps = {
 const USAGE = `Usage: pnpm admin <command> [flags]
   bootstrap-league --env <local|dev|test|prod> --email <email> --league "<name>" --year 2026
   test-users create|delete --env <dev|test> [--count 9]
-  test-league seed|reset --env <local|dev|test>
+  test-league seed|reset --env <local|dev|test>   (seed: the commissioner adds managers; reset also deletes dnp-new-* users)
 Common overrides: --table, --user-pool-id, --client-id, --base-url, --region`;
 
 export async function runAdmin(argv: string[], deps: Deps = defaultDeps): Promise<void> {
@@ -124,6 +124,13 @@ async function testUsers(
   }
 }
 
+/** AWS envs only: the client + pool used to delete `dnp-new-*` smoke users. */
+function cognitoFor(env: string, cfg: EnvConfig) {
+  return env === "local"
+    ? undefined
+    : { client: openCognito(cfg), userPoolId: requirePool(cfg).userPoolId };
+}
+
 async function testLeague(
   sub: string | undefined,
   flags: ReturnType<typeof parseCli>["flags"],
@@ -136,8 +143,10 @@ async function testLeague(
   if (env === "local") await ensureLocalTable(db);
 
   if (sub === "reset") {
-    const r = await resetTestLeague(db);
-    deps.log(`Reset: ${r.leaguesDeleted} league(s), ${r.itemsDeleted} item(s) deleted`);
+    const r = await resetTestLeague(db, { cognito: cognitoFor(env, cfg) });
+    deps.log(
+      `Reset: ${r.leaguesDeleted} league(s), ${r.itemsDeleted} item(s), ${r.cognitoUsersDeleted} dnp-new Cognito user(s) deleted`,
+    );
     return;
   }
   const users: TestUser[] =
@@ -145,8 +154,8 @@ async function testLeague(
       ? Array.from({ length: 9 }, (_, i) => ({ email: testUserEmail(i + 1), password: "" }))
       : await readTestUsers(cfg);
   const api = createApiClient(cfg, users);
-  const r = await seedTestLeague(cfg, db, api, users);
+  const r = await seedTestLeague(cfg, db, api, users, cognitoFor(env, cfg));
   deps.log(
-    `Seeded Test League season ${r.seasonId}: ${r.joined} joined, ${r.alreadyJoined} already had teams`,
+    `Seeded Test League season ${r.seasonId}: ${r.added} managers added, ${r.alreadyAdded} already added, ${r.claimed} teams claimed`,
   );
 }

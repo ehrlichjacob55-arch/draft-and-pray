@@ -121,8 +121,10 @@ Cost is effectively $0-1/month (docs/design/09 section 6).
 aws ssm put-parameter --name /dnp/dev/stats-api-key --type SecureString --overwrite --value '<key>'
 ```
 
-**Invite users**: the pool is admin-create-only. Create users in the Cognito console or with
-`aws cognito-idp admin-create-user --user-pool-id <id> --username a@b.com --user-attributes Name=email,Value=a@b.com Name=email_verified,Value=true`.
+**Invite managers**: the pool is admin-create-only. The commissioner adds managers in the app
+(docs/design/13); the API calls `AdminCreateUser` and the `cognito-custom-message` Lambda (wired as
+the pool's CustomMessage trigger, `SITE_URL` = the CloudFront domain) writes the email. Invitation
+codes (temporary passwords) are valid for 7 days.
 
 ## First-apply caveats (09 section 7)
 

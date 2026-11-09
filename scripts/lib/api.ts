@@ -17,6 +17,8 @@ export interface ApiClient {
     path: string,
     opts?: { as?: string; body?: unknown; anonymous?: boolean },
   ): Promise<ApiResult<T>>;
+  /** Registers an ID token for an email that is not in the stored test-user list (in memory only). */
+  useToken(email: string, idToken: string): void;
 }
 
 /** `users` is the SSM test-user list (AWS envs); ignored locally. */
@@ -39,6 +41,9 @@ export function createApiClient(cfg: EnvConfig, users: TestUser[] = []): ApiClie
   }
 
   return {
+    useToken(email, idToken) {
+      tokens.set(email, idToken);
+    },
     async request(method, path, opts = {}) {
       const headers: Record<string, string> = {};
       if (opts.as && !opts.anonymous) Object.assign(headers, await authHeader(opts.as));

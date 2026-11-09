@@ -7,6 +7,7 @@ import {
 } from "aws-amplify/auth";
 import { normalizeEmail } from "@dnp/contract";
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { randomPassword } from "../lib/password";
 import { useConfig, type AppConfig } from "../config";
 import { AuthContext, type AuthContextValue, type AuthStatus, type SignInStep } from "./context";
 
@@ -47,7 +48,7 @@ export function authErrorMessage(err: unknown): string {
     case "NotAuthorizedException":
       return "That code has expired or is no longer valid. Request a new code.";
     case "UserNotFoundException":
-      return "We could not find an account for that email. Ask your commissioner for an invite link.";
+      return "We could not find an account for that email. Ask your commissioner to add you.";
     case "LimitExceededException":
     case "TooManyRequestsException":
     case "TooManyFailedAttemptsException":
@@ -140,6 +141,32 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     await startSignIn(pendingEmail.current);
   }, [startSignIn]);
 
+  const welcomeSignIn = useCallback(
+    async (username: string, code: string): Promise<void> => {
+      try {
+        await amplifySignOut(); // someone else may be signed in on this browser
+      } catch {
+        /* nothing to sign out */
+      }
+      let { nextStep } = await signIn({
+        username,
+        password: code,
+        options: { authFlowType: "USER_AUTH", preferredChallenge: "PASSWORD" },
+      });
+      if (nextStep.signInStep === "CONTINUE_SIGN_IN_WITH_FIRST_FACTOR_SELECTION") {
+        ({ nextStep } = await confirmSignIn({ challengeResponse: "PASSWORD" }));
+      }
+      if (nextStep.signInStep === "CONFIRM_SIGN_IN_WITH_NEW_PASSWORD_REQUIRED") {
+        ({ nextStep } = await confirmSignIn({ challengeResponse: randomPassword() }));
+      }
+      if (nextStep.signInStep !== "DONE") {
+        throw new Error("We could not finish setting up your account. Please try signing in.");
+      }
+      await refresh();
+    },
+    [refresh],
+  );
+
   const devSignIn = useCallback((rawEmail: string) => {
     const email = normalizeEmail(rawEmail);
     writeDevEmail(email);
@@ -179,9 +206,20 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       startSignIn,
       confirmCode,
       resendCode,
+      welcomeSignIn,
       devSignIn,
     }),
-    [local, state, getIdToken, signOut, startSignIn, confirmCode, resendCode, devSignIn],
+    [
+      local,
+      state,
+      getIdToken,
+      signOut,
+      startSignIn,
+      confirmCode,
+      resendCode,
+      welcomeSignIn,
+      devSignIn,
+    ],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

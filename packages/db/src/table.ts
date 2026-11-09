@@ -9,7 +9,7 @@ import {
   type DynamoDBClient,
 } from "@aws-sdk/client-dynamodb";
 
-/** TTL attribute (epoch seconds), used by invites. */
+/** TTL attribute (epoch seconds); no item type uses it right now. */
 export const TTL_ATTRIBUTE = "expiresAt";
 export const GSI1 = "gsi1";
 

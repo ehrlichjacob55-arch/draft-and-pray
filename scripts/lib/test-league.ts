@@ -1,7 +1,9 @@
 /**
- * "Test League" (docs/design/11 §3.4): bootstrap, seed through the real API, and reset by
+ * "Test League" (docs/design/11 §3.4, 13 §7): bootstrap, seed through the real API (the commissioner
+ * adds managers; existing test users are auto-claimed on their next /me), and reset by
  * Query + BatchWrite (never Scan). Only ever deletes a league whose members are all test users.
  */
+import type { CognitoIdentityProviderClient } from "@aws-sdk/client-cognito-identity-provider";
 import { BatchWriteCommand } from "@aws-sdk/lib-dynamodb";
 import {
   bootstrapLeague,
@@ -10,7 +12,7 @@ import {
   leagueKey,
   leaguePk,
   listMemberships,
-  listSeasonInvites,
+  listManagerRecords,
   listSeasonPointers,
   queryPrefix,
   seasonPk,
@@ -18,8 +20,15 @@ import {
   type Dynamo,
 } from "@dnp/db";
 import type { ApiClient } from "./api";
-import { TEST_LEAGUE_NAME, TEST_YEAR, isTestUserEmail, testUserEmail, type EnvConfig } from "./env";
-import { subFor, type TestUser } from "./runtime";
+import {
+  TEST_LEAGUE_NAME,
+  TEST_YEAR,
+  isNewTestUserEmail,
+  isTestUserEmail,
+  testUserEmail,
+  type EnvConfig,
+} from "./env";
+import { deleteNewTestCognitoUsers, subFor, type TestUser } from "./runtime";
 
 type Key = { pk: string; sk: string };
 
@@ -51,16 +60,35 @@ const keyOf = (item: Record<string, unknown>): Key => ({
 export interface ResetResult {
   leaguesDeleted: number;
   itemsDeleted: number;
+  /** `dnp-new-*` Cognito users deleted (AWS envs only). */
+  cognitoUsersDeleted: number;
 }
 
-/** Deletes every Test League (league, seasons, invites) and the test users' profiles. */
-export async function resetTestLeague(db: Dynamo, userCount = 9): Promise<ResetResult> {
+export interface ResetOptions {
+  userCount?: number;
+  /** AWS envs: also delete the `dnp-new-*` Cognito users created by the smoke test. */
+  cognito?: { client: CognitoIdentityProviderClient; userPoolId: string };
+}
+
+/**
+ * Deletes every Test League (league, seasons incl. PRIVATE manager items), the test users'
+ * profiles, the profiles of `dnp-new-*` managers, and those users' Cognito accounts.
+ */
+export async function resetTestLeague(db: Dynamo, opts: ResetOptions = {}): Promise<ResetResult> {
+  const userCount = opts.userCount ?? 9;
   const emails = Array.from({ length: userCount }, (_, i) => testUserEmail(i + 1));
-  const profiles = (await Promise.all(emails.map((e) => getUserByEmail(db, e)))).filter(
+  const leagueIds = new Set<string>();
+  const newEmails = new Set<string>();
+
+  const cognitoDeleted = opts.cognito
+    ? await deleteNewTestCognitoUsers(opts.cognito.client, opts.cognito.userPoolId)
+    : [];
+  for (const e of cognitoDeleted) newEmails.add(e);
+
+  const baseProfiles = (await Promise.all(emails.map((e) => getUserByEmail(db, e)))).filter(
     (u) => u !== undefined,
   );
-  const leagueIds = new Set<string>();
-  for (const u of profiles)
+  for (const u of baseProfiles)
     for (const m of await listMemberships(db, u.userId)) leagueIds.add(m.leagueId);
 
   const keys: Key[] = [];
@@ -85,13 +113,17 @@ export async function resetTestLeague(db: Dynamo, userCount = 9): Promise<ResetR
         consistentRead: true,
       });
       keys.push(...seasonItems.map(keyOf));
-      for (const inv of await listSeasonInvites(db, p.seasonId)) keys.push(keyOf(inv));
+      for (const m of await listManagerRecords(db, p.seasonId))
+        if (isNewTestUserEmail(m.email)) newEmails.add(m.email);
     }
     leaguesDeleted++;
   }
-  for (const u of profiles) keys.push(userKey(u.userId));
+  const newProfiles = (await Promise.all([...newEmails].map((e) => getUserByEmail(db, e)))).filter(
+    (u) => u !== undefined,
+  );
+  for (const u of [...baseProfiles, ...newProfiles]) keys.push(userKey(u.userId));
   await batchDelete(db, keys);
-  return { leaguesDeleted, itemsDeleted: keys.length };
+  return { leaguesDeleted, itemsDeleted: keys.length, cognitoUsersDeleted: cognitoDeleted.length };
 }
 
 /** Creates the Test League with test user 01 as commissioner (idempotent). */
@@ -105,55 +137,68 @@ export async function bootstrapTestLeague(cfg: EnvConfig, db: Dynamo) {
   });
 }
 
-export const testTeamName = (email: string) => `Test Team ${email.slice(9, 11)}`;
+/** Obviously fake person for a test user: "Test Manager02" -> default team "Team Manager02". */
+export const testPerson = (email: string) => ({
+  firstName: "Test",
+  lastName: `Manager${email.slice(9, 11)}`,
+});
 
 /**
- * Bootstraps the league, then has every test user get a team through the real API
- * (commissioner creates an invite; user registers and accepts). Skips users who already have one.
+ * Bootstraps the league, then the commissioner (test user 01) adds every test user as a manager
+ * through the real API and each user's next `/me` auto-claims their team (docs/design/13 §1).
+ * Users already added are skipped; leftover not-yet-joined `dnp-new-*` managers are removed so
+ * they cannot block the 9-team limit.
  */
 export async function seedTestLeague(
   cfg: EnvConfig,
   db: Dynamo,
   api: ApiClient,
   users: TestUser[],
-): Promise<{ seasonId: string; joined: number; alreadyJoined: number }> {
-  const { seasonId } = await bootstrapTestLeague(cfg, db);
+  cognito?: ResetOptions["cognito"],
+): Promise<{ seasonId: string; added: number; alreadyAdded: number; claimed: number }> {
+  let { seasonId } = await bootstrapTestLeague(cfg, db);
   const commissioner = testUserEmail(1);
-  let joined = 0;
-  let alreadyJoined = 0;
-  // Leftover open/pending invites (e.g. from a smoke run) count toward the 9-team limit: revoke them.
-  const existing = await api.request("GET", `/seasons/${seasonId}/invites`, { as: commissioner });
-  if (existing.status === 200) {
-    for (const inv of existing.json as { token: string; status: string }[]) {
-      if (inv.status === "open" || inv.status === "pending")
-        await api.request("DELETE", `/seasons/${seasonId}/invites/${inv.token}`, {
-          as: commissioner,
-        });
-    }
+  const listManagers = async () => {
+    const list = await api.request("GET", `/seasons/${seasonId}/managers`, { as: commissioner });
+    if (list.status !== 200)
+      throw new Error(`list managers failed: ${list.status} ${list.json?.error?.code}`);
+    return list.json as { teamId: string; email: string; status: string }[];
+  };
+  let existing = await listManagers();
+  // A joined smoke-test manager cannot be removed and would block the 9-team limit: start over.
+  if (existing.some((m) => isNewTestUserEmail(m.email) && m.status === "joined")) {
+    await resetTestLeague(db, { cognito });
+    ({ seasonId } = await bootstrapTestLeague(cfg, db));
+    existing = await listManagers();
   }
+  for (const m of existing)
+    if (isNewTestUserEmail(m.email))
+      await api.request("DELETE", `/seasons/${seasonId}/managers/${m.teamId}`, {
+        as: commissioner,
+      });
+  const have = new Set(existing.map((m) => m.email));
+
+  let added = 0;
+  let alreadyAdded = 0;
   for (const { email } of users) {
-    const season = await api.request("GET", `/seasons/${seasonId}`, { as: email });
-    if (season.status === 200 && season.json.myTeamId) {
-      alreadyJoined++;
+    if (have.has(email)) {
+      alreadyAdded++;
       continue;
     }
-    const created = await api.request("POST", `/seasons/${seasonId}/invites`, {
+    const r = await api.request("POST", `/seasons/${seasonId}/managers`, {
       as: commissioner,
-      body: { count: 1 },
+      body: { ...testPerson(email), email },
     });
-    if (created.status !== 201)
-      throw new Error(`create invite failed: ${created.status} ${JSON.stringify(created.json)}`);
-    const token = created.json[0].token as string;
-    const reg = await api.request("POST", `/invites/${token}/register`, { body: { email } });
-    if (reg.status !== 200)
-      throw new Error(`register ${email} failed: ${reg.status} ${reg.json?.error?.code}`);
-    const acc = await api.request("POST", `/invites/${token}/accept`, {
-      as: email,
-      body: { teamName: testTeamName(email) },
-    });
-    if (acc.status !== 200)
-      throw new Error(`accept ${email} failed: ${acc.status} ${acc.json?.error?.code}`);
-    joined++;
+    if (r.status !== 201)
+      throw new Error(`add manager ${email} failed: ${r.status} ${r.json?.error?.code}`);
+    added++;
   }
-  return { seasonId, joined, alreadyJoined };
+  // Every user signs in once (any /me call), which auto-claims their team.
+  let claimed = 0;
+  for (const { email } of users) {
+    const me = await api.request("GET", "/me", { as: email });
+    if (me.status !== 200) throw new Error(`/me ${email} failed: ${me.status}`);
+    claimed += (me.json.justClaimed as unknown[]).length;
+  }
+  return { seasonId, added, alreadyAdded, claimed };
 }

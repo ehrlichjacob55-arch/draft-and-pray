@@ -4,25 +4,18 @@ import { ApiError } from "../api";
 export function friendlyError(err: unknown): string {
   if (err instanceof ApiError) {
     switch (err.code) {
-      case "email_mismatch":
-        return "This invite is reserved for a different email address. Sign out and sign in with the email the invite was registered with.";
-      case "already_has_team":
-        return "You already have a team in this season.";
       case "team_name_taken":
         return "Another team already uses that name. Pick a different one.";
       case "season_full":
-        return "This season already has all 9 teams (counting open invites).";
-      case "invite_bound":
-        return "This invite is already reserved for a different email address.";
+        return "This season already has all 9 teams.";
       case "season_not_setup":
-        return "Team sign-up is closed: this season is no longer in setup.";
-      case "invite_used":
-        return "This invite has already been used.";
-      case "invite_revoked":
-        return "This invite was revoked by the commissioner.";
-      case "invite_expired":
-        return "This invite has expired.";
-      case "invite_not_found":
+        return "Adding managers is closed: this season is no longer in setup.";
+      case "email_already_added":
+        return "That email is already on a team in this season.";
+      case "manager_joined":
+        return "That manager has already joined, so this can no longer be changed.";
+      case "invite_failed":
+        return "We could not send the invitation email. Nothing was changed; please try again.";
       case "not_found":
         return "We could not find that. It may have been removed.";
       case "unauthorized":
@@ -40,13 +33,6 @@ export function friendlyError(err: unknown): string {
   }
   return err instanceof Error ? err.message : "Something went wrong. Please try again.";
 }
-
-export const INVITE_INVALID_TEXT = {
-  not_found: "We could not find this invite link. Check that you copied the whole link.",
-  expired: "This invite link has expired. Ask your commissioner for a new one.",
-  used: "This invite link has already been used. Ask your commissioner for a new one.",
-  revoked: "This invite link was revoked. Ask your commissioner for a new one.",
-} as const;
 
 /** Only same-origin relative paths are allowed as a post-sign-in target. */
 export function safeNext(next: string | null): string {

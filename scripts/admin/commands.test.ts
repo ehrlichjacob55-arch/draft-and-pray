@@ -1,6 +1,12 @@
 import { describe, expect, it } from "vitest";
 import { runAdmin, type Deps } from "./commands";
-import { assertTestEnv, resolveEnvConfig } from "../lib/env";
+import {
+  assertTestEnv,
+  isNewTestUserEmail,
+  isTestUserEmail,
+  newTestUserEmail,
+  resolveEnvConfig,
+} from "../lib/env";
 
 /** Deps that fail the test if anything tries to resolve a config (i.e. reach for AWS). */
 const noAws: Deps & { calls: number } = {
@@ -39,5 +45,15 @@ describe("prod refusal", () => {
       throw new Error("terraform must not run");
     });
     expect(cfg).toMatchObject({ env: "local", tableName: "dnp-local-app" });
+  });
+});
+
+describe("test-user email patterns", () => {
+  it("recognizes generated test users and fresh dnp-new users only", () => {
+    expect(isTestUserEmail("dnp-test-01@example.com")).toBe(true);
+    expect(isTestUserEmail("dnp-new-ab12cd34-1@example.com")).toBe(true);
+    expect(isNewTestUserEmail(newTestUserEmail("ab12cd34", 2))).toBe(true);
+    for (const bad of ["dnp-new-x@gmail.com", "someone@example.com", "dnp-new-@example.com"])
+      expect(isTestUserEmail(bad)).toBe(false);
   });
 });

@@ -1,5 +1,5 @@
 /**
- * Shared request/response contract for the HTTP API (docs/design/11 §4): zod schemas + inferred
+ * Shared request/response contract for the HTTP API (docs/design/11 §4, 13 §5): zod schemas + inferred
  * types, used by apps/api (validation) and apps/web (typing). No I/O, no Node-only imports.
  */
 import { z } from "zod";
@@ -7,7 +7,9 @@ import { z } from "zod";
 // ---- Constants ----
 export const MAX_TEAMS = 9;
 export const TEAM_NAME_MAX = 40;
-export const INVITE_TTL_DAYS = 14;
+export const PERSON_NAME_MAX = 60;
+/** Cognito temporary passwords (and so invitation codes) stay valid this long (docs/design/13 §1). */
+export const INVITE_VALID_DAYS = 7;
 
 // ---- Errors ----
 export const ERROR_CODES = [
@@ -16,15 +18,11 @@ export const ERROR_CODES = [
   "unauthorized",
   "forbidden",
   "not_found",
-  "invite_not_found",
   "season_full",
   "season_not_setup",
-  "already_has_team",
-  "invite_used",
-  "invite_revoked",
-  "invite_expired",
-  "invite_bound",
-  "email_mismatch",
+  "email_already_added",
+  "manager_joined",
+  "invite_failed",
   "team_name_taken",
   "conflict",
   "internal_error",
@@ -67,15 +65,20 @@ export type SeasonStatus = z.infer<typeof seasonStatus>;
 export const leagueRole = z.enum(["commissioner", "manager"]);
 export type LeagueRole = z.infer<typeof leagueRole>;
 
-export const INVITE_STATUSES = ["open", "pending", "used", "revoked", "expired"] as const;
-export const inviteStatus = z.enum(INVITE_STATUSES);
-export type InviteStatus = z.infer<typeof inviteStatus>;
-
-export const INVITE_INVALID_REASONS = ["not_found", "expired", "used", "revoked"] as const;
-export const inviteInvalidReason = z.enum(INVITE_INVALID_REASONS);
-export type InviteInvalidReason = z.infer<typeof inviteInvalidReason>;
+export const personNameSchema = z
+  .string()
+  .trim()
+  .min(1, "Name is required")
+  .max(PERSON_NAME_MAX, `Name must be at most ${PERSON_NAME_MAX} characters`);
 
 // ---- GET /me ----
+export const justClaimed = z.object({
+  seasonId: z.string(),
+  teamId: z.string(),
+  teamName: z.string(),
+});
+export type JustClaimed = z.infer<typeof justClaimed>;
+
 export const meResponse = z.object({
   user: z.object({ userId: z.string(), email: z.string(), displayName: z.string() }).nullable(),
   leagues: z.array(
@@ -88,15 +91,17 @@ export const meResponse = z.object({
       ),
     }),
   ),
+  /** Teams that were assigned to the caller by this very request (docs/design/13 §1.4). */
+  justClaimed: z.array(justClaimed),
 });
 export type MeResponse = z.infer<typeof meResponse>;
 
 // ---- GET /seasons/:seasonId ----
+/** Member-facing team: team name only, never a person's name or email (docs/design/13 §6). */
 export const teamSummary = z.object({
   teamId: z.string(),
   name: z.string(),
-  managerUserId: z.string().nullable(),
-  managerDisplayName: z.string().nullable(),
+  isMine: z.boolean(),
 });
 export type TeamSummary = z.infer<typeof teamSummary>;
 
@@ -115,56 +120,76 @@ export const seasonResponse = z.object({
 });
 export type SeasonResponse = z.infer<typeof seasonResponse>;
 
-// ---- Invites (commissioner) ----
-export const inviteView = z.object({
-  token: z.string(),
-  url: z.string(),
-  status: inviteStatus,
-  pendingEmail: z.string().optional(),
-  usedByDisplayName: z.string().optional(),
-  createdAt: z.string(),
-  /** ISO timestamp (the stored TTL is epoch seconds). */
-  expiresAt: z.string(),
+// ---- Managers (commissioner only; docs/design/13 §5) ----
+export const MANAGER_STATUSES = ["invited", "joined", "expired"] as const;
+export const managerStatus = z.enum(MANAGER_STATUSES);
+export type ManagerStatus = z.infer<typeof managerStatus>;
+
+export const managerView = z.object({
+  teamId: z.string(),
+  teamName: z.string(),
+  firstName: z.string(),
+  lastName: z.string(),
+  email: z.string(),
+  status: managerStatus,
+  invitedAt: z.string(),
+  lastSentAt: z.string().nullable(),
+  claimedAt: z.string().nullable(),
 });
-export type InviteView = z.infer<typeof inviteView>;
+export type ManagerView = z.infer<typeof managerView>;
 
-/** GET /seasons/:seasonId/invites */
-export const listInvitesResponse = z.array(inviteView);
-export type ListInvitesResponse = z.infer<typeof listInvitesResponse>;
+/** GET /seasons/:seasonId/managers */
+export const listManagersResponse = z.array(managerView);
+export type ListManagersResponse = z.infer<typeof listManagersResponse>;
 
-/** POST /seasons/:seasonId/invites */
-export const createInvitesRequest = z.object({ count: z.number().int().min(1).max(MAX_TEAMS) });
-export type CreateInvitesRequest = z.infer<typeof createInvitesRequest>;
-export const createInvitesResponse = z.array(inviteView);
-export type CreateInvitesResponse = z.infer<typeof createInvitesResponse>;
+/**
+ * POST /seasons/:seasonId/managers. `testTemporaryPassword` is honored only together with
+ * `?testSuppress=1`, outside prod, for members of the `test-users` Cognito group (13 §7).
+ */
+/** URL-unreserved characters only, so a test code is safe in the /welcome link fragment. */
+export const temporaryPasswordSchema = z
+  .string()
+  .min(8)
+  .max(256)
+  .regex(/^[A-Za-z0-9._~-]+$/, "Use only letters, digits and - _ . ~");
 
-/** DELETE /seasons/:seasonId/invites/:token */
-export const revokeInviteResponse = z.object({ ok: z.literal(true) });
-export type RevokeInviteResponse = z.infer<typeof revokeInviteResponse>;
-
-// ---- Public invite endpoints ----
-/** GET /invites/:token (always 200) */
-export const invitePreviewResponse = z.object({
-  valid: z.boolean(),
-  reason: inviteInvalidReason.optional(),
-  leagueName: z.string().optional(),
-  seasonYear: z.number().int().optional(),
-  /** Masked, e.g. j***@gmail.com. */
-  pendingEmail: z.string().optional(),
+export const addManagerRequest = z.object({
+  firstName: personNameSchema,
+  lastName: personNameSchema,
+  email: emailSchema,
+  testTemporaryPassword: temporaryPasswordSchema.optional(),
 });
-export type InvitePreviewResponse = z.infer<typeof invitePreviewResponse>;
+export type AddManagerRequest = z.input<typeof addManagerRequest>;
 
-/** POST /invites/:token/register */
-export const registerRequest = z.object({ email: emailSchema });
-export type RegisterRequest = z.input<typeof registerRequest>;
-export const registerResponse = z.object({ ok: z.literal(true) });
-export type RegisterResponse = z.infer<typeof registerResponse>;
+/** Row + whether Cognito sent an invitation email (false when the person already had an account). */
+export const managerWithDelivery = managerView.extend({ emailSent: z.boolean() });
+export type ManagerWithDelivery = z.infer<typeof managerWithDelivery>;
+export const addManagerResponse = managerWithDelivery;
+export type AddManagerResponse = ManagerWithDelivery;
 
-/** POST /invites/:token/accept */
-export const acceptInviteRequest = z.object({ teamName: teamNameSchema });
-export type AcceptInviteRequest = z.input<typeof acceptInviteRequest>;
-export const acceptInviteResponse = z.object({ seasonId: z.string(), teamId: z.string() });
-export type AcceptInviteResponse = z.infer<typeof acceptInviteResponse>;
+/** POST /seasons/:seasonId/managers/:teamId/resend */
+export const resendManagerResponse = managerWithDelivery;
+export type ResendManagerResponse = ManagerWithDelivery;
+
+/** PATCH /seasons/:seasonId/managers/:teamId */
+export const updateManagerRequest = z
+  .object({
+    firstName: personNameSchema.optional(),
+    lastName: personNameSchema.optional(),
+    email: emailSchema.optional(),
+    testTemporaryPassword: temporaryPasswordSchema.optional(),
+  })
+  .refine(
+    (v) => v.firstName !== undefined || v.lastName !== undefined || v.email !== undefined,
+    "Nothing to update",
+  );
+export type UpdateManagerRequest = z.input<typeof updateManagerRequest>;
+export const updateManagerResponse = managerWithDelivery;
+export type UpdateManagerResponse = ManagerWithDelivery;
+
+/** DELETE /seasons/:seasonId/managers/:teamId */
+export const removeManagerResponse = z.object({ ok: z.literal(true) });
+export type RemoveManagerResponse = z.infer<typeof removeManagerResponse>;
 
 // ---- PATCH /teams/:seasonId/:teamId ----
 export const renameTeamRequest = z.object({ name: teamNameSchema });

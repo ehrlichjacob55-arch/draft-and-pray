@@ -1,7 +1,11 @@
 # Whole application stack for one environment. envs/dev and envs/prod call this.
 #
 # Dependency graph (acyclic):
-#   data, auth, realtime                 (no dependencies)
+#   data, realtime                       (no dependencies)
+#   custom_message <- web                (SITE_URL = CloudFront domain; web's distribution needs only
+#                                         the API gateway, never auth)
+#   auth  <- custom_message              (pool's CustomMessage trigger; the Lambda permission for the
+#                                         pool lives here in the app module)
 #   jobs  <- data, realtime              (tick/ingest + scheduler role)
 #   api   <- data, auth, realtime, jobs  (http env needs scheduler role + tick ARN)
 #   web   <- api, auth, realtime         (CloudFront origin + config.json)
@@ -65,13 +69,43 @@ module "data" {
   is_prod     = var.is_prod
 }
 
+# docs/design/13 section 3: rewrites the manager invitation email. Logging-only IAM (no policy_json).
+# Cycle-free: pool -> this function -> web.domain_name (the CloudFront distribution), and the
+# distribution depends on the API Gateway API only. web's config.json object (not the
+# distribution) is what depends on the pool.
+module "custom_message" {
+  source = "../lambda_function"
+
+  function_name      = "${local.name_prefix}-cognito-custom-message"
+  handler_dir        = "cognito-custom-message"
+  dist_dir           = var.lambda_dist_dir
+  memory_size        = 128
+  timeout            = 5
+  log_retention_days = local.log_retention_days
+  description        = "Cognito CustomMessage trigger: manager invitation email"
+
+  environment = {
+    APP_ENV  = var.env
+    SITE_URL = "https://${module.web.domain_name}"
+  }
+}
+
+resource "aws_lambda_permission" "cognito_custom_message" {
+  statement_id  = "AllowCognitoInvoke"
+  action        = "lambda:InvokeFunction"
+  function_name = module.custom_message.function_name
+  principal     = "cognito-idp.amazonaws.com"
+  source_arn    = module.auth.user_pool_arn
+}
+
 module "auth" {
   source = "../auth"
 
-  name_prefix      = local.name_prefix
-  is_prod          = var.is_prod
-  ses_identity_arn = var.ses_identity_arn
-  ses_from_email   = var.ses_from_email
+  name_prefix               = local.name_prefix
+  custom_message_lambda_arn = module.custom_message.function_arn
+  is_prod                   = var.is_prod
+  ses_identity_arn          = var.ses_identity_arn
+  ses_from_email            = var.ses_from_email
 }
 
 module "realtime" {

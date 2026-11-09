@@ -40,16 +40,6 @@ export const seasonPointerKey = (leagueId: string, year: number): Key => ({
   pk: leaguePk(leagueId),
   sk: `SEASON#${year}`,
 });
-export const inviteKey = (token: string): Key => ({ pk: `INVITE#${token}`, sk: "META" });
-/** Invite item keys incl. the A12 index entry (invites of a season, ordered by createdAt). */
-export const inviteKeys = (token: string, seasonId: string, createdAt: string): KeyWithGsi1 => ({
-  ...inviteKey(token),
-  gsi1pk: gsiSeasonInvitesPk(seasonId),
-  gsi1sk: createdAt,
-});
-/** A12 query key. */
-export const gsiSeasonInvitesPk = (seasonId: string) => `SEASONINV#${seasonId}`;
-
 // ---- Season partition ----
 export const seasonMetaKey = (seasonId: string): Key => ({ pk: seasonPk(seasonId), sk: "META" });
 export const rulesetKey = (seasonId: string, version: number): Key => ({
@@ -65,6 +55,20 @@ export const teamOwnerKey = (seasonId: string, userId: string): Key => ({
   pk: seasonPk(seasonId),
   sk: `TEAMOWNER#${userId}`,
 });
+/**
+ * Commissioner-only manager record (docs/design/13 §4): names + email. Unclaimed ones are also
+ * indexed by normalized email so `/me` can auto-claim them (A13).
+ */
+export const managerPrivateKey = (seasonId: string, teamId: string): Key => ({
+  pk: seasonPk(seasonId),
+  sk: `PRIVATE#MANAGER#${teamId}`,
+});
+export const pendingManagerGsi1 = (email: string, seasonId: string) => ({
+  gsi1pk: gsiPendingPk(email),
+  gsi1sk: `SEASON#${seasonId}`,
+});
+/** A13 query key. `email` must be normalized. */
+export const gsiPendingPk = (email: string) => `PENDING#${email}`;
 export const draftKey = (seasonId: string): Key => ({ pk: seasonPk(seasonId), sk: "DRAFT" });
 export const pickKey = (seasonId: string, overallPick: number): Key => ({
   pk: seasonPk(seasonId),
@@ -129,6 +133,9 @@ export const skPrefix = {
   players: "PLAYER#",
   teams: "TEAM#",
   teamOwners: "TEAMOWNER#",
+  /** Every `PRIVATE#…` item: never returned to members (docs/design/13 §4). */
+  private: "PRIVATE#",
+  privateManagers: "PRIVATE#MANAGER#",
   seasonPointers: "SEASON#",
   members: "MEMBER#",
   audit: "AUDIT#",

@@ -30,7 +30,7 @@ const signedInSession = {
 
 function renderAt(path: string, env = "dev") {
   const router = createMemoryRouter(routes, { initialEntries: [path] });
-  const api = fakeApi({ me: async () => ({ user: null, leagues: [] }) });
+  const api = fakeApi({ me: async () => ({ user: null, leagues: [], justClaimed: [] }) });
   render(
     <ConfigContext.Provider value={{ ...baseConfig, env }}>
       <AuthProvider>

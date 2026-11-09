@@ -31,8 +31,9 @@ export function statusForCode(code: ErrorCode): number {
     case "forbidden":
       return 403;
     case "not_found":
-    case "invite_not_found":
       return 404;
+    case "invite_failed":
+      return 502;
     case "internal_error":
       return 500;
     default:

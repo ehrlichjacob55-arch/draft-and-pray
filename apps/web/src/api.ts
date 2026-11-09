@@ -1,25 +1,25 @@
 /** Typed fetch wrapper over the API (docs/design/11 §4). Types and schemas come from @dnp/contract. */
 import {
-  acceptInviteResponse,
+  addManagerResponse,
   apiError,
-  createInvitesResponse,
-  invitePreviewResponse,
-  listInvitesResponse,
+  listManagersResponse,
   meResponse,
-  registerResponse,
+  removeManagerResponse,
   renameTeamResponse,
-  revokeInviteResponse,
+  resendManagerResponse,
   seasonResponse,
-  type AcceptInviteResponse,
-  type CreateInvitesResponse,
+  updateManagerResponse,
+  type AddManagerRequest,
+  type AddManagerResponse,
   type ErrorCode,
-  type InvitePreviewResponse,
-  type ListInvitesResponse,
+  type ListManagersResponse,
   type MeResponse,
-  type RegisterResponse,
+  type RemoveManagerResponse,
   type RenameTeamResponse,
-  type RevokeInviteResponse,
+  type ResendManagerResponse,
   type SeasonResponse,
+  type UpdateManagerRequest,
+  type UpdateManagerResponse,
 } from "@dnp/contract";
 import { createContext, useContext } from "react";
 
@@ -41,12 +41,15 @@ export class ApiError extends Error {
 export interface Api {
   me(): Promise<MeResponse>;
   season(seasonId: string): Promise<SeasonResponse>;
-  listInvites(seasonId: string): Promise<ListInvitesResponse>;
-  createInvites(seasonId: string, count: number): Promise<CreateInvitesResponse>;
-  revokeInvite(seasonId: string, token: string): Promise<RevokeInviteResponse>;
-  previewInvite(token: string): Promise<InvitePreviewResponse>;
-  register(token: string, email: string): Promise<RegisterResponse>;
-  acceptInvite(token: string, teamName: string): Promise<AcceptInviteResponse>;
+  listManagers(seasonId: string): Promise<ListManagersResponse>;
+  addManager(seasonId: string, body: AddManagerRequest): Promise<AddManagerResponse>;
+  resendManager(seasonId: string, teamId: string): Promise<ResendManagerResponse>;
+  updateManager(
+    seasonId: string,
+    teamId: string,
+    body: UpdateManagerRequest,
+  ): Promise<UpdateManagerResponse>;
+  removeManager(seasonId: string, teamId: string): Promise<RemoveManagerResponse>;
   renameTeam(seasonId: string, teamId: string, name: string): Promise<RenameTeamResponse>;
 }
 
@@ -98,16 +101,20 @@ export function createApi({ baseUrl, getAuthHeaders }: ApiOptions): Api {
   return {
     me: () => request("GET", "/me", meResponse),
     season: (id) => request("GET", `/seasons/${enc(id)}`, seasonResponse),
-    listInvites: (id) => request("GET", `/seasons/${enc(id)}/invites`, listInvitesResponse),
-    createInvites: (id, count) =>
-      request("POST", `/seasons/${enc(id)}/invites`, createInvitesResponse, { count }),
-    revokeInvite: (id, token) =>
-      request("DELETE", `/seasons/${enc(id)}/invites/${enc(token)}`, revokeInviteResponse),
-    previewInvite: (token) => request("GET", `/invites/${enc(token)}`, invitePreviewResponse),
-    register: (token, email) =>
-      request("POST", `/invites/${enc(token)}/register`, registerResponse, { email }),
-    acceptInvite: (token, teamName) =>
-      request("POST", `/invites/${enc(token)}/accept`, acceptInviteResponse, { teamName }),
+    listManagers: (id) => request("GET", `/seasons/${enc(id)}/managers`, listManagersResponse),
+    addManager: (id, body) =>
+      request("POST", `/seasons/${enc(id)}/managers`, addManagerResponse, body),
+    resendManager: (id, teamId) =>
+      request(
+        "POST",
+        `/seasons/${enc(id)}/managers/${enc(teamId)}/resend`,
+        resendManagerResponse,
+        {},
+      ),
+    updateManager: (id, teamId, body) =>
+      request("PATCH", `/seasons/${enc(id)}/managers/${enc(teamId)}`, updateManagerResponse, body),
+    removeManager: (id, teamId) =>
+      request("DELETE", `/seasons/${enc(id)}/managers/${enc(teamId)}`, removeManagerResponse),
     renameTeam: (seasonId, teamId, name) =>
       request("PATCH", `/teams/${enc(seasonId)}/${enc(teamId)}`, renameTeamResponse, { name }),
   };
