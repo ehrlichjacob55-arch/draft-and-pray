@@ -26,6 +26,9 @@ export const ERROR_CODES = [
   "team_name_taken",
   "team_abbr_taken",
   "conflict",
+  // Scoring config (docs/design/04 §2)
+  "ruleset_locked",
+  "ruleset_exists",
   // Draft (docs/design/14 §4)
   "stale_pick",
   "not_your_turn",
@@ -43,15 +46,25 @@ export const ERROR_CODES = [
 export const errorCode = z.enum(ERROR_CODES);
 export type ErrorCode = z.infer<typeof errorCode>;
 
+/** One problem with a submitted scoring ruleset; null index = not about one rule. */
+export const ruleError = z.object({
+  ruleIndex: z.number().int().nullable(),
+  stat: z.string().nullable(),
+  message: z.string(),
+});
+
 export const apiError = z.object({
   error: z.object({
     code: errorCode,
     message: z.string(),
     /** `draft_not_ready`: every unmet start precondition. */
     reasons: z.array(z.string()).optional(),
+    /** `validation_error` on a scoring ruleset: one entry per problem, keyed by rule index. */
+    ruleErrors: z.array(ruleError).optional(),
   }),
 });
 export type ApiError = z.infer<typeof apiError>;
+export type RuleError = z.infer<typeof ruleError>;
 
 // ---- Primitives ----
 /** Trim + lowercase. Used for every email comparison and for stored emails. */
@@ -233,3 +246,4 @@ export const renameTeamResponse = z.object({
 export type RenameTeamResponse = z.infer<typeof renameTeamResponse>;
 
 export * from "./draft";
+export * from "./scoring";

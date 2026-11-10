@@ -144,7 +144,16 @@ const rulesetSchema = z.strictObject({
   rules: z.array(ruleSchema).min(1, "a ruleset needs at least one rule"),
 });
 
-export type RulesetParseResult = { ok: true; ruleset: Ruleset } | { ok: false; errors: string[] };
+/** One validation problem; `ruleIndex` is set when it concerns `rules[ruleIndex]`. */
+export interface RulesetIssue {
+  ruleIndex?: number;
+  /** Path inside that rule (`per`, `tiers[1].min`), absent for a whole-rule problem. */
+  field?: string;
+  message: string;
+}
+
+export type RulesetParseResult =
+  { ok: true; ruleset: Ruleset } | { ok: false; errors: string[]; issues: RulesetIssue[] };
 
 const pathText = (path: PropertyKey[]): string =>
   path.reduce<string>(
@@ -161,6 +170,14 @@ export function safeParseRuleset(input: unknown): RulesetParseResult {
     errors: r.error.issues.map((i) => {
       const at = pathText(i.path);
       return at ? `${at}: ${i.message}` : i.message;
+    }),
+    issues: r.error.issues.map((i): RulesetIssue => {
+      if (i.path[0] === "rules" && typeof i.path[1] === "number") {
+        const field = pathText(i.path.slice(2));
+        return { ruleIndex: i.path[1], ...(field ? { field } : {}), message: i.message };
+      }
+      const at = pathText(i.path);
+      return { message: at ? `${at}: ${i.message}` : i.message };
     }),
   };
 }

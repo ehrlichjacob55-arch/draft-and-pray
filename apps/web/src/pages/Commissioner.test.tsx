@@ -38,6 +38,8 @@ function setup(over: NonNullable<RouteOpts["api"]> = {}) {
       season: async () => seasonData({ myRole: "commissioner" }),
       // Draft already running: the Draft setup section just links to the draft room.
       draft: async () => draftData({ myRole: "commissioner" }),
+      // The Scoring section has its own tests (scoring/scoring.test.tsx).
+      scoring: async () => ({ seasonId: "s2026", active: null, versions: [] }),
       listManagers: async () => [
         manager("a", "invited"),
         manager("b", "joined"),

@@ -40,6 +40,10 @@ export function friendlyError(err: unknown): string {
         return "The player data source could not be reached. Nothing was changed; try again in a minute.";
       case "draft_not_ready":
         return "The draft is not ready to start yet.";
+      case "ruleset_locked":
+        return "Those rules are locked. Save your changes as a new version instead.";
+      case "ruleset_exists":
+        return "This season already has scoring rules. Refresh to see them.";
       case "conflict":
         return "That changed while you were working. Refresh and try again.";
       case "not_found":

@@ -5,6 +5,7 @@ import { DraftRoom } from "./draft/DraftRoom";
 import { Commissioner } from "./pages/Commissioner";
 import { LeagueHome } from "./pages/LeagueHome";
 import { Placeholder } from "./pages/Placeholder";
+import { RulesPage } from "./scoring/RulesView";
 import { SignIn } from "./pages/SignIn";
 import { Welcome } from "./pages/Welcome";
 
@@ -33,7 +34,7 @@ export const routes: RouteObject[] = [
           },
           {
             path: "rules",
-            element: <Placeholder title="Rules & scoring" note="League rules (task 11)." />,
+            element: <RulesPage />,
           },
           { path: "commissioner", element: <Commissioner /> },
         ],

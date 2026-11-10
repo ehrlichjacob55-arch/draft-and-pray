@@ -20,6 +20,7 @@ import {
 } from "../components/ui";
 import { friendlyError } from "../lib/messages";
 import { useLeague } from "../league/LeagueProvider";
+import { ScoringSection } from "../scoring/ScoringSection";
 import { useQuery } from "../useQuery";
 
 const CHIP: Record<ManagerStatus, string> = {
@@ -129,6 +130,8 @@ function CommissionerConsole({ seasonId }: { seasonId: string }) {
       </Card>
 
       <DraftSetupSection seasonId={seasonId} />
+
+      <ScoringSection seasonId={seasonId} />
 
       <Card>
         <h3 className="font-semibold">Team names</h3>

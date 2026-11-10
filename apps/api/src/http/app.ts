@@ -36,6 +36,8 @@ import { noopCognito, type CognitoAdmin } from "../cognito";
 import type { Config } from "../config";
 import { createDraftService } from "../draft/service";
 import { registerDraftRoutes } from "../draft/routes";
+import { recomputeAfterRulesetChange, type RulesetChangeHook } from "../scoring/hooks";
+import { registerScoringRoutes } from "../scoring/routes";
 import { createRealPoolSource, type PoolSource } from "../providers";
 import { noopPublisher, type Publisher } from "../realtime/types";
 import { logError } from "../redact";
@@ -57,6 +59,8 @@ export interface AppDeps {
   publisher?: Publisher;
   /** Player pool source; defaults to ESPN standings + Sleeper players. */
   poolSource?: PoolSource;
+  /** Runs after a scoring-rules change that alters points (recompute hook; a no-op until Task 9/10). */
+  onRulesetChange?: RulesetChangeHook;
 }
 
 export function createApp({
@@ -67,6 +71,7 @@ export function createApp({
   now,
   publisher = noopPublisher,
   poolSource = createRealPoolSource(),
+  onRulesetChange = recomputeAfterRulesetChange,
 }: AppDeps) {
   const app = new Hono<AppEnv>().basePath("/api");
   const clock = now ?? (() => new Date());
@@ -397,6 +402,8 @@ export function createApp({
     poolSource,
     now: clock,
   });
+
+  registerScoringRoutes(app, { db, now: clock, onRulesetChange });
 
   return app;
 }
