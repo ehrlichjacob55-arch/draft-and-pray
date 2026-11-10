@@ -178,7 +178,11 @@ export async function runChecks(
     const text = JSON.stringify(r.json);
     for (const v of [u2, u3])
       if (text.includes(v)) throw new Error("response contains a manager value");
-    expectEq([...collectKeys(r.json.teams)].sort().join(","), "isMine,name,teamId", "team keys");
+    expectEq(
+      [...collectKeys(r.json.teams)].sort().join(","),
+      "abbr,isMine,name,teamId",
+      "team keys",
+    );
   });
   await check("manager is forbidden on every managers route (403)", async () => {
     const as = u2;
