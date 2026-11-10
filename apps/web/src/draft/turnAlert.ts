@@ -6,9 +6,9 @@ const SOUND_KEY = "dnp.draft.sound";
 
 export function readSoundPref(): boolean {
   try {
-    return window.localStorage.getItem(SOUND_KEY) === "1";
+    return window.localStorage.getItem(SOUND_KEY) !== "0"; // on unless explicitly muted
   } catch {
-    return false;
+    return true;
   }
 }
 

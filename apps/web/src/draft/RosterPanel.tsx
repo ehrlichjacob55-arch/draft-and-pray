@@ -1,7 +1,7 @@
 import type { DraftSnapshot, SlotName } from "@dnp/contract";
 import { inputCls } from "../components/ui";
 import { SLOT_ORDER, teamName } from "./model";
-import { PanelCard, PositionBadge } from "./parts";
+import { PanelCard } from "./parts";
 
 export function RosterPanel({
   snapshot,
@@ -55,14 +55,23 @@ export function RosterPanel({
             <li
               key={slot}
               data-testid={`slot-${slot}`}
-              className="flex items-center justify-between gap-2 py-1.5"
+              className="flex items-start justify-between gap-2 py-1.5"
             >
-              <span className="w-12 text-xs font-semibold text-muted">{slot}</span>
+              <span className="w-10 shrink-0 text-xs font-semibold text-muted">
+                {slot.replace(/\d+$/, "")}
+              </span>
               {pick ? (
-                <span className="flex min-w-0 flex-1 items-center gap-2">
-                  <PositionBadge position={pick.player.position} />
-                  <span className="truncate">{pick.player.name}</span>
-                  <span className="text-xs text-muted">{pick.player.nflTeam}</span>
+                <span className="flex min-w-0 flex-1 items-baseline gap-1.5">
+                  <span className="min-w-0 break-words text-sm">{pick.player.name}</span>
+                  <span className="shrink-0 text-[11px] text-muted">{pick.player.nflTeam}</span>
+                  {slot.startsWith("FLEX") && (
+                    <span
+                      className="shrink-0 rounded border border-border px-1 text-[10px] text-muted"
+                      data-testid={`flex-pos-${slot}`}
+                    >
+                      {pick.player.position}
+                    </span>
+                  )}
                 </span>
               ) : (
                 <span className="flex-1 text-sm text-muted">Open</span>

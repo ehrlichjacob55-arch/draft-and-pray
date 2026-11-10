@@ -331,7 +331,6 @@ export function PlayersPanel({
                     </p>
                     <p className="truncate text-xs text-muted">
                       {p.nflTeam}
-                      {p.seed !== null && ` (#${p.seed})`}
                       {" · "}
                       {headlineCols(p)
                         .map((col) => `${col.label} ${statText(p, col)}`)
@@ -414,10 +413,7 @@ export function PlayersPanel({
                     <td className="px-1 py-1.5">
                       <PositionBadge position={p.position} />
                     </td>
-                    <td className="whitespace-nowrap px-1 py-1.5 text-xs">
-                      {p.nflTeam}
-                      {p.seed !== null && <span className="text-muted">·{p.seed}</span>}
-                    </td>
+                    <td className="whitespace-nowrap px-1 py-1.5 text-xs">{p.nflTeam}</td>
                     {cols.map((col) => (
                       <td
                         key={col.id}

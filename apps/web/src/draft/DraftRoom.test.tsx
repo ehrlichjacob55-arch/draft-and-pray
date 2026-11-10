@@ -153,30 +153,25 @@ describe("confirmation sheet and pick errors", () => {
     },
   };
 
-  it("asks 'Draft {name} → {slot}?' and posts the pick with expectedPick", async () => {
+  it("posts the pick immediately with expectedPick (no confirmation)", async () => {
     const makePick = vi.fn(async () => pickResponse);
     const { draft } = room(draftData(), { makePick });
     const user = userEvent.setup();
     await user.click(await screen.findByRole("button", { name: "Draft Rory Runner" }));
-    const dialog = screen.getByRole("dialog", { name: "Confirm pick" });
-    expect(within(dialog).getByTestId("confirm-message")).toHaveTextContent(
-      "Draft Rory Runner → RB1?",
-    );
-    expect(makePick).not.toHaveBeenCalled();
-    await user.click(within(dialog).getByRole("button", { name: "Confirm pick" }));
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    expect(makePick).toHaveBeenCalledTimes(1);
     expect(makePick).toHaveBeenCalledWith("s2026", { playerId: "p2", expectedPick: 1 });
     await waitFor(() => expect(screen.queryByRole("dialog")).not.toBeInTheDocument());
     expect(draft.mock.calls.length).toBeGreaterThanOrEqual(2); // refetched
   });
 
-  it("Cancel closes the sheet without picking", async () => {
-    const makePick = vi.fn();
+  it("a double click sends only one pick", async () => {
+    const makePick = vi.fn(() => new Promise<typeof pickResponse>(() => {})); // never settles
     room(draftData(), { makePick });
     const user = userEvent.setup();
-    await user.click(await screen.findByRole("button", { name: "Draft Quinn Quarter" }));
-    await user.click(screen.getByRole("button", { name: "Cancel" }));
-    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
-    expect(makePick).not.toHaveBeenCalled();
+    const btn = await screen.findByRole("button", { name: "Draft Quinn Quarter" });
+    await user.dblClick(btn);
+    expect(makePick).toHaveBeenCalledTimes(1);
   });
 
   it("stale_pick: refreshes the board and says the draft moved on", async () => {
@@ -184,7 +179,6 @@ describe("confirmation sheet and pick errors", () => {
     const { draft } = room(draftData(), { makePick });
     const user = userEvent.setup();
     await user.click(await screen.findByRole("button", { name: "Draft Quinn Quarter" }));
-    await user.click(screen.getByRole("button", { name: "Confirm pick" }));
     expect(await screen.findByRole("alert")).toHaveTextContent("draft moved on");
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
     expect(draft.mock.calls.length).toBeGreaterThanOrEqual(2);
@@ -196,14 +190,12 @@ describe("confirmation sheet and pick errors", () => {
     ["not_eligible", "does not fit an open spot"],
     ["slot_filled", "already filled"],
     ["draft_not_active", "not running"],
-  ] as const)("%s shows a friendly message in the sheet", async (code, text) => {
+  ] as const)("%s shows a friendly inline message", async (code, text) => {
     const makePick = vi.fn().mockRejectedValue(new ApiError(409, code, "raw"));
     room(draftData(), { makePick });
     const user = userEvent.setup();
     await user.click(await screen.findByRole("button", { name: "Draft Quinn Quarter" }));
-    await user.click(screen.getByRole("button", { name: "Confirm pick" }));
-    const dialog = await screen.findByRole("dialog");
-    expect(await within(dialog).findByRole("alert")).toHaveTextContent(text);
+    expect(await screen.findByRole("alert")).toHaveTextContent(text);
   });
 });
 
@@ -289,9 +281,11 @@ describe("players list", () => {
     expect(await names()).toEqual(["Draft Quinn Quarter"]);
   });
 
-  it("shows the NFL team with its seed and the injury tag", async () => {
+  it("shows the NFL team (no seed number) and the injury tag", async () => {
     room(draftData());
-    expect(await screen.findByTestId("player-p3")).toHaveTextContent("BBB·2");
+    const row = await screen.findByTestId("player-p3");
+    expect(row).toHaveTextContent("BBB");
+    expect(row).not.toHaveTextContent("BBB·2");
     expect(screen.getByTestId("player-p2")).toHaveTextContent("Q");
   });
 
@@ -422,6 +416,10 @@ describe("board and roster", () => {
     expect(within(roster).getByTestId("roster-owner")).toHaveTextContent("Your roster");
     expect(within(roster).getByTestId("slot-QB")).toHaveTextContent("Quinn Quarter");
     expect(within(roster).getByTestId("slot-RB1")).toHaveTextContent("Open");
+    // Labels drop the numbers; fixed slots do not repeat the position next to the name.
+    expect(within(roster).getByTestId("slot-RB1")).toHaveTextContent(/^RBOpen$/);
+    expect(within(roster).getByTestId("slot-FLEX2")).toHaveTextContent(/^FLEXOpen$/);
+    expect(within(roster).getByTestId("slot-QB")).toHaveTextContent(/^QBQuinn QuarterAAA$/);
     expect(within(roster).getAllByRole("listitem")).toHaveLength(10);
     await user.selectOptions(within(roster).getByRole("combobox"), "t2");
     expect(within(roster).getByTestId("roster-owner")).toHaveTextContent("Pray Hard roster");

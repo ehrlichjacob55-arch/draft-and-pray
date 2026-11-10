@@ -6,6 +6,9 @@ import type { Api } from "../api";
 import { draftData, meMember, player, renderRoute } from "../test/utils";
 import { ALERT_TITLE, useTurnAlert } from "./turnAlert";
 
+// Room sounds have their own tests (useRoomSounds.test.ts); keep them out of the beep counts here.
+vi.mock("./sounds", () => ({ playChime: vi.fn(), playFanfare: vi.fn(), playAlarm: vi.fn() }));
+
 afterEach(() => {
   vi.restoreAllMocks();
   vi.unstubAllGlobals();
@@ -303,7 +306,7 @@ describe("right pane and roster switching", () => {
     player: { name, position: "QB", nflTeam: "AAA" },
   });
 
-  it("orders my queue, then drafted players newest first (#pick, R, ABBR, player, pos, NFL team)", async () => {
+  it("orders my queue, then drafted players oldest first (#pick, R, ABBR, player, pos, NFL team)", async () => {
     const picks = [pick(1, "t1", "x1", "First Guy"), pick(2, "t2", "x2", "Second Guy")];
     room(statSnapshot({ picks, currentPick: 8, onClockTeamId: "t8", myQueue: ["p2"] }));
     const right = await screen.findByTestId("col-right");
@@ -313,14 +316,14 @@ describe("right pane and roster switching", () => {
     const rows = within(within(right).getByRole("list", { name: "Picks" })).getAllByRole(
       "listitem",
     );
-    expect(rows[0]).toHaveTextContent("#2");
-    expect(rows[0]).toHaveTextContent("R1");
-    expect(rows[0]).toHaveTextContent("PRAY");
-    expect(rows[0]).not.toHaveTextContent("Pray Hard");
-    expect(rows[0]).toHaveTextContent("Second Guy");
-    expect(rows[0]).toHaveTextContent("QB");
-    expect(rows[0]).toHaveTextContent("AAA");
-    expect(rows[1]).toHaveTextContent("#1");
+    expect(rows[1]).toHaveTextContent("#2");
+    expect(rows[1]).toHaveTextContent("R1");
+    expect(rows[1]).toHaveTextContent("PRAY");
+    expect(rows[1]).not.toHaveTextContent("Pray Hard");
+    expect(rows[1]).toHaveTextContent("Second Guy");
+    expect(rows[1]).toHaveTextContent("QB");
+    expect(rows[1]).toHaveTextContent("AAA");
+    expect(rows[0]).toHaveTextContent("#1");
   });
 
   it("clicking a pick switches the left roster to that team", async () => {
@@ -414,14 +417,12 @@ describe("player detail panel", () => {
     expect(dialog.contains(document.activeElement)).toBe(true);
   });
 
-  it("Draft from the panel opens the confirmation sheet; disabled when not my turn", async () => {
+  it("Draft from the panel submits immediately; disabled when not my turn", async () => {
     const user = userEvent.setup();
     const { unmount } = room(statSnapshot());
     await user.click(await screen.findByRole("button", { name: "Details for Wes Wideout" }));
     await user.click(within(screen.getByRole("dialog")).getByRole("button", { name: "Draft" }));
-    expect(screen.getByRole("dialog", { name: "Confirm pick" })).toHaveTextContent(
-      "Draft Wes Wideout → WR1?",
-    );
+    expect(screen.queryByRole("dialog", { name: "Confirm pick" })).not.toBeInTheDocument();
     expect(screen.queryByRole("dialog", { name: /Player details/ })).not.toBeInTheDocument();
     unmount();
 
@@ -612,25 +613,26 @@ describe("your-turn alert", () => {
     expect(document.title).toBe("Draft & Pray");
   });
 
-  it("beeps only when the sound option is on (off by default), and remembers it", () => {
+  it("beeps only when the sound option is on (on by default), and remembers it", () => {
     const { result, rerender } = renderHook(({ s }) => useTurnAlert(s), {
       initialProps: { s: notMine },
     });
-    expect(result.current.sound).toBe(false);
+    expect(result.current.sound).toBe(true);
     rerender({ s: mine });
-    expect(beeps).not.toHaveBeenCalled();
+    expect(beeps).toHaveBeenCalledTimes(1);
     rerender({ s: notMine });
 
-    act(() => result.current.setSound(true)); // toggling on plays a sample beep
-    expect(beeps).toHaveBeenCalledTimes(1);
-    expect(window.localStorage.getItem("dnp.draft.sound")).toBe("1");
+    act(() => result.current.setSound(false)); // muted: no beep, remembered
+    expect(window.localStorage.getItem("dnp.draft.sound")).toBe("0");
     rerender({ s: mine });
-    expect(beeps).toHaveBeenCalledTimes(2);
+    expect(beeps).toHaveBeenCalledTimes(1);
+    rerender({ s: notMine });
 
     const again = renderHook(() => useTurnAlert(notMine));
-    expect(again.result.current.sound).toBe(true);
-    act(() => again.result.current.setSound(false));
-    expect(window.localStorage.getItem("dnp.draft.sound")).toBe("0");
+    expect(again.result.current.sound).toBe(false);
+    act(() => again.result.current.setSound(true)); // toggling on plays a sample beep
+    expect(beeps).toHaveBeenCalledTimes(2);
+    expect(window.localStorage.getItem("dnp.draft.sound")).toBe("1");
   });
 
   it("survives unavailable storage and audio", () => {
@@ -642,18 +644,19 @@ describe("your-turn alert", () => {
     });
     vi.stubGlobal("AudioContext", undefined);
     const { result } = renderHook(() => useTurnAlert(notMine));
-    expect(result.current.sound).toBe(false);
+    expect(result.current.sound).toBe(true);
     expect(() => act(() => result.current.setSound(true))).not.toThrow();
   });
 
-  it("the draft room has a sound toggle, off by default, that persists", async () => {
+  it("the draft room has a Sound on/off toggle, on by default, that persists", async () => {
     room(statSnapshot());
     const user = userEvent.setup();
-    const box = await screen.findByRole("checkbox", { name: "Sound alert on my turn" });
-    expect(box).not.toBeChecked();
-    await user.click(box);
+    const box = await screen.findByRole("checkbox", { name: "Sound" });
     expect(box).toBeChecked();
-    expect(beeps).toHaveBeenCalledTimes(1);
-    await waitFor(() => expect(window.localStorage.getItem("dnp.draft.sound")).toBe("1"));
+    expect(screen.getByText("Sound on")).toBeInTheDocument();
+    await user.click(box);
+    expect(box).not.toBeChecked();
+    expect(screen.getByText("Sound off")).toBeInTheDocument();
+    await waitFor(() => expect(window.localStorage.getItem("dnp.draft.sound")).toBe("0"));
   });
 });

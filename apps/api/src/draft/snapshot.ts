@@ -13,6 +13,7 @@ import {
 } from "@dnp/contract";
 import type { DraftItem, GameItem, NflTeamItem, PickItem, PlayerItem, Team } from "@dnp/db";
 import { roundOf, teamOnClock } from "@dnp/domain";
+import { headshotUrl } from "./headshots";
 
 export interface SnapshotInput {
   seasonId: string;
@@ -97,6 +98,7 @@ export function buildSnapshot(input: SnapshotInput): DraftSnapshot {
       rank: p.rank ?? null,
       stats: p.stats ?? null,
       opponent: opponents.get(p.nflTeam) ?? null,
+      headshotUrl: headshotUrl(p),
     }))
     .sort(
       (a, b) =>

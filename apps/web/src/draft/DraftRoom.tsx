@@ -1,5 +1,4 @@
 import type { AvailablePlayer, DraftSnapshot } from "@dnp/contract";
-import type { Slot } from "@dnp/domain";
 import { useState } from "react";
 import { ApiError, useApi } from "../api";
 import { Card, ErrorNote, ErrorWithRetry, Loading } from "../components/ui";
@@ -9,9 +8,8 @@ import { DraftSetup } from "./admin/DraftSetup";
 import { LiveControls } from "./admin/LiveControls";
 import { Banner } from "./Banner";
 import { BoardPanel } from "./BoardPanel";
-import { ConfirmSheet } from "./ConfirmSheet";
 import { Lobby } from "./Lobby";
-import { deriveView, eligibilityFor, isLive, isPreDraft, teamName } from "./model";
+import { deriveView, eligibilityFor, isLive, isPreDraft } from "./model";
 import { PlayerDetail } from "./PlayerDetail";
 import { PlayersPanel } from "./PlayersPanel";
 import { QueuePanel } from "./QueuePanel";
@@ -19,6 +17,7 @@ import { OnTheClockStrip } from "./OnTheClockStrip";
 import { PicksPanel } from "./RightPane";
 import { RosterPanel } from "./RosterPanel";
 import { useTurnAlert } from "./turnAlert";
+import { useRoomSounds } from "./useRoomSounds";
 import { useMediaQuery } from "./useMediaQuery";
 import { useAction } from "./useAction";
 import { useDraft, type DraftData } from "./useDraft";
@@ -58,12 +57,6 @@ function DraftRoomLoaded({ seasonId }: { seasonId: string }) {
   return <DraftRoomView seasonId={seasonId} snapshot={draft.snapshot} draft={draft} />;
 }
 
-interface Pending {
-  player: AvailablePlayer;
-  slot: Slot;
-  forTeamId: string | null;
-}
-
 function DraftRoomView({
   seasonId,
   snapshot,
@@ -93,7 +86,6 @@ function DraftRoomView({
   const [rosterTeam, setRosterTeam] = useState<string | null>(null);
   const [detailId, setDetailId] = useState<string | null>(null);
   const [commishPick, setCommishPick] = useState(false);
-  const [pending, setPending] = useState<Pending | null>(null);
   const [pickError, setPickError] = useState<string | null>(null);
   const [picking, setPicking] = useState(false);
   const [queueOverride, setQueueOverride] = useState<{ version: number; ids: string[] } | null>(
@@ -102,6 +94,7 @@ function DraftRoomView({
   const queueAction = useAction();
   const autoAction = useAction();
   const { sound, setSound } = useTurnAlert(snapshot);
+  useRoomSounds(snapshot, clockExpired, sound);
 
   const live = isLive(snapshot);
   const commishMode = isCommissioner && commishPick && snapshot.status === "in_progress";
@@ -142,39 +135,27 @@ function DraftRoomView({
 
   const toggleQueue = (id: string) =>
     void saveQueue(queueIds.includes(id) ? queueIds.filter((x) => x !== id) : [...queueIds, id]);
-  const startDraft = (player: AvailablePlayer, slot: Slot) => {
-    setPickError(null);
-    setDetailId(null);
-    setPending({ player, slot, forTeamId: pickingTeamId });
-  };
-
-  async function confirmPick() {
-    if (!pending) return;
+  /** Submits the pick immediately (no confirmation); `picking` blocks a double click. */
+  async function draftPlayer(player: AvailablePlayer) {
+    if (picking) return;
     setPicking(true);
     setPickError(null);
+    setDetailId(null);
     try {
       await api.makePick(seasonId, {
-        playerId: pending.player.playerId,
+        playerId: player.playerId,
         expectedPick: snapshot.currentPick,
-        ...(commishMode && pending.forTeamId ? { teamId: pending.forTeamId } : {}),
+        ...(commishMode && pickingTeamId ? { teamId: pickingTeamId } : {}),
       });
-      setPending(null);
       await refetch();
     } catch (e) {
       setPickError(friendlyError(e));
-      if (
-        e instanceof ApiError &&
-        ["stale_pick", "player_taken", "not_your_turn"].includes(e.code)
-      ) {
+      if (e instanceof ApiError && ["stale_pick", "player_taken", "not_your_turn"].includes(e.code))
         await refetch();
-        if (e.code === "stale_pick") setPending(null);
-      }
     } finally {
       setPicking(false);
     }
   }
-
-  const stalePickNotice = pickError && !pending;
 
   const showPlayers = desktop ? center === "players" : tab === "players";
   const showBoard = desktop ? center === "board" : tab === "board";
@@ -185,13 +166,13 @@ function DraftRoomView({
       <PlayersPanel
         snapshot={snapshot}
         eligibility={eligibility}
-        canPick={canPick}
+        canPick={canPick && !picking}
         blockedReason={blockedReason}
         queueIds={queueIds}
         canQueue={!!snapshot.myTeamId}
         compact={!desktop}
         onToggleQueue={toggleQueue}
-        onDraft={startDraft}
+        onDraft={(p) => void draftPlayer(p)}
         onOpenDetail={(p) => setDetailId(p.playerId)}
         title={commishMode ? `Players (picking for ${view.onClockName})` : "Players"}
       />
@@ -244,17 +225,15 @@ function DraftRoomView({
     <section className="space-y-3" aria-label="Draft room">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <h2 className="text-xl font-semibold">Draft room</h2>
-        {live && (
-          <label className="flex items-center gap-2 text-sm">
-            <input
-              type="checkbox"
-              checked={sound}
-              onChange={(e) => setSound(e.target.checked)}
-              aria-label="Sound alert on my turn"
-            />
-            Sound alert on my turn
-          </label>
-        )}
+        <label className="flex items-center gap-2 text-sm">
+          <input
+            type="checkbox"
+            checked={sound}
+            onChange={(e) => setSound(e.target.checked)}
+            aria-label="Sound"
+          />
+          {sound ? "Sound on" : "Sound off"}
+        </label>
       </div>
 
       {isPreDraft(snapshot) ? (
@@ -288,7 +267,7 @@ function DraftRoomView({
         />
       )}
 
-      {stalePickNotice && <ErrorNote>{pickError}</ErrorNote>}
+      {pickError && <ErrorNote>{pickError}</ErrorNote>}
 
       {isCommissioner && (
         <details
@@ -385,35 +364,14 @@ function DraftRoomView({
           canQueue={!!snapshot.myTeamId}
           canDraft={
             canPick &&
+            !picking &&
             !!eligibility?.eligible(detailPlayer) &&
             eligibility.slotFor(detailPlayer) !== null
           }
           draftHint={blockedReason ?? "No open roster spot for this position"}
           onToggleQueue={() => toggleQueue(detailPlayer.playerId)}
-          onDraft={() => {
-            const slot = eligibility?.slotFor(detailPlayer);
-            if (slot) startDraft(detailPlayer, slot);
-          }}
+          onDraft={() => void draftPlayer(detailPlayer)}
           onClose={() => setDetailId(null)}
-        />
-      )}
-
-      {pending && (
-        <ConfirmSheet
-          title="Confirm pick"
-          message={
-            commishMode && pending.forTeamId
-              ? `Draft ${pending.player.name} → ${pending.slot} for ${teamName(snapshot, pending.forTeamId)}?`
-              : `Draft ${pending.player.name} → ${pending.slot}?`
-          }
-          confirmLabel="Confirm pick"
-          busy={picking}
-          error={pickError}
-          onConfirm={() => void confirmPick()}
-          onCancel={() => {
-            setPending(null);
-            setPickError(null);
-          }}
         />
       )}
     </section>

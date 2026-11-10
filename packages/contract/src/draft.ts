@@ -164,6 +164,8 @@ export const availablePlayer = z.object({
   stats: statLine.nullable().optional(),
   /** NFL team the player faces in the Wild Card round, when known. */
   opponent: z.string().nullable(),
+  /** Face-card image (Sleeper CDN headshot or DST team logo); null = none, show initials. */
+  headshotUrl: z.string().nullable().optional(),
 });
 export type AvailablePlayer = z.infer<typeof availablePlayer>;
 
