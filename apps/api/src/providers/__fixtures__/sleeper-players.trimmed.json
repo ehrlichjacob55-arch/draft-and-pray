@@ -1,0 +1,328 @@
+{
+  "16": {
+    "player_id": "16",
+    "full_name": "Ray Rice",
+    "position": "RB",
+    "team": null,
+    "status": "Inactive",
+    "injury_status": null
+  },
+  "2449": {
+    "player_id": "2449",
+    "first_name": "Stefon",
+    "last_name": "Diggs",
+    "full_name": "Stefon Diggs",
+    "position": "WR",
+    "team": "WAS",
+    "status": "Active",
+    "injury_status": null,
+    "depth_chart_order": 1,
+    "search_rank": 240
+  },
+  "3214": {
+    "player_id": "3214",
+    "first_name": "Hunter",
+    "last_name": "Henry",
+    "full_name": "Hunter Henry",
+    "position": "TE",
+    "team": "NE",
+    "status": "Active",
+    "injury_status": null,
+    "depth_chart_order": 1
+  },
+  "3678": {
+    "player_id": "3678",
+    "first_name": "Wil",
+    "last_name": "Lutz",
+    "full_name": "Wil Lutz",
+    "position": "K",
+    "team": "DEN",
+    "status": "Active",
+    "injury_status": null,
+    "depth_chart_order": 1
+  },
+  "4046": {
+    "player_id": "4046",
+    "full_name": "Patrick Mahomes",
+    "position": "QB",
+    "team": "KC",
+    "status": "Active",
+    "injury_status": null,
+    "depth_chart_order": 1
+  },
+  "4066": {
+    "player_id": "4066",
+    "first_name": "Evan",
+    "last_name": "Engram",
+    "full_name": "Evan Engram",
+    "position": "TE",
+    "team": "DEN",
+    "status": "Active",
+    "injury_status": null,
+    "depth_chart_order": 1
+  },
+  "4177": {
+    "player_id": "4177",
+    "first_name": "Mack",
+    "last_name": "Hollins",
+    "full_name": "Mack Hollins",
+    "position": "WR",
+    "team": "NE",
+    "status": "Active",
+    "injury_status": null,
+    "depth_chart_order": 2
+  },
+  "4663": {
+    "player_id": "4663",
+    "first_name": "Austin",
+    "last_name": "Ekeler",
+    "full_name": "Austin Ekeler",
+    "position": "RB",
+    "team": "WAS",
+    "status": "Active",
+    "injury_status": null,
+    "depth_chart_order": 2
+  },
+  "5045": {
+    "player_id": "5045",
+    "first_name": "Courtland",
+    "last_name": "Sutton",
+    "full_name": "Courtland Sutton",
+    "position": "WR",
+    "team": "DEN",
+    "status": "Active",
+    "injury_status": null,
+    "depth_chart_order": 2
+  },
+  "6806": {
+    "player_id": "6806",
+    "first_name": "J.K.",
+    "last_name": "Dobbins",
+    "full_name": "J.K. Dobbins",
+    "position": "RB",
+    "team": "DEN",
+    "status": "Active",
+    "injury_status": null,
+    "depth_chart_order": 2
+  },
+  "7526": {
+    "player_id": "7526",
+    "first_name": "Jaylen",
+    "last_name": "Waddle",
+    "full_name": "Jaylen Waddle",
+    "position": "WR",
+    "team": "DEN",
+    "status": "Active",
+    "injury_status": "Out",
+    "depth_chart_order": 1,
+    "search_rank": 9999999
+  },
+  "7611": {
+    "player_id": "7611",
+    "first_name": "Rhamondre",
+    "last_name": "Stevenson",
+    "full_name": "Rhamondre Stevenson",
+    "position": "RB",
+    "team": "NE",
+    "status": "Active",
+    "injury_status": "Out",
+    "depth_chart_order": 1
+  },
+  "7716": {
+    "player_id": "7716",
+    "first_name": "John",
+    "last_name": "Bates",
+    "full_name": "John Bates",
+    "position": "TE",
+    "team": "WAS",
+    "status": "Active",
+    "injury_status": null,
+    "depth_chart_order": 2
+  },
+  "8121": {
+    "player_id": "8121",
+    "full_name": "Romeo Doubs",
+    "position": "WR",
+    "team": "NE",
+    "status": "Inactive",
+    "injury_status": "IR",
+    "depth_chart_order": 6
+  },
+  "8136": {
+    "player_id": "8136",
+    "first_name": "Rachaad",
+    "last_name": "White",
+    "full_name": "Rachaad White",
+    "position": "RB",
+    "team": "WAS",
+    "status": "Active",
+    "injury_status": null,
+    "depth_chart_order": 1
+  },
+  "8210": {
+    "player_id": "8210",
+    "first_name": "Chig",
+    "last_name": "Okonkwo",
+    "full_name": "Chig Okonkwo",
+    "position": "TE",
+    "team": "WAS",
+    "status": "Active",
+    "injury_status": "Questionable",
+    "depth_chart_order": 1
+  },
+  "9501": {
+    "player_id": "9501",
+    "first_name": "DeMario",
+    "last_name": "Douglas",
+    "full_name": "DeMario Douglas",
+    "position": "WR",
+    "team": "NE",
+    "status": "Active",
+    "injury_status": null,
+    "depth_chart_order": 1
+  },
+  "11433": {
+    "player_id": "11433",
+    "first_name": "Nate",
+    "last_name": "Adkins",
+    "full_name": "Nate Adkins",
+    "position": "TE",
+    "team": "DEN",
+    "status": "Active",
+    "injury_status": null,
+    "depth_chart_order": 2
+  },
+  "11563": {
+    "player_id": "11563",
+    "first_name": "Bo",
+    "last_name": "Nix",
+    "full_name": "Bo Nix",
+    "position": "QB",
+    "team": "DEN",
+    "status": "Active",
+    "injury_status": null,
+    "depth_chart_order": 1,
+    "search_rank": 15
+  },
+  "11564": {
+    "player_id": "11564",
+    "first_name": "Drake",
+    "last_name": "Maye",
+    "full_name": "Drake Maye",
+    "position": "QB",
+    "team": "NE",
+    "status": "Active",
+    "injury_status": null,
+    "depth_chart_order": 1,
+    "search_rank": 22
+  },
+  "11566": {
+    "player_id": "11566",
+    "first_name": "Jayden",
+    "last_name": "Daniels",
+    "full_name": "Jayden Daniels",
+    "position": "QB",
+    "team": "WAS",
+    "status": "Active",
+    "injury_status": null,
+    "depth_chart_order": 1
+  },
+  "12491": {
+    "player_id": "12491",
+    "first_name": "Corey",
+    "last_name": "Kiner",
+    "full_name": "Corey Kiner",
+    "position": "RB",
+    "team": "NE",
+    "status": "Active",
+    "injury_status": null,
+    "depth_chart_order": 2
+  },
+  "12713": {
+    "player_id": "12713",
+    "first_name": "Andy",
+    "last_name": "Borregales",
+    "full_name": "Andy Borregales",
+    "position": "K",
+    "team": "NE",
+    "status": "Active",
+    "injury_status": null,
+    "depth_chart_order": 1
+  },
+  "13301": {
+    "player_id": "13301",
+    "first_name": "Antonio",
+    "last_name": "Williams",
+    "full_name": "Antonio Williams",
+    "position": "WR",
+    "team": "WAS",
+    "status": "Active",
+    "injury_status": null,
+    "depth_chart_order": 2
+  },
+  "13345": {
+    "player_id": "13345",
+    "first_name": "Jonah",
+    "last_name": "Coleman",
+    "full_name": "Jonah Coleman",
+    "position": "RB",
+    "team": "DEN",
+    "status": "Active",
+    "injury_status": null,
+    "depth_chart_order": 1
+  },
+  "13421": {
+    "player_id": "13421",
+    "first_name": "Eli",
+    "last_name": "Raridon",
+    "full_name": "Eli Raridon",
+    "position": "TE",
+    "team": "NE",
+    "status": "Active",
+    "injury_status": null,
+    "depth_chart_order": 2
+  },
+  "13968": {
+    "player_id": "13968",
+    "first_name": "Drew",
+    "last_name": "Stevens",
+    "full_name": "Drew Stevens",
+    "position": "K",
+    "team": "WAS",
+    "status": "Active",
+    "injury_status": null,
+    "depth_chart_order": null
+  },
+  "DEN": {
+    "player_id": "DEN",
+    "position": "DEF",
+    "team": "DEN"
+  },
+  "8000": {
+    "player_id": "8000",
+    "full_name": "Ben Roethlisberger",
+    "position": "QB",
+    "team": "PIT",
+    "status": "Active",
+    "injury_status": null,
+    "depth_chart_order": null
+  },
+  "8001": {
+    "player_id": "8001",
+    "full_name": "Aaron Rodgers",
+    "position": "QB",
+    "team": "PIT",
+    "status": "Active",
+    "injury_status": null,
+    "depth_chart_order": 1
+  },
+  "8002": {
+    "player_id": "8002",
+    "full_name": "Practice Squad Wr",
+    "position": "WR",
+    "team": "NE",
+    "status": "Active",
+    "injury_status": null,
+    "depth_chart_order": null
+  }
+}

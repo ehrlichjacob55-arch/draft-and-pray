@@ -66,6 +66,11 @@ variable "ws_api_execution_arn" {
   type = string
 }
 
+variable "ws_public_url" {
+  description = "WebSocket stage URL (wss://...) returned by POST /realtime/ticket."
+  type        = string
+}
+
 variable "scheduler_group_name" {
   type = string
 }
@@ -166,6 +171,7 @@ module "http" {
     COGNITO_CLIENT_ID       = var.cognito_client_id
     WS_CONNECTIONS_TABLE    = var.ws_table_name
     WS_MANAGEMENT_ENDPOINT  = var.ws_management_endpoint
+    WS_PUBLIC_URL           = var.ws_public_url
     SCHEDULER_GROUP         = var.scheduler_group_name
     SCHEDULER_ROLE_ARN      = var.scheduler_role_arn
     DRAFT_TICK_FUNCTION_ARN = var.draft_tick_function_arn

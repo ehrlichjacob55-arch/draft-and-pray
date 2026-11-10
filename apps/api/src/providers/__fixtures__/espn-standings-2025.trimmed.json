@@ -1,0 +1,186 @@
+{
+  "children": [
+    {
+      "name": "American Football Conference",
+      "standings": {
+        "entries": [
+          {
+            "team": {
+              "abbreviation": "NE",
+              "displayName": "New England Patriots"
+            },
+            "stats": [
+              {
+                "name": "playoffSeed",
+                "value": 2
+              }
+            ]
+          },
+          {
+            "team": {
+              "abbreviation": "JAX",
+              "displayName": "Jacksonville Jaguars"
+            },
+            "stats": [
+              {
+                "name": "playoffSeed",
+                "value": 3
+              }
+            ]
+          },
+          {
+            "team": {
+              "abbreviation": "PIT",
+              "displayName": "Pittsburgh Steelers"
+            },
+            "stats": [
+              {
+                "name": "playoffSeed",
+                "value": 4
+              }
+            ]
+          },
+          {
+            "team": {
+              "abbreviation": "HOU",
+              "displayName": "Houston Texans"
+            },
+            "stats": [
+              {
+                "name": "playoffSeed",
+                "value": 5
+              }
+            ]
+          },
+          {
+            "team": {
+              "abbreviation": "BUF",
+              "displayName": "Buffalo Bills"
+            },
+            "stats": [
+              {
+                "name": "playoffSeed",
+                "value": 6
+              }
+            ]
+          },
+          {
+            "team": {
+              "abbreviation": "LAC",
+              "displayName": "Los Angeles Chargers"
+            },
+            "stats": [
+              {
+                "name": "playoffSeed",
+                "value": 7
+              }
+            ]
+          },
+          {
+            "team": {
+              "abbreviation": "DEN",
+              "displayName": "Denver Broncos"
+            },
+            "stats": [
+              {
+                "name": "playoffSeed",
+                "value": 1
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "National Football Conference",
+      "standings": {
+        "entries": [
+          {
+            "team": {
+              "abbreviation": "CHI",
+              "displayName": "Chicago Bears"
+            },
+            "stats": [
+              {
+                "name": "playoffSeed",
+                "value": 2
+              }
+            ]
+          },
+          {
+            "team": {
+              "abbreviation": "PHI",
+              "displayName": "Philadelphia Eagles"
+            },
+            "stats": [
+              {
+                "name": "playoffSeed",
+                "value": 3
+              }
+            ]
+          },
+          {
+            "team": {
+              "abbreviation": "CAR",
+              "displayName": "Carolina Panthers"
+            },
+            "stats": [
+              {
+                "name": "playoffSeed",
+                "value": 4
+              }
+            ]
+          },
+          {
+            "team": {
+              "abbreviation": "LAR",
+              "displayName": "Los Angeles Rams"
+            },
+            "stats": [
+              {
+                "name": "playoffSeed",
+                "value": 5
+              }
+            ]
+          },
+          {
+            "team": {
+              "abbreviation": "SF",
+              "displayName": "San Francisco 49ers"
+            },
+            "stats": [
+              {
+                "name": "playoffSeed",
+                "value": 6
+              }
+            ]
+          },
+          {
+            "team": {
+              "abbreviation": "GB",
+              "displayName": "Green Bay Packers"
+            },
+            "stats": [
+              {
+                "name": "playoffSeed",
+                "value": 7
+              }
+            ]
+          },
+          {
+            "team": {
+              "abbreviation": "SEA",
+              "displayName": "Seattle Seahawks"
+            },
+            "stats": [
+              {
+                "name": "playoffSeed",
+                "value": 1
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

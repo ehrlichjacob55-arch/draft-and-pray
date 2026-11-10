@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import type { ManagerView, ManagerWithDelivery } from "@dnp/contract";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { ApiError } from "../api";
-import { meMember, renderRoute, seasonData, type RouteOpts } from "../test/utils";
+import { draftData, meMember, renderRoute, seasonData, type RouteOpts } from "../test/utils";
 import { parseBulk } from "./Commissioner";
 
 const manager = (
@@ -13,6 +13,7 @@ const manager = (
 ) => ({
   teamId,
   teamName: `Team ${teamId}`,
+  teamAbbr: `T${teamId.toUpperCase()}`,
   firstName: "Alex",
   lastName: `Example${teamId}`,
   email: `alex.${teamId}@example.com`,
@@ -35,6 +36,8 @@ function setup(over: NonNullable<RouteOpts["api"]> = {}) {
     api: {
       me: async () => meMember("commissioner"),
       season: async () => seasonData({ myRole: "commissioner" }),
+      // Draft already running: the Draft setup section just links to the draft room.
+      draft: async () => draftData({ myRole: "commissioner" }),
       listManagers: async () => [
         manager("a", "invited"),
         manager("b", "joined"),
@@ -201,14 +204,27 @@ describe("Commissioner Managers", () => {
 
   it("renames a team", async () => {
     const user = userEvent.setup();
-    const renameTeam = vi.fn(async () => ({ teamId: "t2", name: "Pray Harder" }));
+    const renameTeam = vi.fn(async () => ({ teamId: "t2", name: "Pray Harder", abbr: "PRAY" }));
     setup({ renameTeam });
     await user.click(await screen.findByRole("button", { name: "Rename Pray Hard" }));
     const input = screen.getByLabelText("New name for Pray Hard");
     await user.clear(input);
     await user.type(input, "Pray Harder");
     await user.click(screen.getByRole("button", { name: "Save" }));
-    expect(renameTeam).toHaveBeenCalledWith("s2026", "t2", "Pray Harder");
+    expect(renameTeam).toHaveBeenCalledWith("s2026", "t2", "Pray Harder", undefined);
+  });
+
+  it("edits a team abbreviation next to the name", async () => {
+    const user = userEvent.setup();
+    const renameTeam = vi.fn(async () => ({ teamId: "t2", name: "Pray Hard", abbr: "PH" }));
+    setup({ renameTeam });
+    await user.click(await screen.findByRole("button", { name: "Rename Pray Hard" }));
+    const abbr = screen.getByLabelText("Team abbreviation");
+    expect(abbr).toHaveValue("PRAY");
+    await user.clear(abbr);
+    await user.type(abbr, "ph");
+    await user.click(screen.getByRole("button", { name: "Save" }));
+    expect(renameTeam).toHaveBeenCalledWith("s2026", "t2", "Pray Hard", "PH");
   });
 
   it("bulk add: previews then adds each line", async () => {

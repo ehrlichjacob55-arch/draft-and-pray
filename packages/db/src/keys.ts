@@ -92,6 +92,12 @@ export const playerKey = (seasonId: string, playerId: string): Key => ({
   pk: seasonPk(seasonId),
   sk: `PLAYER#${playerId}`,
 });
+export const poolImportKey = (seasonId: string): Key => ({
+  pk: seasonPk(seasonId),
+  sk: "POOLIMPORT",
+});
+/** docs/design/14 §6. `hash` = sha256 hex of the ticket. */
+export const wsTicketKey = (hash: string): Key => ({ pk: `WSTICKET#${hash}`, sk: "TICKET" });
 export const roundKey = (seasonId: string, round: number): Key => ({
   pk: seasonPk(seasonId),
   sk: `ROUND#${round}`,

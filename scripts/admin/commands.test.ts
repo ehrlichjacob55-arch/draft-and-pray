@@ -35,8 +35,12 @@ describe("prod refusal", () => {
     ["test-users", "delete"],
     ["test-league", "seed"],
     ["test-league", "reset"],
+    ["seed-pool", undefined],
+    ["draft-league", "setup"],
   ])("%s %s --env prod is refused before resolving config or touching AWS", async (cmd, sub) => {
-    await expect(runAdmin([cmd, sub, "--env", "prod"], noAws)).rejects.toThrow(/Refusing.*prod/);
+    await expect(runAdmin([cmd, ...(sub ? [sub] : []), "--env", "prod"], noAws)).rejects.toThrow(
+      /Refusing.*prod/,
+    );
     expect(noAws.calls).toBe(0);
   });
 

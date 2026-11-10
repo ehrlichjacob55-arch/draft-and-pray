@@ -14,7 +14,9 @@ describe("League home welcome card", () => {
       api: {
         me: async () => meMember("manager", claim),
         season: async () =>
-          seasonData({ teams: [{ teamId: "t1", name: "Team Example", isMine: true }] }),
+          seasonData({
+            teams: [{ teamId: "t1", name: "Team Example", abbr: "TEAM", isMine: true }],
+          }),
       },
     });
     const card = await screen.findByTestId("welcome-card");
@@ -29,20 +31,22 @@ describe("League home welcome card", () => {
 
   it("optionally renames inline and the card shows the new name", async () => {
     const user = userEvent.setup();
-    const renameTeam = vi.fn(async () => ({ teamId: "t1", name: "Renamed" }));
+    const renameTeam = vi.fn(async () => ({ teamId: "t1", name: "Renamed", abbr: "TEAM" }));
     const season = vi
       .fn()
       .mockResolvedValueOnce(
-        seasonData({ teams: [{ teamId: "t1", name: "Team Example", isMine: true }] }),
+        seasonData({ teams: [{ teamId: "t1", name: "Team Example", abbr: "TEAM", isMine: true }] }),
       )
-      .mockResolvedValue(seasonData({ teams: [{ teamId: "t1", name: "Renamed", isMine: true }] }));
+      .mockResolvedValue(
+        seasonData({ teams: [{ teamId: "t1", name: "Renamed", abbr: "TEAM", isMine: true }] }),
+      );
     renderRoute("/", { api: { me: async () => meMember("manager", claim), season, renameTeam } });
     const card = await screen.findByTestId("welcome-card");
     const input = within(card).getByLabelText("Rename your team (optional)");
     await user.clear(input);
     await user.type(input, "Renamed");
     await user.click(within(card).getByRole("button", { name: "Save name" }));
-    expect(renameTeam).toHaveBeenCalledWith("s2026", "t1", "Renamed");
+    expect(renameTeam).toHaveBeenCalledWith("s2026", "t1", "Renamed", undefined);
     await waitFor(() =>
       expect(screen.getByTestId("welcome-card")).toHaveTextContent("Your team is Renamed"),
     );
@@ -54,7 +58,9 @@ describe("League home welcome card", () => {
       api: {
         me: async () => meMember("manager", claim),
         season: async () =>
-          seasonData({ teams: [{ teamId: "t1", name: "Team Example", isMine: true }] }),
+          seasonData({
+            teams: [{ teamId: "t1", name: "Team Example", abbr: "TEAM", isMine: true }],
+          }),
       },
     };
     const first = renderRoute("/", props);
@@ -71,7 +77,7 @@ describe("League home welcome card", () => {
   it("keeps the card across a reload until dismissed", async () => {
     const props = {
       season: async () =>
-        seasonData({ teams: [{ teamId: "t1", name: "Team Example", isMine: true }] }),
+        seasonData({ teams: [{ teamId: "t1", name: "Team Example", abbr: "TEAM", isMine: true }] }),
     };
     const first = renderRoute("/", {
       api: { ...props, me: async () => meMember("manager", claim) },
@@ -118,13 +124,13 @@ describe("League home", () => {
 
   it("member can rename their team", async () => {
     const user = userEvent.setup();
-    const renameTeam = vi.fn(async () => ({ teamId: "t1", name: "New Name" }));
+    const renameTeam = vi.fn(async () => ({ teamId: "t1", name: "New Name", abbr: "TEAM" }));
     const season = vi
       .fn()
       .mockResolvedValueOnce(seasonData())
       .mockResolvedValue(
         seasonData({
-          teams: [{ teamId: "t1", name: "New Name", isMine: true }],
+          teams: [{ teamId: "t1", name: "New Name", abbr: "TEAM", isMine: true }],
         }),
       );
     renderRoute("/", { api: { me: async () => meMember(), season, renameTeam } });
@@ -133,8 +139,57 @@ describe("League home", () => {
     await user.clear(input);
     await user.type(input, "New Name");
     await user.click(screen.getByRole("button", { name: "Save" }));
-    expect(renameTeam).toHaveBeenCalledWith("s2026", "t1", "New Name");
+    expect(renameTeam).toHaveBeenCalledWith("s2026", "t1", "New Name", undefined);
     expect(await screen.findByText(/Your team:/)).toHaveTextContent("New Name");
+  });
+
+  it("edits the abbreviation (uppercased, 4 chars) next to the name", async () => {
+    const user = userEvent.setup();
+    const renameTeam = vi.fn(async () => ({ teamId: "t1", name: "Gridiron Gang", abbr: "GG" }));
+    renderRoute("/", {
+      api: { me: async () => meMember(), season: async () => seasonData(), renameTeam },
+    });
+    expect(await screen.findByTestId("my-abbr")).toHaveTextContent("(GRID)");
+    await user.click(screen.getByRole("button", { name: "Rename" }));
+    const abbr = screen.getByLabelText("Team abbreviation");
+    expect(abbr).toHaveValue("GRID");
+    await user.clear(abbr);
+    await user.type(abbr, "gg12345");
+    expect(abbr).toHaveValue("GG12");
+    await user.click(screen.getByRole("button", { name: "Save" }));
+    expect(renameTeam).toHaveBeenCalledWith("s2026", "t1", "Gridiron Gang", "GG12");
+  });
+
+  it("validates the abbreviation before sending", async () => {
+    const user = userEvent.setup();
+    const renameTeam = vi.fn();
+    renderRoute("/", {
+      api: { me: async () => meMember(), season: async () => seasonData(), renameTeam },
+    });
+    await user.click(await screen.findByRole("button", { name: "Rename" }));
+    const abbr = screen.getByLabelText("Team abbreviation");
+    await user.clear(abbr);
+    await user.type(abbr, "G!");
+    await user.click(screen.getByRole("button", { name: "Save" }));
+    expect(await screen.findByRole("alert")).toHaveTextContent("2 to 4 letters or digits");
+    expect(renameTeam).not.toHaveBeenCalled();
+  });
+
+  it("shows a friendly error when the abbreviation is taken", async () => {
+    const user = userEvent.setup();
+    renderRoute("/", {
+      api: {
+        me: async () => meMember(),
+        season: async () => seasonData(),
+        renameTeam: async () => Promise.reject(new ApiError(409, "team_abbr_taken", "dup")),
+      },
+    });
+    await user.click(await screen.findByRole("button", { name: "Rename" }));
+    const abbr = screen.getByLabelText("Team abbreviation");
+    await user.clear(abbr);
+    await user.type(abbr, "PRAY");
+    await user.click(screen.getByRole("button", { name: "Save" }));
+    expect(await screen.findByRole("alert")).toHaveTextContent("already uses that abbreviation");
   });
 
   it("shows a rename error (duplicate name)", async () => {

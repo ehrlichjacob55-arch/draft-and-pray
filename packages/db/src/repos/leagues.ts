@@ -298,6 +298,8 @@ export async function bootstrapLeague(
             currentPickDeadline: null,
             startedAt: null,
             updatedAt: now,
+            version: 0,
+            order: [],
           },
           ConditionExpression: "attribute_not_exists(pk)",
         },

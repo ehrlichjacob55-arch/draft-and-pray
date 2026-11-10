@@ -10,6 +10,7 @@ import {
   type OverrideItem,
   type PickItem,
   type PlayerItem,
+  type PoolImportItem,
   type PointsItem,
   type QueueItem,
   type RosterEntryItem,
@@ -75,6 +76,7 @@ export interface SeasonSnapshot {
   rosterEntries: RosterEntryItem[];
   nflTeams: NflTeamItem[];
   players: PlayerItem[];
+  poolImport?: PoolImportItem;
   rounds: RoundItem[];
   games: GameItem[];
   stats: StatLineItem[];
@@ -151,6 +153,9 @@ export async function loadSeason(
         break;
       case "Player":
         snap.players.push(item);
+        break;
+      case "PoolImport":
+        snap.poolImport = item;
         break;
       case "Round":
         snap.rounds.push(item);

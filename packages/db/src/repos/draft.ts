@@ -22,6 +22,7 @@ import {
   playerKey,
   rosterEntryKey,
   seasonMetaKey,
+  seasonPointerKey,
   teamKey,
 } from "../keys";
 
@@ -41,6 +42,8 @@ export interface RecordPickInput {
   isFinalPick: boolean;
   /** ISO timestamp. */
   now: string;
+  /** When given, the league's season pointer status is kept in sync with META (doc 11 §8). */
+  seasonPointer?: { leagueId: string; year: number };
 }
 
 /** §4.1. Throws TransactionConflictError labeled draft_state | pick_number | player | roster_slot. */
@@ -90,9 +93,12 @@ export async function recordPick(db: Dynamo, input: RecordPickInput): Promise<Pi
       Update: {
         TableName,
         Key: draftKey(seasonId),
-        UpdateExpression: input.isFinalPick
-          ? "SET currentPick = :next, currentPickDeadline = :dl, updatedAt = :now, #status = :complete"
-          : "SET currentPick = :next, currentPickDeadline = :dl, updatedAt = :now",
+        // The alert-only clock belongs to one pick, so every pick clears it; `version` counts changes.
+        UpdateExpression:
+          (input.isFinalPick
+            ? "SET currentPick = :next, currentPickDeadline = :dl, updatedAt = :now, #status = :complete"
+            : "SET currentPick = :next, currentPickDeadline = :dl, updatedAt = :now") +
+          " REMOVE clockStartedAt, clockSeconds, clockExpiresAt ADD version :one",
         ConditionExpression: "#status = :inProgress AND currentPick = :expected",
         ExpressionAttributeNames: { "#status": "status" },
         ExpressionAttributeValues: {
@@ -101,6 +107,7 @@ export async function recordPick(db: Dynamo, input: RecordPickInput): Promise<Pi
           ":now": now,
           ":inProgress": "in_progress",
           ":expected": n,
+          ":one": 1,
           ...(input.isFinalPick ? { ":complete": "complete" } : {}),
         },
       },
@@ -131,9 +138,30 @@ export async function recordPick(db: Dynamo, input: RecordPickInput): Promise<Pi
       },
     });
     labels.push("season_meta");
+    if (input.seasonPointer) {
+      items.push(pointerUpdate(db.tableName, input.seasonPointer, "in_progress"));
+      labels.push("season_pointer");
+    }
   }
   await transactWrite(db.doc, items, labels);
   return pick;
+}
+
+function pointerUpdate(
+  TableName: string,
+  p: { leagueId: string; year: number },
+  status: "drafting" | "in_progress",
+) {
+  return {
+    Update: {
+      TableName,
+      Key: seasonPointerKey(p.leagueId, p.year),
+      UpdateExpression: "SET #status = :s",
+      ConditionExpression: "attribute_exists(pk)",
+      ExpressionAttributeNames: { "#status": "status" },
+      ExpressionAttributeValues: { ":s": status },
+    },
+  };
 }
 
 export interface UndoLastPickInput {
@@ -143,6 +171,7 @@ export interface UndoLastPickInput {
   actorUserId: string;
   newDeadline: string | null;
   now: string;
+  seasonPointer?: { leagueId: string; year: number };
 }
 
 /** §4.2. Throws TransactionConflictError labeled draft_state | pick | player | roster_slot. */
@@ -164,14 +193,17 @@ export async function undoLastPick(db: Dynamo, input: UndoLastPickInput): Promis
       Update: {
         TableName,
         Key: draftKey(seasonId),
-        UpdateExpression: wasComplete
-          ? "SET currentPick = :n, currentPickDeadline = :dl, updatedAt = :now, #status = :inProgress"
-          : "SET currentPick = :n, currentPickDeadline = :dl, updatedAt = :now",
+        UpdateExpression:
+          (wasComplete
+            ? "SET currentPick = :n, currentPickDeadline = :dl, updatedAt = :now, #status = :inProgress"
+            : "SET currentPick = :n, currentPickDeadline = :dl, updatedAt = :now") +
+          " REMOVE clockStartedAt, clockSeconds, clockExpiresAt ADD version :one",
         ConditionExpression: "currentPick = :n1",
         ...(wasComplete ? { ExpressionAttributeNames: { "#status": "status" } } : {}),
         ExpressionAttributeValues: {
           ":n": n,
           ":n1": currentPick,
+          ":one": 1,
           ":dl": input.newDeadline,
           ":now": now,
           ...(wasComplete ? { ":inProgress": "in_progress" } : {}),
@@ -234,6 +266,10 @@ export async function undoLastPick(db: Dynamo, input: UndoLastPickInput): Promis
       },
     });
     labels.push("season_meta");
+    if (input.seasonPointer) {
+      items.push(pointerUpdate(TableName, input.seasonPointer, "drafting"));
+      labels.push("season_pointer");
+    }
   }
   await transactWrite(db.doc, items, labels);
   return pick;
@@ -262,11 +298,26 @@ export async function putSeasonMeta(
 
 export async function putDraftState(
   db: Dynamo,
-  input: { seasonId: string } & Omit<DraftItem, "pk" | "sk" | "type">,
+  input: { seasonId: string } & Omit<
+    DraftItem,
+    "pk" | "sk" | "type" | "version" | "order" | "autoDraft"
+  > &
+    Partial<Pick<DraftItem, "version" | "order" | "autoDraft">>,
 ): Promise<DraftItem> {
-  const { seasonId, ...rest } = input;
-  const item: DraftItem = { ...draftKey(seasonId), type: "Draft", ...rest };
-  await putNew(db, item);
+  const { seasonId, autoDraft, ...rest } = input;
+  const item: DraftItem = {
+    ...draftKey(seasonId),
+    type: "Draft",
+    version: 0,
+    order: [],
+    autoDraft: autoDraft ?? [],
+    ...rest,
+  };
+  // `autoDraft` is a DynamoDB string set (empty sets cannot be stored).
+  await putNew(db, {
+    ...item,
+    autoDraft: autoDraft && autoDraft.length > 0 ? new Set(autoDraft) : undefined,
+  });
   return item;
 }
 

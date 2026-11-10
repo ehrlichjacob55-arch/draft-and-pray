@@ -22,7 +22,8 @@ import {
   type TransactItems,
 } from "../errors";
 import { newId } from "../ids";
-import { parseItem, type ManagerPrivateItem, type TeamItem } from "../items";
+import { parseItem, type ManagerPrivateItem } from "../items";
+import { defaultAbbr } from "@dnp/domain";
 import {
   auditKey,
   gsiPendingPk,
@@ -38,7 +39,7 @@ import {
 import { GSI1 } from "../table";
 import { getSeasonMeta } from "./leagues";
 import { queryPrefix } from "./season";
-import { getTeam, listTeams } from "./teams";
+import { getTeam, listTeams, type Team } from "./teams";
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 
@@ -82,7 +83,7 @@ export async function listManagerRecords(
 
 export interface ManagerRow {
   manager: ManagerPrivateItem;
-  team: TeamItem;
+  team: Team;
 }
 
 /** Commissioner view: every manager record joined with its team. */
@@ -166,13 +167,18 @@ export async function addManager(db: Dynamo, input: AddManagerInput): Promise<Ma
     throw new DomainError("email_already_added", "That email was already added to this season");
 
   const teamId = newId();
-  const team: TeamItem = {
+  const name = defaultTeamName(
+    input.lastName,
+    teams.map((t) => t.name),
+  );
+  const team: Team = {
     ...teamKey(input.seasonId, teamId),
     type: "Team",
     teamId,
-    name: defaultTeamName(
-      input.lastName,
-      teams.map((t) => t.name),
+    name,
+    abbr: defaultAbbr(
+      name,
+      teams.map((t) => t.abbr),
     ),
     managerUserId: null,
     draftPosition: null,
@@ -314,11 +320,17 @@ export async function updatePendingManager(
   }
 
   let teamName = team.name;
+  let teamAbbr = team.abbr;
   if (lastName !== manager.lastName && isDefaultTeamName(team.name, manager.lastName)) {
-    const others = (await listTeams(db, input.seasonId))
-      .filter((t) => t.teamId !== team.teamId)
-      .map((t) => t.name);
-    teamName = defaultTeamName(lastName, others);
+    const others = (await listTeams(db, input.seasonId)).filter((t) => t.teamId !== team.teamId);
+    const otherAbbrs = others.map((t) => t.abbr);
+    teamName = defaultTeamName(
+      lastName,
+      others.map((t) => t.name),
+    );
+    // An auto-default abbreviation follows the name; a custom one stays.
+    if (team.abbr === defaultAbbr(team.name, otherAbbrs))
+      teamAbbr = defaultAbbr(teamName, otherAbbrs);
   }
 
   const sets = ["firstName = :f", "lastName = :l", "email = :e"];
@@ -345,10 +357,10 @@ export async function updatePendingManager(
           Update: {
             TableName,
             Key: teamKey(input.seasonId, input.teamId),
-            UpdateExpression: "SET #n = :n",
+            UpdateExpression: "SET #n = :n, abbr = :a",
             ConditionExpression: "attribute_exists(pk) AND managerUserId = :null",
             ExpressionAttributeNames: { "#n": "name" },
-            ExpressionAttributeValues: { ":n": teamName, ":null": null },
+            ExpressionAttributeValues: { ":n": teamName, ":a": teamAbbr, ":null": null },
           },
         }
       : {
@@ -388,7 +400,7 @@ export async function updatePendingManager(
   }
   return {
     manager: updated,
-    team: { ...team, name: teamName },
+    team: { ...team, name: teamName, abbr: teamAbbr },
     emailChanged,
     previous: { email: manager.email, cognitoUsername: manager.cognitoUsername },
   };

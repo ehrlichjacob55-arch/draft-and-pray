@@ -24,14 +24,32 @@ export const ERROR_CODES = [
   "manager_joined",
   "invite_failed",
   "team_name_taken",
+  "team_abbr_taken",
   "conflict",
+  // Draft (docs/design/14 §4)
+  "stale_pick",
+  "not_your_turn",
+  "player_taken",
+  "not_eligible",
+  "slot_filled",
+  "draft_not_active",
+  "draft_not_ready",
+  "draft_wrong_status",
+  "nothing_to_undo",
+  "pool_locked",
+  "pool_import_failed",
   "internal_error",
 ] as const;
 export const errorCode = z.enum(ERROR_CODES);
 export type ErrorCode = z.infer<typeof errorCode>;
 
 export const apiError = z.object({
-  error: z.object({ code: errorCode, message: z.string() }),
+  error: z.object({
+    code: errorCode,
+    message: z.string(),
+    /** `draft_not_ready`: every unmet start precondition. */
+    reasons: z.array(z.string()).optional(),
+  }),
 });
 export type ApiError = z.infer<typeof apiError>;
 
@@ -58,6 +76,13 @@ export const teamNameSchema = z
   .max(TEAM_NAME_MAX, `Team name must be at most ${TEAM_NAME_MAX} characters`);
 
 /** Case-insensitive team-name key, used for the per-season uniqueness check. */
+/** 2-4 characters A-Z/0-9; input is trimmed and uppercased first. */
+export const teamAbbrSchema = z
+  .string()
+  .trim()
+  .toUpperCase()
+  .regex(/^[A-Z0-9]{2,4}$/, "Abbreviation must be 2 to 4 letters or digits");
+
 export const teamNameKey = (name: string): string => name.trim().toLowerCase();
 
 export const seasonStatus = z.enum(["setup", "drafting", "in_progress", "complete"]);
@@ -101,6 +126,7 @@ export type MeResponse = z.infer<typeof meResponse>;
 export const teamSummary = z.object({
   teamId: z.string(),
   name: z.string(),
+  abbr: z.string(),
   isMine: z.boolean(),
 });
 export type TeamSummary = z.infer<typeof teamSummary>;
@@ -128,6 +154,7 @@ export type ManagerStatus = z.infer<typeof managerStatus>;
 export const managerView = z.object({
   teamId: z.string(),
   teamName: z.string(),
+  teamAbbr: z.string(),
   firstName: z.string(),
   lastName: z.string(),
   email: z.string(),
@@ -192,7 +219,17 @@ export const removeManagerResponse = z.object({ ok: z.literal(true) });
 export type RemoveManagerResponse = z.infer<typeof removeManagerResponse>;
 
 // ---- PATCH /teams/:seasonId/:teamId ----
-export const renameTeamRequest = z.object({ name: teamNameSchema });
+export const renameTeamRequest = z.object({
+  name: teamNameSchema,
+  /** Optional custom abbreviation; omitted keeps (or recomputes, if still the default) it. */
+  abbr: teamAbbrSchema.optional(),
+});
 export type RenameTeamRequest = z.input<typeof renameTeamRequest>;
-export const renameTeamResponse = z.object({ teamId: z.string(), name: z.string() });
+export const renameTeamResponse = z.object({
+  teamId: z.string(),
+  name: z.string(),
+  abbr: z.string(),
+});
 export type RenameTeamResponse = z.infer<typeof renameTeamResponse>;
+
+export * from "./draft";

@@ -7,6 +7,7 @@ import {
 } from "@dnp/contract";
 import { useId, useState, type FormEvent } from "react";
 import { useApi } from "../api";
+import { DraftSetupSection } from "../draft/admin/DraftSetupSection";
 import { TeamNameForm } from "../components/TeamNameForm";
 import {
   btnPrimary,
@@ -127,6 +128,8 @@ function CommissionerConsole({ seasonId }: { seasonId: string }) {
         </div>
       </Card>
 
+      <DraftSetupSection seasonId={seasonId} />
+
       <Card>
         <h3 className="font-semibold">Team names</h3>
         {season.status === "loading" && <Loading />}
@@ -136,8 +139,8 @@ function CommissionerConsole({ seasonId }: { seasonId: string }) {
         {season.status === "ready" && (
           <TeamsTable
             teams={season.data.teams}
-            onRename={async (teamId, name) => {
-              await api.renameTeam(seasonId, teamId, name);
+            onRename={async (teamId, name, abbr) => {
+              await api.renameTeam(seasonId, teamId, name, abbr);
               reloadAll();
             }}
           />
@@ -498,8 +501,8 @@ function TeamsTable({
   teams,
   onRename,
 }: {
-  teams: { teamId: string; name: string }[];
-  onRename: (teamId: string, name: string) => Promise<void>;
+  teams: { teamId: string; name: string; abbr: string }[];
+  onRename: (teamId: string, name: string, abbr?: string) => Promise<void>;
 }) {
   const [editing, setEditing] = useState<string | null>(null);
   if (teams.length === 0) return <p className="mt-1 text-muted">No teams yet.</p>;
@@ -510,17 +513,20 @@ function TeamsTable({
           {editing === t.teamId ? (
             <TeamNameForm
               initial={t.name}
+              initialAbbr={t.abbr}
               label={`New name for ${t.name}`}
               submitLabel="Save"
               onCancel={() => setEditing(null)}
-              onSubmit={async (name) => {
-                await onRename(t.teamId, name);
+              onSubmit={async (name, abbr) => {
+                await onRename(t.teamId, name, abbr);
                 setEditing(null);
               }}
             />
           ) : (
             <div className="flex items-center justify-between gap-2">
-              <span>{t.name}</span>
+              <span>
+                {t.name} <span className="font-mono text-xs text-muted">{t.abbr}</span>
+              </span>
               <button
                 type="button"
                 className={btnSecondary}

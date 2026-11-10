@@ -10,6 +10,7 @@ import {
   playerKey,
   rosterEntryKey,
   seasonMetaKey,
+  seasonPointerKey,
   skPrefix,
   seasonPk,
 } from "./keys";
@@ -285,5 +286,45 @@ describe("loadSeason", () => {
       limit: 10,
     });
     expect(limited).toHaveLength(10);
+  });
+});
+
+describe("version counter, clock and season pointer", () => {
+  it("bumps version on pick and undo, clears the clock, and syncs the pointer at pick 90", async () => {
+    const s = await seed({ currentPick: 90 });
+    await db.doc.send(
+      new (await import("@aws-sdk/lib-dynamodb")).UpdateCommand({
+        TableName: db.tableName,
+        Key: draftKey(s),
+        UpdateExpression: "SET clockStartedAt = :a, clockSeconds = :b, clockExpiresAt = :c",
+        ExpressionAttributeValues: { ":a": NOW, ":b": 90, ":c": NOW },
+      }),
+    );
+    await db.doc.send(
+      new (await import("@aws-sdk/lib-dynamodb")).PutCommand({
+        TableName: db.tableName,
+        Item: { ...seasonPointerKey("L1", 2026), type: "SeasonPointer", status: "drafting" },
+      }),
+    );
+    const pointer = { leagueId: "L1", year: 2026 };
+    await recordPick(
+      db,
+      pickInput(s, { expectedPick: 90, isFinalPick: true, seasonPointer: pointer }),
+    );
+    expect(await get(draftKey(s))).toMatchObject({ status: "complete", version: 1 });
+    expect((await get(draftKey(s)))?.clockExpiresAt).toBeUndefined();
+    expect((await get(seasonPointerKey("L1", 2026)))?.status).toBe("in_progress");
+
+    await undoLastPick(db, {
+      seasonId: s,
+      currentPick: 91,
+      actorUserId: "u1",
+      newDeadline: null,
+      now: NOW,
+      seasonPointer: pointer,
+    });
+    expect(await get(draftKey(s))).toMatchObject({ status: "in_progress", version: 2 });
+    expect((await get(seasonPointerKey("L1", 2026)))?.status).toBe("drafting");
+    expect((await get(seasonMetaKey(s)))?.status).toBe("drafting");
   });
 });

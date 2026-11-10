@@ -34,6 +34,10 @@ import { Hono } from "hono";
 import { HTTPException } from "hono/http-exception";
 import { noopCognito, type CognitoAdmin } from "../cognito";
 import type { Config } from "../config";
+import { createDraftService } from "../draft/service";
+import { registerDraftRoutes } from "../draft/routes";
+import { createRealPoolSource, type PoolSource } from "../providers";
+import { noopPublisher, type Publisher } from "../realtime/types";
 import { logError } from "../redact";
 import { authMiddleware, isPublicRoute, type AppEnv, type TokenVerifier } from "./auth";
 import { loadSeasonMeta, requireCommissioner, requireMember } from "./authz";
@@ -49,9 +53,21 @@ export interface AppDeps {
   verifyToken?: TokenVerifier;
   /** Test hook: clock. */
   now?: () => Date;
+  /** Realtime fan-out for `draft_changed`; defaults to a no-op. */
+  publisher?: Publisher;
+  /** Player pool source; defaults to ESPN standings + Sleeper players. */
+  poolSource?: PoolSource;
 }
 
-export function createApp({ config, db, cognito = noopCognito, verifyToken, now }: AppDeps) {
+export function createApp({
+  config,
+  db,
+  cognito = noopCognito,
+  verifyToken,
+  now,
+  publisher = noopPublisher,
+  poolSource = createRealPoolSource(),
+}: AppDeps) {
   const app = new Hono<AppEnv>().basePath("/api");
   const clock = now ?? (() => new Date());
 
@@ -142,6 +158,7 @@ export function createApp({ config, db, cognito = noopCognito, verifyToken, now 
       teams: teams.map((t) => ({
         teamId: t.teamId,
         name: t.name,
+        abbr: t.abbr,
         isMine: t.managerUserId === user.sub,
       })),
       myTeamId: teams.find((t) => t.managerUserId === user.sub)?.teamId ?? null,
@@ -154,6 +171,7 @@ export function createApp({ config, db, cognito = noopCognito, verifyToken, now 
   const toManagerView = ({ manager, team }: ManagerRow): ManagerView => ({
     teamId: team.teamId,
     teamName: team.name,
+    teamAbbr: team.abbr,
     firstName: manager.firstName,
     lastName: manager.lastName,
     email: manager.email,
@@ -359,16 +377,25 @@ export function createApp({ config, db, cognito = noopCognito, verifyToken, now 
     const isCommissioner = member.role === "commissioner";
     if (team.managerUserId !== user.sub && !isCommissioner)
       throw forbidden("Only the team owner or the commissioner can rename a team");
-    const { name } = await parseBody(c, renameTeamRequest);
+    const { name, abbr } = await parseBody(c, renameTeamRequest);
     const renamed = await renameTeam(db, {
       seasonId: meta.seasonId,
       teamId: team.teamId,
       name,
+      abbr,
       actorUserId: user.sub,
       audit: isCommissioner,
       now: clock(),
     });
-    return c.json({ teamId: renamed.teamId, name: renamed.name });
+    return c.json({ teamId: renamed.teamId, name: renamed.name, abbr: renamed.abbr });
+  });
+
+  registerDraftRoutes(app, {
+    db,
+    config,
+    service: createDraftService({ db, publisher, now: clock }),
+    poolSource,
+    now: clock,
   });
 
   return app;

@@ -1,5 +1,7 @@
 # 03 — Draft Design
 
+> **Updated by [14-live-draft](14-live-draft.md) (2026-11-09):** no default clock (the commissioner can start a 90 s alert-only clock), no autopick on expiry, opt-in auto-draft with position-order fallback, manual draft order. Where they differ, 14 wins.
+
 ## 1. Format
 
 - **Live snake draft**, 9 teams × 10 rounds = **90 picks**.

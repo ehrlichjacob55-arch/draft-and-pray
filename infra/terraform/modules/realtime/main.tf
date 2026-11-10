@@ -24,6 +24,20 @@ variable "dist_dir" {
   type = string
 }
 
+variable "app_table_name" {
+  description = "App table: ws-connect consumes WSTICKET# items, ws-default checks league membership (docs/design/14 section 6)."
+  type        = string
+}
+
+variable "app_table_arn" {
+  type = string
+}
+
+variable "app_table_index_arn" {
+  description = "Index ARN pattern (<table arn>/index/*)."
+  type        = string
+}
+
 variable "log_retention_days" {
   type    = number
   default = 14
@@ -85,6 +99,13 @@ data "aws_iam_policy_document" "ws_lambda" {
     actions   = ["execute-api:ManageConnections"]
     resources = ["${aws_apigatewayv2_api.ws.execution_arn}/*"]
   }
+
+  # App table, least privilege: ws-connect deletes (consumes) tickets; ws-default reads season
+  # META and the league MEMBER item to authorize a subscription. No writes beyond DeleteItem.
+  statement {
+    actions   = ["dynamodb:GetItem", "dynamodb:DeleteItem", "dynamodb:Query"]
+    resources = [var.app_table_arn, var.app_table_index_arn]
+  }
 }
 
 locals {
@@ -108,6 +129,7 @@ module "fn" {
   environment = {
     APP_ENV              = var.app_env
     WS_CONNECTIONS_TABLE = aws_dynamodb_table.connections.name
+    APP_TABLE            = var.app_table_name
   }
 }
 

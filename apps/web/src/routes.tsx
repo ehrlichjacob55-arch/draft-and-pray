@@ -1,6 +1,7 @@
 import type { RouteObject } from "react-router";
 import { Layout } from "./components/Layout";
 import { RequireAuth } from "./components/RequireAuth";
+import { DraftRoom } from "./draft/DraftRoom";
 import { Commissioner } from "./pages/Commissioner";
 import { LeagueHome } from "./pages/LeagueHome";
 import { Placeholder } from "./pages/Placeholder";
@@ -20,7 +21,7 @@ export const routes: RouteObject[] = [
           { index: true, element: <LeagueHome /> },
           {
             path: "draft",
-            element: <Placeholder title="Draft room" note="Live snake draft (task 7)." />,
+            element: <DraftRoom />,
           },
           {
             path: "standings",

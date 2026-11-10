@@ -2,6 +2,7 @@ import { serve } from "@hono/node-server";
 import { createDynamo, dynamoConfigFromEnv, ensureTable } from "@dnp/db";
 import { loadConfig } from "./config";
 import { createApp } from "./http/app";
+import { startLocalRealtime } from "./realtime/local-hub";
 
 const config = loadConfig();
 const db = createDynamo(
@@ -26,7 +27,10 @@ async function ensureTableWithRetry(attempts = 10): Promise<boolean> {
 }
 
 const port = Number(process.env.PORT ?? 3001);
-serve({ fetch: createApp({ config, db }).fetch, port }, (info) => {
+const wsPort = Number(config.WS_PORT ?? 3002);
+const realtime = await startLocalRealtime({ db, port: wsPort });
+console.log(`WebSocket listening on ws://localhost:${realtime.port}`);
+serve({ fetch: createApp({ config, db, publisher: realtime }).fetch, port }, (info) => {
   console.log(`API listening on http://localhost:${info.port}`);
 });
 
