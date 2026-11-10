@@ -176,6 +176,9 @@ export const playerItem = z.object({
   rank: z.number().int().nullable().optional(),
   /** Sleeper depth-chart order; display/sorting only. */
   depthChartOrder: z.number().int().nullable().optional(),
+  /** Last-season stats (display only), per-position keys; null = no stats entry. */
+  stats: z.record(z.string(), z.number().int()).nullable().optional(),
+  statsSeason: z.number().int().optional(),
   /** Set when the commissioner edits `inPool` or adds the player: imports then leave `inPool` alone. */
   manualOverride: z.boolean().optional(),
 });

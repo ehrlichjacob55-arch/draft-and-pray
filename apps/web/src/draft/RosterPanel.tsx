@@ -1,21 +1,24 @@
 import type { DraftSnapshot, SlotName } from "@dnp/contract";
-import { useState } from "react";
 import { inputCls } from "../components/ui";
 import { SLOT_ORDER, teamName } from "./model";
 import { PanelCard, PositionBadge } from "./parts";
 
 export function RosterPanel({
   snapshot,
+  teamId,
+  onTeamChange,
   className = "",
 }: {
   snapshot: DraftSnapshot;
+  /** Team being viewed (controlled by the draft room). */
+  teamId: string | null;
+  onTeamChange: (teamId: string) => void;
   className?: string;
 }) {
   const teams = snapshot.order.length
     ? snapshot.order.map((o) => ({ teamId: o.teamId, name: o.name }))
     : snapshot.teams;
-  const [picked, setPicked] = useState<string | null>(null);
-  const viewing = picked ?? snapshot.myTeamId ?? teams[0]?.teamId ?? null;
+  const viewing = teamId;
   const roster: Partial<Record<SlotName, string | null>> = viewing
     ? (snapshot.rosters[viewing] ?? {})
     : {};
@@ -28,8 +31,9 @@ export function RosterPanel({
           <span className="mb-1 block text-muted">Team</span>
           <select
             className={inputCls}
+            aria-label="Team"
             value={viewing ?? ""}
-            onChange={(e) => setPicked(e.target.value)}
+            onChange={(e) => onTeamChange(e.target.value)}
           >
             {teams.map((t) => (
               <option key={t.teamId} value={t.teamId}>

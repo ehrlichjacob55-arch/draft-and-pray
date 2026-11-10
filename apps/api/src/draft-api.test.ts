@@ -346,7 +346,14 @@ describe("picks", () => {
     ]);
     expect([r1.status, r2.status].sort()).toEqual([200, 409]);
     const loser = r1.status === 409 ? r1 : r2;
-    expect(["stale_pick", "draft_not_active"]).toContain(errCode(loser));
+    expect([
+      "stale_pick",
+      "draft_not_active",
+      "not_eligible",
+      "player_taken",
+      "not_your_turn",
+      "slot_filled",
+    ]).toContain(errCode(loser));
     expect((await c.snap(c.commish)).picks).toHaveLength(1);
   });
 
@@ -657,6 +664,61 @@ describe("player pool", () => {
     const dsts = [...after.values()].filter((p) => p.position === "DST");
     expect(dsts).toHaveLength(14);
     expect(dsts.every((p) => p.rank === null)).toBe(true);
+  });
+
+  it("stores last-season stats, refreshes them, and keeps them when a re-import has none", async () => {
+    const c = await setupLeague({ pool: false });
+    const pool = syntheticPool();
+    const qb = pool.players.find((p) => p.position === "QB")!;
+    const team = pool.teams[0]!.abbr;
+    const src = (withStats: boolean, yd: number) => ({
+      source: "test",
+      load: async () => ({
+        teams: pool.teams,
+        players: pool.players.map((p) =>
+          withStats && p === qb ? { ...p, stats: { gp: 17, pass_yd: yd } } : p,
+        ),
+        ...(withStats ? { statsSeason: 2025, dstStats: { [team]: { gp: 17, sack: 40 } } } : {}),
+      }),
+    });
+    const imp = async (s: ReturnType<typeof src>) => {
+      const res = await createApp({
+        config: loadConfig({}),
+        db,
+        poolSource: s,
+        now: () => new Date(nowMs),
+      }).request(`/api/seasons/${c.seasonId}/pool/import`, {
+        method: "POST",
+        headers: { "x-dev-user-email": c.commish, "content-type": "application/json" },
+        body: JSON.stringify({ seasonYear: 2025 }),
+      });
+      expect(res.status).toBe(200);
+    };
+    const list = async () =>
+      listPlayersResponse.parse(
+        (await c.call(c.commish, "GET", `/seasons/${c.seasonId}/players`)).json,
+      ).players;
+    await imp(src(true, 4000));
+    let players = await list();
+    expect(players.find((p) => p.name === qb.name)).toMatchObject({
+      stats: { gp: 17, pass_yd: 4000 },
+      statsSeason: 2025,
+    });
+    expect(players.find((p) => p.position !== "QB" && p.position !== "DST")?.stats).toBeNull();
+    expect(players.find((p) => p.position === "DST" && p.nflTeam === team)?.stats).toEqual({
+      gp: 17,
+      sack: 40,
+    });
+    await imp(src(true, 4100));
+    players = await list();
+    expect(players.find((p) => p.name === qb.name)?.stats?.pass_yd).toBe(4100);
+    await imp(src(false, 0)); // stats fetch failed: existing stats are kept
+    players = await list();
+    expect(players.find((p) => p.name === qb.name)?.stats?.pass_yd).toBe(4100);
+    await c.call(c.commish, "POST", `${base(c)}/start`);
+    const snap = await c.snap(c.commish);
+    expect(snap.statsSeason).toBe(2025);
+    expect(snap.available.find((p) => p.name === qb.name)?.stats?.pass_yd).toBe(4100);
   });
 
   it("imports idempotently, preserves overrides, marks missing players out, and locks during the draft", async () => {

@@ -221,6 +221,8 @@ export function registerDraftRoutes(app: Hono<AppEnv>, deps: DraftRouteDeps) {
       source: poolSource.source,
       teams: data.teams,
       players: data.players,
+      statsSeason: data.statsSeason,
+      dstStats: data.dstStats,
       actorUserId: actor.userId,
       now: importedAt,
     });

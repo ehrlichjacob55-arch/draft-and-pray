@@ -61,7 +61,9 @@ export function Layout() {
   const wide = useLocation().pathname.startsWith("/draft");
   return (
     <LeagueProvider>
-      <div className={`mx-auto flex min-h-screen flex-col ${wide ? "max-w-[96rem]" : "max-w-3xl"}`}>
+      <div
+        className={`mx-auto flex min-h-screen flex-col ${wide ? "max-w-[1680px]" : "max-w-3xl"}`}
+      >
         <Header />
         <main className="flex-1 p-4">
           <Outlet />

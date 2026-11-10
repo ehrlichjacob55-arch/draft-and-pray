@@ -4,6 +4,7 @@ import { toEspnAbbr, toSleeperAbbr } from "./abbreviations";
 import { createRealPoolSource, PROVIDER_USER_AGENT } from "./index";
 import { parseEspnStandings } from "./espn";
 import { parseSleeperPlayers, parseSleeperPlayersWithWarnings } from "./sleeper";
+import { composePoolSource, parseSleeperStats, statLine } from "./index";
 import { PoolSourceError } from "./types";
 
 const fixture = (name: string) =>
@@ -238,5 +239,142 @@ describe("createRealPoolSource", () => {
     await expect(createRealPoolSource({ fetchImpl: junk }).load(2025)).rejects.toThrow(
       /invalid JSON/,
     );
+  });
+});
+
+describe("Sleeper stats mapping", () => {
+  const stats = () => fixture("sleeper-stats-2025.trimmed.json");
+
+  it("keeps only the listed keys per position and turns floats into integers", () => {
+    const s = parseSleeperStats(stats());
+    expect(s.forPlayer("4046", "QB")).toEqual({
+      gp: 17,
+      pass_cmp: 401,
+      pass_att: 612,
+      pass_yd: 4500,
+      pass_td: 32,
+      pass_int: 11,
+      rush_yd: 210,
+      rush_td: 2,
+    });
+    expect(s.forPlayer("9001", "RB")).toEqual({
+      gp: 16,
+      rush_att: 280,
+      rush_yd: 1300,
+      rush_td: 9,
+      rec: 40,
+      rec_yd: 320,
+      rec_td: 1,
+    });
+    expect(s.forPlayer("2449", "WR")).toEqual({
+      gp: 15,
+      rec_tgt: 120,
+      rec: 80,
+      rec_yd: 1000,
+      rec_td: 6,
+      rush_yd: 12,
+    });
+    expect(Object.keys(s.forPlayer("3678", "K")!)).toEqual([
+      "gp",
+      "fgm",
+      "fga",
+      "fgm_50p",
+      "xpm",
+      "xpa",
+    ]);
+    expect(s.forPlayer("3678", "K")).toMatchObject({ fgm_50p: 4, xpa: 41 });
+  });
+
+  it("missing keys are 0 when an entry exists; no entry is null", () => {
+    const s = parseSleeperStats(stats());
+    expect(s.forPlayer("9002", "TE")).toEqual({
+      gp: 0,
+      rec_tgt: 0,
+      rec: 0,
+      rec_yd: 0,
+      rec_td: 0,
+      rush_yd: 0,
+    });
+    expect(s.forPlayer("nope", "QB")).toBeNull();
+    expect(s.forPlayer("constructor", "QB")).toBeNull();
+    expect(statLine("QB", { gp: "x", pass_yd: Number.NaN, pass_td: 2.6 })).toMatchObject({
+      gp: 0,
+      pass_yd: 0,
+      pass_td: 3,
+    });
+  });
+
+  it("maps DST through the ESPN<->Sleeper abbreviation table (WSH -> WAS)", () => {
+    const s = parseSleeperStats(stats());
+    expect(s.forTeam("WSH")).toEqual({
+      gp: 17,
+      sack: 45,
+      int: 12,
+      fum_rec: 8,
+      def_td: 2,
+      def_st_td: 1,
+      pts_allow: 400,
+    });
+    expect(s.forTeam("DEN")).toBeNull();
+  });
+
+  it("rejects an unexpected shape", () => {
+    expect(() => parseSleeperStats([])).toThrow(PoolSourceError);
+    expect(() => parseSleeperStats(null)).toThrow(/unexpected shape/);
+  });
+});
+
+describe("composePoolSource with stats", () => {
+  const teams = [
+    { abbr: "WSH", name: "Washington Commanders", conference: "NFC" as const, seed: 7 },
+  ];
+  const base = (stats: () => Promise<ReturnType<typeof parseSleeperStats>>) =>
+    composePoolSource(
+      "t",
+      { fetchField: async () => teams },
+      {
+        fetchPlayers: async () => ({
+          players: [
+            {
+              providerPlayerId: "2449",
+              name: "A",
+              position: "WR",
+              nflTeam: "WSH",
+              injuryStatus: null,
+            },
+            {
+              providerPlayerId: "zzz",
+              name: "B",
+              position: "RB",
+              nflTeam: "WSH",
+              injuryStatus: null,
+            },
+          ],
+          warnings: [],
+        }),
+      },
+      { fetchStats: stats },
+    );
+
+  it("attaches stats, null for no entry, and DST stats by team", async () => {
+    const data = await base(async () =>
+      parseSleeperStats(fixture("sleeper-stats-2025.trimmed.json")),
+    ).load(2025);
+    expect(data.statsSeason).toBe(2025);
+    expect(data.players[0]?.stats?.rec_yd).toBe(1000);
+    expect(data.players[1]?.stats).toBeNull();
+    expect(data.dstStats?.WSH?.sack).toBe(45);
+    expect(data.warnings).toEqual([]);
+  });
+
+  it("a stats failure still imports players, without stats, with a warning", async () => {
+    const data = await base(async () => {
+      throw new PoolSourceError("Sleeper stats returned HTTP 503");
+    }).load(2025);
+    expect(data.players).toHaveLength(2);
+    expect(data.players.every((p) => p.stats === undefined)).toBe(true);
+    expect(data.statsSeason).toBeUndefined();
+    expect(data.dstStats).toBeUndefined();
+    expect(data.warnings).toEqual(["stats unavailable for 2025"]);
   });
 });

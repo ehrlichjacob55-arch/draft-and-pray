@@ -33,6 +33,14 @@ Decided 2026-11-09 by the owner: **no hand-maintained player list.** The pool is
   - **Playoff field + seeds:** ESPN standings JSON, `https://site.api.espn.com/apis/v2/sports/football/nfl/standings?season=<year>`. For each conference (`children[].name`), take teams whose stat `playoffSeed` ≤ 7 → `abbr`, `name`, `conference` (AFC/NFC), `seed`. Verified 2026-11-09 for `season=2025` (DEN/SEA #1 … LAC/GB #7). It's unofficial and undocumented, so it must be validated defensively: exactly 7 seeds per conference, distinct, 1–7; otherwise refuse with a clear error.
   - **Players:** Sleeper `GET https://api.sleeper.app/v1/players/nfl` (free, no key, ~15 MB as of 2026-11 — Sleeper's docs say ~5 MB, "use once per day at most"; non-commercial use). Keep players whose `team` is in the field, whose `position` is one of QB/RB/WR/TE/K, whose `status` is "Active", **and who have a depth-chart entry (`depth_chart_order` not null)**. Sleeper still marks some retired players "Active" on a team (e.g. Ben Roethlisberger on PIT, 2026-11) and lists practice-squad players; neither has a depth-chart entry. Safety net: if a field team would end up with **zero** players at a draftable position, include that team's active players at that position without a depth chart, and log a warning. Measured on the 2025 field: 331 Active → 241 with depth chart, and every team keeps ≥1 K, ≥2 QB, ≥2 RB, ≥3 TE, ≥4 WR. Store `providerPlayerId` = Sleeper `player_id`, name, position, team, `injuryStatus`, and `depthChartOrder` (for display/sorting only). Plus one generated `DST-<abbr>` per playoff team.
   - **Ranking (decided 2026-11-10 by the owner):** the import stores `rank` on each player = Sleeper `search_rank` (lower = better; values ≥ 9,999,999 or missing → `null`). It's refreshed on every re-import. Generated D/STs have `rank = null`. "Ranked" order everywhere (Players list, commissioner pool review) is: `rank` ascending, then unranked D/STs by NFL team seed ascending, then other unranked players by name.
+- **Last-season stats (decided 2026-11-10):** the import also fetches Sleeper `GET https://api.sleeper.app/v1/stats/nfl/regular/<seasonYear>` (one request, ~1.2 MB, keyed by Sleeper `player_id`; team defenses keyed by team abbr) and stores a per-player `stats` object with **only** these keys, plus `statsSeason`:
+  - QB: `gp, pass_cmp, pass_att, pass_yd, pass_td, pass_int, rush_yd, rush_td`
+  - RB: `gp, rush_att, rush_yd, rush_td, rec, rec_yd, rec_td`
+  - WR/TE: `gp, rec_tgt, rec, rec_yd, rec_td, rush_yd`
+  - K: `gp, fgm, fga, fgm_50p, xpm, xpa`
+  - DST (from the team-abbr entry): `gp, sack, int, fum_rec, def_td, def_st_td, pts_allow`
+
+  Missing keys → 0 if the player has any stats entry, else `stats = null` (shown as "—", e.g. rookies or players who didn't play). Stats are refreshed on every re-import. They are display-only and never used for scoring.
 - **Team abbreviation mapping** between ESPN and Sleeper (e.g. `WSH`↔`WAS`) lives in one tested table. Import fails loudly if any field team has zero players after mapping.
 - **Import:** commissioner route `POST /seasons/:id/pool/import { seasonYear }` (sync; http Lambda timeout raised to 29 s). It's allowed while the draft is `scheduled` or `paused`.
   - It upserts `NFLTEAM#` and `PLAYER#` items (idempotent, keyed by `providerPlayerId`).
@@ -76,15 +84,33 @@ After any pick (or when auto-draft is enabled), while the next on-clock team has
 - **Fallback polling**: if the socket is down, the draft room polls the snapshot every 5 s.
 - Local dev: no API Gateway WebSocket. The local server exposes the same protocol on `ws://localhost:3002` (the `ws` package), with the same ticket flow, so the UI code path is identical.
 
-## 7. Draft room UI (doc 06 §3–4)
-- **Header banner**: `Round R · Pick N of 90`, on-the-clock team, "You pick in K (pick P)", the clock countdown when started (red + "Time expired" when expired), and a connection status dot.
-- **Phone**: tabs `Players | Queue | Roster | Board`. **Desktop**: three columns (players + queue | board | my roster).
-- **Players**: **sorted by overall rank regardless of position** (see §3 "Ranking"), showing the rank number; search; filters by position and NFL team (combinable); "Hide ineligible" (default on, uses `isDraftable` client-side for the viewer's team); each row shows position, name, NFL team (seed), injury tag and buttons ★Queue / Draft (Draft is enabled only when it's your turn and the player is eligible) → confirmation sheet "Draft {name} → {slot}?".
-- **Queue**: reorder (drag on desktop, up/down buttons on phone), remove, and an auto-draft toggle with an explanation.
-- **Roster**: the 10 slots for my team; a picker to view other teams' rosters.
-- **Board**: a 10×9 grid, with columns = teams in draft order (team names), cells colour-coded by position and the current pick highlighted.
-- **Commissioner panel** (only for the commissioner): set the draft order (before start), Start, Pause/Resume, Start 90 s clock / Clear clock, Make pick for on-clock team (uses the same player list), Autopick for team, Undo last pick (with confirm), and pool include/exclude before start.
-- Pre-draft: League home links to the Draft room, which shows a lobby (order and teams, "waiting for commissioner to start"). After pick 90: "Draft complete", final rosters.
+## 7. Draft room UI (v2, owner layout 2026-11-10; replaces the earlier 3-column layout)
+- **Header banner** (unchanged): `Round R · Pick N of 90`, on-the-clock team, "You pick in K (pick P)", clock countdown when started (red "Time expired" when expired), paused banner, connection dot.
+- **Desktop layout:** three columns.
+
+  | Left (≈ 20 %) | Center (main, ≈ 55 %) | Right (≈ 25 %) |
+  |---|---|---|
+  | **Roster**: my 10 slots by default; a team selector to view any team's roster (team names only); the commissioner (no team) starts on the on-clock team. Clicking a pick in the right pane switches this pane to that team. | **Players list** (default) **or Draft board**, switched by a prominent toggle button `Players ⇄ Board` at the top of the center column. | **On the clock** header (team + the next 3 teams) → **My queue** (reorder up/down, remove, auto-draft toggle) → **Drafted players**, newest first: `#pick · R· · team · player · pos · NFL team`, live-updating. |
+
+- **Phone (< 768 px):** tabs `Players | Board | Roster | Queue | Picks` (same panes).
+- **Players list** (the main feature):
+  - **Filters:** search; position (All/QB/RB/WR/TE/K/DST); NFL team; "Hide ineligible" (default on). All combine.
+  - **Default sort:** overall rank (§3). **Stat columns are sortable** (click the header: desc → asc → back to rank); the rank column is sortable too.
+  - **Columns:** `Rank · Player (name, injury tag) · Pos · NFL team (seed) ·` then last-season stats depending on the position filter:
+    - All: GP, Pass Yd, Pass TD, Rush Yd, Rush TD, Rec, Rec Yd, Rec TD (blank where N/A)
+    - QB: GP, Cmp/Att, Pass Yd, Pass TD, INT, Rush Yd, Rush TD
+    - RB: GP, Rush Att, Rush Yd, Rush TD, Rec, Rec Yd, Rec TD
+    - WR/TE: GP, Tgt, Rec, Rec Yd, Rec TD, Rush Yd
+    - K: GP, FGM/FGA, FG 50+, XPM/XPA
+    - DST: GP, Sacks, INT, Fum Rec, Def TD, ST TD, Pts Allowed
+
+    Then the actions `★ Queue` and `Draft` (enabled only on my turn and only for eligible players; opens the confirmation sheet). A header note says "Stats: <statsSeason> regular season".
+  - **Phone:** the table collapses to rows showing rank, name, pos/team, the 2–3 headline stats for the position, and actions.
+- **Player detail panel** (click a player name): a side drawer on desktop, a bottom sheet on phone. It shows the full last-season stat line for the position, games played, injury status, NFL team + seed + Wild Card opponent or BYE, rank, and Queue / Draft buttons. No PII. It closes with Esc or the close button.
+- **Draft board** (center, via the toggle): the 10×9 grid as before (team-name columns in draft order, position colours, current pick highlighted, auto-draft badges).
+- **Your-turn alert:** when the viewer's team comes on the clock, the browser tab title flashes ("⏰ Your pick! – Draft & Pray") until the page is focused. There's an optional sound, off by default, toggled in the draft room and remembered in `localStorage` (try/catch); `navigator.vibrate` on phones when supported. It never fires for picks made by the viewer themself.
+- **Commissioner panel** (unchanged functionality): order (pre-start), Start, Pause/Resume, clock, make pick for the on-clock team, autopick, undo, pool include/exclude. It sits in a collapsible bar under the header, so the three columns keep their space.
+- Pre-draft lobby and complete states are as before. After completion the center defaults to the Board.
 
 ## 8. Testing
 - **Domain:** exhaustive unit and property tests (§2).

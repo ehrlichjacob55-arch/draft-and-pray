@@ -114,9 +114,9 @@ describe("draft room states", () => {
   it("complete: shows 'Draft complete' with the board and rosters, no players list", async () => {
     room(draftData({ status: "complete", currentPick: 91, round: null, onClockTeamId: null }));
     expect(await screen.findByTestId("draft-complete")).toHaveTextContent("Draft complete");
-    expect(screen.getByTestId("board")).toBeInTheDocument();
+    expect(screen.getByTestId("board")).toBeInTheDocument(); // the center defaults to the Board
     expect(screen.getByTestId("roster")).toBeInTheDocument();
-    expect(screen.queryByTestId("players")).not.toBeInTheDocument();
+    expect(screen.queryByRole("region", { name: "Players" })).not.toBeInTheDocument();
     expect(screen.queryByTestId("board-cell-91")).not.toBeInTheDocument();
   });
 
@@ -212,9 +212,9 @@ describe("players list", () => {
     room(draftData());
     const user = userEvent.setup();
     const list = async () =>
-      within(await screen.findByRole("list", { name: "Available players" })).queryAllByRole(
-        "listitem",
-      );
+      within(await screen.findByRole("table", { name: "Available players" }))
+        .queryAllByRole("row")
+        .slice(1); // header row
     expect(await list()).toHaveLength(14);
 
     await user.type(screen.getByLabelText("Search players"), "rory");
@@ -245,14 +245,12 @@ describe("players list", () => {
     ];
     return draftData({ available });
   };
-  const names = async () =>
-    within(await screen.findByRole("list", { name: "Available players" }))
-      .getAllByRole("listitem")
-      .map((li) =>
-        within(li)
-          .getByRole("button", { name: /^Draft / })
-          .getAttribute("aria-label"),
-      );
+  const names = async () => {
+    await screen.findByRole("table", { name: "Available players" });
+    return screen
+      .getAllByRole("button", { name: /^Draft / })
+      .map((b) => b.getAttribute("aria-label"));
+  };
 
   it("orders by overall rank regardless of position, unranked D/ST then others last, and shows ranks", async () => {
     room(rankedRoom());
@@ -291,9 +289,9 @@ describe("players list", () => {
     expect(await names()).toEqual(["Draft Quinn Quarter"]);
   });
 
-  it("shows seed, injury tag and opponent", async () => {
+  it("shows the NFL team with its seed and the injury tag", async () => {
     room(draftData());
-    expect(await screen.findByTestId("player-p3")).toHaveTextContent("BBB (#2) · vs CCC");
+    expect(await screen.findByTestId("player-p3")).toHaveTextContent("BBB·2");
     expect(screen.getByTestId("player-p2")).toHaveTextContent("Q");
   });
 
@@ -388,6 +386,7 @@ describe("board and roster", () => {
         available: draftData().available.filter((p) => p.playerId !== "p1"),
       }),
     );
+    await userEvent.setup().click(await screen.findByRole("button", { name: /Players ⇄ Board/ }));
     const board = await screen.findByTestId("board");
     expect(within(board).getAllByRole("columnheader")).toHaveLength(10); // Rd + 9 teams
     expect(board.querySelectorAll("tbody tr")).toHaveLength(10);
@@ -405,6 +404,7 @@ describe("board and roster", () => {
   it("colour-codes picks by position", async () => {
     const p = drafted("QB", "p1", "Quinn Quarter").pick;
     room(draftData({ picks: [p] }));
+    await userEvent.setup().click(await screen.findByRole("button", { name: /Players ⇄ Board/ }));
     expect(await screen.findByTestId("board-cell-1")).toHaveClass("bg-rose-500/20");
   });
 
@@ -426,23 +426,5 @@ describe("board and roster", () => {
     await user.selectOptions(within(roster).getByRole("combobox"), "t2");
     expect(within(roster).getByTestId("roster-owner")).toHaveTextContent("Pray Hard roster");
     expect(within(roster).getByTestId("slot-QB")).toHaveTextContent("Open");
-  });
-
-  it("phone tabs switch the visible panel", async () => {
-    room(draftData());
-    const user = userEvent.setup();
-    await screen.findByRole("tablist", { name: "Draft sections" });
-    expect(screen.getAllByRole("tab").map((t) => t.textContent)).toEqual([
-      "Players",
-      "Queue",
-      "Roster",
-      "Board",
-    ]);
-    const hidden = (id: string) => document.getElementById(id)!.classList.contains("hidden");
-    expect(hidden("panel-players")).toBe(false);
-    expect(hidden("panel-board")).toBe(true);
-    await user.click(screen.getByRole("tab", { name: "Board" }));
-    expect(hidden("panel-board")).toBe(false);
-    expect(hidden("panel-players")).toBe(true);
   });
 });

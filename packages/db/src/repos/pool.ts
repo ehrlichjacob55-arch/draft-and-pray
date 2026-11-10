@@ -35,6 +35,8 @@ export interface PoolPlayerInput {
   depthChartOrder?: number | null;
   /** Provider overall rank (lower = better); null/absent = unranked. */
   rank?: number | null;
+  /** Last-season stats; null = no entry, undefined = not fetched (existing value is kept). */
+  stats?: Record<string, number> | null;
 }
 
 export interface ImportPoolInput {
@@ -43,6 +45,10 @@ export interface ImportPoolInput {
   source: string;
   teams: PoolTeamInput[];
   players: PoolPlayerInput[];
+  /** Season of the stats below; absent when the stats fetch failed (existing stats are kept). */
+  statsSeason?: number;
+  /** DST stats by team abbr (null = none); the importer generates the DST rows. */
+  dstStats?: Record<string, Record<string, number> | null>;
   actorUserId: string | null;
   now: string;
 }
@@ -134,7 +140,9 @@ export async function importPool(db: Dynamo, input: ImportPoolInput): Promise<Im
     injuryStatus: null,
     depthChartOrder: null,
     rank: null,
+    stats: input.statsSeason === undefined ? undefined : (input.dstStats?.[t.abbr] ?? null),
   }));
+  const statsSeason = input.statsSeason;
   const incoming = [...input.players, ...dst];
 
   const existing = await listPlayers(db, seasonId);
@@ -171,6 +179,7 @@ export async function importPool(db: Dynamo, input: ImportPoolInput): Promise<Im
         inPool: true,
         depthChartOrder: p.depthChartOrder ?? null,
         rank: p.rank ?? null,
+        ...(statsSeason !== undefined ? { stats: p.stats ?? null, statsSeason } : {}),
       });
     }
   }
@@ -210,10 +219,12 @@ export async function importPool(db: Dynamo, input: ImportPoolInput): Promise<Im
       new UpdateCommand({
         TableName,
         Key: playerKey(seasonId, item.playerId),
-        UpdateExpression:
-          "SET #n = :name, #p = :pos, nflTeam = :team, injuryStatus = :inj, depthChartOrder = :dco, #rk = :rank, providerPlayerId = :pp, inPool = :inPool",
+        UpdateExpression: `SET #n = :name, #p = :pos, nflTeam = :team, injuryStatus = :inj, depthChartOrder = :dco, #rk = :rank, providerPlayerId = :pp, inPool = :inPool${statsSeason === undefined ? "" : ", stats = :stats, statsSeason = :ss"}`,
         ExpressionAttributeNames: { "#n": "name", "#p": "position", "#rk": "rank" },
         ExpressionAttributeValues: {
+          ...(statsSeason === undefined
+            ? {}
+            : { ":stats": next.stats ?? null, ":ss": statsSeason }),
           ":name": next.name,
           ":pos": next.position,
           ":team": next.nflTeam,

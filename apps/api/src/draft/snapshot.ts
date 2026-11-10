@@ -58,6 +58,8 @@ export function toPoolPlayer(p: PlayerItem, seeds: Map<string, number>): PoolPla
     injuryStatus: p.injuryStatus,
     depthChartOrder: p.depthChartOrder ?? null,
     rank: p.rank ?? null,
+    stats: p.stats ?? null,
+    statsSeason: p.statsSeason ?? null,
     inPool: p.inPool,
     manualOverride: p.manualOverride === true,
     draftedByTeamId: p.draftedByTeamId ?? null,
@@ -92,6 +94,7 @@ export function buildSnapshot(input: SnapshotInput): DraftSnapshot {
       injuryStatus: p.injuryStatus,
       depthChartOrder: p.depthChartOrder ?? null,
       rank: p.rank ?? null,
+      stats: p.stats ?? null,
       opponent: opponents.get(p.nflTeam) ?? null,
     }))
     .sort(
@@ -176,6 +179,7 @@ export function buildSnapshot(input: SnapshotInput): DraftSnapshot {
     }),
     rosters,
     available,
+    statsSeason: players.find((p) => p.statsSeason !== undefined)?.statsSeason ?? null,
     myTeamId: myTeam?.teamId ?? null,
     myRole: input.myRole,
     myQueue: queue,

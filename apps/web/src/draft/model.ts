@@ -106,3 +106,14 @@ export const START_BLOCKER_TEXT: Record<string, string> = {
   pool_empty: "The player pool is empty.",
 };
 export const blockerText = (code: string) => START_BLOCKER_TEXT[code] ?? code;
+
+/** Team on the clock at overall pick `n` (1..90) in the snake, or null outside the draft. */
+export function teamAtPick(s: DraftSnapshot, n: number): { teamId: string; name: string } | null {
+  if (n < 1 || n > s.totalPicks || s.order.length === 0) return null;
+  const size = s.order.length;
+  const round = Math.ceil(n / size);
+  const idx = (n - 1) % size;
+  const position = round % 2 === 1 ? idx + 1 : size - idx;
+  const o = s.order.find((x) => x.position === position);
+  return o ? { teamId: o.teamId, name: o.name } : null;
+}

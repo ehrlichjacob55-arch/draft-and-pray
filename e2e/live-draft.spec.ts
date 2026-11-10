@@ -44,8 +44,9 @@ async function boardText(page: Page): Promise<Record<string, string>> {
 /** Drafts the first enabled player in the list, if it is this page's turn. */
 async function draftIfMyTurn(page: Page): Promise<boolean> {
   if (!(await page.getByText("Your pick!").isVisible())) return false;
+  // The center shows the Players list while drafting (the Board is one toggle away).
   const button = page
-    .locator('[data-testid^="player-"] button:not([disabled])', { hasText: "Draft" })
+    .locator('[data-testid^="player-"] button[aria-label^="Draft "]:not([disabled])')
     .first();
   await button.click();
   const dialog = page.getByRole("dialog", { name: "Confirm pick" });
@@ -111,6 +112,21 @@ test("commissioner and a manager draft all 90 picks live; undo updates both", as
       await expect(page.getByTestId("banner-pick")).toHaveText("Pick 1 of 90");
     }
 
+    // ---- The v2 layout: roster left, players centre, clock + queue + drafted right ----
+    for (const page of [commish, manager]) {
+      await expect(page.getByTestId("col-left").getByTestId("roster")).toBeVisible();
+      await expect(page.getByTestId("col-center").getByTestId("players")).toBeVisible();
+      await expect(page.getByTestId("col-right").getByTestId("on-the-clock")).toBeVisible();
+      await expect(page.getByTestId("col-right").getByTestId("queue")).toBeVisible();
+      await expect(page.getByTestId("col-right").getByTestId("picks")).toBeVisible();
+    }
+    // The Players ⇄ Board toggle shows the grid and comes back with filters intact.
+    const toggle = manager.getByRole("button", { name: "Players ⇄ Board" });
+    await toggle.click();
+    await expect(manager.getByTestId("board-cell-1")).toBeVisible();
+    await toggle.click();
+    await expect(manager.getByTestId("players")).toBeVisible();
+
     // ---- The other seven teams turn on auto-draft (as those users, through the API) ----
     const me = await commish.request.get("/api/me", {
       headers: { "X-Dev-User-Email": commissionerEmail },
@@ -152,9 +168,17 @@ test("commissioner and a manager draft all 90 picks live; undo updates both", as
       if (!acted) await commish.waitForTimeout(150);
     }
 
-    // ---- Both contexts see "Draft complete" and the identical full board ----
+    // ---- Both contexts see "Draft complete" and the identical full board (the centre defaults to it) ----
     for (const page of [commish, manager]) {
       await expect(page.getByTestId("draft-complete")).toContainText("Draft complete");
+      await expect(page.getByRole("button", { name: "Players ⇄ Board" })).toHaveAttribute(
+        "aria-pressed",
+        "true",
+      );
+      // Drafted players, newest first: pick #90 is on top.
+      await expect(
+        page.getByRole("list", { name: "Picks" }).getByRole("listitem").first(),
+      ).toContainText("#90");
       await expect(page.locator('[data-testid^="board-cell-"]')).toHaveCount(90);
     }
     const complete = await boardText(commish);

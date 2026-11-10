@@ -44,6 +44,20 @@ export const startBlocker = z.enum(START_BLOCKERS);
 export type StartBlocker = z.infer<typeof startBlocker>;
 
 // ---- Player pool ----
+/** Last-season stat line (docs/design/14 §3): only the keys listed per position, integers. */
+export const STAT_KEYS = {
+  QB: ["gp", "pass_cmp", "pass_att", "pass_yd", "pass_td", "pass_int", "rush_yd", "rush_td"],
+  RB: ["gp", "rush_att", "rush_yd", "rush_td", "rec", "rec_yd", "rec_td"],
+  WR: ["gp", "rec_tgt", "rec", "rec_yd", "rec_td", "rush_yd"],
+  TE: ["gp", "rec_tgt", "rec", "rec_yd", "rec_td", "rush_yd"],
+  K: ["gp", "fgm", "fga", "fgm_50p", "xpm", "xpa"],
+  DST: ["gp", "sack", "int", "fum_rec", "def_td", "def_st_td", "pts_allow"],
+} as const;
+export type StatKey = (typeof STAT_KEYS)[keyof typeof STAT_KEYS][number];
+/** Keys are those of STAT_KEYS[position]; `null` on the player = no stats entry (shown as "—"). */
+export const statLine = z.record(z.string(), z.number().int());
+export type StatLine = z.infer<typeof statLine>;
+
 export const poolPlayer = z.object({
   playerId: z.string(),
   name: z.string(),
@@ -54,6 +68,10 @@ export const poolPlayer = z.object({
   depthChartOrder: z.number().int().nullable(),
   /** Overall rank (lower = better); null = unranked. */
   rank: z.number().int().nullable(),
+  /** Last-season stats (display only); null = no stats entry. Absent on pre-stats rows. */
+  stats: statLine.nullable().optional(),
+  /** Season the stats are from. */
+  statsSeason: z.number().int().nullable().optional(),
   inPool: z.boolean(),
   /** Set by the commissioner (PATCH/POST); survives re-imports. */
   manualOverride: z.boolean(),
@@ -142,6 +160,8 @@ export const availablePlayer = z.object({
   depthChartOrder: z.number().int().nullable(),
   /** Overall rank (lower = better); null = unranked. */
   rank: z.number().int().nullable(),
+  /** Last-season stats (display only); null = no stats entry. */
+  stats: statLine.nullable().optional(),
   /** NFL team the player faces in the Wild Card round, when known. */
   opponent: z.string().nullable(),
 });
@@ -175,6 +195,8 @@ export const draftSnapshot = z.object({
   /** teamId -> slot -> playerId (null = open). */
   rosters: z.record(z.string(), z.record(slotName, z.string().nullable())),
   available: z.array(availablePlayer),
+  /** Season the `available[].stats` are from (null when no stats were imported). */
+  statsSeason: z.number().int().nullable().optional(),
   myTeamId: z.string().nullable(),
   myRole: z.enum(["commissioner", "manager"]),
   /** Only the caller's own queue, with drafted players removed. */
