@@ -174,7 +174,7 @@ export function perUnitExample(rule: RuleJson): string | null {
   const sample = per * 6 - 1;
   const value =
     rule.fractional === true ? (points * sample) / per : Math.trunc(sample / per) * points;
-  return `${sample}${unitOf(rule.stat) || " units"} → ${pts(value)}`;
+  return `${sample}${unitOf(rule.stat) || " units"} → ${pts(Math.round(value * 100) / 100)}`;
 }
 
 export const rangeText = (min: number, max: number | undefined): string =>

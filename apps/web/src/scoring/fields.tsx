@@ -35,7 +35,7 @@ export function NumberField({
       inputMode="decimal"
       autoComplete="off"
       placeholder={placeholder}
-      className={`${inputCls} w-24 min-w-0 ${className}`}
+      className={`${inputCls.replace("w-full", "w-24")} min-w-0 ${className}`}
       value={text}
       onChange={(e) => {
         const t = e.target.value;
