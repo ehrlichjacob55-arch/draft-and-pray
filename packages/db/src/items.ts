@@ -56,9 +56,15 @@ export const rulesetItem = z.object({
   ...base,
   type: z.literal("Ruleset"),
   version: z.number().int(),
+  /** The ruleset JSON (docs/design/04 §2), validated by `@dnp/domain` on every write. */
   rules: z.record(z.string(), z.unknown()),
   locked: z.boolean(),
   createdAt: isoDate,
+  createdBy: z.string().nullable().default(null),
+  note: z.string().optional(),
+  lockedAt: isoDate.optional(),
+  lockedBy: z.string().nullable().optional(),
+  updatedAt: isoDate.optional(),
 });
 export const teamItem = z.object({
   ...base,
@@ -261,7 +267,18 @@ export const pointsItem = z.object({
   playerId: z.string(),
   round: z.number().int().min(1).max(4),
   points: z.number(),
-  breakdown: z.record(z.string(), z.number()),
+  /** `@dnp/domain` BreakdownEntry[]: the rules that contributed. */
+  breakdown: z.array(
+    z.object({
+      ruleIndex: z.number().int(),
+      stat: z.string(),
+      label: z.string().optional(),
+      value: z.number(),
+      points: z.number(),
+    }),
+  ),
+  /** Stat keys a commissioner override replaced for this player-game. */
+  overridden: z.array(z.string()).optional(),
   rulesetVersion: z.number().int(),
   computedAt: isoDate,
 });

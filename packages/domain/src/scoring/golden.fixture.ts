@@ -15,7 +15,7 @@ import type { StatLine } from "./stat-line";
  *     box score, so those are 0 (not independently verified).
  *
  * `placeholder` / `league` are the engine's expected points under rulesets/placeholder.v1.json and
- * rulesets/league.v1.json, each with the hand calculation (whole units, so 304 yds / 25 = 12).
+ * rulesets/league.v1.json, each with the hand calculation (placeholder: whole units, so 304 yds / 25 = 12; league: fractional yardage).
  */
 export interface GoldenPlayer {
   name: string;
@@ -35,8 +35,8 @@ export const GOLDEN_PLAYERS: GoldenPlayer[] = [
     stats: { counts: { pass_yds: 304, pass_td: 3, pass_int: 1, rush_yds: 0 } },
     // placeholder: 304/25 = 12 (12.16, whole units) + 3 TD * 4 = 12 - 1 INT * 2 = 22
     placeholder: 22,
-    // league: 304/30 = 10 (10.13) + 3 TD * 6 = 18 - 1 INT * 1 = 27
-    league: 27,
+    // league (fractional yardage): 304/30 = 10.1333 + 3 TD * 6 = 18 - 1 INT * 1 = 27.1333 -> 27.13
+    league: 27.13,
   },
   {
     // Passing 264 yds, 1 TD, 1 INT; rushing 3 for 24 yds and 1 TD.
@@ -45,8 +45,8 @@ export const GOLDEN_PLAYERS: GoldenPlayer[] = [
     stats: { counts: { pass_yds: 264, pass_td: 1, pass_int: 1, rush_yds: 24, rush_td: 1 } },
     // placeholder: 264/25 = 10 + 1 TD * 4 = 4 - 1 INT * 2 + 24/10 = 2 + 1 rush TD * 6 = 6 -> 10+4-2+2+6 = 20
     placeholder: 20,
-    // league: 264/30 = 8 (8.8) + 1 TD * 6 - 1 INT * 1 + 24/10 = 2 + 6 -> 8+6-1+2+6 = 21
-    league: 21,
+    // league: 264/30 = 8.8 + 1 TD * 6 - 1 INT * 1 + 24/10 = 2.4 + rush TD 6 -> 8.8+6-1+2.4+6 = 22.2
+    league: 22.2,
   },
   {
     // Rushing 3 for 14 yds, 1 TD; receiving 10 rec, 111 yds, 1 TD.
@@ -55,8 +55,8 @@ export const GOLDEN_PLAYERS: GoldenPlayer[] = [
     stats: { counts: { rush_yds: 14, rush_td: 1, rec: 10, rec_yds: 111, rec_td: 1 } },
     // placeholder: rush 14/10 = 1 + rush TD 6 + rec 10 * 0 + 111/10 = 11 + rec TD 6 = 24
     placeholder: 24,
-    // league: no PPR, otherwise the same: 1 + 6 + 0 + 11 + 6 = 24
-    league: 24,
+    // league: rush 14/10 = 1.4 + 6 + 10 rec * 1 (PPR) + 111/10 = 11.1 + 6 = 34.5
+    league: 34.5,
   },
   {
     // Rushing 13 for 46 yds, 2 TD; receiving 2 rec, 13 yds.
@@ -65,8 +65,8 @@ export const GOLDEN_PLAYERS: GoldenPlayer[] = [
     stats: { counts: { rush_yds: 46, rush_td: 2, rec: 2, rec_yds: 13 } },
     // placeholder: 46/10 = 4 + 2 TD * 6 = 12 + 13/10 = 1 -> 17 (no 100-yd bonus)
     placeholder: 17,
-    // league: same, 4 + 12 + 1 = 17
-    league: 17,
+    // league: 46/10 = 4.6 + 12 + 2 rec * 1 + 13/10 = 1.3 = 19.9
+    league: 19.9,
   },
   {
     // Rushing 1 for 4 yds; 1 fumble, 1 lost.
@@ -75,8 +75,8 @@ export const GOLDEN_PLAYERS: GoldenPlayer[] = [
     stats: { counts: { rush_yds: 4, fum_lost: 1 } },
     // placeholder: 4/10 = 0 - 1 fumble lost * 2 = -2
     placeholder: -2,
-    // league: 0 - 1 * 1 = -1
-    league: -1,
+    // league: 4/10 = 0.4 - 1 fumble lost * 1 = -0.6
+    league: -0.6,
   },
   {
     // Receiving 2 rec, 34 yds, 1 TD (the 19-yard TD from Stafford).
@@ -85,8 +85,8 @@ export const GOLDEN_PLAYERS: GoldenPlayer[] = [
     stats: { counts: { rec: 2, rec_yds: 34, rec_td: 1 } },
     // placeholder: rec 0 + 34/10 = 3 + 6 = 9
     placeholder: 9,
-    // league: 3 + 6 = 9
-    league: 9,
+    // league: 2 rec * 1 + 34/10 = 3.4 + 6 = 11.4
+    league: 11.4,
   },
   {
     // FG 2/2 (42 and 46 yds), XP 4/4.

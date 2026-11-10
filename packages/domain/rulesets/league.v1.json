@@ -8,27 +8,128 @@
       "points": 1,
       "per": 30,
       "positions": ["QB"],
-      "label": "Passing yards (1 per 30)"
+      "label": "Passing yards (1 per 30)",
+      "fractional": true
     },
-    { "stat": "pass_td", "points": 6, "label": "Passing TD" },
-    { "stat": "pass_int", "points": -1, "label": "Interception thrown" },
-    { "stat": "rush_yds", "points": 1, "per": 10, "label": "Rushing yards (1 per 10)" },
-    { "stat": "rush_td", "points": 6, "label": "Rushing TD" },
-    { "stat": "rec_yds", "points": 1, "per": 10, "label": "Receiving yards (1 per 10)" },
-    { "stat": "rec_td", "points": 6, "label": "Receiving TD" },
-    { "stat": "ret_td", "points": 6, "label": "Kick/punt return TD" },
-    { "stat": "fum_rec_td", "points": 6, "label": "Fumble recovery TD" },
-    { "stat": "fum_lost", "points": -1, "label": "Fumble lost" },
-    { "stat": "xp_made", "points": 1, "positions": ["K"], "label": "Extra point" },
+    {
+      "stat": "pass_td",
+      "points": 6,
+      "label": "Passing TD"
+    },
+    {
+      "stat": "pass_int",
+      "points": -1,
+      "label": "Interception thrown"
+    },
+    {
+      "stat": "rush_yds",
+      "points": 1,
+      "per": 10,
+      "fractional": true,
+      "label": "Rushing yards (1 per 10)"
+    },
+    {
+      "stat": "rush_td",
+      "points": 6,
+      "label": "Rushing TD"
+    },
+    {
+      "stat": "rec",
+      "points": 1,
+      "label": "Reception"
+    },
+    {
+      "stat": "rec_yds",
+      "points": 1,
+      "per": 10,
+      "fractional": true,
+      "label": "Receiving yards (1 per 10)"
+    },
+    {
+      "stat": "rec_td",
+      "points": 6,
+      "label": "Receiving TD"
+    },
+    {
+      "stat": "ret_td",
+      "points": 6,
+      "label": "Kick/punt return TD"
+    },
+    {
+      "stat": "fum_rec_td",
+      "points": 6,
+      "label": "Fumble recovery TD"
+    },
+    {
+      "stat": "pass_2pt",
+      "points": 2,
+      "label": "2-pt conversion (pass)"
+    },
+    {
+      "stat": "rush_2pt",
+      "points": 2,
+      "label": "2-pt conversion (rush)"
+    },
+    {
+      "stat": "rec_2pt",
+      "points": 2,
+      "label": "2-pt conversion (catch)"
+    },
+    {
+      "stat": "fum_lost",
+      "points": -1,
+      "label": "Fumble lost"
+    },
+    {
+      "stat": "xp_made",
+      "points": 1,
+      "positions": ["K"],
+      "label": "Extra point"
+    },
+    {
+      "stat": "xp_missed",
+      "points": -1,
+      "positions": ["K"],
+      "label": "Missed extra point"
+    },
+    {
+      "stat": "xp_blocked",
+      "points": -1,
+      "positions": ["K"],
+      "label": "Blocked extra point"
+    },
+    {
+      "stat": "fg_missed",
+      "points": -1,
+      "positions": ["K"],
+      "label": "Missed field goal"
+    },
+    {
+      "stat": "fg_blocked",
+      "points": -1,
+      "positions": ["K"],
+      "label": "Blocked field goal"
+    },
     {
       "stat": "fg_made",
       "type": "distance_tiers",
       "positions": ["K"],
       "label": "Field goal",
       "tiers": [
-        { "min": 0, "max": 39, "points": 3 },
-        { "min": 40, "max": 49, "points": 4 },
-        { "min": 50, "points": 5 }
+        {
+          "min": 0,
+          "max": 39,
+          "points": 3
+        },
+        {
+          "min": 40,
+          "max": 49,
+          "points": 4
+        },
+        {
+          "min": 50,
+          "points": 5
+        }
       ]
     },
     {
@@ -37,20 +138,77 @@
       "positions": ["DST"],
       "label": "Points allowed",
       "tiers": [
-        { "min": 0, "max": 0, "points": 15 },
-        { "min": 1, "max": 6, "points": 10 },
-        { "min": 7, "max": 13, "points": 8 },
-        { "min": 14, "max": 20, "points": 5 },
-        { "min": 21, "max": 27, "points": 2 },
-        { "min": 28, "max": 34, "points": 0 },
-        { "min": 35, "points": -5 }
+        {
+          "min": 0,
+          "max": 0,
+          "points": 15
+        },
+        {
+          "min": 1,
+          "max": 6,
+          "points": 10
+        },
+        {
+          "min": 7,
+          "max": 13,
+          "points": 8
+        },
+        {
+          "min": 14,
+          "max": 20,
+          "points": 5
+        },
+        {
+          "min": 21,
+          "max": 27,
+          "points": 2
+        },
+        {
+          "min": 28,
+          "max": 34,
+          "points": 0
+        },
+        {
+          "min": 35,
+          "points": -5
+        }
       ]
     },
-    { "stat": "def_sack", "points": 1, "positions": ["DST"], "label": "Sack" },
-    { "stat": "def_int", "points": 1, "positions": ["DST"], "label": "Interception" },
-    { "stat": "def_fum_rec", "points": 1, "positions": ["DST"], "label": "Fumble recovery" },
-    { "stat": "def_block", "points": 1, "positions": ["DST"], "label": "Blocked kick" },
-    { "stat": "def_safety", "points": 2, "positions": ["DST"], "label": "Safety" },
-    { "stat": "def_td", "points": 6, "positions": ["DST"], "label": "Defensive TD" }
+    {
+      "stat": "def_sack",
+      "points": 1,
+      "positions": ["DST"],
+      "label": "Sack"
+    },
+    {
+      "stat": "def_int",
+      "points": 1,
+      "positions": ["DST"],
+      "label": "Interception"
+    },
+    {
+      "stat": "def_fum_rec",
+      "points": 1,
+      "positions": ["DST"],
+      "label": "Fumble recovery"
+    },
+    {
+      "stat": "def_block",
+      "points": 1,
+      "positions": ["DST"],
+      "label": "Blocked kick"
+    },
+    {
+      "stat": "def_safety",
+      "points": 2,
+      "positions": ["DST"],
+      "label": "Safety"
+    },
+    {
+      "stat": "def_td",
+      "points": 6,
+      "positions": ["DST"],
+      "label": "Defensive TD"
+    }
   ]
 }

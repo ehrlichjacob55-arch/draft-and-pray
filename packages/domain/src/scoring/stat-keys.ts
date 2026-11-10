@@ -24,9 +24,14 @@ export const STAT_KEYS = [
   /** Touchdowns on a recovered fumble by an offensive/special-teams player. */
   "fum_rec_td",
   "fg_made",
+  /** Missed (wide/short/no good) field goals; blocked ones are `fg_blocked`. */
   "fg_missed",
+  /** Field goals blocked by the defense: a miss against the kicker (the defense's side is `def_block`). */
+  "fg_blocked",
   "xp_made",
   "xp_missed",
+  /** Extra points blocked by the defense (see `fg_blocked`). */
+  "xp_blocked",
   /** Points the opponent scored (league rules decide whether defensive/return TDs count: Q13). */
   "def_pts_allowed",
   "def_yds_allowed",
