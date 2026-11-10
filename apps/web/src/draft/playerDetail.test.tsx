@@ -37,6 +37,8 @@ describe("PlayerDetail face card", () => {
     const img = container.querySelector("img")!;
     expect(img).toHaveAttribute("src", "https://example.test/face.jpg");
     expect(img).toHaveAttribute("loading", "lazy");
+    // Sleeper's CDN returns 403 when a foreign Referer is sent.
+    expect(img).toHaveAttribute("referrerpolicy", "no-referrer");
     expect(img).toHaveAttribute("alt", "");
     expect(screen.getByTestId("face-card")).toHaveTextContent("Quinn Quarter");
     expect(screen.getByTestId("face-card")).toHaveTextContent("AAA");

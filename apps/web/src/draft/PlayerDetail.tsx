@@ -43,6 +43,7 @@ function Avatar({ url, name }: { url: string | null | undefined; name: string })
       src={url}
       alt=""
       loading="lazy"
+      referrerPolicy="no-referrer"
       data-testid="avatar-img"
       className="size-24 shrink-0 rounded-lg bg-bg object-cover object-top"
       onError={() => setFailed(true)}
