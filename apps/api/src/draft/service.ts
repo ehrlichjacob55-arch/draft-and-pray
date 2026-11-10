@@ -12,6 +12,7 @@ import {
   type DraftSnapshot,
   type LeagueRole,
   type MakePickResponse,
+  type ResetDraftResponse,
 } from "@dnp/contract";
 import {
   DomainError,
@@ -27,6 +28,7 @@ import {
   queryPrefix,
   recordPick,
   requireDraft,
+  resetDraft,
   resumeDraft,
   seasonPk,
   setAutoDraft,
@@ -445,6 +447,8 @@ export function createDraftService({ db, publisher, now }: DraftServiceDeps) {
 
   async function undo(season: SeasonMetaItem, actor: Actor) {
     const draft = await requireDraft(db, season.seasonId);
+    if (draft.status === "resetting")
+      throw new DomainError("draft_wrong_status", "The draft is being reset");
     if (draft.status === "scheduled" || draft.status === "lobby" || draft.currentPick <= 1)
       throw new DomainError("nothing_to_undo", "There is no pick to undo");
     try {
@@ -463,6 +467,23 @@ export function createDraftService({ db, publisher, now }: DraftServiceDeps) {
     }
     await emit(season.seasonId, "undo");
     return result(season.seasonId);
+  }
+
+  /**
+   * Redraft (doc 10 §4.8): clear every pick and return the draft to `scheduled`. Calling it again
+   * while a previous attempt is `resetting` resumes it. Order, teams, queues, auto-draft and the
+   * pool are kept; the auto-draft chain is not started (the commissioner presses Start).
+   */
+  async function reset(season: SeasonMetaItem, actor: Actor): Promise<ResetDraftResponse> {
+    const picksCleared = await resetDraft(db, {
+      seasonId: season.seasonId,
+      leagueId: season.leagueId,
+      year: season.year,
+      actorUserId: actor.userId,
+      now: iso(now()),
+    });
+    await emit(season.seasonId, "reset");
+    return { ...(await result(season.seasonId)), picksCleared };
   }
 
   // ---- Per-team settings ----
@@ -525,6 +546,7 @@ export function createDraftService({ db, publisher, now }: DraftServiceDeps) {
     pick,
     autopick,
     undo,
+    reset,
     readQueue,
     writeQueue,
     setAuto,

@@ -11,6 +11,8 @@ import {
   makePickResponse,
   queueResponse,
   realtimeTicketResponse,
+  REDRAFT_CONFIRMATION,
+  resetDraftResponse,
   updatePlayerResponse,
   listManagersResponse,
   meResponse,
@@ -27,6 +29,7 @@ import {
   type DraftSnapshot,
   type ImportPoolResponse,
   type ListPlayersResponse,
+  type ResetDraftResponse,
   type MakePickRequest,
   type MakePickResponse,
   type PoolPlayer,
@@ -100,6 +103,8 @@ export interface Api {
   clearClock(seasonId: string): Promise<DraftActionResponse>;
   autopick(seasonId: string, expectedPick: number): Promise<DraftActionResponse>;
   undoPick(seasonId: string): Promise<DraftActionResponse>;
+  /** Redraft: clears every pick and returns the draft to `scheduled` (commissioner). */
+  resetDraft(seasonId: string): Promise<ResetDraftResponse>;
   // ---- Player pool ----
   listPlayers(seasonId: string): Promise<ListPlayersResponse>;
   importPool(seasonId: string, seasonYear: number): Promise<ImportPoolResponse>;
@@ -204,6 +209,10 @@ export function createApi({ baseUrl, getAuthHeaders }: ApiOptions): Api {
     autopick: (id, expectedPick) =>
       request("POST", `/seasons/${enc(id)}/draft/autopick`, draftActionResponse, { expectedPick }),
     undoPick: (id) => request("POST", `/seasons/${enc(id)}/draft/undo`, draftActionResponse, {}),
+    resetDraft: (id) =>
+      request("POST", `/seasons/${enc(id)}/draft/reset`, resetDraftResponse, {
+        confirm: REDRAFT_CONFIRMATION,
+      }),
     listPlayers: (id) => request("GET", `/seasons/${enc(id)}/players`, listPlayersResponse),
     importPool: (id, seasonYear) =>
       request("POST", `/seasons/${enc(id)}/pool/import`, importPoolResponse, { seasonYear }),

@@ -372,5 +372,37 @@ export async function runDraftChecks(
     );
   });
 
+  await check("redraft clears the picks and returns the draft to the lobby", async () => {
+    const bad = await api.request("POST", `${base}/reset`, {
+      as: commish,
+      body: { confirm: "no" },
+    });
+    eq(bad.status, 400, "wrong confirmation");
+    const r = await api.request("POST", `${base}/reset`, {
+      as: commish,
+      body: { confirm: "REDRAFT" },
+    });
+    eq(r.status, 200, `reset (${code(r) ?? ""})`);
+    eq(r.json.status, "scheduled", "draft status");
+    eq(r.json.picksCleared, 89, "picks cleared");
+    const s = await snap(commish);
+    eq(s.status, "scheduled", "snapshot status");
+    eq(s.picks.length, 0, "picks");
+    eq(s.currentPick, 1, "current pick");
+    eq(s.order.length, 9, "order kept");
+    eq(s.startBlockers.length, 0, "ready to start again");
+    const again = await api.request("POST", `${base}/reset`, {
+      as: commish,
+      body: { confirm: "REDRAFT" },
+    });
+    eq(again.status, 409, "second reset refused before a new start");
+    const me = await api.request("GET", "/me", { as: commish });
+    eq(
+      me.json.leagues.find((l: Json) => l.name === TEST_LEAGUE_NAME)?.seasons[0]?.status,
+      "setup",
+      "season status",
+    );
+  });
+
   return results;
 }

@@ -17,3 +17,4 @@ Decisions the league still needs to make. Each one notes what in the design depe
 | Q11 | ✅ **Decided 2026-11-09: yes, via doc 13 self-add.** **Is the commissioner also a manager?** If so, who approves the commissioner's own exceptions/overrides? | Permissions | Commissioner may manage a team; all actions visible in audit log |
 | Q12 | **Spectator link** — wanted? | Auth | Optional, off by default |
 | Q13 | **Two-point conversions, return TDs, fumble-recovery TDs** — scored for the player, DST, both? | Scoring config | Part of Q1 |
+| Q14 | ✅ **Decided 2026-11-10: the draft ends automatically after pick 90, and the commissioner can redraft.** Can a finished (or started) draft be run again, and what is kept? | Draft, commissioner | Yes: a commissioner-only "Redraft" clears all picks and returns to the lobby; order, teams, queues and auto-draft toggles stay (doc 14 §4a, doc 10 §4.8) |

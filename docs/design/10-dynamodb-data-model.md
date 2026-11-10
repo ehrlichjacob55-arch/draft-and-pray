@@ -30,7 +30,7 @@ Decided 2026-11-09: the database is **DynamoDB**, so everything stays in AWS. Th
 | Season meta | `META` | leagueId, year, status `setup\|drafting\|in_progress\|complete`, activeRulesetVersion |
 | Scoring ruleset | `RULESET#v<NNN>` | version, rules (JSON map), locked, createdAt |
 | Fantasy team | `TEAM#<teamId>` | name, managerUserId, draftPosition |
-| Draft state | `DRAFT` | status `scheduled\|lobby\|in_progress\|paused\|complete`, pickSeconds, currentPick, currentPickDeadline, startedAt, updatedAt |
+| Draft state | `DRAFT` | status `scheduled\|lobby\|in_progress\|paused\|complete\|resetting`, pickSeconds, currentPick, currentPickDeadline, startedAt, updatedAt |
 | Draft pick | `PICK#<NNN>` | overallPick, round, teamId, playerId, slot, madeBy `manager\|autopick\|commissioner`, madeByUserId, madeAt |
 | Draft queue | `QUEUE#<teamId>` | playerIds (ordered list), updatedAt |
 | Roster slot entry | `ROSTER#<teamId>#<slot>#<fromRound>` | teamId, slot, playerId, fromRound (1=WC…4=SB), acquiredVia `draft\|exception`, txnId? |
@@ -63,6 +63,7 @@ Decided 2026-11-09: the database is **DynamoDB**, so everything stays in AWS. Th
 | A10 | Standings | `Query begins_with(sk, "TEAMSCORE#")` + teams + NFL teams (or A1) |
 | A11 | Player page | `Query begins_with(sk, "POINTS#")` filtered in memory by playerId, plus `STATS#` / `OVERRIDE#` for the games (small enough to filter in memory) |
 | A12 | Invites for a season (doc 11) | `Query gsi1 gsi1pk = SEASONINV#<seasonId>` |
+| A14 | Redraft cleanup (§4.8): picks, draft roster entries and drafted-player markers | `Query pk = SEASON#<id>, begins_with(sk, "PICK#" \| "ROSTER#" \| "PLAYER#")` (consistent, paginate), one prefix at a time |
 
 No Scans anywhere.
 
@@ -101,6 +102,14 @@ Transaction: put `ROSTER#<team>#<slot>#<effectiveRound>` (condition not exists),
 ### 4.7 Stat override
 Put `OVERRIDE#…` + `AUDIT#` in one transaction, then run recompute (4.4 step 3–4).
 
+### 4.8 Redraft (commissioner): reset a started draft to `scheduled`
+Allowed from `in_progress`, `paused` or `complete` (any draft that has started) while the season `META` is `drafting` or `in_progress`; otherwise 409 `draft_wrong_status`. 90 picks + up to 90 roster entries + up to 90 player markers exceed the 100-item transaction limit, so the reset is three idempotent phases, driven by `DRAFT.status = resetting` as the lock (a "draft generation/epoch" key scheme was rejected: it would change every pick/roster/player key and every reader for a rare admin action, whereas a status lock reuses the conditions every writer already has):
+1. **Lock** (one transaction): update `DRAFT` `SET status = resetting, resetPickCount = <currentPick - 1>, updatedAt` `REMOVE clockStartedAt, clockSeconds, clockExpiresAt` `ADD version 1`, condition `status IN (in_progress, paused, complete) AND version = :expectedVersion`; plus a `ConditionCheck` on `META.status IN (drafting, in_progress)`. A stale `version` (a pick landed first) is a 409 `conflict`; the commissioner retries. While `resetting`, every other draft write fails by its own condition: pick (`status = in_progress`), clock start/clear (`in_progress`), pause/resume, start and order (`scheduled|lobby`), auto-draft (`NOT IN (complete, resetting)`), pool edits and import (`scheduled|lobby|paused`), and undo (`status IN (in_progress, paused, complete)`).
+2. **Cleanup** (A14, chunks of 50 per `TransactWriteItems`, no Scan): for `PLAYER#` items with `draftedByTeamId`/`draftedAtPick`, `REMOVE` both; delete `ROSTER#…` items with `acquiredVia = draft` (exception entries from §4.6 are kept); delete every `PICK#`. Every chunk is idempotent, and each phase re-queries what is left, so a crash anywhere just leaves less to do.
+3. **Finalize** (one transaction): update `DRAFT` `SET status = scheduled, currentPick = 1, currentPickDeadline = null, startedAt = null, updatedAt` `REMOVE clock*, resetPickCount` `ADD version 1`, condition `status = resetting`; set season `META` and the league season pointer to `setup` (what `startDraft` expects: it sets `setup` to `drafting`); put `AUDIT#` `draft.reset` with `{ picksCleared }`. If the condition fails because another resume already finished (`status = scheduled`), it is treated as success.
+
+A second call while `resetting` skips phase 1 and resumes at phase 2 (the audit count comes from `resetPickCount`), so a crashed reset is finished by pressing the same button again. Kept untouched: draft `order`, `autoDraft`, teams (`draftPosition`, `abbr`), memberships, `QUEUE#`, the player pool (`inPool`, stats, rank). Broadcast `draft_changed { kind: "reset" }` after finalize.
+
 ## 5. Mapping the invariants from 02
 
 | 02 invariant | DynamoDB enforcement |
@@ -111,7 +120,7 @@ Put `OVERRIDE#…` + `AUDIT#` in one transaction, then run recompute (4.4 step 3
 | I-4 eligible slot only | `@dnp/domain` slot eligibility, checked before the transaction; item 4 guards the race |
 | I-5 only the on-clock team picks | Server-side check plus the `currentPick` condition |
 | I-6 ruleset locked / finalized frozen | Condition on `RULESET.locked` for edits; recompute skips finalized rounds |
-| I-7 9 teams / 10 slots / 90 picks | Season-setup validation; the pick transaction completes the draft at 90 |
+| I-7 9 teams / 10 slots / 90 picks | Season-setup validation; the pick transaction completes the draft at 90; a redraft (§4.8) clears all three item kinds under the `resetting` lock before the draft can start again |
 
 ## 6. Local dev & tests
 

@@ -11,6 +11,8 @@ export interface PlayerDetailProps {
   canQueue: boolean;
   /** Draft is allowed right now for this player. */
   canDraft: boolean;
+  /** False once the draft is complete: there is nothing left to draft. */
+  showDraft?: boolean;
   draftHint?: string;
   onToggleQueue: () => void;
   onDraft: () => void;
@@ -64,6 +66,7 @@ export function PlayerDetail({
   inQueue,
   canQueue,
   canDraft,
+  showDraft = true,
   draftHint,
   onToggleQueue,
   onDraft,
@@ -196,15 +199,17 @@ export function PlayerDetail({
               {inQueue ? "★ Queued" : "★ Queue"}
             </button>
           )}
-          <button
-            type="button"
-            className={btnPrimary}
-            disabled={!canDraft}
-            title={canDraft ? undefined : draftHint}
-            onClick={onDraft}
-          >
-            Draft
-          </button>
+          {showDraft && (
+            <button
+              type="button"
+              className={btnPrimary}
+              disabled={!canDraft}
+              title={canDraft ? undefined : draftHint}
+              onClick={onDraft}
+            >
+              Draft
+            </button>
+          )}
         </div>
       </div>
     </div>

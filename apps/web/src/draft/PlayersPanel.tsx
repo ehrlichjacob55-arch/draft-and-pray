@@ -159,22 +159,24 @@ export function PlayersPanel({
             {dense ? (inQueue ? "★" : "☆") : inQueue ? "★ Queued" : "★ Queue"}
           </button>
         )}
-        <button
-          type="button"
-          className={dense ? `${btnPrimary} min-h-8 px-2.5 py-1` : btnPrimary}
-          disabled={!enabled}
-          aria-label={`Draft ${p.name}`}
-          title={
-            enabled
-              ? undefined
-              : eligibility && !eligible
-                ? "No open roster spot for this position"
-                : blockedReason
-          }
-          onClick={() => slot && onDraft(p, slot)}
-        >
-          Draft
-        </button>
+        {snapshot.status !== "complete" && (
+          <button
+            type="button"
+            className={dense ? `${btnPrimary} min-h-8 px-2.5 py-1` : btnPrimary}
+            disabled={!enabled}
+            aria-label={`Draft ${p.name}`}
+            title={
+              enabled
+                ? undefined
+                : eligibility && !eligible
+                  ? "No open roster spot for this position"
+                  : blockedReason
+            }
+            onClick={() => slot && onDraft(p, slot)}
+          >
+            Draft
+          </button>
+        )}
       </>
     );
   }

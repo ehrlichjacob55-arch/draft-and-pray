@@ -53,7 +53,7 @@ Decided 2026-11-09 by the owner: **no hand-maintained player list.** The pool is
 - **DEV/TEST realism:** import **last season's real field** (`seasonYear 2025`) for mock drafts.
 
 ## 4. Draft state & API
-`DRAFT` item (doc 10 §2) gains: `order: string[]` (teamIds by draft position 1..9), `clockStartedAt?`, `clockSeconds?` (90), `clockExpiresAt?`, `autoDraft: string[]` (teamIds with auto-draft on). Statuses: `scheduled` (setup) → `in_progress` ⇄ `paused` → `complete`. Season `META` (and the league's season pointer, see doc 11 §8) goes `setup → drafting` on start and `drafting → in_progress` at pick 90 (existing `recordPick` already does the latter for META; update the pointer too).
+`DRAFT` item (doc 10 §2) gains: `order: string[]` (teamIds by draft position 1..9), `clockStartedAt?`, `clockSeconds?` (90), `clockExpiresAt?`, `autoDraft: string[]` (teamIds with auto-draft on). Statuses: `scheduled` (setup) → `in_progress` ⇄ `paused` → `complete`, plus `resetting` (transient lock during a redraft, §4a). Season `META` (and the league's season pointer, see doc 11 §8) goes `setup → drafting` on start and `drafting → in_progress` at pick 90 (existing `recordPick` already does the latter for META; update the pointer too).
 
 | Method & path | Auth | Purpose |
 |---|---|---|
@@ -64,11 +64,18 @@ Decided 2026-11-09 by the owner: **no hand-maintained player list.** The pool is
 | `POST /seasons/:id/draft/picks` | team on clock or commissioner | `{ playerId, expectedPick, teamId? }` (commissioner may pass `teamId` = the on-clock team). Server: on-clock check, `isDraftable`, `assignSlot`, then `recordPick` (doc 10 §4.1). Errors: 409 `stale_pick`, `not_your_turn`, `player_taken`, `not_eligible`, `slot_filled`, `draft_not_active`. Then runs the **auto-draft chain** (§5). |
 | `POST /seasons/:id/draft/autopick` | commissioner | Autopick for the on-clock team now (`madeBy = autopick`), with `expectedPick`. |
 | `POST /seasons/:id/draft/undo` | commissioner | `undoLastPick` (doc 10 §4.2). |
+| `POST /seasons/:id/draft/reset` | commissioner | Redraft (§4a). Body `{ confirm: "REDRAFT" }` (400 otherwise). Returns `{ status, version, currentPick, picksCleared }`. |
 | `GET/PUT /seasons/:id/draft/queue` | team owner | `{ playerIds: [] }` (≤ 100), own team only; drafted players are filtered out on read. |
 | `PUT /seasons/:id/draft/auto-draft` | team owner | `{ enabled }`. If enabling while on the clock, the server autopicks immediately. |
 | `GET /seasons/:id/players` | member | Pool (for the pre-draft player list). |
 
 Commissioner actions are audited (ids only).
+
+### 4a. End of draft and Redraft
+**End of draft** (owner, 2026-11-10: "once all selections are made the draft should end"). The transaction that records pick 90 (doc 10 §4.1) atomically sets `DRAFT.status = complete`, `currentPick = 91`, `currentPickDeadline = null`, removes the clock fields (even if a 90 s clock was running), and moves season `META` and the league pointer to `in_progress`. From then on the server rejects with 409: picks and autopick (`draft_not_active`), clock start (`draft_not_active`) and clear, pause, resume, start, order and auto-draft changes (`draft_wrong_status`). The auto-draft chain stops at 90 (`currentPick > 90`). The snapshot has `onClockTeamId = null`, `round = null`, `clock = null`; the room shows "Draft complete" (no banner, no on-the-clock strip, no clock, no Draft buttons, board by default). Only undo of pick 90 is possible (commissioner): it returns the draft to `in_progress` at pick 90 (META/pointer back to `drafting`, clock cleared).
+
+**Redraft** (commissioner, owner request 2026-11-10). Resets a draft that has started (`in_progress`, `paused`, `complete`; 409 `draft_wrong_status` before that, or once the season is past the draft) so the commissioner can press Start again. Storage recipe: doc 10 §4.8 (lock to `resetting`, chunked idempotent cleanup, finalize). Effects: all picks and draft roster entries removed, every drafted player available again, `DRAFT` back to `scheduled` with `currentPick = 1`, no clock, `startedAt = null`, `version` incremented, season `META` and pointer back to `setup`. Kept: draft order, teams and abbreviations, memberships, the player pool, per-manager queues and auto-draft toggles. Audit `draft.reset` `{ picksCleared }`; broadcast `draft_changed { kind: "reset" }`. While `resetting` the snapshot reports that status (no on-the-clock team, no clock) and the room shows a read-only "Resetting the draft" notice; calling the endpoint again resumes an interrupted reset. Auto-draft is not run by a redraft: the commissioner presses Start (teams that kept auto-draft on will then chain).
+UI: Commissioner tab, "Draft setup" section, once the draft has started: a danger "Redraft" button with "Clears all N picks and returns the draft to the lobby. Order, teams, queues and auto-draft settings are kept.", opening a dialog that requires typing `REDRAFT`. On success the setup data reloads so the order and Start controls reappear. The "Draft complete" banner shows a "Draft again" link to the Commissioner tab for the commissioner only. Members never see either.
 
 ## 5. Auto-draft chain
 After any pick (or when auto-draft is enabled), while the next on-clock team has auto-draft on and the draft is `in_progress`: compute `chooseAutopick` and `recordPick(madeBy = "autopick")`, with up to 90 iterations in one request. Each pick is its own transaction, so a concurrent manual pick causes a clean `stale_pick` stop. Each autopick is broadcast like any pick.

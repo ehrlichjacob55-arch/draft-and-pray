@@ -198,9 +198,14 @@ export async function undoLastPick(db: Dynamo, input: UndoLastPickInput): Promis
             ? "SET currentPick = :n, currentPickDeadline = :dl, updatedAt = :now, #status = :inProgress"
             : "SET currentPick = :n, currentPickDeadline = :dl, updatedAt = :now") +
           " REMOVE clockStartedAt, clockSeconds, clockExpiresAt ADD version :one",
-        ConditionExpression: "currentPick = :n1",
-        ...(wasComplete ? { ExpressionAttributeNames: { "#status": "status" } } : {}),
+        // Never during a redraft (`resetting`) or before the draft started.
+        ConditionExpression:
+          "currentPick = :n1 AND #status IN (:inProgressS, :pausedS, :completeS)",
+        ExpressionAttributeNames: { "#status": "status" },
         ExpressionAttributeValues: {
+          ":inProgressS": "in_progress",
+          ":pausedS": "paused",
+          ":completeS": "complete",
           ":n": n,
           ":n1": currentPick,
           ":one": 1,

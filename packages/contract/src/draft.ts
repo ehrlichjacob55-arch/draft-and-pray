@@ -28,7 +28,15 @@ export const SLOTS = [
 export const slotName = z.enum(SLOTS);
 export type SlotName = z.infer<typeof slotName>;
 
-export const draftStatus = z.enum(["scheduled", "lobby", "in_progress", "paused", "complete"]);
+export const draftStatus = z.enum([
+  "scheduled",
+  "lobby",
+  "in_progress",
+  "paused",
+  "complete",
+  /** A redraft is clearing the picks; the room is read-only until it returns to `scheduled`. */
+  "resetting",
+]);
 export type DraftStatus = z.infer<typeof draftStatus>;
 export const madeBy = z.enum(["manager", "autopick", "commissioner"]);
 export type MadeBy = z.infer<typeof madeBy>;
@@ -273,6 +281,16 @@ export const autoDraftResponse = draftActionResponse.extend({
 });
 export type AutoDraftResponse = z.infer<typeof autoDraftResponse>;
 
+/** POST /seasons/:id/draft/reset (commissioner): the body must spell the confirmation word. */
+export const REDRAFT_CONFIRMATION = "REDRAFT";
+export const resetDraftRequest = z.object({ confirm: z.literal(REDRAFT_CONFIRMATION) });
+export type ResetDraftRequest = z.input<typeof resetDraftRequest>;
+export const resetDraftResponse = draftActionResponse.extend({
+  /** Picks removed by this redraft. */
+  picksCleared: z.number().int(),
+});
+export type ResetDraftResponse = z.infer<typeof resetDraftResponse>;
+
 // ---- Realtime (docs/design/14 §6) ----
 /** POST /realtime/ticket */
 export const realtimeTicketResponse = z.object({ ticket: z.string(), wsUrl: z.string() });
@@ -282,7 +300,7 @@ export const draftChannel = (seasonId: string) => `draft:${seasonId}`;
 export const parseDraftChannel = (channel: string): string | null =>
   /^draft:[A-Za-z0-9_-]{1,64}$/.test(channel) ? channel.slice("draft:".length) : null;
 
-export const DRAFT_CHANGE_KINDS = ["pick", "undo", "status", "clock", "order"] as const;
+export const DRAFT_CHANGE_KINDS = ["pick", "undo", "status", "clock", "order", "reset"] as const;
 export const draftChangedEvent = z.object({
   type: z.literal("draft_changed"),
   version: z.number().int(),

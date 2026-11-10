@@ -147,5 +147,7 @@ export const skPrefix = {
   audit: "AUDIT#",
   teamScores: "TEAMSCORE#",
   points: "POINTS#",
+  /** Every team's roster entries (redraft cleanup, doc 10 §4.8). */
+  rosters: "ROSTER#",
   rosterOfTeam: (teamId: string) => `ROSTER#${teamId}#`,
 } as const;
