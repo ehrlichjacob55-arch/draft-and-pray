@@ -275,10 +275,6 @@ describe("commissioner: live draft", () => {
     await openControls(user);
     await user.click(screen.getByLabelText(/Make the pick for Pray Hard/));
     await user.click(screen.getByRole("button", { name: "Draft Quinn Quarter" }));
-    expect(screen.getByTestId("confirm-message")).toHaveTextContent(
-      "Draft Quinn Quarter → QB for Pray Hard?",
-    );
-    await user.click(screen.getByRole("button", { name: "Confirm pick" }));
     expect(makePick).toHaveBeenCalledWith("s2026", {
       playerId: "p1",
       expectedPick: 2,

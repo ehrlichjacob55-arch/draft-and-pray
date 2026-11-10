@@ -1,5 +1,5 @@
 import type { AvailablePlayer } from "@dnp/contract";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { btnPrimary, btnSecondary } from "../components/ui";
 import { PositionBadge } from "./parts";
 import { colsFor, statText } from "./stats";
@@ -15,6 +15,39 @@ export interface PlayerDetailProps {
   onToggleQueue: () => void;
   onDraft: () => void;
   onClose: () => void;
+}
+
+export function initials(name: string): string {
+  const parts = name.trim().split(/\s+/).filter(Boolean);
+  if (parts.length === 0) return "?";
+  const first = parts[0]!;
+  const last = parts.length > 1 ? parts[parts.length - 1]! : "";
+  return (first[0]! + (last[0] ?? "")).toUpperCase();
+}
+
+/** Large headshot (or team logo); an initials avatar when there is no image or it fails to load. */
+function Avatar({ url, name }: { url: string | null | undefined; name: string }) {
+  const [failed, setFailed] = useState(false);
+  if (!url || failed)
+    return (
+      <div
+        data-testid="avatar-fallback"
+        aria-hidden="true"
+        className="flex size-24 shrink-0 items-center justify-center rounded-lg bg-bg text-2xl font-semibold text-muted"
+      >
+        {initials(name)}
+      </div>
+    );
+  return (
+    <img
+      src={url}
+      alt=""
+      loading="lazy"
+      data-testid="avatar-img"
+      className="size-24 shrink-0 rounded-lg bg-bg object-cover object-top"
+      onError={() => setFailed(true)}
+    />
+  );
 }
 
 const FOCUSABLE =
@@ -91,16 +124,27 @@ export function PlayerDetail({
         data-testid="player-detail"
         className="relative max-h-[85vh] w-full space-y-3 overflow-y-auto rounded-t-lg border border-border bg-surface p-4 md:max-h-none md:w-96 md:rounded-none md:rounded-l-lg"
       >
-        <div className="flex items-start justify-between gap-2">
-          <div className="min-w-0">
-            <h3 className="truncate text-lg font-semibold">{player.name}</h3>
-            <p className="flex items-center gap-2 text-sm text-muted">
-              <PositionBadge position={player.position} />
-              <span>
-                {player.nflTeam}
-                {player.seed !== null && ` (#${player.seed} seed)`}
-              </span>
-            </p>
+        <div className="flex items-start justify-between gap-3">
+          <div className="flex min-w-0 items-center gap-3" data-testid="face-card">
+            <Avatar key={player.headshotUrl ?? ""} url={player.headshotUrl} name={player.name} />
+            <div className="min-w-0">
+              <h3 className="break-words text-lg font-semibold leading-tight">{player.name}</h3>
+              <p className="mt-1 flex flex-wrap items-center gap-2 text-sm text-muted">
+                <PositionBadge position={player.position} />
+                <span>
+                  {player.nflTeam}
+                  {player.seed !== null && ` (#${player.seed} seed)`}
+                </span>
+              </p>
+              {player.injuryStatus && (
+                <span
+                  className="mt-1 inline-block rounded border border-error px-1 text-xs leading-5 text-error"
+                  data-testid="face-injury"
+                >
+                  {player.injuryStatus}
+                </span>
+              )}
+            </div>
           </div>
           <button
             ref={closeRef}

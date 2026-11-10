@@ -1,8 +1,9 @@
 import type { DraftSnapshot } from "@dnp/contract";
+import { useEffect, useRef } from "react";
 import { teamAbbr, teamName } from "./model";
 import { PanelCard, PositionBadge } from "./parts";
 
-/** Drafted players, newest first; clicking a pick shows that team's roster on the left. */
+/** Drafted players in pick order (newest at the bottom, auto-scrolled while the viewer is at the bottom); clicking a pick shows that team's roster on the left. */
 export function PicksPanel({
   snapshot,
   onSelectTeam,
@@ -12,7 +13,15 @@ export function PicksPanel({
   onSelectTeam: (teamId: string) => void;
   className?: string;
 }) {
-  const picks = [...snapshot.picks].sort((a, b) => b.overallPick - a.overallPick);
+  const picks = [...snapshot.picks].sort((a, b) => a.overallPick - b.overallPick);
+  const listRef = useRef<HTMLOListElement>(null);
+  const stickRef = useRef(true); // first render: start at the bottom
+  const count = picks.length;
+  useEffect(() => {
+    const el = listRef.current;
+    if (el && stickRef.current) el.scrollTop = el.scrollHeight;
+  }, [count]);
+
   return (
     <PanelCard title="Drafted players" className={className} testId="picks">
       {picks.length === 0 ? (
@@ -20,7 +29,15 @@ export function PicksPanel({
           No picks yet.
         </p>
       ) : (
-        <ol className="max-h-[50vh] divide-y divide-border overflow-y-auto" aria-label="Picks">
+        <ol
+          ref={listRef}
+          className="max-h-[50vh] divide-y divide-border overflow-y-auto"
+          aria-label="Picks"
+          onScroll={(e) => {
+            const el = e.currentTarget;
+            stickRef.current = el.scrollHeight - el.scrollTop - el.clientHeight <= 40;
+          }}
+        >
           {picks.map((k) => (
             <li key={k.overallPick} data-testid={`pick-${k.overallPick}`}>
               <button
