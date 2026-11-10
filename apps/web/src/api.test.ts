@@ -24,7 +24,7 @@ describe("api client", () => {
   });
 
   it("sends JSON bodies", async () => {
-    const fetchMock = stub(200, { ok: true, teamId: "t1", name: "Team Example" });
+    const fetchMock = stub(200, { ok: true, teamId: "t1", name: "Team Example", abbr: "EXAM" });
     const api = createApi({
       baseUrl: "/api",
       getAuthHeaders: async () => ({ "X-Dev-User-Email": "a@local.test" }),

@@ -93,8 +93,8 @@ export const seasonData = (over: Record<string, unknown> = {}) => ({
     status: "setup" as const,
   },
   teams: [
-    { teamId: "t1", name: "Gridiron Gang", isMine: true },
-    { teamId: "t2", name: "Pray Hard", isMine: false },
+    { teamId: "t1", name: "Gridiron Gang", abbr: "GRID", isMine: true },
+    { teamId: "t2", name: "Pray Hard", abbr: "PRAY", isMine: false },
   ],
   myTeamId: "t1" as string | null,
   myRole: "manager" as const,
@@ -140,6 +140,7 @@ function AuthHarness({ initial, children }: { initial: AuthContextValue; childre
 // ---- Draft fixtures ----
 
 export const TEAM_IDS = ["t1", "t2", "t3", "t4", "t5", "t6", "t7", "t8", "t9"];
+export const TEAM_ABBRS = ["GRID", "PRAY", "BLIT", "HAIL", "REDZ", "PUNT", "SACK", "TRIC", "LONG"];
 export const TEAM_NAMES = [
   "Gridiron Gang",
   "Pray Hard",
@@ -202,8 +203,18 @@ export function draftData(over: Partial<DraftSnapshot> = {}): DraftSnapshot {
     totalPicks: 90,
     currentPick: 1,
     round: 1,
-    order: TEAM_IDS.map((teamId, i) => ({ position: i + 1, teamId, name: TEAM_NAMES[i]! })),
-    teams: TEAM_IDS.map((teamId, i) => ({ teamId, name: TEAM_NAMES[i]!, joined: true })),
+    order: TEAM_IDS.map((teamId, i) => ({
+      position: i + 1,
+      teamId,
+      name: TEAM_NAMES[i]!,
+      abbr: TEAM_ABBRS[i]!,
+    })),
+    teams: TEAM_IDS.map((teamId, i) => ({
+      teamId,
+      name: TEAM_NAMES[i]!,
+      abbr: TEAM_ABBRS[i]!,
+      joined: true,
+    })),
     onClockTeamId: "t1",
     clock: null,
     serverNow: "2026-01-01T00:00:00.000Z",

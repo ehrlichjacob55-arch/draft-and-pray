@@ -186,8 +186,17 @@ export const draftSnapshot = z.object({
   currentPick: z.number().int(),
   round: z.number().int().nullable(),
   /** Team names only. Empty until the commissioner sets the order. */
-  order: z.array(z.object({ position: z.number().int(), teamId: z.string(), name: z.string() })),
-  teams: z.array(z.object({ teamId: z.string(), name: z.string(), joined: z.boolean() })),
+  order: z.array(
+    z.object({
+      position: z.number().int(),
+      teamId: z.string(),
+      name: z.string(),
+      abbr: z.string(),
+    }),
+  ),
+  teams: z.array(
+    z.object({ teamId: z.string(), name: z.string(), abbr: z.string(), joined: z.boolean() }),
+  ),
   onClockTeamId: z.string().nullable(),
   clock: draftClock.nullable(),
   serverNow: z.string(),

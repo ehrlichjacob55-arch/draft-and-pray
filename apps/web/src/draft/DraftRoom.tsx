@@ -15,7 +15,8 @@ import { deriveView, eligibilityFor, isLive, isPreDraft, teamName } from "./mode
 import { PlayerDetail } from "./PlayerDetail";
 import { PlayersPanel } from "./PlayersPanel";
 import { QueuePanel } from "./QueuePanel";
-import { OnClockPanel, PicksPanel } from "./RightPane";
+import { OnTheClockStrip } from "./OnTheClockStrip";
+import { PicksPanel } from "./RightPane";
 import { RosterPanel } from "./RosterPanel";
 import { useTurnAlert } from "./turnAlert";
 import { useMediaQuery } from "./useMediaQuery";
@@ -274,6 +275,19 @@ function DraftRoomView({
         />
       )}
 
+      {live && (
+        <OnTheClockStrip
+          snapshot={snapshot}
+          clockRemaining={clockRemaining}
+          clockExpired={clockExpired}
+          selectedTeamId={viewingTeam}
+          onSelectTeam={(teamId) => {
+            setRosterTeam(teamId);
+            if (!desktop) setTab("roster");
+          }}
+        />
+      )}
+
       {stalePickNotice && <ErrorNote>{pickError}</ErrorNote>}
 
       {isCommissioner && (
@@ -331,7 +345,6 @@ function DraftRoomView({
               {showBoard && <BoardPanel snapshot={snapshot} />}
             </div>
             <div className="space-y-3" data-testid="col-right">
-              {!complete && <OnClockPanel snapshot={snapshot} />}
               {!complete && queuePane}
               {picksPane}
             </div>
@@ -358,12 +371,7 @@ function DraftRoomView({
               {playersPane}
               {tab === "board" && <BoardPanel snapshot={snapshot} />}
               {tab === "roster" && rosterPane}
-              {tab === "queue" && (
-                <div className="space-y-3">
-                  {!complete && <OnClockPanel snapshot={snapshot} />}
-                  {queuePane}
-                </div>
-              )}
+              {tab === "queue" && <div className="space-y-3">{queuePane}</div>}
               {tab === "picks" && picksPane}
             </div>
           </>

@@ -6,6 +6,8 @@ export function friendlyError(err: unknown): string {
     switch (err.code) {
       case "team_name_taken":
         return "Another team already uses that name. Pick a different one.";
+      case "team_abbr_taken":
+        return "Another team already uses that abbreviation. Pick a different one.";
       case "season_full":
         return "This season already has all 9 teams.";
       case "season_not_setup":

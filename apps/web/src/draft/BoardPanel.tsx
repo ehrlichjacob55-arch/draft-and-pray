@@ -25,7 +25,8 @@ export function BoardPanel({
               {snapshot.order.map((o) => (
                 <th key={o.teamId} scope="col" className="px-1 pb-1 text-left align-bottom">
                   <span className="block truncate font-semibold" title={o.name}>
-                    {o.name}
+                    <span aria-hidden="true">{o.abbr}</span>
+                    <span className="sr-only">{o.name}</span>
                   </span>
                   {auto.has(o.teamId) && (
                     <span

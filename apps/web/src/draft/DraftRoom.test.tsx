@@ -40,8 +40,8 @@ describe("draft room states", () => {
         onClockTeamId: null,
         currentPick: 1,
         teams: [
-          { teamId: "t1", name: "Gridiron Gang", joined: true },
-          { teamId: "t2", name: "Pray Hard", joined: false },
+          { teamId: "t1", name: "Gridiron Gang", abbr: "GRID", joined: true },
+          { teamId: "t2", name: "Pray Hard", abbr: "PRAY", joined: false },
         ],
         startBlockers: [
           "teams_incomplete",

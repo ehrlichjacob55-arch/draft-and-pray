@@ -2,7 +2,7 @@ import { UpdateCommand } from "@aws-sdk/lib-dynamodb";
 import { beforeAll, describe, expect, it } from "vitest";
 import type { Dynamo } from "./client";
 import { DomainError } from "./errors";
-import { managerPrivateKey, seasonMetaKey, teamOwnerKey } from "./keys";
+import { managerPrivateKey, seasonMetaKey, teamKey, teamOwnerKey } from "./keys";
 import {
   addManager,
   claimPendingAssignments,
@@ -426,6 +426,66 @@ describe("removePendingManager", () => {
     expect(snap.audit.find((a) => a.action === "manager_removed")?.details).toEqual({
       teamId: team.teamId,
     });
+  });
+});
+
+describe("team abbreviations", () => {
+  it("addManager sets a unique default; listTeams backfills legacy rows idempotently", async () => {
+    const s = await setup();
+    const a = await add(s, "Smith", "a@example.com");
+    const b = await add(s, "Smithers", "b@example.com");
+    expect([a.team.abbr, b.team.abbr]).toEqual(["SMIT", "SMI2"]);
+    for (const t of [a.team, b.team])
+      await db.doc.send(
+        new UpdateCommand({
+          TableName: db.tableName,
+          Key: teamKey(s.seasonId, t.teamId),
+          UpdateExpression: "REMOVE abbr",
+        }),
+      );
+    // Concurrent readers backfill the same deterministic values.
+    const [x, y] = await Promise.all([listTeams(db, s.seasonId), listTeams(db, s.seasonId)]);
+    const byName = (ts: typeof x) => Object.fromEntries(ts.map((t) => [t.name, t.abbr]));
+    expect(byName(x)).toEqual({ "Team Smith": "SMIT", "Team Smithers": "SMI2" });
+    expect(byName(y)).toEqual(byName(x));
+    expect(byName(await listTeams(db, s.seasonId))).toEqual(byName(x));
+  });
+
+  it("a conditional backfill never overwrites an abbreviation written in the meantime", async () => {
+    const s = await setup();
+    const a = await add(s, "Smith", "a@example.com");
+    await db.doc.send(
+      new UpdateCommand({
+        TableName: db.tableName,
+        Key: teamKey(s.seasonId, a.team.teamId),
+        UpdateExpression: "REMOVE abbr",
+      }),
+    );
+    const racing = listTeams(db, s.seasonId);
+    await renameTeam(db, {
+      seasonId: s.seasonId,
+      teamId: a.team.teamId,
+      name: "Team Smith",
+      abbr: "CUST",
+      actorUserId: "x",
+    });
+    await racing;
+    const [t] = await listTeams(db, s.seasonId);
+    expect(["CUST", "SMIT"]).toContain(t?.abbr);
+  });
+
+  it("rename: custom abbreviation kept, default recomputed, taken -> team_abbr_taken", async () => {
+    const s = await setup();
+    const a = await add(s, "Alpha", "a@example.com");
+    const b = await add(s, "Beta", "b@example.com");
+    const rename = (teamId: string, name: string, abbr?: string) =>
+      renameTeam(db, { seasonId: s.seasonId, teamId, name, abbr, actorUserId: "x" });
+    expect((await rename(a.team.teamId, "Red Zone")).abbr).toBe("REDZ");
+    expect(await code(rename(b.team.teamId, "Team Beta", "REDZ"))).toBe("team_abbr_taken");
+    expect((await rename(b.team.teamId, "Team Beta", "BB")).abbr).toBe("BB");
+    expect((await rename(b.team.teamId, "Other Name")).abbr).toBe("BB");
+    // Renaming into a name whose default clashes gets a digit.
+    expect((await rename(a.team.teamId, "Redzone Rebels")).abbr).toBe("REDZ");
   });
 });
 

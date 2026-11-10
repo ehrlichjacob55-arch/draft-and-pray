@@ -165,6 +165,11 @@ describe("order and start preconditions", () => {
     );
     const teams = await listTeams(db, c.seasonId);
     expect(teams.find((t) => t.teamId === reversed[0])?.draftPosition).toBe(1);
+    // The snapshot carries each team's unique abbreviation, in `teams` and `order`.
+    const withOrder = await c.snap(c.commish);
+    expect(withOrder.teams.every((t) => /^[A-Z0-9]{2,4}$/.test(t.abbr))).toBe(true);
+    expect(new Set(withOrder.teams.map((t) => t.abbr)).size).toBe(9);
+    expect(withOrder.order[0]?.abbr).toBe(teams.find((t) => t.teamId === reversed[0])?.abbr);
     expect((await c.snap(c.commish)).startBlockers).toEqual(["pool_empty"]);
 
     const pool = syntheticPool();

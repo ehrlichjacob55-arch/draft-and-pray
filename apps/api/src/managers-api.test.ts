@@ -6,7 +6,8 @@ import {
   meResponse,
   seasonResponse,
 } from "@dnp/contract";
-import { bootstrapLeague, loadSeason, localSub, type Dynamo } from "@dnp/db";
+import { GetCommand, UpdateCommand } from "@aws-sdk/lib-dynamodb";
+import { bootstrapLeague, loadSeason, localSub, teamKey, type Dynamo } from "@dnp/db";
 import { createTestDynamo } from "@dnp/db/testing";
 import type { CognitoAdmin, InviteUserInput } from "./cognito";
 import { loadConfig } from "./config";
@@ -146,7 +147,9 @@ describe("GET /me", () => {
       (await call(ctx, "GET", `/seasons/${ctx.seasonId}`, { as: "new.manager@example.com" })).json,
     );
     expect(season.myTeamId).toBe(added.json.teamId);
-    expect(season.teams).toEqual([{ teamId: added.json.teamId, name: "Team Smith", isMine: true }]);
+    expect(season.teams).toEqual([
+      { teamId: added.json.teamId, name: "Team Smith", abbr: "SMIT", isMine: true },
+    ]);
   });
 
   it("does not claim for an unverified email (Cognito)", async () => {
@@ -413,6 +416,7 @@ describe("PII: member-facing JSON", () => {
     walk(season.json);
     expect([...keys].sort()).toEqual(
       [
+        "abbr",
         "isMine",
         "leagueId",
         "leagueName",
@@ -555,7 +559,8 @@ describe("PATCH /teams/:seasonId/:teamId", () => {
       as: "own@example.com",
       body: { name: " Gridiron Gang " },
     });
-    expect(ok.json).toEqual({ teamId: a.json.teamId, name: "Gridiron Gang" });
+    // Still the auto-default (Team Own -> OWN) so the abbreviation follows the name.
+    expect(ok.json).toEqual({ teamId: a.json.teamId, name: "Gridiron Gang", abbr: "GRID" });
     expect(
       (
         await call(ctx, "PATCH", url(a.json.teamId), {
@@ -586,5 +591,138 @@ describe("PATCH /teams/:seasonId/:teamId", () => {
     const renames = snap.audit.filter((x) => x.action === "team_renamed");
     expect(renames).toHaveLength(1);
     expect(renames[0]?.details).toEqual({ teamId: b.json.teamId });
+  });
+});
+
+describe("team abbreviations", () => {
+  const url = (ctx: Ctx, t: string) => `/teams/${ctx.seasonId}/${t}`;
+  const abbrs = async (ctx: Ctx) => {
+    const r = await call(ctx, "GET", `/seasons/${ctx.seasonId}`, { as: ctx.commish });
+    return Object.fromEntries(
+      (r.json.teams as { name: string; abbr: string }[]).map((t) => [t.name, t.abbr]),
+    );
+  };
+
+  it("sets a default on creation (clashes get a digit) and exposes it on the season and managers", async () => {
+    const ctx = await setup();
+    const a = await addAs(ctx, "a@example.com", "Smith");
+    await addAs(ctx, "b@example.com", "Smithers");
+    expect(a.json.teamAbbr).toBe("SMIT");
+    expect(await abbrs(ctx)).toEqual({ "Team Smith": "SMIT", "Team Smithers": "SMI2" });
+    const list = await call(ctx, "GET", `/seasons/${ctx.seasonId}/managers`, { as: ctx.commish });
+    expect(list.json.map((m: { teamAbbr: string }) => m.teamAbbr).sort()).toEqual(["SMI2", "SMIT"]);
+  });
+
+  it("lazily backfills teams stored without an abbreviation", async () => {
+    const ctx = await setup();
+    const a = await addAs(ctx, "a@example.com", "Alpha");
+    const b = await addAs(ctx, "b@example.com", "Alphabet");
+    for (const t of [a, b])
+      await db.doc.send(
+        new UpdateCommand({
+          TableName: db.tableName,
+          Key: teamKey(ctx.seasonId, t.json.teamId),
+          UpdateExpression: "REMOVE abbr",
+        }),
+      );
+    expect(await abbrs(ctx)).toEqual({ "Team Alpha": "ALPH", "Team Alphabet": "ALP2" });
+    const raw = await db.doc.send(
+      new GetCommand({ TableName: db.tableName, Key: teamKey(ctx.seasonId, a.json.teamId) }),
+    );
+    expect(raw.Item?.abbr).toBe("ALPH");
+    // Stable on the next read.
+    expect(await abbrs(ctx)).toEqual({ "Team Alpha": "ALPH", "Team Alphabet": "ALP2" });
+  });
+
+  it("a custom abbreviation is kept on rename; the auto-default follows the name", async () => {
+    const ctx = await setup();
+    const a = await addAs(ctx, "a@example.com", "Alpha");
+    const b = await addAs(ctx, "b@example.com", "Beta");
+    const custom = await call(ctx, "PATCH", url(ctx, a.json.teamId), {
+      as: ctx.commish,
+      body: { name: "Team Alpha", abbr: " zz9 " },
+    });
+    expect(custom.json).toEqual({ teamId: a.json.teamId, name: "Team Alpha", abbr: "ZZ9" });
+    const kept = await call(ctx, "PATCH", url(ctx, a.json.teamId), {
+      as: ctx.commish,
+      body: { name: "Gridiron Gang" },
+    });
+    expect(kept.json.abbr).toBe("ZZ9");
+    const followed = await call(ctx, "PATCH", url(ctx, b.json.teamId), {
+      as: ctx.commish,
+      body: { name: "Red Zone" },
+    });
+    expect(followed.json.abbr).toBe("REDZ");
+  });
+
+  it("409 team_abbr_taken (case-insensitive, same team allowed), 400 for a bad format", async () => {
+    const ctx = await setup();
+    const a = await addAs(ctx, "a@example.com", "Alpha");
+    const b = await addAs(ctx, "b@example.com", "Beta");
+    const dup = await call(ctx, "PATCH", url(ctx, b.json.teamId), {
+      as: ctx.commish,
+      body: { name: "Team Beta", abbr: "alph" },
+    });
+    expect(dup.status).toBe(409);
+    expect(dup.json.error.code).toBe("team_abbr_taken");
+    const same = await call(ctx, "PATCH", url(ctx, a.json.teamId), {
+      as: ctx.commish,
+      body: { name: "Team Alpha", abbr: "ALPH" },
+    });
+    expect(same.status).toBe(200);
+    for (const abbr of ["A", "ABCDE", "A-B", "é!"])
+      expect(
+        (
+          await call(ctx, "PATCH", url(ctx, b.json.teamId), {
+            as: ctx.commish,
+            body: { name: "Team Beta", abbr },
+          })
+        ).status,
+      ).toBe(400);
+  });
+
+  it("owner may edit, another manager gets 403, audit stays ids only", async () => {
+    const ctx = await setup();
+    const a = await addAs(ctx, "own@example.com", "Own");
+    await addAs(ctx, "oth@example.com", "Oth");
+    await call(ctx, "GET", "/me", { as: "own@example.com" });
+    await call(ctx, "GET", "/me", { as: "oth@example.com" });
+    const ok = await call(ctx, "PATCH", url(ctx, a.json.teamId), {
+      as: "own@example.com",
+      body: { name: "Team Own", abbr: "OWNR" },
+    });
+    expect(ok.json.abbr).toBe("OWNR");
+    const no = await call(ctx, "PATCH", url(ctx, a.json.teamId), {
+      as: "oth@example.com",
+      body: { name: "Team Own", abbr: "HACK" },
+    });
+    expect(no.status).toBe(403);
+    await call(ctx, "PATCH", url(ctx, a.json.teamId), {
+      as: ctx.commish,
+      body: { name: "Team Own", abbr: "BOSS" },
+    });
+    const snap = await loadSeason(db, ctx.seasonId, { consistentRead: true });
+    const renames = snap.audit.filter((x) => x.action === "team_renamed");
+    expect(renames).toHaveLength(1);
+    expect(renames[0]?.details).toEqual({ teamId: a.json.teamId });
+  });
+
+  it("editing the pending manager's last name recomputes only a default abbreviation", async () => {
+    const ctx = await setup();
+    const a = await addAs(ctx, "a@example.com", "Alpha");
+    const b = await addAs(ctx, "b@example.com", "Beta");
+    await call(ctx, "PATCH", url(ctx, b.json.teamId), {
+      as: ctx.commish,
+      body: { name: "Team Beta", abbr: "KEEP" },
+    });
+    await call(ctx, "PATCH", `/seasons/${ctx.seasonId}/managers/${a.json.teamId}`, {
+      as: ctx.commish,
+      body: { lastName: "Gamma" },
+    });
+    await call(ctx, "PATCH", `/seasons/${ctx.seasonId}/managers/${b.json.teamId}`, {
+      as: ctx.commish,
+      body: { lastName: "Delta" },
+    });
+    expect(await abbrs(ctx)).toEqual({ "Team Gamma": "GAMM", "Team Delta": "KEEP" });
   });
 });

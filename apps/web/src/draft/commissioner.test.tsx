@@ -400,7 +400,7 @@ describe("League home Draft card", () => {
             year: 2026,
             status: "drafting" as const,
           },
-          teams: [{ teamId: "t1", name: "Gridiron Gang", isMine: true }],
+          teams: [{ teamId: "t1", name: "Gridiron Gang", abbr: "GRID", isMine: true }],
           myTeamId: "t1",
           myRole: "manager" as const,
           maxTeams: 9 as const,

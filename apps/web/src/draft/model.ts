@@ -44,6 +44,15 @@ export function teamName(s: DraftSnapshot, teamId: string | null): string {
   );
 }
 
+export function teamAbbr(s: DraftSnapshot, teamId: string | null): string {
+  if (!teamId) return "";
+  return (
+    s.order.find((o) => o.teamId === teamId)?.abbr ??
+    s.teams.find((t) => t.teamId === teamId)?.abbr ??
+    "?"
+  );
+}
+
 export function filledSlotsOf(s: DraftSnapshot, teamId: string | null): Slot[] {
   if (!teamId) return [];
   const roster: Partial<Record<SlotName, string | null>> = s.rosters[teamId] ?? {};
@@ -108,12 +117,15 @@ export const START_BLOCKER_TEXT: Record<string, string> = {
 export const blockerText = (code: string) => START_BLOCKER_TEXT[code] ?? code;
 
 /** Team on the clock at overall pick `n` (1..90) in the snake, or null outside the draft. */
-export function teamAtPick(s: DraftSnapshot, n: number): { teamId: string; name: string } | null {
+export function teamAtPick(
+  s: DraftSnapshot,
+  n: number,
+): { teamId: string; name: string; abbr: string } | null {
   if (n < 1 || n > s.totalPicks || s.order.length === 0) return null;
   const size = s.order.length;
   const round = Math.ceil(n / size);
   const idx = (n - 1) % size;
   const position = round % 2 === 1 ? idx + 1 : size - idx;
   const o = s.order.find((x) => x.position === position);
-  return o ? { teamId: o.teamId, name: o.name } : null;
+  return o ? { teamId: o.teamId, name: o.name, abbr: o.abbr } : null;
 }

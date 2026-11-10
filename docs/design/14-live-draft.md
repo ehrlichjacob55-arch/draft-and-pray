@@ -86,11 +86,12 @@ After any pick (or when auto-draft is enabled), while the next on-clock team has
 
 ## 7. Draft room UI (v2, owner layout 2026-11-10; replaces the earlier 3-column layout)
 - **Header banner** (unchanged): `Round R · Pick N of 90`, on-the-clock team, "You pick in K (pick P)", clock countdown when started (red "Time expired" when expired), paused banner, connection dot.
+- **On-the-clock strip** (2026-11-10, owner): a horizontal row of small boxes **between the header banner and the three panes**, replacing the right pane's "On the clock" card. Box 1 (highlighted) is the on-clock pick: `#N`, team abbreviation, team name, the clock countdown when started ("Time expired" when expired), and "You" if it's mine. Boxes 2–9 are the next 8 picks in snake order (crossing rounds; a round divider marker where the round changes): `#N` + abbreviation, with mine marked. Shown only while `in_progress`/`paused`. On phone it scrolls horizontally, with the current box first. Clicking a box shows that team's roster in the left pane.
 - **Desktop layout:** three columns.
 
   | Left (≈ 20 %) | Center (main, ≈ 55 %) | Right (≈ 25 %) |
   |---|---|---|
-  | **Roster**: my 10 slots by default; a team selector to view any team's roster (team names only); the commissioner (no team) starts on the on-clock team. Clicking a pick in the right pane switches this pane to that team. | **Players list** (default) **or Draft board**, switched by a prominent toggle button `Players ⇄ Board` at the top of the center column. | **On the clock** header (team + the next 3 teams) → **My queue** (reorder up/down, remove, auto-draft toggle) → **Drafted players**, newest first: `#pick · R· · team · player · pos · NFL team`, live-updating. |
+  | **Roster**: my 10 slots by default; a team selector to view any team's roster (team names only); the commissioner (no team) starts on the on-clock team. Clicking a pick in the right pane switches this pane to that team. | **Players list** (default) **or Draft board**, switched by a prominent toggle button `Players ⇄ Board` at the top of the center column. | **My queue** (reorder up/down, remove, auto-draft toggle) → **Drafted players**, newest first: `#pick · R · ABBR · player · pos · NFL team`, live-updating. |
 
 - **Phone (< 768 px):** tabs `Players | Board | Roster | Queue | Picks` (same panes).
 - **Players list** (the main feature):
@@ -107,10 +108,16 @@ After any pick (or when auto-draft is enabled), while the next on-clock team has
     Then the actions `★ Queue` and `Draft` (enabled only on my turn and only for eligible players; opens the confirmation sheet). A header note says "Stats: <statsSeason> regular season".
   - **Phone:** the table collapses to rows showing rank, name, pos/team, the 2–3 headline stats for the position, and actions.
 - **Player detail panel** (click a player name): a side drawer on desktop, a bottom sheet on phone. It shows the full last-season stat line for the position, games played, injury status, NFL team + seed + Wild Card opponent or BYE, rank, and Queue / Draft buttons. No PII. It closes with Esc or the close button.
-- **Draft board** (center, via the toggle): the 10×9 grid as before (team-name columns in draft order, position colours, current pick highlighted, auto-draft badges).
+- **Draft board** (center, via the toggle): the 10×9 grid as before (column headers = team abbreviation with the full team name as a tooltip, in draft order, position colours, current pick highlighted, auto-draft badges).
 - **Your-turn alert:** when the viewer's team comes on the clock, the browser tab title flashes ("⏰ Your pick! – Draft & Pray") until the page is focused. There's an optional sound, off by default, toggled in the draft room and remembered in `localStorage` (try/catch); `navigator.vibrate` on phones when supported. It never fires for picks made by the viewer themself.
 - **Commissioner panel** (unchanged functionality): order (pre-start), Start, Pause/Resume, clock, make pick for the on-clock team, autopick, undo, pool include/exclude. It sits in a collapsible bar under the header, so the three columns keep their space.
 - Pre-draft lobby and complete states are as before. After completion the center defaults to the Board.
+
+### Team abbreviations (2026-11-10, owner)
+- `TEAM.abbr`: 2–4 characters A–Z/0–9, uppercase, **unique within the season**.
+- **Default** (set on team creation; backfilled lazily for older teams with a conditional write that never overwrites a custom value): strip a leading "Team " (case-insensitive), remove non-alphanumerics, uppercase, take the first 4 characters (fewer than 2 left → `TM`). On a clash within the season, replace the last character with 2, 3, … Examples: "Team Alpha" → `ALPH`, "Team Smith" → `SMIT`, "Red Zone" → `REDZ`, "Team Al" → `AL`.
+- **Editable** by the team owner or the commissioner wherever the team name is edited (League home rename, commissioner Team names, welcome card). Validation: 409 `team_abbr_taken`, 400 for invalid format. Renaming a team does **not** change a custom abbreviation; it recomputes only if the abbreviation is still the auto-default.
+- Used in the on-the-clock strip, the board column headers and the drafted list. Team names remain the primary label elsewhere. No PII beyond the (owner-chosen) team name.
 
 ## 8. Testing
 - **Domain:** exhaustive unit and property tests (§2).

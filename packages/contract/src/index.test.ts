@@ -84,15 +84,16 @@ describe("manager requests", () => {
 });
 
 describe("member-facing shapes carry no PII fields", () => {
-  it("season teams are {teamId, name, isMine}", () => {
+  it("season teams are {teamId, name, abbr, isMine}", () => {
     const parsed = seasonResponse.shape.teams.element.parse({
       teamId: "t",
       name: "Team Example",
+      abbr: "EXAM",
       isMine: false,
       email: "x@example.com",
       firstName: "Alex",
     });
-    expect(Object.keys(parsed).sort()).toEqual(["isMine", "name", "teamId"]);
+    expect(Object.keys(parsed).sort()).toEqual(["abbr", "isMine", "name", "teamId"]);
   });
   it("/me requires justClaimed", () => {
     expect(meResponse.safeParse({ user: null, leagues: [] }).success).toBe(false);

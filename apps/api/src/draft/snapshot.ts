@@ -11,13 +11,13 @@ import {
   type SlotName,
   type StartBlocker,
 } from "@dnp/contract";
-import type { DraftItem, GameItem, NflTeamItem, PickItem, PlayerItem, TeamItem } from "@dnp/db";
+import type { DraftItem, GameItem, NflTeamItem, PickItem, PlayerItem, Team } from "@dnp/db";
 import { roundOf, teamOnClock } from "@dnp/domain";
 
 export interface SnapshotInput {
   seasonId: string;
   draft: DraftItem;
-  teams: TeamItem[];
+  teams: Team[];
   players: PlayerItem[];
   picks: PickItem[];
   nflTeams: NflTeamItem[];
@@ -31,7 +31,7 @@ export interface SnapshotInput {
 
 export function startBlockers(
   draft: DraftItem,
-  teams: TeamItem[],
+  teams: Team[],
   players: PlayerItem[],
 ): StartBlocker[] {
   const out: StartBlocker[] = [];
@@ -70,6 +70,7 @@ export function buildSnapshot(input: SnapshotInput): DraftSnapshot {
   const { draft, teams, players, picks, now } = input;
   const seeds = new Map(input.nflTeams.map((t) => [t.abbr, t.seed]));
   const teamName = new Map(teams.map((t) => [t.teamId, t.name]));
+  const teamAbbr = new Map(teams.map((t) => [t.teamId, t.abbr]));
   const playerById = new Map(players.map((p) => [p.playerId, p]));
   const sortedPicks = [...picks].sort((a, b) => a.overallPick - b.overallPick);
 
@@ -154,9 +155,15 @@ export function buildSnapshot(input: SnapshotInput): DraftSnapshot {
           position: i + 1,
           teamId,
           name: teamName.get(teamId) ?? "",
+          abbr: teamAbbr.get(teamId) ?? "",
         }))
       : [],
-    teams: teams.map((t) => ({ teamId: t.teamId, name: t.name, joined: t.managerUserId !== null })),
+    teams: teams.map((t) => ({
+      teamId: t.teamId,
+      name: t.name,
+      abbr: t.abbr,
+      joined: t.managerUserId !== null,
+    })),
     onClockTeamId,
     clock: started && !complete ? clock : null,
     serverNow: now.toISOString(),

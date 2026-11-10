@@ -65,6 +65,8 @@ export const teamItem = z.object({
   type: z.literal("Team"),
   teamId: z.string(),
   name: z.string(),
+  /** 2-4 chars A-Z/0-9, unique per season. Absent on rows from before abbreviations; backfilled by listTeams. */
+  abbr: z.string().optional(),
   managerUserId: z.string().nullable(),
   /** Null until the commissioner sets the draft order (task 6). */
   draftPosition: z.number().int().nullable(),

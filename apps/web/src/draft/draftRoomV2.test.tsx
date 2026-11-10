@@ -104,10 +104,13 @@ describe("desktop layout", () => {
       "Stats: 2025 regular season",
     );
     expect(sections(within(columns).getByTestId("col-right"))).toEqual([
-      "On the clock",
       "Queue",
       "Drafted players",
     ]);
+    // The on-the-clock strip sits between the banner and the columns, not in the right pane.
+    expect(screen.getByTestId("otc-strip").compareDocumentPosition(columns)).toBe(
+      Node.DOCUMENT_POSITION_FOLLOWING,
+    );
     // Phone tabs are not rendered on desktop.
     expect(screen.queryByRole("tablist")).not.toBeInTheDocument();
   });
@@ -145,7 +148,7 @@ describe("desktop layout", () => {
       "aria-pressed",
       "true",
     );
-    expect(screen.queryByTestId("on-the-clock")).not.toBeInTheDocument();
+    expect(screen.queryByTestId("otc-strip")).not.toBeInTheDocument();
     await userEvent.setup().click(screen.getByRole("button", { name: "Players ⇄ Board" }));
     expect(screen.getByRole("region", { name: "Players" })).toBeVisible();
   });
@@ -300,28 +303,20 @@ describe("right pane and roster switching", () => {
     player: { name, position: "QB", nflTeam: "AAA" },
   });
 
-  it("orders on-the-clock (with the next 3 teams), my queue, then drafted newest first", async () => {
+  it("orders my queue, then drafted players newest first (#pick, R, ABBR, player, pos, NFL team)", async () => {
     const picks = [pick(1, "t1", "x1", "First Guy"), pick(2, "t2", "x2", "Second Guy")];
     room(statSnapshot({ picks, currentPick: 8, onClockTeamId: "t8", myQueue: ["p2"] }));
     const right = await screen.findByTestId("col-right");
-    expect(sections(right)).toEqual(["On the clock", "Queue", "Drafted players"]);
-    expect(within(right).getByTestId("otc-current")).toHaveTextContent("Pick 8");
-    expect(within(right).getByTestId("otc-current")).toHaveTextContent("Trick Plays");
-    // snake: picks 9 and 10 belong to the last team (turnaround), pick 11 to the 8th team
-    const next = within(right).getByRole("list", { name: "Next teams" });
-    const items = within(next).getAllByRole("listitem");
-    expect(items.map((i) => i.textContent)).toEqual([
-      "Pick 9 Long Snappers",
-      "Pick 10 Long Snappers",
-      "Pick 11 Trick Plays",
-    ]);
+    expect(sections(right)).toEqual(["Queue", "Drafted players"]);
+    expect(within(right).queryByTestId("on-the-clock")).not.toBeInTheDocument();
     expect(within(right).getByRole("list", { name: "My queue" })).toHaveTextContent("Rory Runner");
     const rows = within(within(right).getByRole("list", { name: "Picks" })).getAllByRole(
       "listitem",
     );
     expect(rows[0]).toHaveTextContent("#2");
     expect(rows[0]).toHaveTextContent("R1");
-    expect(rows[0]).toHaveTextContent("Pray Hard");
+    expect(rows[0]).toHaveTextContent("PRAY");
+    expect(rows[0]).not.toHaveTextContent("Pray Hard");
     expect(rows[0]).toHaveTextContent("Second Guy");
     expect(rows[0]).toHaveTextContent("QB");
     expect(rows[0]).toHaveTextContent("AAA");
@@ -358,6 +353,8 @@ describe("right pane and roster switching", () => {
     expect(bar.tagName).toBe("DETAILS");
     expect(bar).not.toHaveAttribute("open");
     expect(bar.nextElementSibling).toBe(screen.getByTestId("draft-columns"));
+    // Strip, then the commissioner bar, then the columns.
+    expect(bar.previousElementSibling).toBe(screen.getByTestId("otc-strip"));
   });
 });
 
@@ -459,7 +456,7 @@ describe("phone layout", () => {
     expect(screen.getByTestId("roster")).toBeVisible();
     await user.click(screen.getByRole("tab", { name: "Queue" }));
     expect(screen.getByRole("list", { name: "My queue" })).toBeVisible();
-    expect(screen.getByTestId("on-the-clock")).toBeVisible();
+    expect(screen.queryByTestId("on-the-clock")).not.toBeInTheDocument();
     await user.click(screen.getByRole("tab", { name: "Picks" }));
     expect(screen.getByTestId("picks-empty")).toBeVisible();
     await user.click(screen.getByRole("tab", { name: "Players" }));

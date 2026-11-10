@@ -112,11 +112,12 @@ test("commissioner and a manager draft all 90 picks live; undo updates both", as
       await expect(page.getByTestId("banner-pick")).toHaveText("Pick 1 of 90");
     }
 
-    // ---- The v2 layout: roster left, players centre, clock + queue + drafted right ----
+    // ---- The v2 layout: roster left, players centre, on-the-clock strip above; queue + drafted right ----
     for (const page of [commish, manager]) {
       await expect(page.getByTestId("col-left").getByTestId("roster")).toBeVisible();
       await expect(page.getByTestId("col-center").getByTestId("players")).toBeVisible();
-      await expect(page.getByTestId("col-right").getByTestId("on-the-clock")).toBeVisible();
+      await expect(page.getByTestId("otc-strip").getByTestId("otc-current")).toBeVisible();
+      await expect(page.getByTestId("col-right").getByTestId("on-the-clock")).toHaveCount(0);
       await expect(page.getByTestId("col-right").getByTestId("queue")).toBeVisible();
       await expect(page.getByTestId("col-right").getByTestId("picks")).toBeVisible();
     }

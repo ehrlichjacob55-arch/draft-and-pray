@@ -79,7 +79,12 @@ export interface Api {
     body: UpdateManagerRequest,
   ): Promise<UpdateManagerResponse>;
   removeManager(seasonId: string, teamId: string): Promise<RemoveManagerResponse>;
-  renameTeam(seasonId: string, teamId: string, name: string): Promise<RenameTeamResponse>;
+  renameTeam(
+    seasonId: string,
+    teamId: string,
+    name: string,
+    abbr?: string,
+  ): Promise<RenameTeamResponse>;
   // ---- Draft (docs/design/14) ----
   draft(seasonId: string): Promise<DraftSnapshot>;
   makePick(seasonId: string, body: MakePickRequest): Promise<MakePickResponse>;
@@ -169,8 +174,11 @@ export function createApi({ baseUrl, getAuthHeaders }: ApiOptions): Api {
       request("PATCH", `/seasons/${enc(id)}/managers/${enc(teamId)}`, updateManagerResponse, body),
     removeManager: (id, teamId) =>
       request("DELETE", `/seasons/${enc(id)}/managers/${enc(teamId)}`, removeManagerResponse),
-    renameTeam: (seasonId, teamId, name) =>
-      request("PATCH", `/teams/${enc(seasonId)}/${enc(teamId)}`, renameTeamResponse, { name }),
+    renameTeam: (seasonId, teamId, name, abbr) =>
+      request("PATCH", `/teams/${enc(seasonId)}/${enc(teamId)}`, renameTeamResponse, {
+        name,
+        ...(abbr ? { abbr } : {}),
+      }),
     draft: (id) => request("GET", `/seasons/${enc(id)}/draft`, draftSnapshot),
     makePick: (id, body) =>
       request("POST", `/seasons/${enc(id)}/draft/picks`, makePickResponse, body),

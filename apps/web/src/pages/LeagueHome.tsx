@@ -125,10 +125,11 @@ function SeasonHome({
           </h3>
           <TeamNameForm
             initial={welcomed?.name ?? welcome.claim.teamName}
+            initialAbbr={welcomed?.abbr}
             label="Rename your team (optional)"
             submitLabel="Save name"
-            onSubmit={async (name) => {
-              await api.renameTeam(seasonId, welcome.claim!.teamId, name);
+            onSubmit={async (name, abbr) => {
+              await api.renameTeam(seasonId, welcome.claim!.teamId, name, abbr);
               query.reload();
             }}
           />
@@ -154,11 +155,12 @@ function SeasonHome({
             <div className="mt-2">
               <TeamNameForm
                 initial={mine.name}
+                initialAbbr={mine.abbr}
                 label="New team name"
                 submitLabel="Save"
                 onCancel={() => setRenaming(false)}
-                onSubmit={async (name) => {
-                  await api.renameTeam(seasonId, mine.teamId, name);
+                onSubmit={async (name, abbr) => {
+                  await api.renameTeam(seasonId, mine.teamId, name, abbr);
                   setRenaming(false);
                   query.reload();
                 }}
@@ -167,7 +169,10 @@ function SeasonHome({
           ) : (
             <p className="mt-1 flex items-center justify-between gap-2">
               <span>
-                Your team: <strong>{mine.name}</strong>
+                Your team: <strong>{mine.name}</strong>{" "}
+                <span className="font-mono text-sm text-muted" data-testid="my-abbr">
+                  ({mine.abbr})
+                </span>
               </span>
               <button type="button" className={btnSecondary} onClick={() => setRenaming(true)}>
                 Rename
@@ -194,7 +199,9 @@ function SeasonHome({
           <ul className="mt-2 divide-y divide-border">
             {teams.map((t) => (
               <li key={t.teamId} className="flex justify-between gap-2 py-2">
-                <span>{t.name}</span>
+                <span>
+                  {t.name} <span className="font-mono text-xs text-muted">{t.abbr}</span>
+                </span>
                 {t.isMine && <span className="text-sm text-muted">you</span>}
               </li>
             ))}
