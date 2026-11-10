@@ -287,11 +287,38 @@
     "team": "WAS",
     "status": "Active",
     "injury_status": null,
-    "depth_chart_order": 1
+    "depth_chart_order": null
   },
   "DEN": {
     "player_id": "DEN",
     "position": "DEF",
     "team": "DEN"
+  },
+  "8000": {
+    "player_id": "8000",
+    "full_name": "Ben Roethlisberger",
+    "position": "QB",
+    "team": "PIT",
+    "status": "Active",
+    "injury_status": null,
+    "depth_chart_order": null
+  },
+  "8001": {
+    "player_id": "8001",
+    "full_name": "Aaron Rodgers",
+    "position": "QB",
+    "team": "PIT",
+    "status": "Active",
+    "injury_status": null,
+    "depth_chart_order": 1
+  },
+  "8002": {
+    "player_id": "8002",
+    "full_name": "Practice Squad Wr",
+    "position": "WR",
+    "team": "NE",
+    "status": "Active",
+    "injury_status": null,
+    "depth_chart_order": null
   }
 }

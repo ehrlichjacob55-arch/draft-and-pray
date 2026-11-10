@@ -749,6 +749,71 @@ describe("player pool", () => {
     );
   });
 
+  it("re-import drops a previously imported no-depth player but keeps drafted and overridden ones", async () => {
+    const c = await setupLeague({ pool: false });
+    const pool = syntheticPool();
+    const stale = pool.players.filter((p) => p.position === "QB").slice(0, 3);
+    const [gone, drafted, overridden] = stale as [
+      (typeof stale)[0],
+      (typeof stale)[0],
+      (typeof stale)[0],
+    ];
+    let players = pool.players;
+    const app = createApp({
+      config: loadConfig({}),
+      db,
+      poolSource: { source: "test", load: async () => ({ teams: pool.teams, players }) },
+      now: () => new Date(nowMs),
+    });
+    const imp = () =>
+      app.request(`/api/seasons/${c.seasonId}/pool/import`, {
+        method: "POST",
+        headers: { "x-dev-user-email": c.commish, "content-type": "application/json" },
+        body: JSON.stringify({ seasonYear: 2025 }),
+      });
+    expect((await imp()).status).toBe(200);
+    const listed = (await c.call(c.commish, "GET", `/seasons/${c.seasonId}/players`)).json
+      .players as Json[];
+    const idOf = (providerId: string | null) =>
+      listed.find((p) => p.name === stale.find((s) => s.providerPlayerId === providerId)!.name)
+        .playerId as string;
+    // Override and draft two of them through the real routes.
+    await c.call(
+      c.commish,
+      "PATCH",
+      `/seasons/${c.seasonId}/players/${idOf(overridden.providerPlayerId)}`,
+      {
+        inPool: true,
+      },
+    );
+    await c.call(c.commish, "PUT", `${base(c)}/order`, { order: c.teamIds });
+    await c.call(c.commish, "POST", `${base(c)}/start`);
+    const pick = await c.call(c.members[0]!, "POST", `${base(c)}/picks`, {
+      playerId: idOf(drafted.providerPlayerId),
+      expectedPick: 1,
+    });
+    expect(pick.status).toBe(200);
+    await c.call(c.commish, "POST", `${base(c)}/pause`);
+    // Pause (imports are allowed while paused), then re-import without all three, as happens
+    // when the depth-chart filter starts dropping them.
+    await c.call(c.commish, "POST", `${base(c)}/pause`);
+    players = pool.players.filter(
+      (p) => !stale.some((x) => x.providerPlayerId === p.providerPlayerId),
+    );
+    const res = await imp();
+    expect(res.status).toBe(200);
+    const after = (await c.call(c.commish, "GET", `/seasons/${c.seasonId}/players`)).json
+      .players as Json[];
+    const byId = (id: string) => after.find((p) => p.playerId === id);
+    expect(byId(idOf(gone.providerPlayerId)).inPool).toBe(false);
+    expect(byId(idOf(drafted.providerPlayerId))).toMatchObject({ inPool: true });
+    expect(byId(idOf(drafted.providerPlayerId)).draftedByTeamId).toBeTruthy();
+    expect(byId(idOf(overridden.providerPlayerId))).toMatchObject({
+      inPool: true,
+      manualOverride: true,
+    });
+  });
+
   it("maps a failing source to pool_import_failed", async () => {
     const c = await setupLeague({ pool: false });
     const { PoolSourceError } = await import("./providers");

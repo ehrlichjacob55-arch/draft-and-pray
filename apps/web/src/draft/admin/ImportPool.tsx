@@ -52,6 +52,7 @@ export function ImportPool({ seasonId, onDone }: { seasonId: string; onDone: () 
           Imported {result.counts.players} players from {result.counts.teams} teams (
           {result.counts.added} added, {result.counts.updated} updated, {result.counts.removed}{" "}
           removed).
+          {result.warnings?.length ? ` Warnings: ${result.warnings.join("; ")}.` : ""}
         </p>
       )}
     </form>

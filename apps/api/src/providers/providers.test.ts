@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import { toEspnAbbr, toSleeperAbbr } from "./abbreviations";
 import { createRealPoolSource, PROVIDER_USER_AGENT } from "./index";
 import { parseEspnStandings } from "./espn";
-import { parseSleeperPlayers } from "./sleeper";
+import { parseSleeperPlayers, parseSleeperPlayersWithWarnings } from "./sleeper";
 import { PoolSourceError } from "./types";
 
 const fixture = (name: string) =>
@@ -72,6 +72,40 @@ describe("parseSleeperPlayers", () => {
     expect(players.some((p) => (p.position as string) === "DEF")).toBe(false);
   });
 
+  describe("depth-chart filter", () => {
+    const pit = { abbr: "PIT", name: "Pittsburgh Steelers", conference: "AFC" as const, seed: 4 };
+    const withPit = [...field, pit];
+
+    it("excludes retired and practice-squad records without a depth chart", () => {
+      const { players } = parseSleeperPlayersWithWarnings(sleeper(), withPit);
+      const names = players.map((p) => p.name);
+      expect(names).not.toContain("Ben Roethlisberger");
+      expect(names).not.toContain("Practice Squad Wr");
+      expect(names).toContain("Aaron Rodgers");
+      expect(names).toContain("Drake Maye");
+      expect(players.filter((p) => p.nflTeam === "PIT")).toHaveLength(1);
+    });
+
+    it("falls back to non-depth-chart players for an uncovered position, with a warning", () => {
+      const { players, warnings } = parseSleeperPlayersWithWarnings(sleeper(), withPit);
+      expect(players.find((p) => p.name === "Drew Stevens")).toMatchObject({
+        position: "K",
+        nflTeam: "WSH",
+        depthChartOrder: null,
+      });
+      expect(warnings).toEqual(["WSH K: no depth-chart players; included 1 without depth chart"]);
+    });
+
+    it("emits no warnings when every position is covered and the wrapper returns players", () => {
+      const json = sleeper();
+      json["13968"].depth_chart_order = 1;
+      expect(parseSleeperPlayersWithWarnings(json, field).warnings).toEqual([]);
+      expect(parseSleeperPlayers(sleeper(), field)).toHaveLength(
+        parseSleeperPlayersWithWarnings(sleeper(), field).players.length,
+      );
+    });
+  });
+
   it("fails loudly when a field team has no players or the shape is wrong", () => {
     expect(() =>
       parseSleeperPlayers(sleeper(), [
@@ -116,6 +150,7 @@ describe("parseSleeperPlayers", () => {
       depthChartOrder: null,
     });
     expect(players.find((p) => p.providerPlayerId === "4")?.depthChartOrder).toBe(2);
+    // a, e have depth entries; b is DEN's only K (kept by the safety net); c has no name.
     expect(players).toHaveLength(3);
   });
 });

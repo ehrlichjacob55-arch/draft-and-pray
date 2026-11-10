@@ -6,7 +6,11 @@ import type { FieldSource, PlayerSource, PoolSource } from "./types";
 export * from "./types";
 export * from "./abbreviations";
 export { parseEspnStandings, createEspnFieldSource } from "./espn";
-export { parseSleeperPlayers, createSleeperPlayerSource } from "./sleeper";
+export {
+  parseSleeperPlayers,
+  parseSleeperPlayersWithWarnings,
+  createSleeperPlayerSource,
+} from "./sleeper";
 export { PROVIDER_USER_AGENT, type FetchLike } from "./http";
 
 export function composePoolSource(
@@ -18,7 +22,7 @@ export function composePoolSource(
     source,
     async load(seasonYear) {
       const teams = await field.fetchField(seasonYear);
-      return { teams, players: await players.fetchPlayers(teams) };
+      return { teams, ...(await players.fetchPlayers(teams)) };
     },
   };
 }

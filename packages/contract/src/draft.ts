@@ -113,6 +113,7 @@ export const importPoolResponse = z.object({
     updated: z.number().int(),
     removed: z.number().int(),
   }),
+  warnings: z.array(z.string()).optional(),
 });
 export type ImportPoolResponse = z.infer<typeof importPoolResponse>;
 

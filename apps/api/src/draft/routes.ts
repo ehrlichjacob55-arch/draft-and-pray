@@ -230,6 +230,7 @@ export function registerDraftRoutes(app: Hono<AppEnv>, deps: DraftRouteDeps) {
       seasonYear,
       importedAt,
       counts,
+      ...(data.warnings?.length ? { warnings: data.warnings } : {}),
     } satisfies ImportPoolResponse);
   });
 

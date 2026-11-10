@@ -5,6 +5,8 @@ export interface PoolData {
   teams: PoolTeamInput[];
   /** Real players only; the importer generates one DST per team. */
   players: PoolPlayerInput[];
+  /** Non-fatal notes for the commissioner (no PII), e.g. depth-chart fallbacks. */
+  warnings?: string[];
 }
 
 /** Playoff field + seeds for a season. */
@@ -14,7 +16,7 @@ export interface FieldSource {
 
 /** Skill players + kickers on the field's teams. */
 export interface PlayerSource {
-  fetchPlayers(field: PoolTeamInput[]): Promise<PoolPlayerInput[]>;
+  fetchPlayers(field: PoolTeamInput[]): Promise<{ players: PoolPlayerInput[]; warnings: string[] }>;
 }
 
 export interface PoolSource {
