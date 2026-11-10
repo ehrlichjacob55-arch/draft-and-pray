@@ -83,9 +83,12 @@ export async function transactWrite(
 /** A business-rule failure the API maps to an HTTP status (codes are @dnp/contract ErrorCode). */
 export class DomainError extends Error {
   readonly code: ErrorCode;
-  constructor(code: ErrorCode, message?: string) {
+  /** Machine-readable detail, e.g. every unmet draft-start precondition. */
+  readonly reasons?: string[];
+  constructor(code: ErrorCode, message?: string, reasons?: string[]) {
     super(message ?? code);
     this.name = "DomainError";
     this.code = code;
+    this.reasons = reasons;
   }
 }

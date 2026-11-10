@@ -105,6 +105,19 @@ export const draftItem = z.object({
   currentPickDeadline: isoDate.nullable(),
   startedAt: isoDate.nullable(),
   updatedAt: isoDate,
+  /** Monotonic change counter (docs/design/14 §4): bumped by every pick/undo/status/clock/order change. */
+  version: z.number().int().default(0),
+  /** Team ids by draft position 1..9 (empty until the commissioner sets it). */
+  order: z.array(z.string()).default([]),
+  /** Alert-only pick clock on the current pick; all three are removed together. */
+  clockStartedAt: isoDate.optional(),
+  clockSeconds: z.number().int().optional(),
+  clockExpiresAt: isoDate.optional(),
+  /** Team ids with auto-draft on. Stored as a DynamoDB string set (atomic ADD/DELETE). */
+  autoDraft: z
+    .union([z.set(z.string()), z.array(z.string())])
+    .optional()
+    .transform((v): string[] => (v ? [...v] : [])),
 });
 export const madeBy = z.enum(["manager", "autopick", "commissioner"]);
 export const pickItem = z.object({
@@ -143,6 +156,7 @@ export const nflTeamItem = z.object({
   abbr: z.string(),
   conference: z.enum(["AFC", "NFC"]),
   seed: z.number().int(),
+  name: z.string().optional(),
   status: z.enum(["alive", "bye", "eliminated", "champion"]),
   eliminatedInRound: playoffRound.optional(),
 });
@@ -159,6 +173,26 @@ export const playerItem = z.object({
   draftedByTeamId: z.string().optional(),
   draftedAtPick: z.number().int().optional(),
   rank: z.number().int().optional(),
+  /** Sleeper depth-chart order; display/sorting only. */
+  depthChartOrder: z.number().int().nullable().optional(),
+  /** Set when the commissioner edits `inPool` or adds the player: imports then leave `inPool` alone. */
+  manualOverride: z.boolean().optional(),
+});
+/** docs/design/14 §3: record of the last automatic pool import. */
+export const poolImportItem = z.object({
+  ...base,
+  type: z.literal("PoolImport"),
+  importedAt: isoDate,
+  source: z.string(),
+  seasonYear: z.number().int(),
+  counts: z.record(z.string(), z.number()),
+});
+/** docs/design/14 §6: single-use WebSocket ticket, keyed by sha256(ticket). `expiresAt` is epoch seconds (TTL). */
+export const wsTicketItem = z.object({
+  ...base,
+  type: z.literal("WsTicket"),
+  userId: z.string(),
+  expiresAt: z.number().int(),
 });
 export const roundItem = z.object({
   ...base,
@@ -262,6 +296,8 @@ export const anyItem = z.discriminatedUnion("type", [
   rosterEntryItem,
   nflTeamItem,
   playerItem,
+  poolImportItem,
+  wsTicketItem,
   roundItem,
   gameItem,
   statLineItem,
@@ -287,6 +323,8 @@ export type QueueItem = z.infer<typeof queueItem>;
 export type RosterEntryItem = z.infer<typeof rosterEntryItem>;
 export type NflTeamItem = z.infer<typeof nflTeamItem>;
 export type PlayerItem = z.infer<typeof playerItem>;
+export type PoolImportItem = z.infer<typeof poolImportItem>;
+export type WsTicketItem = z.infer<typeof wsTicketItem>;
 export type RoundItem = z.infer<typeof roundItem>;
 export type GameItem = z.infer<typeof gameItem>;
 export type StatLineItem = z.infer<typeof statLineItem>;

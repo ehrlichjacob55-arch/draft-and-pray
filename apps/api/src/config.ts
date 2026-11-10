@@ -13,6 +13,10 @@ const envSchema = z.object({
   COGNITO_CLIENT_ID: optional,
   WS_CONNECTIONS_TABLE: optional,
   WS_MANAGEMENT_ENDPOINT: optional,
+  /** Public WebSocket URL returned by POST /realtime/ticket (the WebSocket stage URL in AWS). */
+  WS_PUBLIC_URL: optional,
+  /** Local dev WebSocket server port (default 3002). */
+  WS_PORT: optional,
   SCHEDULER_GROUP: optional,
   SCHEDULER_ROLE_ARN: optional,
   DRAFT_TICK_FUNCTION_ARN: optional,

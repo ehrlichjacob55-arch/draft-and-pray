@@ -5,8 +5,9 @@ import { defineConfig } from "vitest/config";
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   server: {
-    port: 5173,
-    proxy: { "/api": "http://localhost:3001" },
+    // Overridable so a second stack (e.g. e2e) can run next to `pnpm dev`.
+    port: Number(process.env.WEB_PORT ?? 5173),
+    proxy: { "/api": `http://localhost:${process.env.API_PORT ?? 3001}` },
   },
   test: {
     name: "web",

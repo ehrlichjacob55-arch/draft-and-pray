@@ -34,6 +34,10 @@ import { Hono } from "hono";
 import { HTTPException } from "hono/http-exception";
 import { noopCognito, type CognitoAdmin } from "../cognito";
 import type { Config } from "../config";
+import { createDraftService } from "../draft/service";
+import { registerDraftRoutes } from "../draft/routes";
+import { createRealPoolSource, type PoolSource } from "../providers";
+import { noopPublisher, type Publisher } from "../realtime/types";
 import { logError } from "../redact";
 import { authMiddleware, isPublicRoute, type AppEnv, type TokenVerifier } from "./auth";
 import { loadSeasonMeta, requireCommissioner, requireMember } from "./authz";
@@ -49,9 +53,21 @@ export interface AppDeps {
   verifyToken?: TokenVerifier;
   /** Test hook: clock. */
   now?: () => Date;
+  /** Realtime fan-out for `draft_changed`; defaults to a no-op. */
+  publisher?: Publisher;
+  /** Player pool source; defaults to ESPN standings + Sleeper players. */
+  poolSource?: PoolSource;
 }
 
-export function createApp({ config, db, cognito = noopCognito, verifyToken, now }: AppDeps) {
+export function createApp({
+  config,
+  db,
+  cognito = noopCognito,
+  verifyToken,
+  now,
+  publisher = noopPublisher,
+  poolSource = createRealPoolSource(),
+}: AppDeps) {
   const app = new Hono<AppEnv>().basePath("/api");
   const clock = now ?? (() => new Date());
 
@@ -369,6 +385,14 @@ export function createApp({ config, db, cognito = noopCognito, verifyToken, now 
       now: clock(),
     });
     return c.json({ teamId: renamed.teamId, name: renamed.name });
+  });
+
+  registerDraftRoutes(app, {
+    db,
+    config,
+    service: createDraftService({ db, publisher, now: clock }),
+    poolSource,
+    now: clock,
   });
 
   return app;

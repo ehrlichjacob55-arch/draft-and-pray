@@ -33,6 +33,7 @@ export function statusForCode(code: ErrorCode): number {
     case "not_found":
       return 404;
     case "invite_failed":
+    case "pool_import_failed":
       return 502;
     case "internal_error":
       return 500;
@@ -41,8 +42,8 @@ export function statusForCode(code: ErrorCode): number {
   }
 }
 
-export function errorBody(code: ErrorCode, message: string) {
-  return { error: { code, message } };
+export function errorBody(code: ErrorCode, message: string, reasons?: string[]) {
+  return { error: { code, message, ...(reasons ? { reasons } : {}) } };
 }
 
 /** Parses the JSON body with a zod schema; 400 bad_request / validation_error on failure. */
@@ -59,6 +60,25 @@ export async function parseBody<S extends z.ZodType>(c: Context, schema: S): Pro
   return parsed.data;
 }
 
+/** Like parseBody, but an empty body is `{}` (routes whose body is optional). */
+export async function parseOptionalBody<S extends z.ZodType>(
+  c: Context,
+  schema: S,
+): Promise<z.output<S>> {
+  const text = await c.req.text();
+  if (!text.trim()) return schema.parse({});
+  let raw: unknown;
+  try {
+    raw = JSON.parse(text);
+  } catch {
+    throw new ApiError(400, "bad_request", "Request body must be valid JSON");
+  }
+  const parsed = schema.safeParse(raw);
+  if (!parsed.success)
+    throw new ApiError(400, "validation_error", parsed.error.issues[0]?.message ?? "Invalid body");
+  return parsed.data;
+}
+
 export function toErrorResponse(err: unknown): {
   status: number;
   body: ReturnType<typeof errorBody>;
@@ -66,6 +86,9 @@ export function toErrorResponse(err: unknown): {
   if (err instanceof ApiError)
     return { status: err.status, body: errorBody(err.code, err.message) };
   if (err instanceof DomainError)
-    return { status: statusForCode(err.code), body: errorBody(err.code, err.message) };
+    return {
+      status: statusForCode(err.code),
+      body: errorBody(err.code, err.message, err.reasons),
+    };
   return { status: 500, body: errorBody("internal_error", "Internal Server Error") };
 }

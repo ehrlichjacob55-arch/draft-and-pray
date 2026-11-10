@@ -2,6 +2,7 @@ import { MAX_TEAMS, type JustClaimed } from "@dnp/contract";
 import { useState } from "react";
 import { Link } from "react-router";
 import { useApi } from "../api";
+import { DraftCard } from "../draft/DraftCard";
 import { TeamNameForm } from "../components/TeamNameForm";
 import { btnPrimary, btnSecondary, Card, ErrorWithRetry, Loading } from "../components/ui";
 import { friendlyError } from "../lib/messages";
@@ -143,6 +144,8 @@ function SeasonHome({
           <span data-testid="season-status">{STATUS_LABEL[season.status]}</span>
         </p>
       </Card>
+
+      <DraftCard seasonId={seasonId} />
 
       <Card>
         <h3 className="font-semibold">Your team</h3>

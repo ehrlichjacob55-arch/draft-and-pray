@@ -1,0 +1,154 @@
+import { readFileSync } from "node:fs";
+import { describe, expect, it } from "vitest";
+import { toEspnAbbr, toSleeperAbbr } from "./abbreviations";
+import { createRealPoolSource, PROVIDER_USER_AGENT } from "./index";
+import { parseEspnStandings } from "./espn";
+import { parseSleeperPlayers } from "./sleeper";
+import { PoolSourceError } from "./types";
+
+const fixture = (name: string) =>
+  JSON.parse(readFileSync(new URL(`./__fixtures__/${name}`, import.meta.url), "utf8"));
+const espn = () => fixture("espn-standings-2025.trimmed.json");
+const sleeper = () => fixture("sleeper-players.trimmed.json");
+
+describe("abbreviation map", () => {
+  it("maps the only differing team and is the identity elsewhere", () => {
+    expect(toSleeperAbbr("WSH")).toBe("WAS");
+    expect(toEspnAbbr("WAS")).toBe("WSH");
+    expect(toSleeperAbbr("KC")).toBe("KC");
+    expect(toEspnAbbr("KC")).toBe("KC");
+  });
+});
+
+describe("parseEspnStandings", () => {
+  it("returns the 14-team field with seeds 1-7 per conference", () => {
+    const field = parseEspnStandings(espn());
+    expect(field).toHaveLength(14);
+    const afc = field.filter((t) => t.conference === "AFC");
+    expect(afc.map((t) => t.seed)).toEqual([1, 2, 3, 4, 5, 6, 7]);
+    expect(afc[0]).toMatchObject({ abbr: "DEN", name: "Denver Broncos" });
+    expect(field.find((t) => t.conference === "NFC" && t.seed === 1)?.abbr).toBe("SEA");
+  });
+
+  it("refuses an odd field", () => {
+    const bad = espn();
+    bad.children[0].standings.entries.pop();
+    expect(() => parseEspnStandings(bad)).toThrow(/7 distinct playoff seeds for the AFC/);
+    const dup = espn();
+    dup.children[1].standings.entries[1].stats[0].value = 1;
+    expect(() => parseEspnStandings(dup)).toThrow(PoolSourceError);
+    const dupTeam = espn();
+    dupTeam.children[1].standings.entries[1].team.abbreviation =
+      dupTeam.children[0].standings.entries[0].team.abbreviation;
+    expect(() => parseEspnStandings(dupTeam)).toThrow(/twice/);
+    expect(() => parseEspnStandings({})).toThrow(/unexpected shape/);
+  });
+
+  it("recognizes conferences by abbreviation and ignores unknown groups", () => {
+    const j = espn();
+    j.children[0].name = "x";
+    j.children[0].abbreviation = "AFC";
+    j.children.push({ name: "Other", standings: { entries: [] } });
+    expect(parseEspnStandings(j)).toHaveLength(14);
+  });
+});
+
+describe("parseSleeperPlayers", () => {
+  const field = [
+    { abbr: "NE", name: "New England Patriots", conference: "AFC" as const, seed: 2 },
+    { abbr: "DEN", name: "Denver Broncos", conference: "AFC" as const, seed: 1 },
+    { abbr: "WSH", name: "Washington Commanders", conference: "NFC" as const, seed: 7 },
+  ];
+
+  it("keeps active QB/RB/WR/TE/K on field teams and maps WAS to WSH", () => {
+    const players = parseSleeperPlayers(sleeper(), field);
+    expect(players.length).toBeGreaterThan(15);
+    expect(new Set(players.map((p) => p.nflTeam))).toEqual(new Set(["NE", "DEN", "WSH"]));
+    expect(players.every((p) => ["QB", "RB", "WR", "TE", "K"].includes(p.position))).toBe(true);
+    expect(players.every((p) => p.providerPlayerId)).toBe(true);
+    expect(players.some((p) => p.injuryStatus === "Questionable")).toBe(true);
+    // Excludes: KC (not in field), inactive, free agents, DEF.
+    expect(players.some((p) => p.nflTeam === "KC")).toBe(false);
+    expect(players.some((p) => (p.position as string) === "DEF")).toBe(false);
+  });
+
+  it("fails loudly when a field team has no players or the shape is wrong", () => {
+    expect(() =>
+      parseSleeperPlayers(sleeper(), [
+        ...field,
+        { abbr: "ZZZ", name: "Nowhere", conference: "NFC", seed: 3 },
+      ]),
+    ).toThrow(/no active players for: ZZZ/);
+    expect(() => parseSleeperPlayers([], field)).toThrow(PoolSourceError);
+    expect(() => parseSleeperPlayers(null, field)).toThrow(PoolSourceError);
+  });
+
+  it("normalizes odd records", () => {
+    const players = parseSleeperPlayers(
+      {
+        a: {
+          player_id: "1",
+          first_name: "Fi",
+          last_name: "La",
+          position: "QB",
+          team: "NE",
+          status: "Active",
+          injury_status: "NA",
+          depth_chart_order: 1.5,
+        },
+        b: { player_id: "2", full_name: "Bee", position: "K", team: "DEN", status: "Active" },
+        c: { player_id: "3", position: "K", team: "WAS", status: "Active" },
+        d: null,
+        e: {
+          player_id: "4",
+          full_name: "Cee",
+          position: "RB",
+          team: "WAS",
+          status: "Active",
+          depth_chart_order: 2,
+        },
+      },
+      field,
+    );
+    expect(players.find((p) => p.providerPlayerId === "1")).toMatchObject({
+      name: "Fi La",
+      injuryStatus: null,
+      depthChartOrder: null,
+    });
+    expect(players.find((p) => p.providerPlayerId === "4")?.depthChartOrder).toBe(2);
+    expect(players).toHaveLength(3);
+  });
+});
+
+describe("createRealPoolSource", () => {
+  it("fetches both sources with a descriptive User-Agent (no network)", async () => {
+    const calls: { url: string; ua: string | null }[] = [];
+    const fetchImpl = async (url: string, init?: RequestInit) => {
+      calls.push({ url, ua: new Headers(init?.headers).get("user-agent") });
+      if (url.includes("espn")) return new Response(JSON.stringify(espn()));
+      return new Response(JSON.stringify(sleeper()));
+    };
+    // The trimmed Sleeper fixture covers only NE/DEN/WAS, so the full field must be refused.
+    await expect(createRealPoolSource({ fetchImpl }).load(2025)).rejects.toThrow(
+      /no active players for/,
+    );
+    expect(calls[0]?.url).toContain("season=2025");
+    expect(calls.every((c) => c.ua === PROVIDER_USER_AGENT)).toBe(true);
+    expect(PROVIDER_USER_AGENT).not.toMatch(/@/);
+  });
+
+  it("reports transport and HTTP failures as PoolSourceError", async () => {
+    const down = async () => {
+      throw new Error("ECONNREFUSED");
+    };
+    await expect(createRealPoolSource({ fetchImpl: down }).load(2025)).rejects.toThrow(
+      /could not be reached/,
+    );
+    const bad = async () => new Response("nope", { status: 503 });
+    await expect(createRealPoolSource({ fetchImpl: bad }).load(2025)).rejects.toThrow(/HTTP 503/);
+    const junk = async () => new Response("not json");
+    await expect(createRealPoolSource({ fetchImpl: junk }).load(2025)).rejects.toThrow(
+      /invalid JSON/,
+    );
+  });
+});

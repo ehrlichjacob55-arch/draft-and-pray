@@ -1,13 +1,16 @@
 # Whole application stack for one environment. envs/dev and envs/prod call this.
 #
 # Dependency graph (acyclic):
-#   data, realtime                       (no dependencies)
+#   data                                 (no dependencies)
+#   realtime <- data                     (ws Lambdas read/consume items in the app table; data never
+#                                         references realtime)
 #   custom_message <- web                (SITE_URL = CloudFront domain; web's distribution needs only
 #                                         the API gateway, never auth)
 #   auth  <- custom_message              (pool's CustomMessage trigger; the Lambda permission for the
 #                                         pool lives here in the app module)
 #   jobs  <- data, realtime              (tick/ingest + scheduler role)
-#   api   <- data, auth, realtime, jobs  (http env needs scheduler role + tick ARN)
+#   api   <- data, auth, realtime, jobs  (http env needs scheduler role + tick ARN + the WebSocket
+#                                         stage URL; realtime does not depend on api)
 #   web   <- api, auth, realtime         (CloudFront origin + config.json)
 
 terraform {
@@ -116,6 +119,11 @@ module "realtime" {
   is_prod            = var.is_prod
   dist_dir           = var.lambda_dist_dir
   log_retention_days = local.log_retention_days
+
+  # ws-connect/ws-default read and consume items in the app table (tickets, membership).
+  app_table_name      = module.data.table_name
+  app_table_arn       = module.data.table_arn
+  app_table_index_arn = module.data.index_arn_pattern
 }
 
 module "jobs" {
@@ -153,6 +161,7 @@ module "api" {
   ws_table_arn            = module.realtime.table_arn
   ws_management_endpoint  = module.realtime.management_endpoint
   ws_api_execution_arn    = module.realtime.api_execution_arn
+  ws_public_url           = module.realtime.ws_url
   scheduler_group_name    = module.jobs.scheduler_group_name
   scheduler_group_arn     = module.jobs.scheduler_group_arn
   scheduler_role_arn      = module.jobs.scheduler_role_arn

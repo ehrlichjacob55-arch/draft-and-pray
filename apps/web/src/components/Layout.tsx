@@ -1,4 +1,4 @@
-import { Link, NavLink, Outlet } from "react-router";
+import { Link, NavLink, Outlet, useLocation } from "react-router";
 import { useAuth } from "../auth";
 import { LeagueProvider, useLeague } from "../league/LeagueProvider";
 import { btnSecondary } from "./ui";
@@ -57,9 +57,11 @@ function Header() {
 }
 
 export function Layout() {
+  // The draft room is a three-column desktop layout, so it gets a wider container.
+  const wide = useLocation().pathname.startsWith("/draft");
   return (
     <LeagueProvider>
-      <div className="mx-auto flex min-h-screen max-w-3xl flex-col">
+      <div className={`mx-auto flex min-h-screen flex-col ${wide ? "max-w-[96rem]" : "max-w-3xl"}`}>
         <Header />
         <main className="flex-1 p-4">
           <Outlet />

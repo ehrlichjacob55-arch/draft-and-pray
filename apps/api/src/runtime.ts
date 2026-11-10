@@ -3,6 +3,8 @@ import { createDynamo, dynamoConfigFromEnv } from "@dnp/db";
 import { createCognitoAdmin, noopCognito } from "./cognito";
 import { loadConfig } from "./config";
 import { createApp } from "./http/app";
+import { awsPublisher } from "./realtime/aws-publisher";
+import { noopPublisher } from "./realtime/types";
 
 let cached: ReturnType<typeof createApp> | undefined;
 
@@ -14,7 +16,9 @@ export async function getApp() {
     const cognito = config.COGNITO_USER_POOL_ID
       ? createCognitoAdmin(new CognitoIdentityProviderClient({}), config.COGNITO_USER_POOL_ID)
       : noopCognito;
-    cached = createApp({ config, db, cognito });
+    const publisher =
+      config.WS_MANAGEMENT_ENDPOINT && config.WS_CONNECTIONS_TABLE ? awsPublisher : noopPublisher;
+    cached = createApp({ config, db, cognito, publisher });
   }
   return cached;
 }

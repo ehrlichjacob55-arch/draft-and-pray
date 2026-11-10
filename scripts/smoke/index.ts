@@ -12,6 +12,7 @@ import {
 } from "../lib/runtime";
 import { resetTestLeague } from "../lib/test-league";
 import { runChecks, type CheckResult } from "./checks";
+import { runDraftChecks } from "./draft-checks";
 
 export function renderTable(results: CheckResult[]): string {
   const width = Math.max(...results.map((r) => r.name.length));
@@ -47,6 +48,8 @@ async function main() {
   let results;
   try {
     results = await runChecks(cfg, db, api);
+    // The draft section resets the Test League again and drafts all 90 picks.
+    results = [...results, ...(await runDraftChecks(cfg, db, api, users, cognito))];
   } finally {
     // The dnp-new-* Cognito users exist only for this run (their league data is cleared by the next reset).
     if (cognito) {

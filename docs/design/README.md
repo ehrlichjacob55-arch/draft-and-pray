@@ -20,7 +20,9 @@
 | 09 | [AWS Architecture](09-aws-architecture.md) | AWS + Terraform stack, repo layout, build/deploy contract (supersedes parts of 05) |
 | 10 | [DynamoDB Data Model](10-dynamodb-data-model.md) | Single-table keys, access patterns, transactions for picks/undo/recompute (storage for 02) |
 | 11 | [Sign-in, Invites & League Setup](11-auth-and-league-setup.md) | Task 3: Cognito email-OTP sign-in, invite links, season/team setup, test users (DEV/TEST only) |
+| 12 | [Stats & Data Provider](12-stats-provider.md) | ESPN for stats, schedule and playoff seeds; Sleeper for rosters; verified field coverage and risks |
 | 13 | [One-Step Manager Onboarding](13-manager-onboarding.md) | Commissioner adds managers; one email + one click signs in, verifies and assigns the team; PII rules (supersedes 11's invite links) |
+| 14 | [Live Draft](14-live-draft.md) | Owner decisions (manual order, optional 90 s alert-only clock, opt-in auto-draft), draft API, ticketed WebSocket, draft room UI (supersedes parts of 03) |
 
 ## League at a glance
 

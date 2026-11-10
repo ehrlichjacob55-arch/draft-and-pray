@@ -25,13 +25,30 @@ export const ERROR_CODES = [
   "invite_failed",
   "team_name_taken",
   "conflict",
+  // Draft (docs/design/14 §4)
+  "stale_pick",
+  "not_your_turn",
+  "player_taken",
+  "not_eligible",
+  "slot_filled",
+  "draft_not_active",
+  "draft_not_ready",
+  "draft_wrong_status",
+  "nothing_to_undo",
+  "pool_locked",
+  "pool_import_failed",
   "internal_error",
 ] as const;
 export const errorCode = z.enum(ERROR_CODES);
 export type ErrorCode = z.infer<typeof errorCode>;
 
 export const apiError = z.object({
-  error: z.object({ code: errorCode, message: z.string() }),
+  error: z.object({
+    code: errorCode,
+    message: z.string(),
+    /** `draft_not_ready`: every unmet start precondition. */
+    reasons: z.array(z.string()).optional(),
+  }),
 });
 export type ApiError = z.infer<typeof apiError>;
 
@@ -196,3 +213,5 @@ export const renameTeamRequest = z.object({ name: teamNameSchema });
 export type RenameTeamRequest = z.input<typeof renameTeamRequest>;
 export const renameTeamResponse = z.object({ teamId: z.string(), name: z.string() });
 export type RenameTeamResponse = z.infer<typeof renameTeamResponse>;
+
+export * from "./draft";

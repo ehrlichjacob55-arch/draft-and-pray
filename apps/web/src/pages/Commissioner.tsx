@@ -7,6 +7,7 @@ import {
 } from "@dnp/contract";
 import { useId, useState, type FormEvent } from "react";
 import { useApi } from "../api";
+import { DraftSetupSection } from "../draft/admin/DraftSetupSection";
 import { TeamNameForm } from "../components/TeamNameForm";
 import {
   btnPrimary,
@@ -126,6 +127,8 @@ function CommissionerConsole({ seasonId }: { seasonId: string }) {
           )}
         </div>
       </Card>
+
+      <DraftSetupSection seasonId={seasonId} />
 
       <Card>
         <h3 className="font-semibold">Team names</h3>

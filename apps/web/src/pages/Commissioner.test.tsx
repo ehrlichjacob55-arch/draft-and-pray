@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import type { ManagerView, ManagerWithDelivery } from "@dnp/contract";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { ApiError } from "../api";
-import { meMember, renderRoute, seasonData, type RouteOpts } from "../test/utils";
+import { draftData, meMember, renderRoute, seasonData, type RouteOpts } from "../test/utils";
 import { parseBulk } from "./Commissioner";
 
 const manager = (
@@ -35,6 +35,8 @@ function setup(over: NonNullable<RouteOpts["api"]> = {}) {
     api: {
       me: async () => meMember("commissioner"),
       season: async () => seasonData({ myRole: "commissioner" }),
+      // Draft already running: the Draft setup section just links to the draft room.
+      draft: async () => draftData({ myRole: "commissioner" }),
       listManagers: async () => [
         manager("a", "invited"),
         manager("b", "joined"),

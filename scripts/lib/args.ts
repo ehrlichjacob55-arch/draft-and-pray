@@ -16,6 +16,13 @@ export function parseCli(argv: string[]) {
       "user-pool-id": { type: "string" },
       "client-id": { type: "string" },
       "base-url": { type: "string" },
+      "season-id": { type: "string" },
+      "season-year": { type: "string" },
+      "test-league": { type: "boolean" },
+      "from-csv": { type: "boolean" },
+      teams: { type: "string" },
+      players: { type: "string" },
+      pool: { type: "string" },
     },
   });
   return { flags: values, positionals };
