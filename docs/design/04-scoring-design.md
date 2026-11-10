@@ -20,38 +20,43 @@ The actual values come from the league (see Q1). The engine supports these rule 
 | **Distance bands** | FG 0–39 → 3, 40–49 → 4, 50+ → 5 | tiered on each event's distance |
 | **Position scope** | TE-premium reception points | any rule may add `positions:[…]` |
 
-Example skeleton (placeholder values — **not** the league's rules):
+Rulesets live as data in `packages/domain/rulesets/`: `placeholder.v1.json` (the doc's original skeleton, **not** the league's rules) and `league.v1.json` (the league's rules as received 2026-11-10). `pnpm admin seed-ruleset` seeds either as v1 of a season (default `league`). The engine is `packages/domain/src/scoring/` (pure, 100% covered).
+
+### Ruleset JSON
 
 ```json
-{
-  "version": 1,
-  "rounding": 2,
-  "rules": [
-    { "stat": "pass_yds",  "points": 1, "per": 25 },
-    { "stat": "pass_td",   "points": 4 },
-    { "stat": "pass_int",  "points": -2 },
-    { "stat": "rush_yds",  "points": 1, "per": 10 },
-    { "stat": "rush_td",   "points": 6 },
-    { "stat": "rec",       "points": 0 },
-    { "stat": "rec_yds",   "points": 1, "per": 10 },
-    { "stat": "rec_td",    "points": 6 },
-    { "stat": "fum_lost",  "points": -2 },
-    { "stat": "two_pt",    "points": 2 },
-    { "stat": "rush_yds",  "gte": 100, "points": 3, "type": "bonus" },
-    { "stat": "fg_made",   "type": "distance_tiers",
-      "tiers": [ {"min":0,"max":39,"points":3}, {"min":40,"max":49,"points":4}, {"min":50,"points":5} ] },
-    { "stat": "xp_made",   "points": 1, "positions": ["K"] },
-    { "stat": "def_pts_allowed", "type": "tiers", "positions": ["DST"],
-      "tiers": [ {"min":0,"max":0,"points":10}, {"min":1,"max":6,"points":7}, {"min":7,"max":13,"points":4},
-                 {"min":14,"max":20,"points":1}, {"min":21,"max":27,"points":0}, {"min":28,"points":-4} ] },
-    { "stat": "def_sack",  "points": 1, "positions": ["DST"] },
-    { "stat": "def_int",   "points": 2, "positions": ["DST"] },
-    { "stat": "def_td",    "points": 6, "positions": ["DST"] }
-  ]
-}
+{ "version": 1, "rounding": 2, "rules": [
+  { "stat": "rush_yds", "points": 1, "per": 10, "fractional": true },
+  { "stat": "rush_td", "points": 6 },
+  { "stat": "rush_yds", "gte": 100, "points": 3 },
+  { "stat": "fg_made", "tiers": [ {"min":0,"max":39,"points":3}, {"min":40,"max":49,"points":4}, {"min":50,"points":5} ] },
+  { "stat": "xp_made", "points": 1, "positions": ["K"] } ] }
 ```
 
-**Canonical stat keys.** The app defines its own stat vocabulary (`pass_yds`, `rush_td`, `def_sack`, …). Each stats provider adapter maps the provider's fields to these keys, so the ruleset never depends on a specific provider.
+- A rule's `type` (`per_unit | per_event | bonus | tiers | distance_tiers`) is optional and inferred from its fields; if given it must match. `label` is shown in breakdowns. `positions` scopes any rule (out-of-scope rules contribute nothing).
+- **Per unit:** whole units only by default (99 yds at 1 per 10 = 9; a negative stat truncates toward zero, -15 yds = -1). `"fractional": true` opts into `points * value / per` (99 yds = 9.9; -3 yds = -0.3).
+- **Bonus:** `gte` pays once when the stat is at or above the threshold.
+- **Tiers:** bands `{min, max?, points}` on the stat total. Validation: no overlap, no gap, first band starts at 0, last band open-ended (omit `max`).
+- **Distance tiers:** a tiers rule on `fg_made` / `fg_missed` scores each kick by its own distance (the stat line carries the distance list).
+- **Arithmetic:** integer micro-points (no float drift), rounded once per game, half away from zero, to `rounding` decimals (0..4, default 2). Breakdown entries are rounded the same way, so they may differ from the total by a rounding step; zero-point rules are omitted.
+- **Validation:** unknown stat keys (the message lists valid ones), unknown fields, mixed rule shapes, `fractional` without `per`, and more than 4 decimals are rejected; errors name the rule index and stat.
+
+### Canonical stat keys and stat lines
+
+`pass_yds pass_td pass_int pass_2pt rush_yds rush_td rush_2pt rec rec_yds rec_td rec_2pt fum_lost ret_td fum_rec_td fg_made fg_missed fg_blocked xp_made xp_missed xp_blocked def_pts_allowed def_yds_allowed def_sack def_int def_fum_rec def_td def_safety def_block`
+
+- 2-pt conversions are **split by type** (no generic `two_pt`): the passer gets `pass_2pt` and the receiver `rec_2pt` for the same conversion.
+- `ret_td` = kick/punt return TDs (any position, incl. a DST line); `fum_rec_td` = fumble-recovery TDs by non-defense players; `def_td` = defensive TDs (DST).
+- Kicker misses: `fg_missed` / `xp_missed`; blocked kicks against the kicker: `fg_blocked` / `xp_blocked`. `def_block` is the defending team's own stat.
+- A **stat line** is `{ counts: {key: int}, events?: { fg_made?: number[], fg_missed?: number[] } }`. A distance list's length must equal the count (a missing count is filled from it); a distance rule on a count without distances is an error.
+- **Overrides** replace single counts. Lowering `fg_made`/`fg_missed` below its distance list keeps the first N distances; raising it above the list is rejected.
+- **Season compute** (`computeSeason`): POINTS per player-game and TEAMSCORE per round+team, non-finalized rounds only. A roster is `{slot, playerId, fromRound}` entries; in round R a slot holds its entry with the greatest `fromRound <= R` (roster exceptions, Task 12). Unscorable player-games come back as `issues`, not exceptions. `computeStandings` adds rank (ties share a rank and are flagged, Q4), players alive, and max games remaining.
+
+### The league's rules (`league.v1.json`)
+
+Received 2026-11-10: QB passing 1 pt per 30 yds; rushing and receiving 1 pt per 10 yds (all **fractional**, rounded once per game to 2 decimals); full-point PPR; every TD 6 (pass, rush, rec, kick/punt return, fumble-recovery, DST defensive/return); 2-pt conversions +2 (passer and receiver each); interception thrown -1, fumble lost -1; no yardage or threshold bonuses. Kicker: XP +1; FG 0-39 yds 3, 40-49 yds 4, 50+ yds 5; -1 per missed or blocked FG or XP. DST points allowed: 0 -> 15, 1-6 -> 10, 7-13 -> 8, 14-20 -> 5, 21-27 -> 2, 28-34 -> 0, 35+ -> -5; 1 pt each per sack, interception, fumble recovery, blocked kick; safety 2; defensive/return TD 6.
+
+**Assumed, pending commissioner confirmation:** points allowed = the opponent's final score (Q13); passing yards by non-QBs score 0.
 
 **Lifecycle:** draft the ruleset → commissioner reviews with a "preview against last year's playoffs" tool → **lock** before the draft. A locked ruleset can only change through a new version, which triggers a full recompute and an audit entry.
 
