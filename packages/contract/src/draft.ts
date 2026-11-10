@@ -52,6 +52,8 @@ export const poolPlayer = z.object({
   seed: z.number().int().nullable(),
   injuryStatus: z.string().nullable(),
   depthChartOrder: z.number().int().nullable(),
+  /** Overall rank (lower = better); null = unranked. */
+  rank: z.number().int().nullable(),
   inPool: z.boolean(),
   /** Set by the commissioner (PATCH/POST); survives re-imports. */
   manualOverride: z.boolean(),
@@ -138,6 +140,8 @@ export const availablePlayer = z.object({
   seed: z.number().int().nullable(),
   injuryStatus: z.string().nullable(),
   depthChartOrder: z.number().int().nullable(),
+  /** Overall rank (lower = better); null = unranked. */
+  rank: z.number().int().nullable(),
   /** NFL team the player faces in the Wild Card round, when known. */
   opponent: z.string().nullable(),
 });

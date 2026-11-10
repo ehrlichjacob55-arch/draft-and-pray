@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { ApiError, type Api } from "../api";
 import type { PositionName, SlotName } from "@dnp/contract";
-import { draftData, meMember, renderRoute } from "../test/utils";
+import { defaultPlayers, draftData, meMember, player, renderRoute } from "../test/utils";
 
 afterEach(() => vi.restoreAllMocks());
 
@@ -230,6 +230,65 @@ describe("players list", () => {
     expect(await list()).toHaveLength(2);
     await user.type(screen.getByLabelText("Search players"), "zzz");
     expect(screen.getByTestId("players-empty")).toHaveTextContent("No players match");
+  });
+
+  const rankedRoom = () => {
+    const by = (id: string) => defaultPlayers().find((p) => p.playerId === id)!;
+    const available = [
+      { ...by("p1"), rank: 40 }, // QB AAA
+      { ...by("p2"), rank: 3 }, // RB BBB
+      { ...by("p3"), rank: 12 }, // WR BBB
+      { ...by("p4"), rank: 1 }, // TE CCC
+      { ...by("p5"), rank: null }, // K CCC (unranked)
+      { ...by("p6"), rank: null }, // DST AAA (unranked)
+      player("p7", "Quentin Backup", "QB", { nflTeam: "DDD", seed: 4, rank: 7 }),
+    ];
+    return draftData({ available });
+  };
+  const names = async () =>
+    within(await screen.findByRole("list", { name: "Available players" }))
+      .getAllByRole("listitem")
+      .map((li) =>
+        within(li)
+          .getByRole("button", { name: /^Draft / })
+          .getAttribute("aria-label"),
+      );
+
+  it("orders by overall rank regardless of position, unranked D/ST then others last, and shows ranks", async () => {
+    room(rankedRoom());
+    await userEvent.setup().click(await screen.findByLabelText("Hide ineligible"));
+    await screen.findByTestId("player-p4");
+    expect(await names()).toEqual([
+      "Draft Tim Tightend",
+      "Draft Rory Runner",
+      "Draft Quentin Backup",
+      "Draft Wes Wideout",
+      "Draft Quinn Quarter",
+      "Draft AAA Defense",
+      "Draft Kai Kicker",
+    ]);
+    expect(screen.getByTestId("rank-p4")).toHaveTextContent("#1");
+    expect(screen.getByTestId("rank-p3")).toHaveTextContent("#12");
+    expect(screen.getByTestId("rank-p5")).toHaveTextContent("—");
+  });
+
+  it("combines position and NFL team filters with search, keeping rank order", async () => {
+    room(rankedRoom());
+    const user = userEvent.setup();
+    await user.click(await screen.findByLabelText("Hide ineligible"));
+    await screen.findByTestId("player-p4");
+    await user.selectOptions(screen.getByLabelText("NFL team"), "BBB");
+    expect(await names()).toEqual(["Draft Rory Runner", "Draft Wes Wideout"]);
+    await user.selectOptions(screen.getByLabelText("Position"), "WR");
+    expect(await names()).toEqual(["Draft Wes Wideout"]);
+    await user.selectOptions(screen.getByLabelText("Position"), "");
+    await user.type(screen.getByLabelText("Search players"), "rory");
+    expect(await names()).toEqual(["Draft Rory Runner"]);
+    await user.selectOptions(screen.getByLabelText("NFL team"), "AAA");
+    expect(screen.getByTestId("players-empty")).toBeInTheDocument();
+    await user.clear(screen.getByLabelText("Search players"));
+    await user.selectOptions(screen.getByLabelText("Position"), "QB");
+    expect(await names()).toEqual(["Draft Quinn Quarter"]);
   });
 
   it("shows seed, injury tag and opponent", async () => {

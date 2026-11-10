@@ -16,7 +16,8 @@
     "team": "WAS",
     "status": "Active",
     "injury_status": null,
-    "depth_chart_order": 1
+    "depth_chart_order": 1,
+    "search_rank": 240
   },
   "3214": {
     "player_id": "3214",
@@ -113,7 +114,8 @@
     "team": "DEN",
     "status": "Active",
     "injury_status": "Out",
-    "depth_chart_order": 1
+    "depth_chart_order": 1,
+    "search_rank": 9999999
   },
   "7611": {
     "player_id": "7611",
@@ -199,7 +201,8 @@
     "team": "DEN",
     "status": "Active",
     "injury_status": null,
-    "depth_chart_order": 1
+    "depth_chart_order": 1,
+    "search_rank": 15
   },
   "11564": {
     "player_id": "11564",
@@ -210,7 +213,8 @@
     "team": "NE",
     "status": "Active",
     "injury_status": null,
-    "depth_chart_order": 1
+    "depth_chart_order": 1,
+    "search_rank": 22
   },
   "11566": {
     "player_id": "11566",

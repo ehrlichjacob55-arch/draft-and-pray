@@ -1,5 +1,5 @@
 import type { AvailablePlayer, DraftSnapshot, PositionName } from "@dnp/contract";
-import type { Slot } from "@dnp/domain";
+import { compareByRank, type Slot } from "@dnp/domain";
 import { useMemo, useState } from "react";
 import { btnPrimary, btnSecondary, inputCls } from "../components/ui";
 import { POSITION_LIST, type Eligibility } from "./model";
@@ -41,10 +41,22 @@ export function PlayersPanel({
   const [hideIneligible, setHideIneligible] = useState(true);
   const [limit, setLimit] = useState(PAGE);
 
+  // The playoff field: teams of available players plus teams of already-drafted players.
   const nflTeams = useMemo(
-    () => [...new Set(snapshot.available.map((p) => p.nflTeam))].sort(),
-    [snapshot.available],
+    () =>
+      [
+        ...new Set([
+          ...snapshot.available.map((p) => p.nflTeam),
+          ...snapshot.picks.map((k) => k.player.nflTeam),
+        ]),
+      ].sort(),
+    [snapshot.available, snapshot.picks],
   );
+  const seeds = useMemo(() => {
+    const m = new Map<string, number>();
+    for (const p of snapshot.available) if (p.seed !== null) m.set(p.nflTeam, p.seed);
+    return m;
+  }, [snapshot.available]);
   const queued = useMemo(() => new Set(queueIds), [queueIds]);
 
   const rows = useMemo(() => {
@@ -57,13 +69,8 @@ export function PlayersPanel({
           (!nflTeam || p.nflTeam === nflTeam) &&
           (!hideIneligible || !eligibility || eligibility.eligible(p)),
       )
-      .sort(
-        (a, b) =>
-          (a.seed ?? 99) - (b.seed ?? 99) ||
-          POSITION_LIST.indexOf(a.position) - POSITION_LIST.indexOf(b.position) ||
-          a.name.localeCompare(b.name, "en"),
-      );
-  }, [snapshot.available, search, position, nflTeam, hideIneligible, eligibility]);
+      .sort((a, b) => compareByRank(a, b, seeds));
+  }, [snapshot.available, seeds, search, position, nflTeam, hideIneligible, eligibility]);
 
   return (
     <PanelCard title={title} className={className} testId="players">
@@ -152,6 +159,13 @@ export function PlayersPanel({
                 data-testid={`player-${p.playerId}`}
                 className={`flex items-center gap-2 py-2 ${eligibility && !eligible ? "opacity-60" : ""}`}
               >
+                <span
+                  className="w-10 shrink-0 text-right text-xs tabular-nums text-muted"
+                  data-testid={`rank-${p.playerId}`}
+                  title="Overall rank"
+                >
+                  {p.rank !== null ? `#${p.rank}` : "—"}
+                </span>
                 <PositionBadge position={p.position} />
                 <div className="min-w-0 flex-1">
                   <p className="truncate font-medium">{p.name}</p>

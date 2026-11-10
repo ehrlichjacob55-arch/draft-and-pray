@@ -72,6 +72,59 @@ describe("parseSleeperPlayers", () => {
     expect(players.some((p) => (p.position as string) === "DEF")).toBe(false);
   });
 
+  it("maps search_rank to rank; huge, missing or invalid values become null", () => {
+    const players = parseSleeperPlayers(sleeper(), field);
+    const rank = (name: string) => players.find((p) => p.name === name)?.rank;
+    expect(rank("Bo Nix")).toBe(15);
+    expect(rank("Drake Maye")).toBe(22);
+    expect(rank("Stefon Diggs")).toBe(240);
+    expect(rank("Jaylen Waddle")).toBeNull(); // 9_999_999
+    expect(rank("Wil Lutz")).toBeNull(); // missing
+    expect(players.every((p) => p.rank == null || p.rank > 0)).toBe(true);
+    const odd = parseSleeperPlayers(
+      {
+        a: {
+          player_id: "1",
+          full_name: "A",
+          position: "QB",
+          team: "NE",
+          status: "Active",
+          depth_chart_order: 1,
+          search_rank: "5",
+        },
+        b: {
+          player_id: "2",
+          full_name: "B",
+          position: "QB",
+          team: "NE",
+          status: "Active",
+          depth_chart_order: 1,
+          search_rank: 0,
+        },
+        c: {
+          player_id: "3",
+          full_name: "C",
+          position: "QB",
+          team: "NE",
+          status: "Active",
+          depth_chart_order: 1,
+          search_rank: 12_000_000,
+        },
+        d: {
+          player_id: "4",
+          full_name: "D",
+          position: "QB",
+          team: "NE",
+          status: "Active",
+          depth_chart_order: 1,
+          search_rank: 7,
+        },
+      },
+      [field[0]!],
+    );
+    expect(odd.map((p) => p.rank)).toEqual([null, null, null, 7]);
+  });
+
   describe("depth-chart filter", () => {
     const pit = { abbr: "PIT", name: "Pittsburgh Steelers", conference: "AFC" as const, seed: 4 };
     const withPit = [...field, pit];

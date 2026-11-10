@@ -1,4 +1,5 @@
 import type { PositionName } from "@dnp/contract";
+import { compareByRank } from "@dnp/domain";
 import { useMemo, useState, type FormEvent } from "react";
 import { useApi } from "../../api";
 import { btnPrimary, ErrorNote, ErrorWithRetry, inputCls, Loading } from "../../components/ui";
@@ -30,12 +31,15 @@ export function PoolReview({
   const rows = useMemo(() => {
     if (query.status !== "ready") return [];
     const q = search.trim().toLowerCase();
-    return query.data.players.filter(
-      (p) =>
-        (!q || p.name.toLowerCase().includes(q)) &&
-        (!position || p.position === position) &&
-        (!excludedOnly || !p.inPool),
-    );
+    const seeds = new Map(query.data.teams.map((t) => [t.abbr, t.seed]));
+    return query.data.players
+      .filter(
+        (p) =>
+          (!q || p.name.toLowerCase().includes(q)) &&
+          (!position || p.position === position) &&
+          (!excludedOnly || !p.inPool),
+      )
+      .sort((a, b) => compareByRank(a, b, seeds));
   }, [query, search, position, excludedOnly]);
 
   if (query.status === "loading") return <Loading label="Loading the player pool…" />;
@@ -89,6 +93,9 @@ export function PoolReview({
           <ul className="max-h-80 divide-y divide-border overflow-y-auto" aria-label="Pool players">
             {rows.slice(0, SHOW).map((p) => (
               <li key={p.playerId} className="flex items-center gap-2 py-1.5">
+                <span className="w-10 shrink-0 text-right text-xs tabular-nums text-muted">
+                  {p.rank !== null ? `#${p.rank}` : "—"}
+                </span>
                 <PositionBadge position={p.position} />
                 <span className="min-w-0 flex-1 truncate">
                   {p.name} <span className="text-xs text-muted">{p.nflTeam}</span>

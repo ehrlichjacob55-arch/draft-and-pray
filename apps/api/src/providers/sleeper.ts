@@ -20,7 +20,13 @@ interface SleeperPlayer {
   status?: unknown;
   injury_status?: unknown;
   depth_chart_order?: unknown;
+  search_rank?: unknown;
 }
+
+/** Sleeper uses 9,999,999 (or nothing) for "unranked". */
+const UNRANKED = 9_999_999;
+const rankOf = (v: unknown): number | null =>
+  typeof v === "number" && Number.isInteger(v) && v > 0 && v < UNRANKED ? v : null;
 
 const str = (v: unknown): string | undefined =>
   typeof v === "string" && v.trim() ? v.trim() : undefined;
@@ -73,6 +79,7 @@ export function parseSleeperPlayersWithWarnings(
       nflTeam,
       injuryStatus: injury && injury !== "NA" ? injury : null,
       depthChartOrder: depth,
+      rank: rankOf(raw.search_rank),
     });
   }
   const warnings: string[] = [];

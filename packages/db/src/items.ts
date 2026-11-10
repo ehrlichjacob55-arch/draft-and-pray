@@ -172,7 +172,8 @@ export const playerItem = z.object({
   inPool: z.boolean(),
   draftedByTeamId: z.string().optional(),
   draftedAtPick: z.number().int().optional(),
-  rank: z.number().int().optional(),
+  /** Provider overall rank (Sleeper search_rank; lower = better). Null/absent = unranked. */
+  rank: z.number().int().nullable().optional(),
   /** Sleeper depth-chart order; display/sorting only. */
   depthChartOrder: z.number().int().nullable().optional(),
   /** Set when the commissioner edits `inPool` or adds the player: imports then leave `inPool` alone. */

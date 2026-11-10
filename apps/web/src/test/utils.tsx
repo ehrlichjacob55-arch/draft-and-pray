@@ -165,6 +165,7 @@ export const player = (
   seed: 1,
   injuryStatus: null,
   depthChartOrder: 1,
+  rank: null,
   opponent: null,
   ...over,
 });

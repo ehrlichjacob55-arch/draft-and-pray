@@ -22,6 +22,7 @@ const poolPlayer = (id: string, name: string, over: Partial<PoolPlayer> = {}): P
   seed: 1,
   injuryStatus: null,
   depthChartOrder: 1,
+  rank: null,
   inPool: true,
   manualOverride: false,
   draftedByTeamId: null,
@@ -100,6 +101,34 @@ describe("commissioner: before the draft", () => {
     await openControls(user);
     await user.click(await screen.findByRole("button", { name: "Import playoff field" }));
     expect(await screen.findByRole("alert")).toHaveTextContent("data source could not be reached");
+  });
+
+  it("orders the pool review by rank across positions, unranked D/ST then others last", async () => {
+    const listPlayers = async (): Promise<ListPlayersResponse> => ({
+      ...pool(),
+      players: [
+        poolPlayer("a", "Zed Kicker", { position: "K", rank: null }),
+        poolPlayer("b", "Alpha Back", { position: "RB", rank: 20 }),
+        poolPlayer("c", "BBB Defense", { position: "DST", nflTeam: "BBB", rank: null }),
+        poolPlayer("d", "Omega Quarter", { position: "QB", rank: 2 }),
+        poolPlayer("e", "AAA Defense", { position: "DST", nflTeam: "AAA", rank: null }),
+      ],
+    });
+    room(scheduled(), { listPlayers });
+    const user = userEvent.setup();
+    await openControls(user);
+    const review = await screen.findByTestId("pool-review");
+    await within(review).findByTestId("pool-count");
+    const rows = within(review).getAllByRole("listitem");
+    expect(rows.map((r) => r.textContent)).toEqual([
+      expect.stringContaining("#2"),
+      expect.stringContaining("#20"),
+      expect.stringContaining("AAA Defense"),
+      expect.stringContaining("BBB Defense"),
+      expect.stringContaining("Zed Kicker"),
+    ]);
+    expect(rows[0]).toHaveTextContent("Omega Quarter");
+    expect(rows[4]).toHaveTextContent("—");
   });
 
   it("reviews the pool: search, include/exclude, and add a player", async () => {
@@ -380,21 +409,29 @@ describe("League home Draft card", () => {
       },
     });
 
-  it("shows lobby / live / complete status and links to the draft room", async () => {
-    const { unmount } = home(draftData({ status: "scheduled" }));
-    expect(await screen.findByTestId("draft-card-status")).toHaveTextContent("Lobby");
+  it("shows the lobby status and links to the draft room", async () => {
+    home(draftData({ status: "scheduled" }));
+    // The status element exists (as "Loading…") before the snapshot arrives, so
+    // the text itself must be awaited, not just the element.
+    await waitFor(() => expect(screen.getByTestId("draft-card-status")).toHaveTextContent("Lobby"));
     expect(
       within(screen.getByTestId("draft-card")).getByRole("link", { name: "Draft room" }),
     ).toHaveAttribute("href", "/draft");
-    unmount();
+  });
 
-    const live = home(draftData({ currentPick: 5, onClockTeamId: "t5" }));
-    expect(await screen.findByTestId("draft-card-status")).toHaveTextContent(
-      "Pick 5 — Red Zone on the clock",
+  it("shows the live status with the pick on the clock", async () => {
+    home(draftData({ currentPick: 5, onClockTeamId: "t5" }));
+    await waitFor(() =>
+      expect(screen.getByTestId("draft-card-status")).toHaveTextContent(
+        "Pick 5 — Red Zone on the clock",
+      ),
     );
-    live.unmount();
+  });
 
+  it("shows the complete status", async () => {
     home(draftData({ status: "complete", currentPick: 91 }));
-    expect(await screen.findByTestId("draft-card-status")).toHaveTextContent("Draft complete");
+    await waitFor(() =>
+      expect(screen.getByTestId("draft-card-status")).toHaveTextContent("Draft complete"),
+    );
   });
 });

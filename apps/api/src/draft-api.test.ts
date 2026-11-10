@@ -616,6 +616,49 @@ describe("queue privacy and snapshot PII", () => {
 });
 
 describe("player pool", () => {
+  it("re-import refreshes rank (provider data) and generated D/STs stay unranked", async () => {
+    const c = await setupLeague({ pool: false });
+    const pool = syntheticPool();
+    const ranked = (rank: (i: number) => number | null) => ({
+      source: "test",
+      load: async () => ({
+        teams: pool.teams,
+        players: pool.players.map((p, i) => ({ ...p, rank: rank(i) })),
+      }),
+    });
+    const imp = async (src: ReturnType<typeof ranked>) => {
+      const res = await createApp({
+        config: loadConfig({}),
+        db,
+        poolSource: src,
+        now: () => new Date(nowMs),
+      }).request(`/api/seasons/${c.seasonId}/pool/import`, {
+        method: "POST",
+        headers: { "x-dev-user-email": c.commish, "content-type": "application/json" },
+        body: JSON.stringify({ seasonYear: 2025 }),
+      });
+      expect(res.status).toBe(200);
+    };
+    const ranks = async () => {
+      const list = listPlayersResponse.parse(
+        (await c.call(c.commish, "GET", `/seasons/${c.seasonId}/players`)).json,
+      );
+      return new Map(list.players.map((p) => [p.name, p]));
+    };
+    await imp(ranked((i) => i + 1));
+    const before = await ranks();
+    const name0 = pool.players[0]!.name;
+    expect(before.get(name0)?.rank).toBe(1);
+    expect(before.get(pool.players[5]!.name)?.rank).toBe(6);
+    await imp(ranked((i) => (i === 0 ? null : 1000 + i)));
+    const after = await ranks();
+    expect(after.get(name0)?.rank).toBeNull();
+    expect(after.get(pool.players[5]!.name)?.rank).toBe(1005);
+    const dsts = [...after.values()].filter((p) => p.position === "DST");
+    expect(dsts).toHaveLength(14);
+    expect(dsts.every((p) => p.rank === null)).toBe(true);
+  });
+
   it("imports idempotently, preserves overrides, marks missing players out, and locks during the draft", async () => {
     const c = await setupLeague({ pool: false });
     const pool = syntheticPool();

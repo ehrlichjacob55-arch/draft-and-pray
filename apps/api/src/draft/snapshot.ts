@@ -57,6 +57,7 @@ export function toPoolPlayer(p: PlayerItem, seeds: Map<string, number>): PoolPla
     seed: seeds.get(p.nflTeam) ?? null,
     injuryStatus: p.injuryStatus,
     depthChartOrder: p.depthChartOrder ?? null,
+    rank: p.rank ?? null,
     inPool: p.inPool,
     manualOverride: p.manualOverride === true,
     draftedByTeamId: p.draftedByTeamId ?? null,
@@ -90,6 +91,7 @@ export function buildSnapshot(input: SnapshotInput): DraftSnapshot {
       seed: seeds.get(p.nflTeam) ?? null,
       injuryStatus: p.injuryStatus,
       depthChartOrder: p.depthChartOrder ?? null,
+      rank: p.rank ?? null,
       opponent: opponents.get(p.nflTeam) ?? null,
     }))
     .sort(

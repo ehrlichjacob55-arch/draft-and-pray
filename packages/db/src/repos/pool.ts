@@ -33,6 +33,8 @@ export interface PoolPlayerInput {
   nflTeam: string;
   injuryStatus: string | null;
   depthChartOrder?: number | null;
+  /** Provider overall rank (lower = better); null/absent = unranked. */
+  rank?: number | null;
 }
 
 export interface ImportPoolInput {
@@ -131,6 +133,7 @@ export async function importPool(db: Dynamo, input: ImportPoolInput): Promise<Im
     nflTeam: t.abbr,
     injuryStatus: null,
     depthChartOrder: null,
+    rank: null,
   }));
   const incoming = [...input.players, ...dst];
 
@@ -167,6 +170,7 @@ export async function importPool(db: Dynamo, input: ImportPoolInput): Promise<Im
         injuryStatus: p.injuryStatus,
         inPool: true,
         depthChartOrder: p.depthChartOrder ?? null,
+        rank: p.rank ?? null,
       });
     }
   }
@@ -207,14 +211,15 @@ export async function importPool(db: Dynamo, input: ImportPoolInput): Promise<Im
         TableName,
         Key: playerKey(seasonId, item.playerId),
         UpdateExpression:
-          "SET #n = :name, #p = :pos, nflTeam = :team, injuryStatus = :inj, depthChartOrder = :dco, providerPlayerId = :pp, inPool = :inPool",
-        ExpressionAttributeNames: { "#n": "name", "#p": "position" },
+          "SET #n = :name, #p = :pos, nflTeam = :team, injuryStatus = :inj, depthChartOrder = :dco, #rk = :rank, providerPlayerId = :pp, inPool = :inPool",
+        ExpressionAttributeNames: { "#n": "name", "#p": "position", "#rk": "rank" },
         ExpressionAttributeValues: {
           ":name": next.name,
           ":pos": next.position,
           ":team": next.nflTeam,
           ":inj": next.injuryStatus,
           ":dco": next.depthChartOrder ?? null,
+          ":rank": next.rank ?? null,
           ":pp": next.providerPlayerId,
           ":inPool": inPool,
         },
@@ -366,6 +371,7 @@ export async function addManualPlayer(
     inPool: true,
     manualOverride: true,
     depthChartOrder: null,
+    rank: null,
   };
   try {
     await transactWrite(
