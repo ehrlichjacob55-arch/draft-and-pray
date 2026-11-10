@@ -27,7 +27,8 @@ import {
 import { defaultPoolKind, setupDraftLeague, type PoolKind } from "../lib/draft-league";
 import { importCsvPool, importRealPool, importSyntheticPool, resolveSeasonId } from "../lib/pool";
 import { resetTestLeague, seedTestLeague } from "../lib/test-league";
-import { bootstrapLeague } from "@dnp/db";
+import { bootstrapLeague, seedBuiltinRuleset } from "@dnp/db";
+import { BUILTIN_RULESETS, type BuiltinRulesetName } from "@dnp/domain";
 
 export interface Deps {
   resolveConfig: (env: ReturnType<typeof parseEnv>, flags: EnvFlags) => EnvConfig;
@@ -46,6 +47,7 @@ const USAGE = `Usage: pnpm admin <command> [flags]
   import-pool --env <env> --season-year <nfl year> (--season-id <id> | --test-league | --email <commissioner> --league "<name>" [--year 2026])
       Imports the playoff field + players from ESPN and Sleeper. Emergency fallback: --from-csv --teams t.csv --players p.csv
   seed-pool --env <local|dev|test> --season-year 2026 (same season selection)   (synthetic fictional pool; refuses prod)
+  seed-ruleset --env <local|dev|test> [--ruleset league|placeholder] (same season selection)   (default league; seeds v1 unlocked, skips if v1 exists; refuses prod)
   draft-league setup --env <local|dev|test> [--pool real|synthetic] [--season-year 2025]
       9 joined teams + pool + draft order. Test League by default; locally add --email x@local.test --league "<new name>" for a scratch league
 Common overrides: --table, --user-pool-id, --client-id, --base-url, --region`;
@@ -64,6 +66,8 @@ export async function runAdmin(argv: string[], deps: Deps = defaultDeps): Promis
       return importPoolCommand(flags, deps);
     case "seed-pool":
       return seedPoolCommand(flags, deps);
+    case "seed-ruleset":
+      return seedRulesetCommand(flags, deps);
     case "draft-league":
       return draftLeague(sub, flags, deps);
     default:
@@ -217,6 +221,20 @@ async function seedPoolCommand(flags: ReturnType<typeof parseCli>["flags"], deps
   const counts = await importSyntheticPool(db, seasonId, year);
   deps.log(
     `Seeded synthetic pool into ${seasonId} (${env}): ${counts.teams} teams, ${counts.players} players`,
+  );
+}
+
+async function seedRulesetCommand(flags: ReturnType<typeof parseCli>["flags"], deps: Deps) {
+  const env = assertTestEnv(flags.env, true); // refuses prod before anything else
+  const name = (flags.ruleset ?? "league") as BuiltinRulesetName;
+  if (!Object.hasOwn(BUILTIN_RULESETS, name))
+    throw new Error(`--ruleset must be one of: ${Object.keys(BUILTIN_RULESETS).join(", ")}`);
+  const { db, seasonId } = await prepare(flags, deps, env);
+  const r = await seedBuiltinRuleset(db, { seasonId, name });
+  deps.log(
+    r.created
+      ? `Seeded ruleset v1 (${name}.v1.json) into ${seasonId} (${env})`
+      : `Ruleset v1 already exists in ${seasonId} (${env}); nothing changed`,
   );
 }
 

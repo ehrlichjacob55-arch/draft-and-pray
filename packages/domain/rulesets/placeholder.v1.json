@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "rounding": 2,
+  "name": "Placeholder (doc 04 section 2) - not the league's rules",
+  "rules": [
+    { "stat": "pass_yds", "points": 1, "per": 25 },
+    { "stat": "pass_td", "points": 4 },
+    { "stat": "pass_int", "points": -2 },
+    { "stat": "rush_yds", "points": 1, "per": 10 },
+    { "stat": "rush_td", "points": 6 },
+    { "stat": "rec", "points": 0 },
+    { "stat": "rec_yds", "points": 1, "per": 10 },
+    { "stat": "rec_td", "points": 6 },
+    { "stat": "fum_lost", "points": -2 },
+    { "stat": "pass_2pt", "points": 2 },
+    { "stat": "rush_2pt", "points": 2 },
+    { "stat": "rec_2pt", "points": 2 },
+    { "stat": "rush_yds", "gte": 100, "points": 3, "type": "bonus" },
+    {
+      "stat": "fg_made",
+      "type": "distance_tiers",
+      "tiers": [
+        { "min": 0, "max": 39, "points": 3 },
+        { "min": 40, "max": 49, "points": 4 },
+        { "min": 50, "points": 5 }
+      ]
+    },
+    { "stat": "xp_made", "points": 1, "positions": ["K"] },
+    {
+      "stat": "def_pts_allowed",
+      "type": "tiers",
+      "positions": ["DST"],
+      "tiers": [
+        { "min": 0, "max": 0, "points": 10 },
+        { "min": 1, "max": 6, "points": 7 },
+        { "min": 7, "max": 13, "points": 4 },
+        { "min": 14, "max": 20, "points": 1 },
+        { "min": 21, "max": 27, "points": 0 },
+        { "min": 28, "points": -4 }
+      ]
+    },
+    { "stat": "def_sack", "points": 1, "positions": ["DST"] },
+    { "stat": "def_int", "points": 2, "positions": ["DST"] },
+    { "stat": "def_td", "points": 6, "positions": ["DST"] }
+  ]
+}

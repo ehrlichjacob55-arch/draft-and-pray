@@ -4,7 +4,7 @@ Decisions the league still needs to make. Each one notes what in the design depe
 
 | # | Question | Affects | Default assumed |
 |---|----------|---------|-----------------|
-| Q1 | **Scoring rules** — full list of stat categories, point values, bonuses, DST and K rules. | 04 scoring config | Placeholder ruleset; engine is fully configurable |
+| Q1 | **Scoring rules** — full list of stat categories, point values, bonuses, DST and K rules. | 04 scoring config | **Values received 2026-11-10** (`rulesets/league.v1.json`); ambiguities listed in 04 §2 (assumed, pending confirmation: points allowed = opponent final score; non-QB passing yards score 0). Engine supports every rule type |
 | Q2 | **Roster exceptions** — when may a team add a player after the draft? (e.g. season-ending injury before playing a snap, player traded/released, any other cases) Can the replacement come from any playoff team? Does it apply only before Wild Card kickoff? | Roster transactions, commissioner console | Commissioner-only manual swap with a reason; no self-service |
 | Q3 | ✅ **Decided 2026-11-09: RB/WR/TE.** **FLEX eligibility** — RB/WR/TE only, or can QB go in FLEX (superflex)? | Draft validation | RB/WR/TE |
 | Q4 | **Tiebreakers** for 1st/2nd/3rd — e.g. most Super Bowl round points, most players alive at the end, highest single-player score, or split the prize? | Standings | Shared rank, flagged for commissioner |
@@ -16,5 +16,5 @@ Decisions the league still needs to make. Each one notes what in the design depe
 | Q10 | **Stat correction cutoff** — how long after a round should the commissioner wait before finalizing (NFL stat corrections typically land within a few days)? | Finalization | Finalize manually, recommended before the next round kicks off |
 | Q11 | ✅ **Decided 2026-11-09: yes, via doc 13 self-add.** **Is the commissioner also a manager?** If so, who approves the commissioner's own exceptions/overrides? | Permissions | Commissioner may manage a team; all actions visible in audit log |
 | Q12 | **Spectator link** — wanted? | Auth | Optional, off by default |
-| Q13 | **Two-point conversions, return TDs, fumble-recovery TDs** — scored for the player, DST, both? | Scoring config | Part of Q1 |
+| Q13 | **Two-point conversions, return TDs, fumble-recovery TDs** — scored for the player, DST, both? | Scoring config | Answered via Q1: 2-pt +2 for passer and receiver; all TDs 6 (incl. return, fumble-recovery, DST). Assumed, pending confirmation: DST points allowed = opponent final score |
 | Q14 | ✅ **Decided 2026-11-10: the draft ends automatically after pick 90, and the commissioner can redraft.** Can a finished (or started) draft be run again, and what is kept? | Draft, commissioner | Yes: a commissioner-only "Redraft" clears all picks and returns to the lobby; order, teams, queues and auto-draft toggles stay (doc 14 §4a, doc 10 §4.8) |

@@ -28,7 +28,7 @@ Decided 2026-11-09: the database is **DynamoDB**, so everything stays in AWS. Th
 | Entity | sk | Key attributes |
 |---|---|---|
 | Season meta | `META` | leagueId, year, status `setup\|drafting\|in_progress\|complete`, activeRulesetVersion |
-| Scoring ruleset | `RULESET#v<NNN>` | version, rules (JSON map), locked, createdAt |
+| Scoring ruleset | `RULESET#v<NNN>` | version, rules (ruleset JSON, validated by `@dnp/domain`), locked, createdAt, createdBy, note?, lockedAt?/lockedBy?, updatedAt? |
 | Fantasy team | `TEAM#<teamId>` | name, managerUserId, draftPosition |
 | Draft state | `DRAFT` | status `scheduled\|lobby\|in_progress\|paused\|complete\|resetting`, pickSeconds, currentPick, currentPickDeadline, startedAt, updatedAt |
 | Draft pick | `PICK#<NNN>` | overallPick, round, teamId, playerId, slot, madeBy `manager\|autopick\|commissioner`, madeByUserId, madeAt |
@@ -40,7 +40,7 @@ Decided 2026-11-09: the database is **DynamoDB**, so everything stays in AWS. Th
 | NFL game | `GAME#<gameId>` | round, providerGameId, home, away, kickoff, status, homeScore, awayScore, winner? |
 | Raw stat line | `STATS#<gameId>#<playerId>` | raw (provider fields), canonical (map), fetchedAt, providerHash |
 | Stat override | `OVERRIDE#<gameId>#<playerId>#<statKey>` | value, reason, byUserId, at |
-| Player-game points | `POINTS#<gameId>#<playerId>` | round, points, breakdown, rulesetVersion, computedAt |
+| Player-game points | `POINTS#<gameId>#<playerId>` | round, points, breakdown (`[{ruleIndex, stat, label?, value, points}]`), overridden? (stat keys), rulesetVersion, computedAt |
 | Team round score | `TEAMSCORE#<n>#<teamId>` | points, provisional, computedAt |
 | Roster transaction | `TXN#<ulid>` | teamId, slot, playerOutId, playerInId, reason, effectiveRound, byUserId |
 | Audit event | `AUDIT#<ulid>` | actorUserId, action, details, at |

@@ -23,6 +23,7 @@ export function parseCli(argv: string[]) {
       teams: { type: "string" },
       players: { type: "string" },
       pool: { type: "string" },
+      ruleset: { type: "string" },
     },
   });
   return { flags: values, positionals };
