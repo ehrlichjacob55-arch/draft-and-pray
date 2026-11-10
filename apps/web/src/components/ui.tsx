@@ -4,6 +4,8 @@ export const btnPrimary =
   "inline-flex min-h-10 items-center justify-center rounded bg-accent px-4 py-2 text-sm font-medium text-accent-fg disabled:opacity-50";
 export const btnSecondary =
   "inline-flex min-h-10 items-center justify-center rounded border border-border bg-surface px-3 py-2 text-sm font-medium text-text disabled:opacity-50";
+export const btnDanger =
+  "inline-flex min-h-10 items-center justify-center rounded border border-error bg-error px-4 py-2 text-sm font-medium text-white disabled:opacity-50";
 export const inputCls =
   "w-full rounded border border-border bg-surface px-3 py-2 text-base text-text";
 

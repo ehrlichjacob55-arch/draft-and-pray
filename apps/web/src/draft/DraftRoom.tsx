@@ -1,5 +1,6 @@
 import type { AvailablePlayer, DraftSnapshot } from "@dnp/contract";
 import { useState } from "react";
+import { Link } from "react-router";
 import { ApiError, useApi } from "../api";
 import { Card, ErrorNote, ErrorWithRetry, Loading } from "../components/ui";
 import { friendlyError } from "../lib/messages";
@@ -9,7 +10,7 @@ import { LiveControls } from "./admin/LiveControls";
 import { Banner } from "./Banner";
 import { BoardPanel } from "./BoardPanel";
 import { Lobby } from "./Lobby";
-import { deriveView, eligibilityFor, isLive, isPreDraft } from "./model";
+import { deriveView, eligibilityFor, isLive, isPreDraft, isResetting } from "./model";
 import { PlayerDetail } from "./PlayerDetail";
 import { PlayersPanel } from "./PlayersPanel";
 import { QueuePanel } from "./QueuePanel";
@@ -244,6 +245,28 @@ function DraftRoomView({
           <p className="text-sm text-muted">
             All {snapshot.totalPicks} picks are in. Final rosters and the board are below.
           </p>
+          {isCommissioner && (
+            <Link
+              to="/commissioner"
+              className="mt-2 inline-block text-sm text-accent underline"
+              data-testid="draft-again"
+            >
+              Draft again
+            </Link>
+          )}
+        </Card>
+      ) : isResetting(snapshot) ? (
+        <Card data-testid="draft-resetting">
+          <h3 className="text-lg font-semibold">Resetting the draft</h3>
+          <p className="text-sm text-muted" role="status">
+            The commissioner is clearing the picks to run the draft again. This page updates when
+            the draft is back in the lobby.
+          </p>
+          {isCommissioner && (
+            <Link to="/commissioner" className="mt-2 inline-block text-sm text-accent underline">
+              Commissioner tab (finish the reset)
+            </Link>
+          )}
         </Card>
       ) : (
         <Banner
@@ -269,7 +292,7 @@ function DraftRoomView({
 
       {pickError && <ErrorNote>{pickError}</ErrorNote>}
 
-      {isCommissioner && (
+      {isCommissioner && !isResetting(snapshot) && (
         <details
           className="rounded border border-border bg-surface p-3"
           open={isPreDraft(snapshot)}
@@ -362,6 +385,7 @@ function DraftRoomView({
           statsSeason={snapshot.statsSeason}
           inQueue={queueIds.includes(detailPlayer.playerId)}
           canQueue={!!snapshot.myTeamId}
+          showDraft={!complete}
           canDraft={
             canPick &&
             !picking &&

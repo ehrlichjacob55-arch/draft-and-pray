@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
 import {
   ERROR_CODES,
+  draftStatus,
+  resetDraftRequest,
   MAX_TEAMS,
   addManagerRequest,
   apiError,
@@ -106,5 +108,16 @@ describe("error shape", () => {
     for (const code of ERROR_CODES)
       expect(apiError.safeParse({ error: { code, message: "m" } }).success).toBe(true);
     expect(apiError.safeParse({ error: { code: "bogus", message: "m" } }).success).toBe(false);
+  });
+});
+
+describe("redraft contract", () => {
+  it("requires the exact confirmation word", () => {
+    expect(resetDraftRequest.safeParse({ confirm: "REDRAFT" }).success).toBe(true);
+    for (const body of [{}, { confirm: "redraft" }, { confirm: "" }, null])
+      expect(resetDraftRequest.safeParse(body).success).toBe(false);
+  });
+  it("knows the transient resetting status", () => {
+    expect(draftStatus.safeParse("resetting").success).toBe(true);
   });
 });

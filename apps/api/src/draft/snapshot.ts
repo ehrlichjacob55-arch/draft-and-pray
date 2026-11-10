@@ -118,11 +118,10 @@ export function buildSnapshot(input: SnapshotInput): DraftSnapshot {
     if (roster) roster[p.slot] = p.playerId;
   }
 
-  const complete = draft.status === "complete";
   const hasOrder = draft.order.length === 9;
-  const started = draft.status !== "scheduled" && draft.status !== "lobby";
+  const live = draft.status === "in_progress" || draft.status === "paused";
   const onClockTeamId =
-    started && !complete && hasOrder && draft.currentPick <= TOTAL_PICKS
+    live && hasOrder && draft.currentPick <= TOTAL_PICKS
       ? teamOnClock(draft.currentPick, draft.order)
       : null;
 
@@ -167,7 +166,7 @@ export function buildSnapshot(input: SnapshotInput): DraftSnapshot {
       joined: t.managerUserId !== null,
     })),
     onClockTeamId,
-    clock: started && !complete ? clock : null,
+    clock: live ? clock : null,
     serverNow: now.toISOString(),
     picks: sortedPicks.map((p) => {
       const pl = playerById.get(p.playerId);

@@ -96,7 +96,15 @@ export const teamOwnerItem = z.object({
   userId: z.string(),
   teamId: z.string(),
 });
-export const draftStatus = z.enum(["scheduled", "lobby", "in_progress", "paused", "complete"]);
+export const draftStatus = z.enum([
+  "scheduled",
+  "lobby",
+  "in_progress",
+  "paused",
+  "complete",
+  /** Redraft lock (docs/design/10 §4.8): every pick/undo/clock/start/order write is rejected. */
+  "resetting",
+]);
 export const draftItem = z.object({
   ...base,
   type: z.literal("Draft"),
@@ -115,6 +123,8 @@ export const draftItem = z.object({
   clockStartedAt: isoDate.optional(),
   clockSeconds: z.number().int().optional(),
   clockExpiresAt: isoDate.optional(),
+  /** Set only while `resetting`: picks that existed when the redraft began (for the audit event). */
+  resetPickCount: z.number().int().optional(),
   /** Team ids with auto-draft on. Stored as a DynamoDB string set (atomic ADD/DELETE). */
   autoDraft: z
     .union([z.set(z.string()), z.array(z.string())])

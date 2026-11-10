@@ -327,10 +327,11 @@ export async function setAutoDraft(
           UpdateExpression: input.enabled
             ? "SET updatedAt = :now ADD autoDraft :team, version :one"
             : "SET updatedAt = :now DELETE autoDraft :team ADD version :one",
-          ConditionExpression: "#status <> :complete",
+          ConditionExpression: "NOT (#status IN (:complete, :resetting))",
           ExpressionAttributeNames: statusNames,
           ExpressionAttributeValues: {
             ":complete": "complete",
+            ":resetting": "resetting",
             ":now": input.now,
             ":team": new Set([input.teamId]),
             ":one": 1,
@@ -347,7 +348,7 @@ export async function setAutoDraft(
       ),
     ],
     ["draft_state", "audit"],
-    "The draft is complete",
+    "The draft is complete or being reset",
   );
 }
 

@@ -5,6 +5,7 @@ import { friendlyError } from "../../lib/messages";
 import { useQuery } from "../../useQuery";
 import { isPreDraft } from "../model";
 import { DraftSetup } from "./DraftSetup";
+import { RedraftControl } from "./RedraftControl";
 
 /** "Draft setup" section of the Commissioner page. */
 export function DraftSetupSection({ seasonId }: { seasonId: string }) {
@@ -22,13 +23,16 @@ export function DraftSetupSection({ seasonId }: { seasonId: string }) {
           (isPreDraft(query.data) ? (
             <DraftSetup seasonId={seasonId} snapshot={query.data} onChanged={query.reload} />
           ) : (
-            <p className="text-sm">
-              The draft has started. Use the controls in the{" "}
-              <Link to="/draft" className="text-accent underline">
-                draft room
-              </Link>
-              .
-            </p>
+            <div className="space-y-4">
+              <p className="text-sm">
+                The draft has started. Use the controls in the{" "}
+                <Link to="/draft" className="text-accent underline">
+                  draft room
+                </Link>
+                .
+              </p>
+              <RedraftControl seasonId={seasonId} snapshot={query.data} onDone={query.reload} />
+            </div>
           ))}
       </div>
     </Card>

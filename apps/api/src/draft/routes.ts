@@ -6,6 +6,7 @@ import {
   importPoolRequest,
   makePickRequest,
   queueRequest,
+  resetDraftRequest,
   setOrderRequest,
   startClockRequest,
   updatePlayerRequest,
@@ -105,6 +106,12 @@ export function registerDraftRoutes(app: Hono<AppEnv>, deps: DraftRouteDeps) {
   app.post("/seasons/:seasonId/draft/undo", async (c) => {
     const { season, actor } = await commissioner(c.req.param("seasonId"), c.get("user"));
     return c.json(await service.undo(season, actor));
+  });
+
+  app.post("/seasons/:seasonId/draft/reset", async (c) => {
+    const { season, actor } = await commissioner(c.req.param("seasonId"), c.get("user"));
+    await parseBody(c, resetDraftRequest);
+    return c.json(await service.reset(season, actor));
   });
 
   // ---- Picks ----

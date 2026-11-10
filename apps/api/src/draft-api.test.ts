@@ -13,7 +13,9 @@ import {
   importPool,
   listTeams,
   localSub,
+  lockDraftForReset,
   queryPrefix,
+  requireDraft,
   seasonMetaKey,
   seasonPk,
   seasonPointerKey,
@@ -990,5 +992,310 @@ describe("realtime ticket", () => {
       headers: { authorization: "Bearer x" },
     });
     expect(noUrl.status).toBe(503);
+  });
+});
+
+/** Starts the draft with teams 2..9 on auto-draft and plays until team 1 is on the clock for pick 90. */
+async function playToLastPick(c: Ctx): Promise<void> {
+  await c.call(c.commish, "POST", `${base(c)}/start`);
+  for (const e of c.members.slice(1))
+    await c.call(e, "PUT", `${base(c)}/auto-draft`, { enabled: true });
+  for (let i = 0; i < 12; i++) {
+    const s = await c.snap(c.commish);
+    if (s.currentPick === 90) return;
+    const r = await c.call(c.commish, "POST", `${base(c)}/autopick`, {
+      expectedPick: s.currentPick,
+    });
+    expect(r.status).toBe(200);
+  }
+  throw new Error("did not reach pick 90");
+}
+
+/** First available player for team 1's remaining open slot. */
+function lastPlayer(s: DraftSnapshot, teamId: string) {
+  const open = Object.entries(s.rosters[teamId]!).find(([, v]) => v === null)![0];
+  const position = open.startsWith("FLEX") ? "RB" : open.replace(/\d/, "");
+  return first(s, position);
+}
+
+describe("the draft ends when all selections are made", () => {
+  async function expectEnded(c: Ctx, expectedEvents = true) {
+    const s = await c.snap(c.members[3]!);
+    expect(s.status).toBe("complete");
+    expect(s.picks).toHaveLength(90);
+    expect(s.currentPick).toBe(91);
+    expect(s.round).toBeNull();
+    expect(s.onClockTeamId).toBeNull();
+    expect(s.clock).toBeNull();
+    expect(s.available.length).toBeGreaterThan(0);
+    for (const slots of Object.values(s.rosters))
+      expect(Object.values(slots).every(Boolean)).toBe(true);
+    const stored = (
+      await db.doc.send(
+        new GetCommand({
+          TableName: db.tableName,
+          Key: { pk: `SEASON#${c.seasonId}`, sk: "DRAFT" },
+        }),
+      )
+    ).Item;
+    expect(stored).toMatchObject({ status: "complete", currentPickDeadline: null });
+    expect(stored).not.toHaveProperty("clockExpiresAt");
+    if (expectedEvents) expect(c.events.at(-1)?.kind).toBe("pick");
+  }
+
+  async function expectLocked(c: Ctx) {
+    const s = await c.snap(c.commish);
+    const p = first(s, "QB");
+    const calls: [string, string, unknown, string][] = [
+      ["POST", `${base(c)}/picks`, { playerId: p.playerId, expectedPick: 90 }, "draft_not_active"],
+      ["POST", `${base(c)}/picks`, { playerId: p.playerId, expectedPick: 91 }, "validation_error"],
+      ["POST", `${base(c)}/autopick`, { expectedPick: 90 }, "draft_not_active"],
+      ["POST", `${base(c)}/clock`, undefined, "draft_not_active"],
+      ["DELETE", `${base(c)}/clock`, undefined, "draft_wrong_status"],
+      ["POST", `${base(c)}/pause`, undefined, "draft_wrong_status"],
+      ["POST", `${base(c)}/resume`, undefined, "draft_wrong_status"],
+      ["POST", `${base(c)}/start`, undefined, "draft_wrong_status"],
+      ["PUT", `${base(c)}/order`, { order: c.teamIds }, "draft_wrong_status"],
+      ["PUT", `${base(c)}/auto-draft`, { enabled: true }, "draft_wrong_status"],
+    ];
+    for (const [method, path, body, code] of calls) {
+      const who = path.endsWith("auto-draft") ? c.members[2]! : c.commish;
+      const r = await c.call(who, method, path, body);
+      // A malformed expectedPick is a 400; everything else is a 409 with a stable code.
+      expect(r.status, `${method} ${path}`).toBe(code === "validation_error" ? 400 : 409);
+      expect(errCode(r), `${method} ${path}`).toBe(code);
+    }
+    const mgr = await c.call(c.members[0]!, "POST", `${base(c)}/picks`, {
+      playerId: p.playerId,
+      expectedPick: 90,
+    });
+    expect(mgr.status).toBe(409);
+    expect((await c.snap(c.commish)).picks).toHaveLength(90);
+  }
+
+  it("manager's final pick, with a 90 s clock running, completes the draft", async () => {
+    const c = await setupLeague();
+    await playToLastPick(c);
+    expect((await c.call(c.commish, "POST", `${base(c)}/clock`)).status).toBe(200);
+    const before = await c.snap(c.members[0]!);
+    expect(before.clock).not.toBeNull();
+    const r = await c.call(c.members[0]!, "POST", `${base(c)}/picks`, {
+      playerId: lastPlayer(before, c.teamIds[0]!).playerId,
+      expectedPick: 90,
+    });
+    expect(r.status).toBe(200);
+    expect(r.json).toMatchObject({ status: "complete", currentPick: 91, autoPicked: 0 });
+    await expectEnded(c);
+    await expectLocked(c);
+  });
+
+  it("commissioner's final pick for the on-clock team completes the draft", async () => {
+    const c = await setupLeague();
+    await playToLastPick(c);
+    const before = await c.snap(c.commish);
+    const r = await c.call(c.commish, "POST", `${base(c)}/picks`, {
+      playerId: lastPlayer(before, c.teamIds[0]!).playerId,
+      expectedPick: 90,
+      teamId: c.teamIds[0],
+    });
+    expect(r.status).toBe(200);
+    expect(r.json.pick.madeBy).toBe("manager"); // the commissioner owns team 1
+    await expectEnded(c);
+  });
+
+  it("commissioner autopick for pick 90 completes the draft", async () => {
+    const c = await setupLeague();
+    await playToLastPick(c);
+    await c.call(c.commish, "POST", `${base(c)}/clock`);
+    const r = await c.call(c.commish, "POST", `${base(c)}/autopick`, { expectedPick: 90 });
+    expect(r.status).toBe(200);
+    expect(r.json).toMatchObject({ status: "complete", autoPicked: 0 });
+    await expectEnded(c);
+    await expectLocked(c);
+  });
+
+  it("an auto-draft chain ends at pick 90 and stops: no further picks or events", async () => {
+    const c = await setupLeague();
+    await c.call(c.commish, "POST", `${base(c)}/start`);
+    for (const e of c.members) await c.call(e, "PUT", `${base(c)}/auto-draft`, { enabled: true });
+    await expectEnded(c);
+    const events = c.events.length;
+    // Auto-draft flags are frozen once complete, so nothing can restart a chain.
+    expect(
+      await c.call(c.members[1]!, "PUT", `${base(c)}/auto-draft`, { enabled: false }).then(errCode),
+    ).toBe("draft_wrong_status");
+    await expectLocked(c);
+    expect(c.events.length).toBe(events);
+  });
+
+  it("undo of the final pick reopens pick 90, the clock can run, and it completes again", async () => {
+    const c = await setupLeague();
+    await playToLastPick(c);
+    await c.call(c.commish, "POST", `${base(c)}/clock`);
+    const before = await c.snap(c.members[0]!);
+    const pl = lastPlayer(before, c.teamIds[0]!);
+    await c.call(c.members[0]!, "POST", `${base(c)}/picks`, {
+      playerId: pl.playerId,
+      expectedPick: 90,
+    });
+    const undo = await c.call(c.commish, "POST", `${base(c)}/undo`);
+    expect(undo.json).toMatchObject({ status: "in_progress", currentPick: 90 });
+    const s = await c.snap(c.members[0]!);
+    expect(s.onClockTeamId).toBe(c.teamIds[0]);
+    expect(s.clock).toBeNull();
+    expect(s.picks).toHaveLength(89);
+    expect((await c.call(c.commish, "POST", `${base(c)}/clock`)).status).toBe(200);
+    const again = await c.call(c.members[0]!, "POST", `${base(c)}/picks`, {
+      playerId: pl.playerId,
+      expectedPick: 90,
+    });
+    expect(again.json.status).toBe("complete");
+    await expectEnded(c);
+  });
+});
+
+describe("redraft", () => {
+  const reset = (c: Ctx, as = c.commish, body: unknown = { confirm: "REDRAFT" }) =>
+    c.call(as, "POST", `${base(c)}/reset`, body);
+  const seasonStatuses = async (c: Ctx) => [
+    (await db.doc.send(new GetCommand({ TableName: db.tableName, Key: seasonMetaKey(c.seasonId) })))
+      .Item?.status,
+    (
+      await db.doc.send(
+        new GetCommand({ TableName: db.tableName, Key: seasonPointerKey(c.leagueId, 2026) }),
+      )
+    ).Item?.status,
+  ];
+
+  it("resets a complete draft; order, teams, queue and auto-draft stay; Start works again", async () => {
+    const c = await setupLeague();
+    await c.call(c.commish, "POST", `${base(c)}/start`);
+    const open = await c.snap(c.members[3]!);
+    const queued = [first(open, "WR").playerId, first(open, "WR", 1).playerId];
+    await c.call(c.members[3]!, "PUT", `${base(c)}/queue`, { playerIds: queued });
+    for (const e of c.members) await c.call(e, "PUT", `${base(c)}/auto-draft`, { enabled: true });
+    const done = await c.snap(c.commish);
+    expect(done.status).toBe("complete");
+    // The queue only lists undrafted players, so re-read it from storage after the reset.
+    const poolBefore = (await c.snap(c.commish)).available.length;
+    const events = c.events.length;
+
+    const r = await reset(c);
+    expect(r.status).toBe(200);
+    expect(r.json).toMatchObject({ status: "scheduled", currentPick: 1, picksCleared: 90 });
+    expect(c.events.slice(events).map((e) => e.kind)).toEqual(["reset"]);
+    expect(c.events.at(-1)?.version).toBe(r.json.version);
+
+    const s = await c.snap(c.members[3]!);
+    expect(s).toMatchObject({
+      status: "scheduled",
+      currentPick: 1,
+      onClockTeamId: null,
+      clock: null,
+    });
+    expect(s.picks).toEqual([]);
+    expect(s.order.map((o) => o.teamId)).toEqual(c.teamIds);
+    expect(s.teams).toHaveLength(9);
+    expect(s.autoDraftTeamIds.sort()).toEqual([...c.teamIds].sort());
+    expect(s.myAutoDraft).toBe(true);
+    expect(s.available.length).toBeGreaterThan(poolBefore);
+    expect(s.available.length).toBe(
+      (await c.call(c.commish, "GET", `/seasons/${c.seasonId}/players`)).json.players.filter(
+        (p: Json) => p.inPool,
+      ).length,
+    );
+    for (const slots of Object.values(s.rosters))
+      expect(Object.values(slots).every((v) => v === null)).toBe(true);
+    expect(s.myQueue).toEqual(queued);
+    expect(s.startBlockers).toEqual([]);
+    expect(await seasonStatuses(c)).toEqual(["setup", "setup"]);
+    const audit = (await queryPrefix(db, seasonPk(c.seasonId), "AUDIT#")).filter(
+      (a) => a.action === "draft.reset",
+    );
+    expect(audit).toHaveLength(1);
+    expect(audit[0]).toMatchObject({ details: { picksCleared: 90 } });
+    expect(JSON.stringify(audit)).not.toMatch(/@|Sekrit/);
+
+    // Start again: with every team on auto-draft the chain redrafts all 90 picks.
+    const again = await c.call(c.commish, "POST", `${base(c)}/start`);
+    expect(again.json).toMatchObject({ status: "complete", currentPick: 91 });
+    expect(await seasonStatuses(c)).toEqual(["in_progress", "in_progress"]);
+  });
+
+  it("resets an in-progress and a paused draft, clearing the clock", async () => {
+    const c = await setupLeague();
+    await c.call(c.commish, "POST", `${base(c)}/start`);
+    await c.call(c.commish, "POST", `${base(c)}/autopick`, { expectedPick: 1 });
+    await c.call(c.commish, "POST", `${base(c)}/clock`);
+    expect((await reset(c)).json).toMatchObject({ status: "scheduled", picksCleared: 1 });
+    expect((await c.snap(c.commish)).clock).toBeNull();
+
+    await c.call(c.commish, "POST", `${base(c)}/start`);
+    await c.call(c.commish, "POST", `${base(c)}/autopick`, { expectedPick: 1 });
+    await c.call(c.commish, "POST", `${base(c)}/autopick`, { expectedPick: 2 });
+    await c.call(c.commish, "POST", `${base(c)}/pause`);
+    expect((await reset(c)).json).toMatchObject({ status: "scheduled", picksCleared: 2 });
+    expect(await seasonStatuses(c)).toEqual(["setup", "setup"]);
+  });
+
+  it("is commissioner-only, needs the confirmation word, and needs a started draft", async () => {
+    const c = await setupLeague();
+    expect(await reset(c).then(errCode)).toBe("draft_wrong_status"); // not started
+    expect(await c.snap(c.commish).then((s) => s.status)).toBe("scheduled");
+    await c.call(c.commish, "POST", `${base(c)}/start`);
+    expect((await reset(c, c.members[2]!)).status).toBe(403);
+    expect((await reset(c, "stranger@local.test")).status).toBe(403);
+    for (const body of [{}, { confirm: "redraft" }, { confirm: "yes" }, null]) {
+      const r = await reset(c, c.commish, body);
+      expect(r.status).toBe(400);
+    }
+    expect((await c.snap(c.commish)).status).toBe("in_progress");
+    expect((await reset(c)).status).toBe(200);
+  });
+
+  it("rejects picks and every draft action while resetting, and a retry resumes", async () => {
+    const c = await setupLeague();
+    await c.call(c.commish, "POST", `${base(c)}/start`);
+    await c.call(c.commish, "POST", `${base(c)}/autopick`, { expectedPick: 1 });
+    const draft = await requireDraft(db, c.seasonId);
+    await lockDraftForReset(db, {
+      seasonId: c.seasonId,
+      leagueId: c.leagueId,
+      year: 2026,
+      actorUserId: "x",
+      now: new Date(nowMs).toISOString(),
+      expectedVersion: draft.version,
+      pickCount: 1,
+    });
+    const s = await c.snap(c.members[1]!);
+    expect(s.status).toBe("resetting");
+    expect(s.onClockTeamId).toBeNull();
+    expect(s.clock).toBeNull();
+    const p = first(s, "QB");
+    const rej = async (r: Promise<{ status: number; json: Json }>, code: string) => {
+      const x = await r;
+      expect([x.status, errCode(x)]).toEqual([409, code]);
+    };
+    await rej(
+      c.call(c.members[1]!, "POST", `${base(c)}/picks`, { playerId: p.playerId, expectedPick: 2 }),
+      "draft_not_active",
+    );
+    await rej(
+      c.call(c.commish, "POST", `${base(c)}/autopick`, { expectedPick: 2 }),
+      "draft_not_active",
+    );
+    await rej(c.call(c.commish, "POST", `${base(c)}/undo`), "draft_wrong_status");
+    await rej(c.call(c.commish, "POST", `${base(c)}/clock`), "draft_not_active");
+    await rej(c.call(c.commish, "POST", `${base(c)}/pause`), "draft_wrong_status");
+    await rej(c.call(c.commish, "POST", `${base(c)}/start`), "draft_wrong_status");
+    await rej(
+      c.call(c.members[1]!, "PUT", `${base(c)}/auto-draft`, { enabled: false }),
+      "draft_wrong_status",
+    );
+
+    // Retrying the reset finishes the job.
+    const r = await reset(c);
+    expect(r.json).toMatchObject({ status: "scheduled", picksCleared: 1 });
+    expect((await c.snap(c.commish)).picks).toHaveLength(0);
   });
 });

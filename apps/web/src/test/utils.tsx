@@ -57,6 +57,7 @@ export function fakeApi(over: Partial<Api> = {}): Api {
     clearClock: unexpected("clearClock"),
     autopick: unexpected("autopick"),
     undoPick: unexpected("undoPick"),
+    resetDraft: unexpected("resetDraft"),
     listPlayers: unexpected("listPlayers"),
     importPool: unexpected("importPool"),
     setPlayerInPool: unexpected("setPlayerInPool"),

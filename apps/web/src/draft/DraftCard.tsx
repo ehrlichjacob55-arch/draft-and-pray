@@ -13,6 +13,7 @@ export function DraftCard({ seasonId }: { seasonId: string }) {
     const s = query.data;
     if (isPreDraft(s)) status = "Lobby: waiting for the commissioner to start.";
     else if (s.status === "complete") status = "Draft complete.";
+    else if (s.status === "resetting") status = "The commissioner is resetting the draft.";
     else
       status = `${s.status === "paused" ? "Paused. " : ""}Pick ${s.currentPick} — ${teamName(s, s.onClockTeamId)} on the clock`;
   }

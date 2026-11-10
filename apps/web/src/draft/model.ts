@@ -32,6 +32,7 @@ export const POSITION_CLASS: Record<PositionName, string> = {
   DST: "bg-slate-500/25 text-slate-900 dark:text-slate-200",
 };
 
+export const isResetting = (s: DraftSnapshot) => s.status === "resetting";
 export const isLive = (s: DraftSnapshot) => s.status === "in_progress" || s.status === "paused";
 export const isPreDraft = (s: DraftSnapshot) => s.status === "scheduled" || s.status === "lobby";
 
