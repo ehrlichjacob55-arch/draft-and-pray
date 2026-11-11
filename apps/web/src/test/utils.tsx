@@ -62,6 +62,12 @@ export function fakeApi(over: Partial<Api> = {}): Api {
     importPool: unexpected("importPool"),
     setPlayerInPool: unexpected("setPlayerInPool"),
     addPlayer: unexpected("addPlayer"),
+    scoring: unexpected("scoring"),
+    seedScoring: unexpected("seedScoring"),
+    updateScoringVersion: unexpected("updateScoringVersion"),
+    createScoringVersion: unexpected("createScoringVersion"),
+    lockScoringVersion: unexpected("lockScoringVersion"),
+    activateScoringVersion: unexpected("activateScoringVersion"),
     ...over,
   } as Api;
 }

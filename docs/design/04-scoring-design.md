@@ -60,6 +60,13 @@ Received 2026-11-10: QB passing 1 pt per 30 yds; rushing and receiving 1 pt per 
 
 **Lifecycle:** draft the ruleset → commissioner reviews with a "preview against last year's playoffs" tool → **lock** before the draft. A locked ruleset can only change through a new version, which triggers a full recompute and an audit entry.
 
+**Editing in the app (Commissioner → Scoring; members read it on Rules & scoring):**
+- API: `GET /seasons/:id/scoring` (any member: active ruleset + version list, no user ids/emails); commissioner-only `POST …/scoring/seed {ruleset: league|placeholder}` (409 `ruleset_exists` if any version exists), `PUT …/scoring/versions/:v` (unlocked only; 409 `ruleset_locked` otherwise), `POST …/scoring/versions {rules, rounding, note?, activate}` (next version), `POST …/versions/:v/lock`, `POST …/versions/:v/activate`. Each write is audited (`ruleset.create|update|lock|activate`) in the same transaction.
+- Validation is the domain parser on both client and server. A bad ruleset is a 400 `validation_error` whose `error.ruleErrors` is `[{ruleIndex, stat, message}]` (`ruleIndex` null for whole-ruleset problems) so the UI can show each message on its row.
+- The active version unlocked: "Save changes" edits it in place. Locked: "Save as new version" creates vN+1 and activates it; older versions stay as history and can be made active again.
+- The **preview** table scores the golden-fixture players (2025-26 Wild Card, `@dnp/domain` `GOLDEN_PLAYERS`) under the saved rules and under the unsaved edits. It is the stand-in for the "preview against last year's playoffs" tool until real stats are ingested.
+- A change to the active ruleset's points (seed, edit of the active version, create+activate, activate) calls the `onRulesetChange` hook (`apps/api/src/scoring/hooks.ts`), a no-op today. TODO (Task 9/10, doc 10 §4.4): it must recompute non-finalized rounds and publish `scores_updated`. Locking changes no points and does not call it.
+
 ## 3. Stats pipeline
 
 ```mermaid

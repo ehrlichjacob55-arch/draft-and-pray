@@ -120,6 +120,11 @@ Tap a row → team page. Optional column: max games left.
  ● alive  ◐ bye  ✕ eliminated
 ```
 
+## 6a. Rules & scoring (members) and the Scoring section (commissioner)
+
+- **Rules & scoring** (`/rules`, all members, read-only): the active ruleset in plain sentences grouped Passing, Rushing, Receiving, Touchdowns & 2-pt, Turnovers, Kicking, Defense (DST), Bonuses (e.g. "Rushing yards: 1 pt per 10 yds (fractional)"), with the DST points-allowed table and the field-goal distance table, the version and a Locked badge. No ruleset yet: "Scoring rules haven't been set yet."
+- **Commissioner → Scoring**: with no ruleset, "Load league rules" (and a smaller "Load placeholder rules"). Otherwise a grouped form (points; per + fractional with a live example; bonus threshold; editable bands; position checkboxes; add/remove rule; rounding), an "Advanced: edit JSON" box kept in sync and validated on blur, inline per-rule errors, a **Preview** (golden players, saved vs edited), Save changes (unlocked) or Save as new version (locked) with an optional note, Discard, an unsaved-changes indicator with a leave warning, Lock rules (confirm), and a version history with "Make active" (confirm). Details of the API and lifecycle are in [04](04-scoring-design.md) §2.
+
 ## 7. Commissioner console
 
 ```

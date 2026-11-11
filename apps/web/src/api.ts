@@ -13,6 +13,7 @@ import {
   realtimeTicketResponse,
   REDRAFT_CONFIRMATION,
   resetDraftResponse,
+  scoringResponse,
   updatePlayerResponse,
   listManagersResponse,
   meResponse,
@@ -30,6 +31,11 @@ import {
   type ImportPoolResponse,
   type ListPlayersResponse,
   type ResetDraftResponse,
+  type CreateScoringVersionRequest,
+  type RuleError,
+  type ScoringResponse,
+  type SeedScoringRequest,
+  type UpdateScoringRequest,
   type MakePickRequest,
   type MakePickResponse,
   type PoolPlayer,
@@ -56,14 +62,18 @@ export class ApiError extends Error {
   readonly code: ErrorCode | "network_error";
   /** `draft_not_ready`: every unmet start precondition. */
   readonly reasons: string[];
+  /** Scoring validation: every problem, keyed by rule index. */
+  readonly ruleErrors: RuleError[];
   constructor(
     status: number,
     code: ErrorCode | "network_error",
     message: string,
     reasons: string[] = [],
+    ruleErrors: RuleError[] = [],
   ) {
     super(message);
     this.reasons = reasons;
+    this.ruleErrors = ruleErrors;
     this.name = "ApiError";
     this.status = status;
     this.code = code;
@@ -110,6 +120,20 @@ export interface Api {
   importPool(seasonId: string, seasonYear: number): Promise<ImportPoolResponse>;
   setPlayerInPool(seasonId: string, playerId: string, inPool: boolean): Promise<PoolPlayer>;
   addPlayer(seasonId: string, body: AddPlayerRequest): Promise<PoolPlayer>;
+  // ---- Scoring config (docs/design/04 §2). Every call returns the season's current state. ----
+  scoring(seasonId: string): Promise<ScoringResponse>;
+  seedScoring(seasonId: string, ruleset: SeedScoringRequest["ruleset"]): Promise<ScoringResponse>;
+  updateScoringVersion(
+    seasonId: string,
+    version: number,
+    body: UpdateScoringRequest,
+  ): Promise<ScoringResponse>;
+  createScoringVersion(
+    seasonId: string,
+    body: CreateScoringVersionRequest,
+  ): Promise<ScoringResponse>;
+  lockScoringVersion(seasonId: string, version: number): Promise<ScoringResponse>;
+  activateScoringVersion(seasonId: string, version: number): Promise<ScoringResponse>;
 }
 
 export interface ApiOptions {
@@ -152,6 +176,7 @@ export function createApi({ baseUrl, getAuthHeaders }: ApiOptions): Api {
           parsed.data.error.code,
           parsed.data.error.message,
           parsed.data.error.reasons,
+          parsed.data.error.ruleErrors,
         );
       throw new ApiError(res.status, "internal_error", `Request failed (${res.status})`);
     }
@@ -222,6 +247,22 @@ export function createApi({ baseUrl, getAuthHeaders }: ApiOptions): Api {
       }),
     addPlayer: (id, body) =>
       request("POST", `/seasons/${enc(id)}/players`, addPlayerResponse, body),
+    scoring: (id) => request("GET", `/seasons/${enc(id)}/scoring`, scoringResponse),
+    seedScoring: (id, ruleset) =>
+      request("POST", `/seasons/${enc(id)}/scoring/seed`, scoringResponse, { ruleset }),
+    updateScoringVersion: (id, version, body) =>
+      request("PUT", `/seasons/${enc(id)}/scoring/versions/${version}`, scoringResponse, body),
+    createScoringVersion: (id, body) =>
+      request("POST", `/seasons/${enc(id)}/scoring/versions`, scoringResponse, body),
+    lockScoringVersion: (id, version) =>
+      request("POST", `/seasons/${enc(id)}/scoring/versions/${version}/lock`, scoringResponse, {}),
+    activateScoringVersion: (id, version) =>
+      request(
+        "POST",
+        `/seasons/${enc(id)}/scoring/versions/${version}/activate`,
+        scoringResponse,
+        {},
+      ),
   };
 }
 

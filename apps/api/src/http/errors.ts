@@ -1,4 +1,4 @@
-import type { ErrorCode } from "@dnp/contract";
+import type { ErrorCode, RuleError } from "@dnp/contract";
 import { DomainError } from "@dnp/db";
 import type { Context } from "hono";
 import type { z } from "zod";
@@ -6,11 +6,14 @@ import type { z } from "zod";
 export class ApiError extends Error {
   readonly status: number;
   readonly code: ErrorCode;
-  constructor(status: number, code: ErrorCode, message: string) {
+  /** Scoring validation: every problem, keyed by rule index. */
+  readonly ruleErrors?: RuleError[];
+  constructor(status: number, code: ErrorCode, message: string, ruleErrors?: RuleError[]) {
     super(message);
     this.name = "ApiError";
     this.status = status;
     this.code = code;
+    this.ruleErrors = ruleErrors;
   }
 }
 
@@ -42,8 +45,20 @@ export function statusForCode(code: ErrorCode): number {
   }
 }
 
-export function errorBody(code: ErrorCode, message: string, reasons?: string[]) {
-  return { error: { code, message, ...(reasons ? { reasons } : {}) } };
+export function errorBody(
+  code: ErrorCode,
+  message: string,
+  reasons?: string[],
+  ruleErrors?: RuleError[],
+) {
+  return {
+    error: {
+      code,
+      message,
+      ...(reasons ? { reasons } : {}),
+      ...(ruleErrors ? { ruleErrors } : {}),
+    },
+  };
 }
 
 /** Parses the JSON body with a zod schema; 400 bad_request / validation_error on failure. */
@@ -84,7 +99,10 @@ export function toErrorResponse(err: unknown): {
   body: ReturnType<typeof errorBody>;
 } {
   if (err instanceof ApiError)
-    return { status: err.status, body: errorBody(err.code, err.message) };
+    return {
+      status: err.status,
+      body: errorBody(err.code, err.message, undefined, err.ruleErrors),
+    };
   if (err instanceof DomainError)
     return {
       status: statusForCode(err.code),

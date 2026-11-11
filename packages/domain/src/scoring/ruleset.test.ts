@@ -182,4 +182,26 @@ describe("ruleset envelope", () => {
       /^Invalid ruleset:\n- rules\[0\]\.stat: unknown stat key "x".*\n- rules\[1\]/s,
     );
   });
+
+  it("safeParseRuleset also returns structured issues keyed by rule index", () => {
+    const r = safeParseRuleset({
+      version: 1,
+      rounding: 9,
+      rules: [
+        { stat: "rush_td", points: 6 },
+        { stat: "rush_yds", points: 1, per: 0 },
+        { stat: "fg_made", tiers: [{ min: 1, points: 3 }] },
+      ],
+    });
+    if (r.ok) throw new Error("expected failure");
+    expect(r.issues).toEqual([
+      { message: expect.stringMatching(/^rounding: /) },
+      { ruleIndex: 1, field: "per", message: expect.any(String) },
+      { ruleIndex: 2, message: expect.stringMatching(/^fg_made: tiers must start at 0/) },
+    ]);
+    expect(r.issues).toHaveLength(r.errors.length);
+    const empty = safeParseRuleset({ version: 1, rules: [] });
+    if (empty.ok) throw new Error("expected failure");
+    expect(empty.issues).toEqual([{ message: "rules: a ruleset needs at least one rule" }]);
+  });
 });
