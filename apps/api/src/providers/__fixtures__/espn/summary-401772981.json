@@ -617,60 +617,80 @@
       "id": "401772981412",
       "type": { "text": "Field Goal Good" },
       "text": "Cairo Santos 27 Yd Field Goal",
+      "awayScore": 0,
+      "homeScore": 3,
       "team": { "id": "3" }
     },
     {
       "id": "401772981685",
       "type": { "text": "Passing Touchdown" },
       "text": "Christian Watson 7 Yd pass from Jordan Love (Brandon McManus Kick)",
+      "awayScore": 7,
+      "homeScore": 3,
       "team": { "id": "9" }
     },
     {
       "id": "4017729811248",
       "type": { "text": "Passing Touchdown" },
       "text": "Jayden Reed 18 Yd pass from Jordan Love (Brandon McManus Kick)",
+      "awayScore": 14,
+      "homeScore": 3,
       "team": { "id": "9" }
     },
     {
       "id": "4017729811691",
       "type": { "text": "Passing Touchdown" },
       "text": "Romeo Doubs 1 Yd pass from Jordan Love (Brandon McManus Kick)",
+      "awayScore": 21,
+      "homeScore": 3,
       "team": { "id": "9" }
     },
     {
       "id": "4017729812382",
       "type": { "text": "Field Goal Good" },
       "text": "Cairo Santos 34 Yd Field Goal",
+      "awayScore": 21,
+      "homeScore": 6,
       "team": { "id": "3" }
     },
     {
       "id": "4017729813145",
       "type": { "text": "Field Goal Good" },
       "text": "Cairo Santos 51 Yd Field Goal",
+      "awayScore": 21,
+      "homeScore": 9,
       "team": { "id": "3" }
     },
     {
       "id": "4017729813478",
       "type": { "text": "Rushing Touchdown" },
       "text": "D'Andre Swift 6 Yd Rush (Cairo Santos Kick)",
+      "awayScore": 21,
+      "homeScore": 16,
       "team": { "id": "3" }
     },
     {
       "id": "4017729813723",
       "type": { "text": "Passing Touchdown" },
       "text": "Matthew Golden 23 Yd pass from Jordan Love (Brandon McManus PAT Failed)",
+      "awayScore": 27,
+      "homeScore": 16,
       "team": { "id": "9" }
     },
     {
       "id": "4017729814047",
       "type": { "text": "Passing Touchdown" },
       "text": "Olamide Zaccheaus 8 Yd pass from Caleb Williams (Caleb Williams Pass to Colston Loveland for Two-Point Conversion)",
+      "awayScore": 27,
+      "homeScore": 24,
       "team": { "id": "3" }
     },
     {
       "id": "4017729814493",
       "type": { "text": "Passing Touchdown" },
       "text": "DJ Moore 25 Yd pass from Caleb Williams (Cairo Santos Kick)",
+      "awayScore": 27,
+      "homeScore": 31,
       "team": { "id": "3" }
     }
   ],

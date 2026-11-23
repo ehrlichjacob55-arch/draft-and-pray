@@ -589,78 +589,104 @@
       "id": "401772982455",
       "type": { "text": "Field Goal Good" },
       "text": "Wil Lutz 28 Yd Field Goal",
+      "awayScore": 0,
+      "homeScore": 3,
       "team": { "id": "7" }
     },
     {
       "id": "401772982786",
       "type": { "text": "Passing Touchdown" },
       "text": "Mecole Hardman Jr. 4 Yd pass from Josh Allen (Matt Prater Kick)",
+      "awayScore": 7,
+      "homeScore": 3,
       "team": { "id": "2" }
     },
     {
       "id": "4017729821257",
       "type": { "text": "Passing Touchdown" },
       "text": "Frank Crum 7 Yd pass from Bo Nix (Wil Lutz Kick)",
+      "awayScore": 7,
+      "homeScore": 10,
       "team": { "id": "7" }
     },
     {
       "id": "4017729821645",
       "type": { "text": "Field Goal Good" },
       "text": "Matt Prater 33 Yd Field Goal ",
+      "awayScore": 10,
+      "homeScore": 10,
       "team": { "id": "2" }
     },
     {
       "id": "4017729822039",
       "type": { "text": "Passing Touchdown" },
       "text": "Lil'Jordan Humphrey 29 Yd pass from Bo Nix (Wil Lutz Kick)",
+      "awayScore": 10,
+      "homeScore": 17,
       "team": { "id": "7" }
     },
     {
       "id": "4017729822141",
       "type": { "text": "Field Goal Good" },
       "text": "Wil Lutz 50 Yd Field Goal ",
+      "awayScore": 10,
+      "homeScore": 20,
       "team": { "id": "7" }
     },
     {
       "id": "4017729822353",
       "type": { "text": "Field Goal Good" },
       "text": "Wil Lutz 33 Yd Field Goal ",
+      "awayScore": 10,
+      "homeScore": 23,
       "team": { "id": "7" }
     },
     {
       "id": "4017729822602",
       "type": { "text": "Passing Touchdown" },
       "text": "Keon Coleman 10 Yd pass from Josh Allen (Matt Prater Kick)",
+      "awayScore": 17,
+      "homeScore": 23,
       "team": { "id": "2" }
     },
     {
       "id": "4017729823178",
       "type": { "text": "Passing Touchdown" },
       "text": "Dalton Kincaid 14 Yd pass from Josh Allen (Matt Prater Kick)",
+      "awayScore": 24,
+      "homeScore": 23,
       "team": { "id": "2" }
     },
     {
       "id": "4017729823674",
       "type": { "text": "Field Goal Good" },
       "text": "Matt Prater 31 Yd Field Goal",
+      "awayScore": 27,
+      "homeScore": 23,
       "team": { "id": "2" }
     },
     {
       "id": "4017729823925",
       "type": { "text": "Passing Touchdown" },
       "text": "Marvin Mims Jr. 26 Yd pass from Bo Nix (Wil Lutz Kick)",
+      "awayScore": 27,
+      "homeScore": 30,
       "team": { "id": "7" }
     },
     {
       "id": "4017729824227",
       "type": { "text": "Field Goal Good" },
       "text": "Matt Prater 50 Yd Field Goal",
+      "awayScore": 30,
+      "homeScore": 30,
       "team": { "id": "2" }
     },
     {
       "id": "4017729824921",
       "type": { "text": "Field Goal Good" },
       "text": "Wil Lutz 23 Yd Field Goal ",
+      "awayScore": 30,
+      "homeScore": 33,
       "team": { "id": "7" }
     }
   ],

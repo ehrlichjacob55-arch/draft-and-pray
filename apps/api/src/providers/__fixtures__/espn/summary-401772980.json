@@ -508,48 +508,64 @@
       "id": "401772980178",
       "type": { "text": "Passing Touchdown" },
       "text": "Demarcus Robinson 2 Yd pass from Brock Purdy (Eddy Pineiro Kick)",
+      "awayScore": 7,
+      "homeScore": 0,
       "team": { "id": "25" }
     },
     {
       "id": "401772980473",
       "type": { "text": "Rushing Touchdown" },
       "text": "Dallas Goedert 1 Yd Rush (Jake Elliott PAT Failed)",
+      "awayScore": 7,
+      "homeScore": 6,
       "team": { "id": "21" }
     },
     {
       "id": "4017729801319",
       "type": { "text": "Passing Touchdown" },
       "text": "Dallas Goedert 9 Yd pass from Jalen Hurts (Jake Elliott Kick)",
+      "awayScore": 7,
+      "homeScore": 13,
       "team": { "id": "21" }
     },
     {
       "id": "4017729801557",
       "type": { "text": "Field Goal Good" },
       "text": "Eddy Pineiro 36 Yd Field Goal",
+      "awayScore": 10,
+      "homeScore": 13,
       "team": { "id": "25" }
     },
     {
       "id": "4017729802843",
       "type": { "text": "Field Goal Good" },
       "text": "Jake Elliott 41 Yd Field Goal",
+      "awayScore": 10,
+      "homeScore": 16,
       "team": { "id": "21" }
     },
     {
       "id": "4017729802997",
       "type": { "text": "Passing Touchdown" },
       "text": "Christian McCaffrey 29 Yd pass from Jauan Jennings (Eddy Pineiro Kick)",
+      "awayScore": 17,
+      "homeScore": 16,
       "team": { "id": "25" }
     },
     {
       "id": "4017729803474",
       "type": { "text": "Field Goal Good" },
       "text": "Jake Elliott 33 Yd Field Goal",
+      "awayScore": 17,
+      "homeScore": 19,
       "team": { "id": "21" }
     },
     {
       "id": "4017729803771",
       "type": { "text": "Passing Touchdown" },
       "text": "Christian McCaffrey 4 Yd pass from Brock Purdy (Eddy Pineiro PAT Failed)",
+      "awayScore": 23,
+      "homeScore": 19,
       "team": { "id": "25" }
     }
   ],

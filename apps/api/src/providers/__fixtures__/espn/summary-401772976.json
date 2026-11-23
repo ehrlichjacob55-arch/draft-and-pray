@@ -537,42 +537,56 @@
       "id": "401772976595",
       "type": { "text": "Field Goal Good" },
       "text": "Chris Boswell 32 Yd Field Goal",
+      "awayScore": 0,
+      "homeScore": 3,
       "team": { "id": "23" }
     },
     {
       "id": "4017729761303",
       "type": { "text": "Passing Touchdown" },
       "text": "Christian Kirk 6 Yd pass from C.J. Stroud (Ka'imi Fairbairn Kick)",
+      "awayScore": 7,
+      "homeScore": 3,
       "team": { "id": "34" }
     },
     {
       "id": "4017729761770",
       "type": { "text": "Field Goal Good" },
       "text": "Chris Boswell 35 Yd Field Goal ",
+      "awayScore": 7,
+      "homeScore": 6,
       "team": { "id": "23" }
     },
     {
       "id": "4017729763151",
       "type": { "text": "Field Goal Good" },
       "text": "Ka'imi Fairbairn 51 Yd Field Goal ",
+      "awayScore": 10,
+      "homeScore": 6,
       "team": { "id": "34" }
     },
     {
       "id": "4017729763273",
       "type": { "text": "Sack Opp Fumble Recovery" },
       "text": "Sheldon Rankins 33 Yd Fumble Return (Ka'imi Fairbairn Kick)",
+      "awayScore": 17,
+      "homeScore": 6,
       "team": { "id": "34" }
     },
     {
       "id": "4017729763805",
       "type": { "text": "Rushing Touchdown" },
       "text": "Woody Marks 13 Yd Rush (Ka'imi Fairbairn Kick)",
+      "awayScore": 24,
+      "homeScore": 6,
       "team": { "id": "34" }
     },
     {
       "id": "4017729763965",
       "type": { "text": "Interception Return Touchdown" },
       "text": "Calen Bullock 50 Yd Interception Return (Ka'imi Fairbairn PAT Failed)",
+      "awayScore": 30,
+      "homeScore": 6,
       "team": { "id": "34" }
     }
   ],

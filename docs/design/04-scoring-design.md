@@ -56,7 +56,9 @@ Rulesets live as data in `packages/domain/rulesets/`: `placeholder.v1.json` (the
 
 Received 2026-11-10: QB passing 1 pt per 30 yds; rushing and receiving 1 pt per 10 yds (all **fractional**, rounded once per game to 2 decimals); full-point PPR; every TD 6 (pass, rush, rec, kick/punt return, fumble-recovery, DST defensive/return); 2-pt conversions +2 (passer and receiver each); interception thrown -1, fumble lost -1; no yardage or threshold bonuses. Kicker: XP +1; FG 0-39 yds 3, 40-49 yds 4, 50+ yds 5; -1 per missed or blocked FG or XP. DST points allowed: 0 -> 15, 1-6 -> 10, 7-13 -> 8, 14-20 -> 5, 21-27 -> 2, 28-34 -> 0, 35+ -> -5; 1 pt each per sack, interception, fumble recovery, blocked kick; safety 2; defensive/return TD 6.
 
-**Assumed, pending commissioner confirmation** (08 Q13, Q15, Q16): points allowed = the opponent's final score, which includes points scored against the defense by its own offense's pick-sixes and returns; a blocked punt counts as a blocked kick (`def_block`); a kick/punt return TD scores for both the returner and the team's DST; passing yards by non-QBs score 0.
+**Confirmed by the commissioner 2026-11-23** (08 Q13, Q15, Q16): points allowed = the opponent's score **minus** the points of the opponent's defensive touchdowns (interception-return and fumble-return TDs scored while this team's offense had the ball), including their conversion (PAT good = 7, PAT failed = 6, 2-pt good = 8; a pick-six does not count against the DST); kickoff/punt/blocked-kick/missed-FG return TDs and safeties against the team still count toward points allowed; a blocked punt counts as a blocked kick (`def_block`); a kick/punt return TD scores for both the returner and the team's DST.
+
+**Still assumed:** passing yards by non-QBs score 0.
 
 **Lifecycle:** draft the ruleset → commissioner reviews with a "preview against last year's playoffs" tool → **lock** before the draft. A locked ruleset can only change through a new version, which triggers a full recompute and an audit entry.
 

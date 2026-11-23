@@ -554,60 +554,80 @@
       "id": "401772987296",
       "type": { "text": "Rushing Touchdown" },
       "text": "Kenneth Walker III 2 Yd Rush (Jason Myers Kick)",
+      "awayScore": 0,
+      "homeScore": 7,
       "team": { "id": "26" }
     },
     {
       "id": "401772987480",
       "type": { "text": "Field Goal Good" },
       "text": "Harrison Mevis 44 Yd Field Goal ",
+      "awayScore": 3,
+      "homeScore": 7,
       "team": { "id": "14" }
     },
     {
       "id": "401772987848",
       "type": { "text": "Field Goal Good" },
       "text": "Jason Myers 27 Yd Field Goal ",
+      "awayScore": 3,
+      "homeScore": 10,
       "team": { "id": "26" }
     },
     {
       "id": "4017729871084",
       "type": { "text": "Field Goal Good" },
       "text": "Harrison Mevis 50 Yd Field Goal ",
+      "awayScore": 6,
+      "homeScore": 10,
       "team": { "id": "14" }
     },
     {
       "id": "4017729871537",
       "type": { "text": "Passing Touchdown" },
       "text": "Kyren Williams 9 Yd pass from Matthew Stafford (Harrison Mevis Kick)",
+      "awayScore": 13,
+      "homeScore": 10,
       "team": { "id": "14" }
     },
     {
       "id": "4017729871991",
       "type": { "text": "Passing Touchdown" },
       "text": "Jaxon Smith-Njigba 14 Yd pass from Sam Darnold (Jason Myers Kick)",
+      "awayScore": 13,
+      "homeScore": 17,
       "team": { "id": "26" }
     },
     {
       "id": "4017729872327",
       "type": { "text": "Passing Touchdown" },
       "text": "Jake Bobo 17 Yd pass from Sam Darnold (Jason Myers Kick)",
+      "awayScore": 13,
+      "homeScore": 24,
       "team": { "id": "26" }
     },
     {
       "id": "4017729872485",
       "type": { "text": "Passing Touchdown" },
       "text": "Davante Adams 2 Yd pass from Matthew Stafford (Harrison Mevis Kick)",
+      "awayScore": 20,
+      "homeScore": 24,
       "team": { "id": "14" }
     },
     {
       "id": "4017729872739",
       "type": { "text": "Passing Touchdown" },
       "text": "Cooper Kupp 13 Yd pass from Sam Darnold (Jason Myers Kick)",
+      "awayScore": 20,
+      "homeScore": 31,
       "team": { "id": "26" }
     },
     {
       "id": "4017729872990",
       "type": { "text": "Passing Touchdown" },
       "text": "Puka Nacua 34 Yd pass from Matthew Stafford (Harrison Mevis Kick)",
+      "awayScore": 27,
+      "homeScore": 31,
       "team": { "id": "14" }
     }
   ],

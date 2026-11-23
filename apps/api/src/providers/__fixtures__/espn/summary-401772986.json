@@ -501,18 +501,24 @@
       "id": "401772986357",
       "type": { "text": "Passing Touchdown" },
       "text": "Courtland Sutton 6 Yd pass from Jarrett Stidham (Wil Lutz Kick)",
+      "awayScore": 0,
+      "homeScore": 7,
       "team": { "id": "7" }
     },
     {
       "id": "4017729861605",
       "type": { "text": "Rushing Touchdown" },
       "text": "Drake Maye 6 Yd Rush (Andy Borregales Kick)",
+      "awayScore": 7,
+      "homeScore": 7,
       "team": { "id": "17" }
     },
     {
       "id": "4017729862642",
       "type": { "text": "Field Goal Good" },
       "text": "Andy Borregales 23 Yd Field Goal",
+      "awayScore": 10,
+      "homeScore": 7,
       "team": { "id": "17" }
     }
   ],

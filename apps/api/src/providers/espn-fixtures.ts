@@ -36,6 +36,7 @@ export const EVENTS = {
   gbChi: "401772981",
   neDen: "401772986",
   houPit: "401772976",
+  houNe: "401772983", // HOU @ NE
   sfSea: "401772984",
   superBowl: "401772988", // SEA vs NE
 } as const;

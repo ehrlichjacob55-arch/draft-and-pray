@@ -82,7 +82,7 @@ If a distance list does not have the same length as its count, **no distances ar
 
 | Canonical key | Source | Emitted |
 |---|---|---|
-| `def_pts_allowed` | the opponent's current/final score (04 §2; includes points scored against them by return/pick-six TDs, Q13) | always |
+| `def_pts_allowed` | the opponent's current/final score **minus the opponent's defensive TD drives**: interception-return and fumble-return TDs (the plays counted as `def_td` for the opponent) including their conversion, i.e. the score change of that scoring play (6, 7 or 8). Kickoff/punt/blocked-kick/missed-FG return TDs and safeties still count against the defense; never below 0. If the score change is unreadable it falls back to 6 (+1 when the text shows a made kick) and warns. `raw.opponentDefensivePoints` holds the deduction (04 §2, Q13) | always |
 | `def_sack` | the opponent passers' sacks (first number of `passing.sacks-sackYardsLost`) | always |
 | `def_int` | the opponent passers' `passing.interceptions` | always |
 | `def_fum_rec` | the opponent's `fumbles.fumblesLost`, summed over all its athletes (a muffed punt lost counts) | always |
