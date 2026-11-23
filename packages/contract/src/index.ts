@@ -29,6 +29,8 @@ export const ERROR_CODES = [
   // Scoring config (docs/design/04 §2)
   "ruleset_locked",
   "ruleset_exists",
+  // Live stats (docs/design/12)
+  "ingest_busy",
   // Draft (docs/design/14 §4)
   "stale_pick",
   "not_your_turn",
@@ -247,3 +249,4 @@ export type RenameTeamResponse = z.infer<typeof renameTeamResponse>;
 
 export * from "./draft";
 export * from "./scoring";
+export * from "./ingest";

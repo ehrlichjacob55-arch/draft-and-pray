@@ -1,0 +1,29 @@
+{
+  "events": [
+    {
+      "id": "401772988",
+      "date": "2026-02-08T23:30Z",
+      "shortName": "SEA VS NE",
+      "status": { "type": { "name": "STATUS_FINAL", "completed": true } },
+      "competitions": [
+        {
+          "status": { "type": { "name": "STATUS_FINAL", "completed": true } },
+          "competitors": [
+            {
+              "homeAway": "home",
+              "score": "13",
+              "winner": false,
+              "team": { "id": "17", "abbreviation": "NE" }
+            },
+            {
+              "homeAway": "away",
+              "score": "29",
+              "winner": true,
+              "team": { "id": "26", "abbreviation": "SEA" }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

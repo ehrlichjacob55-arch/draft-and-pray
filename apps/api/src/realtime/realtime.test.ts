@@ -215,11 +215,18 @@ describe("local WebSocket server", () => {
     expect(mem.messages[1]).toEqual({ type: "draft_changed", version: 7, kind: "status" });
     expect(out.messages).toHaveLength(2);
 
-    mem.ws.send(JSON.stringify({ action: "unsubscribe", channel }));
+    // scores_updated rides the same channel
+    const at = "2026-01-10T00:00:00.000Z";
+    await hub.publish(channel, { type: "scores_updated", seasonId, at });
     await until(() => mem.messages.length === 3);
+    expect(mem.messages[2]).toEqual({ type: "scores_updated", seasonId, at });
+    expect(out.messages).toHaveLength(2);
+
+    mem.ws.send(JSON.stringify({ action: "unsubscribe", channel }));
+    await until(() => mem.messages.length === 4);
     await hub.publish(channel, { type: "draft_changed", version: 8, kind: "pick" });
     await new Promise((r) => setTimeout(r, 100));
-    expect(mem.messages).toHaveLength(3);
+    expect(mem.messages).toHaveLength(4);
     mem.ws.close();
     out.ws.close();
   });

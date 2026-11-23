@@ -1,0 +1,104 @@
+{
+  "events": [
+    {
+      "id": "401772982",
+      "date": "2026-01-17T21:30Z",
+      "shortName": "BUF @ DEN",
+      "status": { "type": { "name": "STATUS_FINAL", "completed": true } },
+      "competitions": [
+        {
+          "status": { "type": { "name": "STATUS_FINAL", "completed": true } },
+          "competitors": [
+            {
+              "homeAway": "home",
+              "score": "33",
+              "winner": true,
+              "team": { "id": "7", "abbreviation": "DEN" }
+            },
+            {
+              "homeAway": "away",
+              "score": "30",
+              "winner": false,
+              "team": { "id": "2", "abbreviation": "BUF" }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "401772984",
+      "date": "2026-01-18T01:00Z",
+      "shortName": "SF @ SEA",
+      "status": { "type": { "name": "STATUS_FINAL", "completed": true } },
+      "competitions": [
+        {
+          "status": { "type": { "name": "STATUS_FINAL", "completed": true } },
+          "competitors": [
+            {
+              "homeAway": "home",
+              "score": "41",
+              "winner": true,
+              "team": { "id": "26", "abbreviation": "SEA" }
+            },
+            {
+              "homeAway": "away",
+              "score": "6",
+              "winner": false,
+              "team": { "id": "25", "abbreviation": "SF" }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "401772983",
+      "date": "2026-01-18T20:00Z",
+      "shortName": "HOU @ NE",
+      "status": { "type": { "name": "STATUS_FINAL", "completed": true } },
+      "competitions": [
+        {
+          "status": { "type": { "name": "STATUS_FINAL", "completed": true } },
+          "competitors": [
+            {
+              "homeAway": "home",
+              "score": "28",
+              "winner": true,
+              "team": { "id": "17", "abbreviation": "NE" }
+            },
+            {
+              "homeAway": "away",
+              "score": "16",
+              "winner": false,
+              "team": { "id": "34", "abbreviation": "HOU" }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "401772985",
+      "date": "2026-01-18T23:30Z",
+      "shortName": "LAR @ CHI",
+      "status": { "type": { "name": "STATUS_FINAL", "completed": true } },
+      "competitions": [
+        {
+          "status": { "type": { "name": "STATUS_FINAL", "completed": true } },
+          "competitors": [
+            {
+              "homeAway": "home",
+              "score": "17",
+              "winner": false,
+              "team": { "id": "3", "abbreviation": "CHI" }
+            },
+            {
+              "homeAway": "away",
+              "score": "20",
+              "winner": true,
+              "team": { "id": "14", "abbreviation": "LAR" }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

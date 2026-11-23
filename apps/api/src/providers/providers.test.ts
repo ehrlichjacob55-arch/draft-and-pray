@@ -73,6 +73,38 @@ describe("parseSleeperPlayers", () => {
     expect(players.some((p) => (p.position as string) === "DEF")).toBe(false);
   });
 
+  it("carries Sleeper's espn_id (number or numeric string) as espnId, for box-score matching", () => {
+    const players = parseSleeperPlayers(sleeper(), field);
+    const espnId = (name: string) => players.find((p) => p.name === name)?.espnId;
+    expect(espnId("Hunter Henry")).toBe("3046439");
+    expect(espnId("Wil Lutz")).toBe("2985659");
+    expect(espnId("Drake Maye")).toBeUndefined();
+    const odd = parseSleeperPlayers(
+      Object.fromEntries(
+        ["x", "", 0, 1.5, null].map((v, i) => [
+          `p${i}`,
+          {
+            player_id: `${i}`,
+            full_name: `N${i}`,
+            position: "QB",
+            team: "NE",
+            status: "Active",
+            depth_chart_order: 1,
+            espn_id: v,
+          },
+        ]),
+      ),
+      field.slice(0, 1),
+    );
+    expect(odd.map((p) => p.espnId)).toEqual([
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+    ]);
+  });
+
   it("maps search_rank to rank; huge, missing or invalid values become null", () => {
     const players = parseSleeperPlayers(sleeper(), field);
     const rank = (name: string) => players.find((p) => p.name === name)?.rank;

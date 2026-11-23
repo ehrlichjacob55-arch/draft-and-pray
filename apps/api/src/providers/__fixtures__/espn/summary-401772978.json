@@ -1,0 +1,1891 @@
+{
+  "header": {
+    "competitions": [
+      {
+        "date": "2026-01-12T01:15Z",
+        "status": { "type": { "name": "STATUS_FINAL", "completed": true } },
+        "competitors": [
+          {
+            "homeAway": "home",
+            "score": "16",
+            "winner": true,
+            "team": { "id": "17", "abbreviation": "NE" }
+          },
+          {
+            "homeAway": "away",
+            "score": "3",
+            "winner": false,
+            "team": { "id": "24", "abbreviation": "LAC" }
+          }
+        ]
+      }
+    ]
+  },
+  "boxscore": {
+    "players": [
+      {
+        "team": { "id": "24", "abbreviation": "LAC" },
+        "statistics": [
+          {
+            "name": "passing",
+            "keys": [
+              "completions/passingAttempts",
+              "passingYards",
+              "yardsPerPassAttempt",
+              "passingTouchdowns",
+              "interceptions",
+              "sacks-sackYardsLost",
+              "adjQBR",
+              "QBRating"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4038941",
+                  "displayName": "Justin Herbert",
+                  "firstName": "Justin",
+                  "lastName": "Herbert"
+                },
+                "stats": ["19/31", "159", "5.1", "0", "0", "6-39", "28.0", "74.5"]
+              }
+            ]
+          },
+          {
+            "name": "rushing",
+            "keys": [
+              "rushingAttempts",
+              "rushingYards",
+              "yardsPerRushAttempt",
+              "rushingTouchdowns",
+              "longRushing"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4038941",
+                  "displayName": "Justin Herbert",
+                  "firstName": "Justin",
+                  "lastName": "Herbert"
+                },
+                "stats": ["10", "57", "5.7", "0", "16"]
+              },
+              {
+                "athlete": {
+                  "id": "4430968",
+                  "displayName": "Kimani Vidal",
+                  "firstName": "Kimani",
+                  "lastName": "Vidal"
+                },
+                "stats": ["11", "31", "2.8", "0", "10"]
+              },
+              {
+                "athlete": {
+                  "id": "4685382",
+                  "displayName": "Omarion Hampton",
+                  "firstName": "Omarion",
+                  "lastName": "Hampton"
+                },
+                "stats": ["1", "-1", "-1.0", "0", "-1"]
+              }
+            ]
+          },
+          {
+            "name": "receiving",
+            "keys": [
+              "receptions",
+              "receivingYards",
+              "yardsPerReception",
+              "receivingTouchdowns",
+              "longReception",
+              "receivingTargets"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4612826",
+                  "displayName": "Ladd McConkey",
+                  "firstName": "Ladd",
+                  "lastName": "McConkey"
+                },
+                "stats": ["3", "32", "10.7", "0", "20", "4"]
+              },
+              {
+                "athlete": {
+                  "id": "4595342",
+                  "displayName": "Oronde Gadsden",
+                  "firstName": "Oronde",
+                  "lastName": "Gadsden"
+                },
+                "stats": ["3", "30", "10.0", "0", "10", "3"]
+              },
+              {
+                "athlete": {
+                  "id": "15818",
+                  "displayName": "Keenan Allen",
+                  "firstName": "Keenan",
+                  "lastName": "Allen"
+                },
+                "stats": ["3", "25", "8.3", "0", "10", "8"]
+              },
+              {
+                "athlete": {
+                  "id": "4430968",
+                  "displayName": "Kimani Vidal",
+                  "firstName": "Kimani",
+                  "lastName": "Vidal"
+                },
+                "stats": ["2", "20", "10.0", "0", "11", "3"]
+              },
+              {
+                "athlete": {
+                  "id": "4686612",
+                  "displayName": "Tre' Harris",
+                  "firstName": "Tre'",
+                  "lastName": "Harris"
+                },
+                "stats": ["2", "20", "10.0", "0", "14", "3"]
+              },
+              {
+                "athlete": {
+                  "id": "4429025",
+                  "displayName": "Quentin Johnston",
+                  "firstName": "Quentin",
+                  "lastName": "Johnston"
+                },
+                "stats": ["3", "20", "6.7", "0", "9", "6"]
+              },
+              {
+                "athlete": {
+                  "id": "4242558",
+                  "displayName": "Tucker Fisk",
+                  "firstName": "Tucker",
+                  "lastName": "Fisk"
+                },
+                "stats": ["3", "12", "4.0", "0", "7", "3"]
+              }
+            ]
+          },
+          {
+            "name": "fumbles",
+            "keys": ["fumbles", "fumblesLost", "fumblesRecovered"],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4038941",
+                  "displayName": "Justin Herbert",
+                  "firstName": "Justin",
+                  "lastName": "Herbert"
+                },
+                "stats": ["2", "1", "0"]
+              },
+              {
+                "athlete": {
+                  "id": "4430968",
+                  "displayName": "Kimani Vidal",
+                  "firstName": "Kimani",
+                  "lastName": "Vidal"
+                },
+                "stats": ["0", "0", "1"]
+              },
+              {
+                "athlete": {
+                  "id": "3126352",
+                  "displayName": "Da'Shawn Hand",
+                  "firstName": "Da'Shawn",
+                  "lastName": "Hand"
+                },
+                "stats": ["0", "0", "1"]
+              }
+            ]
+          },
+          {
+            "name": "kickReturns",
+            "keys": [
+              "kickReturns",
+              "kickReturnYards",
+              "yardsPerKickReturn",
+              "longKickReturn",
+              "kickReturnTouchdowns"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4362477",
+                  "displayName": "Derius Davis",
+                  "firstName": "Derius",
+                  "lastName": "Davis"
+                },
+                "stats": ["4", "100", "25.0", "34", "0"]
+              },
+              {
+                "athlete": {
+                  "id": "4362452",
+                  "displayName": "Jaret Patterson",
+                  "firstName": "Jaret",
+                  "lastName": "Patterson"
+                },
+                "stats": ["1", "28", "28.0", "28", "0"]
+              }
+            ]
+          },
+          {
+            "name": "puntReturns",
+            "keys": [
+              "puntReturns",
+              "puntReturnYards",
+              "yardsPerPuntReturn",
+              "longPuntReturn",
+              "puntReturnTouchdowns"
+            ],
+            "athletes": []
+          },
+          {
+            "name": "kicking",
+            "keys": [
+              "fieldGoalsMade/fieldGoalAttempts",
+              "fieldGoalPct",
+              "longFieldGoalMade",
+              "extraPointsMade/extraPointAttempts",
+              "totalKickingPoints"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4362081",
+                  "displayName": "Cameron Dicker",
+                  "firstName": "Cameron",
+                  "lastName": "Dicker"
+                },
+                "stats": ["1/1", "100.0", "21", "0/0", "3"]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "team": { "id": "17", "abbreviation": "NE" },
+        "statistics": [
+          {
+            "name": "passing",
+            "keys": [
+              "completions/passingAttempts",
+              "passingYards",
+              "yardsPerPassAttempt",
+              "passingTouchdowns",
+              "interceptions",
+              "sacks-sackYardsLost",
+              "adjQBR",
+              "QBRating"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4431452",
+                  "displayName": "Drake Maye",
+                  "firstName": "Drake",
+                  "lastName": "Maye"
+                },
+                "stats": ["17/29", "268", "9.2", "1", "1", "5-33", "68.6", "86.6"]
+              },
+              {
+                "athlete": {
+                  "id": "4695193",
+                  "displayName": "Efton Chism III",
+                  "firstName": "Efton",
+                  "lastName": "Chism III"
+                },
+                "stats": ["0/1", "0", "0.0", "0", "0", "0-0", "2.6", "39.6"]
+              }
+            ]
+          },
+          {
+            "name": "rushing",
+            "keys": [
+              "rushingAttempts",
+              "rushingYards",
+              "yardsPerRushAttempt",
+              "rushingTouchdowns",
+              "longRushing"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4431452",
+                  "displayName": "Drake Maye",
+                  "firstName": "Drake",
+                  "lastName": "Maye"
+                },
+                "stats": ["10", "66", "6.6", "0", "37"]
+              },
+              {
+                "athlete": {
+                  "id": "4569173",
+                  "displayName": "Rhamondre Stevenson",
+                  "firstName": "Rhamondre",
+                  "lastName": "Stevenson"
+                },
+                "stats": ["10", "53", "5.3", "0", "13"]
+              },
+              {
+                "athlete": {
+                  "id": "4432710",
+                  "displayName": "TreVeyon Henderson",
+                  "firstName": "TreVeyon",
+                  "lastName": "Henderson"
+                },
+                "stats": ["9", "27", "3.0", "0", "15"]
+              }
+            ]
+          },
+          {
+            "name": "receiving",
+            "keys": [
+              "receptions",
+              "receivingYards",
+              "yardsPerReception",
+              "receivingTouchdowns",
+              "longReception",
+              "receivingTargets"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4569173",
+                  "displayName": "Rhamondre Stevenson",
+                  "firstName": "Rhamondre",
+                  "lastName": "Stevenson"
+                },
+                "stats": ["3", "75", "25.0", "0", "48", "4"]
+              },
+              {
+                "athlete": {
+                  "id": "4429022",
+                  "displayName": "Kayshon Boutte",
+                  "firstName": "Kayshon",
+                  "lastName": "Boutte"
+                },
+                "stats": ["4", "66", "16.5", "0", "42", "4"]
+              },
+              {
+                "athlete": {
+                  "id": "3046439",
+                  "displayName": "Hunter Henry",
+                  "firstName": "Hunter",
+                  "lastName": "Henry"
+                },
+                "stats": ["3", "64", "21.3", "1", "28", "5"]
+              },
+              {
+                "athlete": {
+                  "id": "4695193",
+                  "displayName": "Efton Chism III",
+                  "firstName": "Efton",
+                  "lastName": "Chism III"
+                },
+                "stats": ["1", "20", "20.0", "0", "20", "1"]
+              },
+              {
+                "athlete": {
+                  "id": "2976212",
+                  "displayName": "Stefon Diggs",
+                  "firstName": "Stefon",
+                  "lastName": "Diggs"
+                },
+                "stats": ["2", "16", "8.0", "0", "9", "5"]
+              },
+              {
+                "athlete": {
+                  "id": "4432710",
+                  "displayName": "TreVeyon Henderson",
+                  "firstName": "TreVeyon",
+                  "lastName": "Henderson"
+                },
+                "stats": ["1", "9", "9.0", "0", "9", "1"]
+              },
+              {
+                "athlete": {
+                  "id": "4361100",
+                  "displayName": "Jack Westover",
+                  "firstName": "Jack",
+                  "lastName": "Westover"
+                },
+                "stats": ["1", "8", "8.0", "0", "8", "1"]
+              },
+              {
+                "athlete": {
+                  "id": "4613202",
+                  "displayName": "Kyle Williams",
+                  "firstName": "Kyle",
+                  "lastName": "Williams"
+                },
+                "stats": ["1", "7", "7.0", "0", "7", "1"]
+              },
+              {
+                "athlete": {
+                  "id": "4427095",
+                  "displayName": "DeMario Douglas",
+                  "firstName": "DeMario",
+                  "lastName": "Douglas"
+                },
+                "stats": ["1", "3", "3.0", "0", "3", "2"]
+              },
+              {
+                "athlete": {
+                  "id": "3043275",
+                  "displayName": "Austin Hooper",
+                  "firstName": "Austin",
+                  "lastName": "Hooper"
+                },
+                "stats": ["0", "0", "0.0", "0", "0", "2"]
+              },
+              {
+                "athlete": {
+                  "id": "4431452",
+                  "displayName": "Drake Maye",
+                  "firstName": "Drake",
+                  "lastName": "Maye"
+                },
+                "stats": ["0", "0", "0.0", "0", "0", "1"]
+              }
+            ]
+          },
+          {
+            "name": "fumbles",
+            "keys": ["fumbles", "fumblesLost", "fumblesRecovered"],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4431452",
+                  "displayName": "Drake Maye",
+                  "firstName": "Drake",
+                  "lastName": "Maye"
+                },
+                "stats": ["2", "1", "0"]
+              },
+              {
+                "athlete": {
+                  "id": "4245273",
+                  "displayName": "Christian Elliss",
+                  "firstName": "Christian",
+                  "lastName": "Elliss"
+                },
+                "stats": ["0", "0", "1"]
+              },
+              {
+                "athlete": {
+                  "id": "4599198",
+                  "displayName": "Jared Wilson",
+                  "firstName": "Jared",
+                  "lastName": "Wilson"
+                },
+                "stats": ["0", "0", "1"]
+              }
+            ]
+          },
+          {
+            "name": "kickReturns",
+            "keys": [
+              "kickReturns",
+              "kickReturnYards",
+              "yardsPerKickReturn",
+              "longKickReturn",
+              "kickReturnTouchdowns"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4695193",
+                  "displayName": "Efton Chism III",
+                  "firstName": "Efton",
+                  "lastName": "Chism III"
+                },
+                "stats": ["2", "48", "24.0", "26", "0"]
+              }
+            ]
+          },
+          {
+            "name": "puntReturns",
+            "keys": [
+              "puntReturns",
+              "puntReturnYards",
+              "yardsPerPuntReturn",
+              "longPuntReturn",
+              "puntReturnTouchdowns"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4241720",
+                  "displayName": "Marcus Jones",
+                  "firstName": "Marcus",
+                  "lastName": "Jones"
+                },
+                "stats": ["2", "2", "1.0", "2", "0"]
+              }
+            ]
+          },
+          {
+            "name": "kicking",
+            "keys": [
+              "fieldGoalsMade/fieldGoalAttempts",
+              "fieldGoalPct",
+              "longFieldGoalMade",
+              "extraPointsMade/extraPointAttempts",
+              "totalKickingPoints"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4569923",
+                  "displayName": "Andy Borregales",
+                  "firstName": "Andy",
+                  "lastName": "Borregales"
+                },
+                "stats": ["3/3", "100.0", "39", "1/1", "10"]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "scoringPlays": [
+    {
+      "id": "401772978906",
+      "type": { "text": "Field Goal Good" },
+      "text": "Andy Borregales 23 Yd Field Goal",
+      "team": { "id": "17" }
+    },
+    {
+      "id": "4017729781206",
+      "type": { "text": "Field Goal Good" },
+      "text": "Cameron Dicker 21 Yd Field Goal",
+      "team": { "id": "24" }
+    },
+    {
+      "id": "4017729781856",
+      "type": { "text": "Field Goal Good" },
+      "text": "Andy Borregales 35 Yd Field Goal ",
+      "team": { "id": "17" }
+    },
+    {
+      "id": "4017729782662",
+      "type": { "text": "Field Goal Good" },
+      "text": "Andy Borregales 39 Yd Field Goal",
+      "team": { "id": "17" }
+    },
+    {
+      "id": "4017729783070",
+      "type": { "text": "Passing Touchdown" },
+      "text": "Hunter Henry 28 Yd pass from Drake Maye (Andy Borregales Kick)",
+      "team": { "id": "17" }
+    }
+  ],
+  "drives": {
+    "previous": [
+      {
+        "plays": [
+          {
+            "id": "40177297840",
+            "type": { "text": "Kickoff" },
+            "text": "C.Dicker kicks 56 yards from LAC 35 to NE 9. E.Chism to NE 31 for 22 yards (D.Leonard; T.Dye).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "40177297863",
+            "type": { "text": "Rush" },
+            "text": "R.Stevenson right tackle to NE 37 for 6 yards (D.Henley; J.Caldwell).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "40177297885",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) D.Maye pass short right to S.Diggs to NE 44 for 7 yards (T.Still; D.Perryman).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772978110",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) R.Stevenson right tackle to NE 48 for 4 yards (T.Still).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772978132",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) D.Maye pass incomplete short middle to H.Henry.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772978155",
+            "type": { "text": "Sack" },
+            "text": "(Shotgun) D.Maye sacked at NE 45 for -3 yards (O.Oweh).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772978175",
+            "type": { "text": "Punt" },
+            "text": "B.Baringer punts 55 yards to end zone, Center-J.Ashby, Touchback.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772978184",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 12:23.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "401772978193",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Herbert pass short right to T.Harris to LAC 34 for 14 yards (C.Woodson; H.Landry).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "401772978225",
+            "type": { "text": "Rush" },
+            "text": "J.Herbert scrambles right end ran ob at LAC 43 for 9 yards (J.Tavai).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "401772978252",
+            "type": { "text": "Rush" },
+            "text": "K.Vidal right guard to LAC 45 for 2 yards (J.Gibbens; C.Durden).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "401772978274",
+            "type": { "text": "Penalty" },
+            "text": "(Shotgun) PENALTY on LAC-J.Salyer, False Start, 5 yards, enforced at LAC 45 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "401772978298",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Herbert pass short left to Q.Johnston to LAC 43 for 3 yards (C.Woodson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "401772978323",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) J.Herbert pass incomplete short left to Q.Johnston (C.Elliss).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "401772978351",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Herbert pass short left to O.Gadsden to NE 47 for 10 yards (C.Davis).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "401772978376",
+            "type": { "text": "Penalty" },
+            "text": "(Shotgun) PENALTY on LAC, Delay of Game, 5 yards, enforced at NE 47 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "401772978400",
+            "type": { "text": "Punt" },
+            "text": "J.Scott punts 44 yards to NE 8, Center-J.Harris. M.Jones to NE 8 for no gain (D.Leonard).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "401772978413",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 08:08.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "401772978426",
+            "type": { "text": "Rush" },
+            "text": "T.Henderson up the middle to NE 7 for -1 yards (T.Jefferson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772978455",
+            "type": { "text": "Pass Interception Return" },
+            "text": "D.Maye pass short middle intended for A.Hooper INTERCEPTED by D.Henley (T.Tart) at NE 12. D.Henley to NE 10 for 2 yards (A.Hooper).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "401772978482",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) J.Herbert scrambles up the middle to NE 6 for 4 yards (A.Jennings).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "401772978504",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) T.Penning reported in as eligible.  J.Herbert right end to NE 3 for 3 yards (J.Gibbens; C.Davis).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "401772978528",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) J.Herbert scrambles left guard to NE 2 for 1 yard (M.Jones).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "401772978550",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) J.Herbert pass incomplete short right to K.Allen.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "401772978562",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 05:12.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "401772978573",
+            "type": { "text": "Pass Reception" },
+            "text": "D.Maye pass short middle to R.Stevenson to 50 for 48 yards (R.Mickens).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772978605",
+            "type": { "text": "Rush" },
+            "text": "T.Henderson right tackle to LAC 45 for 5 yards (D.Henley; D.Jackson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772978627",
+            "type": { "text": "Rush" },
+            "text": "D.Maye scrambles left end to LAC 41 for 4 yards (D.Henley).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772978649",
+            "type": { "text": "Rush" },
+            "text": "R.Stevenson up the middle to LAC 36 for 5 yards (D.Henley).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772978671",
+            "type": { "text": "Rush" },
+            "text": "R.Stevenson right end to LAC 30 for 6 yards (D.Phillips).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772978693",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) D.Maye pass incomplete short right to S.Diggs.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772978716",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) E.Chism pass incomplete short right to D.Maye.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772978739",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) D.Maye pass short right to K.Williams ran ob at LAC 23 for 7 yards.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772978769",
+            "type": { "text": "Sack" },
+            "text": "D.Maye sacked at LAC 31 for -8 yards (T.Tuipulotu).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772978789",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) D.Maye pass deep left to E.Chism to LAC 11 for 20 yards (T.Still).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772978814",
+            "type": { "text": "End Period" },
+            "text": "END QUARTER 1",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772978834",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) D.Maye scrambles left end pushed ob at LAC 9 for 2 yards (D.Henley).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772978861",
+            "type": { "text": "Rush" },
+            "text": "R.Stevenson left tackle to LAC 5 for 4 yards (D.Henley; B.St-Juste).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772978883",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) D.Maye pass incomplete short left.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772978906",
+            "type": { "text": "Field Goal Good" },
+            "text": "A.Borregales 23 yard field goal is GOOD, Center-J.Ashby, Holder-B.Baringer.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772978916",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 13:32.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "401772978926",
+            "type": { "text": "Kickoff" },
+            "text": "A.Borregales kicks 59 yards from NE 35 to LAC 6. D.Davis to LAC 28 for 22 yards (B.Schooler).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772978956",
+            "type": { "text": "Rush" },
+            "text": "O.Hampton left guard to LAC 27 for -1 yards (C.Woodson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "401772978978",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Herbert pass short right to L.McConkey to LAC 47 for 20 yards (M.Jones).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729781003",
+            "type": { "text": "Rush" },
+            "text": "K.Vidal right guard to LAC 49 for 2 yards (J.Gibbens; C.Woodson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729781025",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Herbert pass short left to K.Allen to NE 43 for 8 yards (M.Jones).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729781050",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) T.Penning reported in as eligible.  K.Vidal right tackle to NE 33 for 10 yards (C.Woodson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729781074",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Herbert pass short right to T.Fisk to NE 26 for 7 yards (J.Gibbens; C.Davis).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729781099",
+            "type": { "text": "Rush" },
+            "text": "K.Vidal right tackle to NE 24 for 2 yards (M.Williams; C.Woodson).PENALTY on NE-C.Elliss, Face Mask, 13 yards, enforced at NE 24.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729781132",
+            "type": { "text": "Rush" },
+            "text": "K.Vidal right guard to NE 8 for 3 yards (C.Elliss; J.Hawkins).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729781154",
+            "type": { "text": "Pass Reception" },
+            "text": "J.Herbert pass short right to T.Fisk ran ob at NE 3 for 5 yards.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729781184",
+            "type": { "text": "Rush" },
+            "text": "K.Vidal right guard to NE 3 for no gain (J.Gibbens; R.Spillane).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729781206",
+            "type": { "text": "Field Goal Good" },
+            "text": "C.Dicker 21 yard field goal is GOOD, Center-J.Harris, Holder-J.Scott.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729781216",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 06:52.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729781226",
+            "type": { "text": "Kickoff" },
+            "text": "C.Dicker kicks 64 yards from LAC 35 to NE 1. E.Chism to NE 27 for 26 yards (H.Haskins).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729781256",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) D.Maye pass short middle to T.Henderson to NE 36 for 9 yards (D.Perryman; E.Molden).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729781281",
+            "type": { "text": "Rush" },
+            "text": "D.Maye up the middle to NE 39 for 3 yards (D.Perryman).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729781303",
+            "type": { "text": "Rush" },
+            "text": "T.Henderson right guard to NE 42 for 3 yards (D.Perryman).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729781325",
+            "type": { "text": "Rush" },
+            "text": "D.Maye scrambles right end to LAC 49 for 9 yards (D.Henley).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729781347",
+            "type": { "text": "Pass Incompletion" },
+            "text": "D.Maye pass incomplete short left to S.Diggs.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729781370",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) D.Maye pass short right to K.Boutte to LAC 45 for 4 yards (T.Still).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729781395",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) D.Maye pass incomplete short left to R.Stevenson.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729781423",
+            "type": { "text": "Punt" },
+            "text": " B.Baringer punts 37 yards to LAC 8, Center-J.Ashby, downed by NE-J.Tavai.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729781433",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 03:23.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729781443",
+            "type": { "text": "Pass Incompletion" },
+            "text": "J.Herbert pass incomplete short middle [C.Davis].",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729781490",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Herbert pass short left to K.Allen to LAC 18 for 10 yards (C.Elliss; R.Spillane).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729781515",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Herbert pass short left to K.Vidal to LAC 27 for 9 yards (C.Elliss).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729781528",
+            "type": { "text": "Two-minute warning" },
+            "text": "Two-Minute Warning",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729781540",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) K.Vidal left guard to LAC 27 for no gain (C.Elliss; C.Woodson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729781569",
+            "type": { "text": "Rush" },
+            "text": "(No Huddle) J.Herbert up the middle to LAC 27 for no gain (C.Barmore; R.Spillane).The Replay Official reviewed the short of the line to gain ruling, and the play was REVERSED.(No Huddle) J.Herbert up the middle to LAC 28 for 1 yard (C.Barmore; R.Spillane).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729781591",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Herbert pass short right to K.Allen to LAC 35 for 7 yards (D.Pettus).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729781671",
+            "type": { "text": "Sack" },
+            "text": "(No Huddle, Shotgun) J.Herbert sacked at LAC 27 for -8 yards (M.Williams).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729781681",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #1 by NE at 00:48.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729781691",
+            "type": { "text": "Sack" },
+            "text": "(Shotgun) J.Herbert sacked at LAC 23 for -4 yards (K.Chaisson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729781705",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #2 by NE at 00:41.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729781718",
+            "type": { "text": "Punt" },
+            "text": "J.Scott punts 33 yards to NE 44, Center-J.Harris. M.Jones to NE 46 for 2 yards (T.Harris).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729781735",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 00:31.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729781751",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) D.Maye pass incomplete deep middle to S.Diggs.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729781781",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) D.Maye scrambles up the middle to LAC 17 for 37 yards (E.Molden; T.Still).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729781792",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #3 by NE at 00:16.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729781803",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) D.Maye pass incomplete deep middle.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729781833",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) D.Maye pass incomplete short right.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729781845",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #1 by LAC at 00:06.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729781856",
+            "type": { "text": "Field Goal Good" },
+            "text": " A.Borregales 35 yard field goal is GOOD, Center-J.Ashby, Holder-B.Baringer.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "17" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729781883",
+            "type": { "text": "Kickoff" },
+            "text": "A.Borregales kicks 69 yards from NE 35 to LAC -4. D.Davis to LAC 21 for 25 yards (C.Woodson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729781906",
+            "type": { "text": "End of Half" },
+            "text": "END QUARTER 2",
+            "scoringPlay": false
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729781926",
+            "type": { "text": "Kickoff" },
+            "text": "A.Borregales kicks 61 yards from NE 35 to LAC 4. J.Patterson to LAC 32 for 28 yards (C.Woodson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729781949",
+            "type": { "text": "Rush" },
+            "text": "K.Vidal left tackle to LAC 35 for 3 yards (R.Spillane; C.Barmore).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729781971",
+            "type": { "text": "Pass Reception" },
+            "text": "J.Herbert pass short right to T.Fisk to LAC 35 for no gain (M.Jones).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729781996",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) J.Herbert pass incomplete deep left to L.McConkey (M.Jones).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729782019",
+            "type": { "text": "Punt" },
+            "text": "J.Scott punts 46 yards to NE 19, Center-J.Harris, out of bounds.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729782038",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) D.Maye pass short right to R.Stevenson to NE 29 for 10 yards (D.James).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729782063",
+            "type": { "text": "Rush" },
+            "text": "R.Stevenson up the middle to NE 29 for no gain (T.Tart).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729782085",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) D.Maye pass deep left to H.Henry pushed ob at NE 46 for 17 yards (T.Jefferson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729782115",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) T.Munford reported in as eligible.  D.Maye pass short left to K.Boutte pushed ob at 50 for 4 yards (T.Still).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729782147",
+            "type": { "text": "Rush" },
+            "text": "T.Henderson right tackle to 50 for no gain (O.Oweh).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729782174",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) D.Maye pass short right to R.Stevenson to LAC 33 for 17 yards (D.Henley).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729782199",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) D.Maye pass incomplete deep right to H.Henry.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729782222",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) D.Maye pass short middle to S.Diggs to LAC 24 for 9 yards (T.Tart; D.Henley).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729782247",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) T.Munford reported in as eligible.  D.Maye right end to LAC 18 for 6 yards (D.James).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729782271",
+            "type": { "text": "Rush" },
+            "text": "T.Henderson right guard to LAC 18 for no gain (K.Mack; D.Phillips).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729782293",
+            "type": { "text": "Sack Opp Fumble Recovery" },
+            "text": "(Shotgun) D.Maye sacked at LAC 24 for -6 yards (O.Oweh). FUMBLES (O.Oweh) [O.Oweh], RECOVERED by LAC-D.Hand at LAC 23.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729782308",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 07:06.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729782323",
+            "type": { "text": "Pass Incompletion" },
+            "text": "J.Herbert pass incomplete deep right to Q.Johnston (C.Gonzalez). ** Injury Update: NE-C.Davis has returned to the game.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729782364",
+            "type": { "text": "Penalty" },
+            "text": "(Shotgun) J.Herbert pass incomplete deep left to Q.Johnston.PENALTY on NE-C.Davis, Defensive Pass Interference, 22 yards, enforced at LAC 23 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729782401",
+            "type": { "text": "Rush" },
+            "text": "T.Penning reported in as eligible.  K.Vidal left end to LAC 46 for 1 yard (J.Gibbens).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729782425",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) K.Vidal left guard to NE 49 for 5 yards (C.Barmore).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729782447",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) J.Herbert pass incomplete deep right to K.Vidal [C.Elliss].",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729782470",
+            "type": { "text": "Punt" },
+            "text": "J.Scott punts 34 yards to NE 15, Center-J.Harris, out of bounds.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729782480",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 05:10.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729782489",
+            "type": { "text": "Sack" },
+            "text": "(Shotgun) D.Maye sacked at NE 7 for -8 yards (T.Tart).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729782516",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) R.Stevenson right guard to NE 12 for 5 yards (T.Tuipulotu).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729782538",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) D.Maye pass short middle to H.Henry to NE 31 for 19 yards (D.James).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729782563",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) T.Munford reported in as eligible.  D.Maye pass deep left to K.Boutte to LAC 27 for 42 yards (D.Henley).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729782594",
+            "type": { "text": "Rush" },
+            "text": "R.Stevenson left guard to LAC 21 for 6 yards (J.Caldwell).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729782616",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) D.Maye pass incomplete deep left to A.Hooper.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729782639",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) D.Maye pass incomplete short right to D.Douglas.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729782662",
+            "type": { "text": "Field Goal Good" },
+            "text": "A.Borregales 39 yard field goal is GOOD, Center-J.Ashby, Holder-B.Baringer.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729782672",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 01:34.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729782682",
+            "type": { "text": "Kickoff" },
+            "text": "A.Borregales kicks 65 yards from NE 35 to LAC 0. D.Davis to LAC 19 for 19 yards (D.Pettus).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729782712",
+            "type": { "text": "Fumble Recovery (Own)" },
+            "text": "(Shotgun) J.Herbert sacked at LAC 15 for -4 yards (M.Jones). FUMBLES (M.Jones) [M.Jones], recovered by LAC-K.Vidal at LAC 15. K.Vidal to LAC 32 for 17 yards (H.Landry).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729782742",
+            "type": { "text": "Rush" },
+            "text": "T.Penning reported in as eligible.  K.Vidal right guard to LAC 35 for 3 yards (J.Tavai; J.Gibbens).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729782766",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) J.Herbert scrambles left end to LAC 43 for 8 yards (C.Elliss).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729782788",
+            "type": { "text": "End Period" },
+            "text": "END QUARTER 3",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729782808",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) J.Herbert left tackle to LAC 46 for 3 yards (K.Chaisson; C.Durden).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729782830",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) J.Herbert pass incomplete short left to Q.Johnston (C.Gonzalez).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729782853",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) J.Herbert pass incomplete short middle to K.Allen.Penalty on LAC-L.McConkey, Illegal Shift, declined.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729782887",
+            "type": { "text": "Punt" },
+            "text": "J.Scott punts 54 yards to end zone, Center-J.Harris, Touchback.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729782896",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 14:01.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729782905",
+            "type": { "text": "Pass Reception" },
+            "text": "D.Maye pass short left to D.Douglas to NE 23 for 3 yards (D.Henley).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729782937",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) D.Maye pass short right to J.Westover to NE 31 for 8 yards (T.Dye).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729782962",
+            "type": { "text": "Rush" },
+            "text": "R.Stevenson right guard to NE 35 for 4 yards (J.Caldwell).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729782984",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) D.Maye pass short right to K.Boutte pushed ob at LAC 49 for 16 yards (R.Mickens).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729783009",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) D.Maye scrambles right guard to LAC 41 for 8 yards (D.Henley).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729783020",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #1 by NE at 10:33.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729783031",
+            "type": { "text": "Rush" },
+            "text": "R.Stevenson left tackle to LAC 28 for 13 yards (T.Jefferson; T.Still).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729783070",
+            "type": { "text": "Passing Touchdown" },
+            "text": "T.Munford reported in as eligible.  D.Maye pass deep left to H.Henry for 28 yards, TOUCHDOWN. A.Borregales extra point is GOOD, Center-J.Ashby, Holder-B.Baringer.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "17" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729783113",
+            "type": { "text": "Kickoff" },
+            "text": "A.Borregales kicks 63 yards from NE 35 to LAC 2. D.Davis to LAC 36 for 34 yards (C.Elliss; J.Tavai).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729783139",
+            "type": { "text": "Penalty" },
+            "text": "(Shotgun) PENALTY on LAC-J.Salyer, False Start, 5 yards, enforced at LAC 36 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729783173",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) J.Herbert scrambles right end pushed ob at LAC 47 for 16 yards (M.Jones).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729783200",
+            "type": { "text": "Rush" },
+            "text": "(No Huddle, Shotgun) J.Herbert scrambles left end to NE 42 for 11 yards (J.Hawkins).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729783222",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) J.Herbert pass incomplete short right to K.Allen.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729783245",
+            "type": { "text": "Sack Opp Fumble Recovery" },
+            "text": "(Shotgun) J.Herbert sacked at LAC 48 for -10 yards (K.Chaisson). FUMBLES (K.Chaisson) [K.Chaisson], touched at LAC 48, RECOVERED by NE-C.Elliss at LAC 45. LAC-J.Herbert was injured during the play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729783260",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 08:08.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729783275",
+            "type": { "text": "Rush" },
+            "text": "T.Henderson right guard to LAC 39 for 6 yards (D.Henley).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729783307",
+            "type": { "text": "Rush" },
+            "text": "T.Henderson right guard to LAC 41 for -2 yards (T.Tart).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729783329",
+            "type": { "text": "Fumble Recovery (Own)" },
+            "text": "(Shotgun) D.Maye sacked at LAC 47 for -6 yards (O.Oweh). FUMBLES (O.Oweh) [O.Oweh], recovered by NE-J.Wilson at 50.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729783359",
+            "type": { "text": "Punt" },
+            "text": " B.Baringer punts 38 yards to LAC 12, Center-J.Ashby, fair catch by D.Davis.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729783369",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 05:39.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729783379",
+            "type": { "text": "Penalty" },
+            "text": "(Shotgun) ** Injury Update: LAC-J.Herbert has returned to the game.  PENALTY on LAC-M.Becton, False Start, 5 yards, enforced at LAC 12 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729783410",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Herbert pass short middle to K.Vidal to LAC 18 for 11 yards (D.Pettus; J.Hawkins) [C.Durden].",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729783438",
+            "type": { "text": "Pass Reception" },
+            "text": "(No Huddle, Shotgun) J.Herbert pass short left to L.McConkey to LAC 24 for 6 yards (R.Spillane).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729783463",
+            "type": { "text": "Pass Reception" },
+            "text": "(No Huddle, Shotgun) J.Herbert pass short middle to Q.Johnston to LAC 33 for 9 yards (R.Spillane) [K.Chaisson].",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729783488",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(No Huddle, Shotgun) J.Herbert pass incomplete short middle to K.Allen (R.Spillane).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729783511",
+            "type": { "text": "Sack" },
+            "text": "(Shotgun) J.Herbert sacked at LAC 25 for -8 yards (A.Jennings).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729783521",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #1 by LAC at 04:10.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729783531",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Herbert pass short left to O.Gadsden pushed ob at LAC 35 for 10 yards (C.Woods).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729783563",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Herbert pass short left to Q.Johnston to LAC 43 for 8 yards (C.Woods).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729783593",
+            "type": { "text": "Pass Reception" },
+            "text": "(No Huddle, Shotgun) J.Herbert pass short middle to O.Gadsden to NE 47 for 10 yards (C.Woodson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729783618",
+            "type": { "text": "Pass Reception" },
+            "text": "(No Huddle, Shotgun) J.Herbert pass short right to L.McConkey to NE 41 for 6 yards (C.Elliss).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729783643",
+            "type": { "text": "Pass Reception" },
+            "text": "(No Huddle, Shotgun) J.Herbert pass short right to T.Harris to NE 35 for 6 yards (C.Woodson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729783668",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(No Huddle, Shotgun) J.Herbert pass incomplete deep right to T.Harris [C.Durden].",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729783691",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) J.Herbert scrambles left end to NE 34 for 1 yard (C.Elliss; E.Ponder).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729783713",
+            "type": { "text": "Pass Incompletion" },
+            "text": " (No Huddle, Shotgun) J.Herbert pass incomplete short right to K.Allen.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729783725",
+            "type": { "text": "Two-minute warning" },
+            "text": "Two-Minute Warning",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729783731",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #2 by NE at 02:00.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          },
+          {
+            "id": "4017729783736",
+            "type": { "text": "Sack" },
+            "text": "(Shotgun) J.Herbert sacked at NE 43 for -9 yards (M.Williams).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "24" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729783770",
+            "type": { "text": "Rush" },
+            "text": "T.Henderson up the middle to NE 44 for 1 yard (D.Hand; O.Ogbonnia).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729783781",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #2 by LAC at 01:51.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729783792",
+            "type": { "text": "Rush" },
+            "text": "T.Henderson up the middle to LAC 41 for 15 yards (D.James; T.Still).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729783807",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #3 by LAC at 01:43.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729783821",
+            "type": { "text": "Rush" },
+            "text": "D.Maye kneels to LAC 42 for -1 yards.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729783855",
+            "type": { "text": "Rush" },
+            "text": "D.Maye kneels to LAC 43 for -1 yards.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729783877",
+            "type": { "text": "Rush" },
+            "text": "D.Maye kneels to LAC 44 for -1 yards.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729783899",
+            "type": { "text": "End of Game" },
+            "text": "END GAME",
+            "scoringPlay": false
+          }
+        ]
+      }
+    ]
+  }
+}

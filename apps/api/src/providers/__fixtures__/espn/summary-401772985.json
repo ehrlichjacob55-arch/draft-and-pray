@@ -1,0 +1,2175 @@
+{
+  "header": {
+    "competitions": [
+      {
+        "date": "2026-01-18T23:30Z",
+        "status": { "type": { "name": "STATUS_FINAL", "completed": true } },
+        "competitors": [
+          {
+            "homeAway": "home",
+            "score": "17",
+            "winner": false,
+            "team": { "id": "3", "abbreviation": "CHI" }
+          },
+          {
+            "homeAway": "away",
+            "score": "20",
+            "winner": true,
+            "team": { "id": "14", "abbreviation": "LAR" }
+          }
+        ]
+      }
+    ]
+  },
+  "boxscore": {
+    "players": [
+      {
+        "team": { "id": "14", "abbreviation": "LAR" },
+        "statistics": [
+          {
+            "name": "passing",
+            "keys": [
+              "completions/passingAttempts",
+              "passingYards",
+              "yardsPerPassAttempt",
+              "passingTouchdowns",
+              "interceptions",
+              "sacks-sackYardsLost",
+              "adjQBR",
+              "QBRating"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "12483",
+                  "displayName": "Matthew Stafford",
+                  "firstName": "Matthew",
+                  "lastName": "Stafford"
+                },
+                "stats": ["20/42", "258", "6.1", "0", "0", "4-29", "31.5", "67.4"]
+              }
+            ]
+          },
+          {
+            "name": "rushing",
+            "keys": [
+              "rushingAttempts",
+              "rushingYards",
+              "yardsPerRushAttempt",
+              "rushingTouchdowns",
+              "longRushing"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4430737",
+                  "displayName": "Kyren Williams",
+                  "firstName": "Kyren",
+                  "lastName": "Williams"
+                },
+                "stats": ["21", "87", "4.1", "2", "10"]
+              },
+              {
+                "athlete": {
+                  "id": "4429096",
+                  "displayName": "Blake Corum",
+                  "firstName": "Blake",
+                  "lastName": "Corum"
+                },
+                "stats": ["6", "19", "3.2", "0", "7"]
+              },
+              {
+                "athlete": {
+                  "id": "4426515",
+                  "displayName": "Puka Nacua",
+                  "firstName": "Puka",
+                  "lastName": "Nacua"
+                },
+                "stats": ["2", "6", "3.0", "0", "4"]
+              },
+              {
+                "athlete": {
+                  "id": "4569382",
+                  "displayName": "Jordan Whittington",
+                  "firstName": "Jordan",
+                  "lastName": "Whittington"
+                },
+                "stats": ["1", "0", "0.0", "0", "0"]
+              },
+              {
+                "athlete": {
+                  "id": "12483",
+                  "displayName": "Matthew Stafford",
+                  "firstName": "Matthew",
+                  "lastName": "Stafford"
+                },
+                "stats": ["1", "-1", "-1.0", "0", "-1"]
+              }
+            ]
+          },
+          {
+            "name": "receiving",
+            "keys": [
+              "receptions",
+              "receivingYards",
+              "yardsPerReception",
+              "receivingTouchdowns",
+              "longReception",
+              "receivingTargets"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4242557",
+                  "displayName": "Colby Parkinson",
+                  "firstName": "Colby",
+                  "lastName": "Parkinson"
+                },
+                "stats": ["3", "56", "18.7", "0", "35", "7"]
+              },
+              {
+                "athlete": {
+                  "id": "4426515",
+                  "displayName": "Puka Nacua",
+                  "firstName": "Puka",
+                  "lastName": "Nacua"
+                },
+                "stats": ["5", "56", "11.2", "0", "16", "10"]
+              },
+              {
+                "athlete": {
+                  "id": "4569382",
+                  "displayName": "Jordan Whittington",
+                  "firstName": "Jordan",
+                  "lastName": "Whittington"
+                },
+                "stats": ["2", "35", "17.5", "0", "20", "2"]
+              },
+              {
+                "athlete": {
+                  "id": "4430737",
+                  "displayName": "Kyren Williams",
+                  "firstName": "Kyren",
+                  "lastName": "Williams"
+                },
+                "stats": ["4", "30", "7.5", "0", "14", "5"]
+              },
+              {
+                "athlete": {
+                  "id": "2573401",
+                  "displayName": "Tyler Higbee",
+                  "firstName": "Tyler",
+                  "lastName": "Higbee"
+                },
+                "stats": ["1", "27", "27.0", "0", "27", "2"]
+              },
+              {
+                "athlete": {
+                  "id": "16800",
+                  "displayName": "Davante Adams",
+                  "firstName": "Davante",
+                  "lastName": "Adams"
+                },
+                "stats": ["2", "24", "12.0", "0", "12", "6"]
+              },
+              {
+                "athlete": {
+                  "id": "4570037",
+                  "displayName": "Terrance Ferguson",
+                  "firstName": "Terrance",
+                  "lastName": "Ferguson"
+                },
+                "stats": ["1", "19", "19.0", "0", "19", "5"]
+              },
+              {
+                "athlete": {
+                  "id": "4710855",
+                  "displayName": "Konata Mumpfield",
+                  "firstName": "Konata",
+                  "lastName": "Mumpfield"
+                },
+                "stats": ["2", "11", "5.5", "0", "6", "3"]
+              }
+            ]
+          },
+          {
+            "name": "fumbles",
+            "keys": ["fumbles", "fumblesLost", "fumblesRecovered"],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "12483",
+                  "displayName": "Matthew Stafford",
+                  "firstName": "Matthew",
+                  "lastName": "Stafford"
+                },
+                "stats": ["2", "0", "1"]
+              },
+              {
+                "athlete": {
+                  "id": "4430737",
+                  "displayName": "Kyren Williams",
+                  "firstName": "Kyren",
+                  "lastName": "Williams"
+                },
+                "stats": ["0", "0", "1"]
+              }
+            ]
+          },
+          {
+            "name": "kickReturns",
+            "keys": [
+              "kickReturns",
+              "kickReturnYards",
+              "yardsPerKickReturn",
+              "longKickReturn",
+              "kickReturnTouchdowns"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4243003",
+                  "displayName": "Ronnie Rivers",
+                  "firstName": "Ronnie",
+                  "lastName": "Rivers"
+                },
+                "stats": ["2", "49", "24.5", "26", "0"]
+              },
+              {
+                "athlete": {
+                  "id": "4569382",
+                  "displayName": "Jordan Whittington",
+                  "firstName": "Jordan",
+                  "lastName": "Whittington"
+                },
+                "stats": ["2", "39", "19.5", "20", "0"]
+              }
+            ]
+          },
+          {
+            "name": "puntReturns",
+            "keys": [
+              "puntReturns",
+              "puntReturnYards",
+              "yardsPerPuntReturn",
+              "longPuntReturn",
+              "puntReturnTouchdowns"
+            ],
+            "athletes": []
+          },
+          {
+            "name": "kicking",
+            "keys": [
+              "fieldGoalsMade/fieldGoalAttempts",
+              "fieldGoalPct",
+              "longFieldGoalMade",
+              "extraPointsMade/extraPointAttempts",
+              "totalKickingPoints"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4574716",
+                  "displayName": "Harrison Mevis",
+                  "firstName": "Harrison",
+                  "lastName": "Mevis"
+                },
+                "stats": ["2/2", "100.0", "42", "2/2", "8"]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "team": { "id": "3", "abbreviation": "CHI" },
+        "statistics": [
+          {
+            "name": "passing",
+            "keys": [
+              "completions/passingAttempts",
+              "passingYards",
+              "yardsPerPassAttempt",
+              "passingTouchdowns",
+              "interceptions",
+              "sacks-sackYardsLost",
+              "adjQBR",
+              "QBRating"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4431611",
+                  "displayName": "Caleb Williams",
+                  "firstName": "Caleb",
+                  "lastName": "Williams"
+                },
+                "stats": ["23/42", "257", "6.1", "2", "3", "0-0", "70.4", "59.3"]
+              }
+            ]
+          },
+          {
+            "name": "rushing",
+            "keys": [
+              "rushingAttempts",
+              "rushingYards",
+              "yardsPerRushAttempt",
+              "rushingTouchdowns",
+              "longRushing"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4259545",
+                  "displayName": "D'Andre Swift",
+                  "firstName": "D'Andre",
+                  "lastName": "Swift"
+                },
+                "stats": ["19", "76", "4.0", "0", "13"]
+              },
+              {
+                "athlete": {
+                  "id": "4431611",
+                  "displayName": "Caleb Williams",
+                  "firstName": "Caleb",
+                  "lastName": "Williams"
+                },
+                "stats": ["5", "40", "8.0", "0", "26"]
+              },
+              {
+                "athlete": {
+                  "id": "4608686",
+                  "displayName": "Kyle Monangai",
+                  "firstName": "Kyle",
+                  "lastName": "Monangai"
+                },
+                "stats": ["13", "36", "2.8", "0", "15"]
+              },
+              {
+                "athlete": {
+                  "id": "3915416",
+                  "displayName": "DJ Moore",
+                  "firstName": "DJ",
+                  "lastName": "Moore"
+                },
+                "stats": ["1", "8", "8.0", "0", "8"]
+              },
+              {
+                "athlete": {
+                  "id": "4685278",
+                  "displayName": "Luther Burden III",
+                  "firstName": "Luther",
+                  "lastName": "Burden III"
+                },
+                "stats": ["1", "0", "0.0", "0", "0"]
+              }
+            ]
+          },
+          {
+            "name": "receiving",
+            "keys": [
+              "receptions",
+              "receivingYards",
+              "yardsPerReception",
+              "receivingTouchdowns",
+              "longReception",
+              "receivingTargets"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4723086",
+                  "displayName": "Colston Loveland",
+                  "firstName": "Colston",
+                  "lastName": "Loveland"
+                },
+                "stats": ["4", "56", "14.0", "0", "23", "10"]
+              },
+              {
+                "athlete": {
+                  "id": "3915416",
+                  "displayName": "DJ Moore",
+                  "firstName": "DJ",
+                  "lastName": "Moore"
+                },
+                "stats": ["5", "52", "10.4", "1", "34", "8"]
+              },
+              {
+                "athlete": {
+                  "id": "4431299",
+                  "displayName": "Rome Odunze",
+                  "firstName": "Rome",
+                  "lastName": "Odunze"
+                },
+                "stats": ["2", "44", "22.0", "0", "27", "6"]
+              },
+              {
+                "athlete": {
+                  "id": "4608686",
+                  "displayName": "Kyle Monangai",
+                  "firstName": "Kyle",
+                  "lastName": "Monangai"
+                },
+                "stats": ["4", "36", "9.0", "0", "16", "4"]
+              },
+              {
+                "athlete": {
+                  "id": "4258595",
+                  "displayName": "Cole Kmet",
+                  "firstName": "Cole",
+                  "lastName": "Kmet"
+                },
+                "stats": ["3", "31", "10.3", "1", "14", "3"]
+              },
+              {
+                "athlete": {
+                  "id": "4685278",
+                  "displayName": "Luther Burden III",
+                  "firstName": "Luther",
+                  "lastName": "Burden III"
+                },
+                "stats": ["3", "24", "8.0", "0", "11", "7"]
+              },
+              {
+                "athlete": {
+                  "id": "3917914",
+                  "displayName": "Olamide Zaccheaus",
+                  "firstName": "Olamide",
+                  "lastName": "Zaccheaus"
+                },
+                "stats": ["1", "9", "9.0", "0", "9", "2"]
+              },
+              {
+                "athlete": {
+                  "id": "3052897",
+                  "displayName": "Durham Smythe",
+                  "firstName": "Durham",
+                  "lastName": "Smythe"
+                },
+                "stats": ["1", "5", "5.0", "0", "5", "1"]
+              },
+              {
+                "athlete": {
+                  "id": "5125873",
+                  "displayName": "Theo Benedet",
+                  "firstName": "Theo",
+                  "lastName": "Benedet"
+                },
+                "stats": ["0", "0", "0.0", "0", "0", "1"]
+              }
+            ]
+          },
+          {
+            "name": "fumbles",
+            "keys": ["fumbles", "fumblesLost", "fumblesRecovered"],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4039050",
+                  "displayName": "Devin Duvernay",
+                  "firstName": "Devin",
+                  "lastName": "Duvernay"
+                },
+                "stats": ["1", "0", "1"]
+              }
+            ]
+          },
+          {
+            "name": "kickReturns",
+            "keys": [
+              "kickReturns",
+              "kickReturnYards",
+              "yardsPerKickReturn",
+              "longKickReturn",
+              "kickReturnTouchdowns"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4039050",
+                  "displayName": "Devin Duvernay",
+                  "firstName": "Devin",
+                  "lastName": "Duvernay"
+                },
+                "stats": ["2", "58", "29.0", "31", "0"]
+              }
+            ]
+          },
+          {
+            "name": "puntReturns",
+            "keys": [
+              "puntReturns",
+              "puntReturnYards",
+              "yardsPerPuntReturn",
+              "longPuntReturn",
+              "puntReturnTouchdowns"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4039050",
+                  "displayName": "Devin Duvernay",
+                  "firstName": "Devin",
+                  "lastName": "Duvernay"
+                },
+                "stats": ["3", "33", "11.0", "15", "0"]
+              }
+            ]
+          },
+          {
+            "name": "kicking",
+            "keys": [
+              "fieldGoalsMade/fieldGoalAttempts",
+              "fieldGoalPct",
+              "longFieldGoalMade",
+              "extraPointsMade/extraPointAttempts",
+              "totalKickingPoints"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "17427",
+                  "displayName": "Cairo Santos",
+                  "firstName": "Cairo",
+                  "lastName": "Santos"
+                },
+                "stats": ["1/1", "100.0", "48", "2/2", "5"]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "scoringPlays": [
+    {
+      "id": "401772985519",
+      "type": { "text": "Rushing Touchdown" },
+      "text": "Kyren Williams 4 Yd Rush (Harrison Mevis Kick)",
+      "team": { "id": "14" }
+    },
+    {
+      "id": "401772985880",
+      "type": { "text": "Passing Touchdown" },
+      "text": "DJ Moore 3 Yd pass from Caleb Williams (Cairo Santos Kick)",
+      "team": { "id": "3" }
+    },
+    {
+      "id": "4017729851811",
+      "type": { "text": "Field Goal Good" },
+      "text": "Cairo Santos 48 Yd Field Goal",
+      "team": { "id": "3" }
+    },
+    {
+      "id": "4017729852061",
+      "type": { "text": "Field Goal Good" },
+      "text": "Harrison Mevis 32 Yd Field Goal ",
+      "team": { "id": "14" }
+    },
+    {
+      "id": "4017729853335",
+      "type": { "text": "Rushing Touchdown" },
+      "text": "Kyren Williams 5 Yd Rush (Harrison Mevis Kick)",
+      "team": { "id": "14" }
+    },
+    {
+      "id": "4017729854009",
+      "type": { "text": "Passing Touchdown" },
+      "text": "Cole Kmet 14 Yd pass from Caleb Williams (Cairo Santos Kick)",
+      "team": { "id": "3" }
+    },
+    {
+      "id": "4017729854762",
+      "type": { "text": "Field Goal Good" },
+      "text": "Harrison Mevis 42 Yd Field Goal ",
+      "team": { "id": "14" }
+    }
+  ],
+  "drives": {
+    "previous": [
+      {
+        "plays": [
+          {
+            "id": "40177298539",
+            "type": { "text": "Kickoff" },
+            "text": "E.Evans kicks 55 yards from LA 35 to CHI 10. D.Duvernay to CHI 37 for 27 yards (J.Wallace).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "40177298562",
+            "type": { "text": "Pass Reception" },
+            "text": "C.Williams pass short right to D.Moore to LA 29 for 34 yards (R.McCreary).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "40177298587",
+            "type": { "text": "Rush" },
+            "text": "D.Swift right guard to LA 23 for 6 yards (N.Landman).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "401772985109",
+            "type": { "text": "Pass Incompletion" },
+            "text": "C.Williams pass incomplete deep left to R.Odunze.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "401772985132",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) D.Swift right guard to LA 21 for 2 yards (B.Fiske; K.Turner).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "401772985154",
+            "type": { "text": "Pass Interception Return" },
+            "text": "(Shotgun) C.Williams pass deep middle intended for C.Loveland INTERCEPTED by C.Durant at LA 1. C.Durant to LA 15 for 14 yards (D.Moore).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "401772985168",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 12:53.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "401772985181",
+            "type": { "text": "Pass Incompletion" },
+            "text": "M.Stafford pass incomplete deep right to P.Nacua.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "401772985211",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) M.Stafford pass short middle to P.Nacua to LA 30 for 15 yards (D.Jackson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "401772985236",
+            "type": { "text": "Pass Incompletion" },
+            "text": "M.Stafford pass incomplete short right to K.Williams.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "401772985259",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) M.Stafford pass short left to J.Whittington to LA 45 for 15 yards (C.Gardner-Johnson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "401772985284",
+            "type": { "text": "Rush" },
+            "text": "K.Williams left tackle to CHI 49 for 6 yards (J.Brisker).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "401772985295",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #1 by LA at 10:35.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "401772985306",
+            "type": { "text": "Rush" },
+            "text": "K.Williams right guard to CHI 48 for 1 yard (N.Wright).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "401772985346",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) M.Stafford pass short left to P.Nacua to CHI 43 for 5 yards (C.Gardner-Johnson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "401772985371",
+            "type": { "text": "Rush" },
+            "text": "K.Williams right end to CHI 36 for 7 yards (A.Billings; J.Brisker).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "401772985393",
+            "type": { "text": "Pass Reception" },
+            "text": "M.Stafford pass short right to J.Whittington pushed ob at CHI 16 for 20 yards (C.Gardner-Johnson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "401772985423",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) M.Stafford pass incomplete deep right to C.Parkinson.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "401772985446",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) M.Stafford pass short middle to K.Williams to CHI 10 for 6 yards (D.Jackson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "401772985471",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) M.Stafford pass short right to K.Williams to CHI 4 for 6 yards (T.Edmunds).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "401772985496",
+            "type": { "text": "Pass Incompletion" },
+            "text": "M.Stafford pass incomplete short right.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "401772985519",
+            "type": { "text": "Rushing Touchdown" },
+            "text": "K.Williams right tackle for 4 yards, TOUCHDOWN. H.Mevis extra point is GOOD, Center-J.McQuaide, Holder-E.Evans.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "401772985555",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 06:20.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "401772985562",
+            "type": { "text": "Kickoff" },
+            "text": "E.Evans kicks 65 yards from LA 35 to landing zone to end zone, Touchback to the CHI 20.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "401772985586",
+            "type": { "text": "Rush" },
+            "text": "K.Monangai right tackle to CHI 18 for -2 yards (P.Ford).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "401772985608",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) C.Williams pass short left to L.Burden to CHI 29 for 11 yards (N.Landman).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "401772985633",
+            "type": { "text": "Rush" },
+            "text": "K.Monangai right end to CHI 31 for 2 yards (B.Young; O.Speights).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "401772985655",
+            "type": { "text": "Pass Incompletion" },
+            "text": "T.Benedet reported in as eligible.  C.Williams pass incomplete short left to C.Loveland.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "401772985680",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) C.Williams pass short right to O.Zaccheaus to CHI 40 for 9 yards (E.Forbes).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "401772985705",
+            "type": { "text": "Rush" },
+            "text": "D.Swift right end to LA 47 for 13 yards (B.Young).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "401772985727",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) C.Williams pass deep right to C.Loveland to LA 24 for 23 yards (N.Landman).Penalty on LA-J.Verse, Defensive Offside, declined.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "401772985763",
+            "type": { "text": "Rush" },
+            "text": "K.Monangai right end to LA 9 for 15 yards (D.Williams).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "401772985785",
+            "type": { "text": "Rush" },
+            "text": "T.Benedet reported in as eligible.  K.Monangai right guard to LA 7 for 2 yards (O.Speights; T.Davis).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "401772985809",
+            "type": { "text": "Rush" },
+            "text": "K.Monangai up the middle to LA 3 for 4 yards (K.Turner; K.Kinchens).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "401772985820",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #1 by CHI at 00:32.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "401772985831",
+            "type": { "text": "Rush" },
+            "text": "K.Monangai right tackle to LA 3 for no gain (Q.Lake; B.Young).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "401772985860",
+            "type": { "text": "End Period" },
+            "text": "END QUARTER 1",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "401772985880",
+            "type": { "text": "Passing Touchdown" },
+            "text": "(Shotgun) C.Williams pass short middle to D.Moore for 3 yards, TOUCHDOWN. C.Santos extra point is GOOD, Center-S.Daly, Holder-T.Taylor.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "3" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "401772985921",
+            "type": { "text": "Kickoff" },
+            "text": "C.Santos kicks 65 yards from CHI 35 to end zone, Touchback to the LA 35.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "401772985938",
+            "type": { "text": "Pass Incompletion" },
+            "text": "M.Stafford pass incomplete deep right to T.Ferguson.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "401772985961",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) M.Stafford pass short right to K.Mumpfield to LA 41 for 6 yards (J.Brisker).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "401772985986",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) M.Stafford pass incomplete short left to T.Ferguson.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729851009",
+            "type": { "text": "Punt" },
+            "text": "E.Evans punts 49 yards to CHI 10, Center-J.McQuaide. D.Duvernay to CHI 20 for 10 yards (E.Neal).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729851028",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 13:50.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729851046",
+            "type": { "text": "Pass Reception" },
+            "text": "T.Benedet reported in as eligible.  C.Williams pass short right to D.Moore to CHI 20 for no gain (C.Durant).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729851080",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) C.Williams pass incomplete short right to C.Loveland.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729851103",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) C.Williams pass short left to C.Loveland to CHI 25 for 5 yards (K.Curl; B.Fiske).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729851128",
+            "type": { "text": "Punt" },
+            "text": "T.Taylor punts 51 yards to LA 24, Center-S.Daly, out of bounds.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729851138",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 12:24.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729851147",
+            "type": { "text": "Rush" },
+            "text": "K.Williams left tackle to LA 24 for no gain (J.Brisker).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729851181",
+            "type": { "text": "Fumble Recovery (Own)" },
+            "text": "(Shotgun) M.Stafford sacked at LA 18 for -6 yards (M.Sweat). FUMBLES (M.Sweat), recovered by LA-K.Williams at LA 23.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729851211",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) M.Stafford pass deep right to T.Ferguson pushed ob at LA 42 for 19 yards (J.Brisker).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729851241",
+            "type": { "text": "Sack" },
+            "text": "M.Stafford sacked at LA 35 for -7 yards (J.Brisker).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729851261",
+            "type": { "text": "Rush" },
+            "text": "K.Williams left guard to LA 41 for 6 yards (J.Brisker).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729851283",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) M.Stafford pass incomplete deep right to P.Nacua (J.Brisker).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729851306",
+            "type": { "text": "Punt" },
+            "text": "E.Evans punts 41 yards to CHI 18, Center-J.McQuaide, fair catch by D.Duvernay.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729851316",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 08:54.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729851326",
+            "type": { "text": "Rush" },
+            "text": "D.Swift right tackle to CHI 21 for 3 yards (B.Young; N.Landman).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729851355",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) C.Williams pass short right to D.Smythe to CHI 26 for 5 yards (K.Kinchens).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729851380",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) C.Williams pass short right to C.Loveland to CHI 36 for 10 yards (O.Speights).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729851405",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) C.Williams pass short left to L.Burden to CHI 43 for 7 yards (K.Curl).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729851430",
+            "type": { "text": "Pass Reception" },
+            "text": "C.Williams pass short right to K.Monangai to LA 41 for 16 yards (D.Williams).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729851455",
+            "type": { "text": "Pass Incompletion" },
+            "text": "C.Williams pass incomplete short right to R.Odunze (K.Kinchens) [B.Young].",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729851478",
+            "type": { "text": "Rush" },
+            "text": "D.Swift up the middle to LA 32 for 9 yards (Q.Lake).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729851500",
+            "type": { "text": "Rush" },
+            "text": "D.Swift left guard to LA 32 for no gain (K.Curl; C.Durant).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729851524",
+            "type": { "text": "Rush" },
+            "text": "K.Monangai right guard to LA 32 for no gain (K.Curl).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729851535",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 04:26.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729851546",
+            "type": { "text": "Pass Incompletion" },
+            "text": "M.Stafford pass incomplete short right to P.Nacua.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729851576",
+            "type": { "text": "Penalty" },
+            "text": "M.Stafford pass incomplete short right to C.Parkinson.PENALTY on CHI-N.Wright, Illegal Use of Hands, 5 yards, enforced at LA 32 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729851599",
+            "type": { "text": "Rush" },
+            "text": "B.Corum left end to LA 38 for 1 yard (A.Booker; D.Jackson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729851633",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(No Huddle, Shotgun) M.Stafford pass incomplete deep left to D.Adams.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729851656",
+            "type": { "text": "Sack" },
+            "text": "(Shotgun) M.Stafford sacked at LA 25 for -13 yards (K.Gordon).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729851676",
+            "type": { "text": "Punt" },
+            "text": " E.Evans punts 45 yards to CHI 30, Center-J.McQuaide. D.Duvernay to CHI 38 for 8 yards (T.Reeder).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729851689",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 02:54.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729851702",
+            "type": { "text": "Pass Reception" },
+            "text": "C.Williams pass deep middle to R.Odunze to LA 35 for 27 yards (K.Curl).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729851734",
+            "type": { "text": "Rush" },
+            "text": "K.Monangai right tackle to LA 34 for 1 yard (P.Ford).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729851745",
+            "type": { "text": "Two-minute warning" },
+            "text": "Two-Minute Warning",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729851756",
+            "type": { "text": "Pass Reception" },
+            "text": "C.Williams pass short left to K.Monangai to LA 29 for 5 yards (O.Speights) [J.Verse].",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729851788",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) C.Williams pass incomplete short left to C.Loveland (J.McCollough).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729851811",
+            "type": { "text": "Field Goal Good" },
+            "text": "C.Santos 48 yard field goal is GOOD, Center-S.Daly, Holder-T.Taylor. ** Injury Update: LA-E.Forbes has returned to the game.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729851821",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 01:10.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729851831",
+            "type": { "text": "Kickoff" },
+            "text": "C.Santos kicks 65 yards from CHI 35 to LA 0. J.Whittington to LA 20 for 20 yards (J.Blackwell).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729851867",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) M.Stafford pass short right to P.Nacua to LA 27 for 7 yards (J.Brisker; T.Stevenson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729851892",
+            "type": { "text": "Pass Reception" },
+            "text": "(No Huddle, Shotgun) M.Stafford pass deep right to T.Higbee to CHI 46 for 27 yards (C.Gardner-Johnson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729851905",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #2 by LA at 00:39.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729851917",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) M.Stafford pass short middle to K.Williams to CHI 42 for 4 yards (T.Edmunds).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729851933",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #3 by LA at 00:30.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729851949",
+            "type": { "text": "Pass Reception" },
+            "text": " (Shotgun) M.Stafford pass short right to K.Williams to CHI 28 for 14 yards (K.Gordon).\nPENALTY on CHI-G.Dexter, Unnecessary Roughness, 14 yards, enforced at CHI 28.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729851992",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) M.Stafford pass incomplete short right to D.Adams (T.Stevenson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729852015",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) M.Stafford pass incomplete short right to T.Higbee.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729852038",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) M.Stafford pass incomplete short left.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729852061",
+            "type": { "text": "Field Goal Good" },
+            "text": " H.Mevis 32 yard field goal is GOOD, Center-J.McQuaide, Holder-E.Evans.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729852081",
+            "type": { "text": "End of Half" },
+            "text": "END QUARTER 2",
+            "scoringPlay": false
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729852099",
+            "type": { "text": "Kickoff" },
+            "text": "C.Santos kicks 62 yards from CHI 35 to LA 3. R.Rivers to LA 26 for 23 yards (J.Jones; D.Hardy).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729852122",
+            "type": { "text": "Rush" },
+            "text": "B.Corum left guard to LA 33 for 7 yards (A.Booker; T.Edmunds).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729852144",
+            "type": { "text": "Rush" },
+            "text": "B.Corum left guard to LA 39 for 6 yards (A.Billings).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729852166",
+            "type": { "text": "Rush" },
+            "text": "J.Whittington right end to LA 39 for no gain (J.Brisker).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729852188",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) M.Stafford pass short left to C.Parkinson to LA 45 for 6 yards (D.Jackson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729852213",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) M.Stafford pass incomplete short left to P.Nacua.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729852239",
+            "type": { "text": "Punt" },
+            "text": "E.Evans punts 51 yards to CHI 4, Center-J.McQuaide, out of bounds.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729852249",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 12:00.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729852258",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) D.Swift right tackle to CHI 7 for 3 yards (O.Speights).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729852288",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) C.Williams pass short left to D.Moore to CHI 13 for 6 yards (K.Curl).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729852313",
+            "type": { "text": "Rush" },
+            "text": "C.Williams right guard to CHI 15 for 2 yards (P.Ford; B.Young).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729852335",
+            "type": { "text": "Pass Incompletion" },
+            "text": "C.Williams pass incomplete deep left to D.Moore (K.Curl).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729852358",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) D.Swift right guard to CHI 23 for 8 yards (T.Davis; K.Curl).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729852380",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) D.Swift left end to CHI 28 for 5 yards (J.Stewart).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729852402",
+            "type": { "text": "Rush" },
+            "text": "D.Swift right end to CHI 32 for 4 yards (Q.Lake; K.Curl).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729852424",
+            "type": { "text": "Pass Incompletion" },
+            "text": "C.Williams pass incomplete deep right to C.Loveland.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729852447",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) C.Williams pass incomplete short right to R.Odunze.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729852470",
+            "type": { "text": "Punt" },
+            "text": "T.Taylor punts 44 yards to LA 24, Center-S.Daly, fair catch by X.Smith.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729852480",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 07:32.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729852490",
+            "type": { "text": "Fumble Recovery (Own)" },
+            "text": "M.Stafford sacked at LA 19 for -5 yards (D.Robinson). FUMBLES (D.Robinson) [D.Robinson], and recovers at LA 16.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729852527",
+            "type": { "text": "Rush" },
+            "text": "K.Williams right guard to LA 26 for 10 yards (K.Byard; T.Edmunds).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729852549",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) M.Stafford pass short right to K.Mumpfield to LA 31 for 5 yards (K.Gordon).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729852574",
+            "type": { "text": "Punt" },
+            "text": "E.Evans punts 57 yards to CHI 12, Center-J.McQuaide. D.Duvernay MUFFS catch, and recovers at CHI 8. D.Duvernay to CHI 23 for 15 yards (E.Neal; J.McQuaide).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729852587",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 05:30.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729852600",
+            "type": { "text": "Rush" },
+            "text": "D.Swift left end to CHI 27 for 4 yards (D.Johnson; N.Landman).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729852643",
+            "type": { "text": "Rush" },
+            "text": "D.Moore left end to CHI 35 for 8 yards (K.Curl).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729852668",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) C.Williams pass incomplete deep right to R.Odunze (C.Durant).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729852696",
+            "type": { "text": "Penalty" },
+            "text": "(Shotgun) PENALTY on CHI-R.Odunze, False Start, 5 yards, enforced at CHI 35 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729852720",
+            "type": { "text": "Pass Interception Return" },
+            "text": "(Shotgun) C.Williams pass deep right intended for L.Burden INTERCEPTED by C.Durant at 50. C.Durant to 50 for no gain (L.Burden).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729852734",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 04:03.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729852748",
+            "type": { "text": "Pass Incompletion" },
+            "text": "M.Stafford pass incomplete short right to C.Parkinson.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729852778",
+            "type": { "text": "Pass Incompletion" },
+            "text": "M.Stafford pass incomplete deep middle to D.Adams.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729852801",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) M.Stafford pass incomplete short right to P.Nacua.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729852824",
+            "type": { "text": "Punt" },
+            "text": "E.Evans punts 50 yards to end zone, Center-J.McQuaide, Touchback.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729852833",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 03:40.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729852842",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) L.Burden right end to CHI 20 for no gain (K.Kinchens).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729852871",
+            "type": { "text": "Rush" },
+            "text": "K.Monangai right tackle to CHI 28 for 8 yards (B.Fiske).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729852893",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) C.Williams pass short right to K.Monangai pushed ob at CHI 37 for 9 yards (K.Kinchens; N.Landman).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729852923",
+            "type": { "text": "Rush" },
+            "text": "K.Monangai right end to CHI 41 for 4 yards (T.Hamilton; N.Hampton).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729852945",
+            "type": { "text": "Rush" },
+            "text": "C.Williams scrambles left end ran ob at CHI 46 for 5 yards (T.Davis).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729852972",
+            "type": { "text": "Rush" },
+            "text": "K.Monangai left tackle to CHI 45 for -1 yards (J.Verse, N.Landman).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729852994",
+            "type": { "text": "End Period" },
+            "text": "END QUARTER 3",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729853014",
+            "type": { "text": "Punt" },
+            "text": " T.Taylor punts 46 yards to LA 9, Center-S.Daly, fair catch by X.Smith.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729853034",
+            "type": { "text": "Rush" },
+            "text": "K.Williams left guard to LA 16 for 7 yards (K.Gordon; J.Brisker).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729853056",
+            "type": { "text": "Rush" },
+            "text": "K.Williams right guard to LA 20 for 4 yards (A.Billings; G.Jarrett).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729853078",
+            "type": { "text": "Rush" },
+            "text": "K.Williams right tackle to LA 20 for no gain (J.Johnson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729853100",
+            "type": { "text": "Pass Reception" },
+            "text": "(No Huddle, Shotgun) M.Stafford pass short right to C.Parkinson to CHI 45 for 35 yards (J.Johnson; J.Brisker).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729853125",
+            "type": { "text": "Rush" },
+            "text": "K.Williams up the middle to CHI 41 for 4 yards (G.Dexter; K.Gordon).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729853147",
+            "type": { "text": "Pass Incompletion" },
+            "text": "M.Stafford pass incomplete short left to C.Parkinson (D.Jackson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729853170",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) M.Stafford pass short left to P.Nacua to CHI 28 for 13 yards (T.Stevenson; J.Brisker).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729853195",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(No Huddle, Shotgun) M.Stafford pass incomplete deep right to T.Ferguson.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729853218",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) M.Stafford pass short middle to D.Adams to CHI 16 for 12 yards (T.Stevenson; T.Edmunds). LA-D.Adams was injured during the play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729853243",
+            "type": { "text": "Rush" },
+            "text": "K.Williams left tackle to CHI 12 for 4 yards (D.Jackson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729853268",
+            "type": { "text": "Rush" },
+            "text": "K.Williams right tackle to CHI 7 for 5 yards (G.Dexter).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729853290",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(No Huddle) M.Stafford pass incomplete short right to K.Mumpfield (T.Stevenson) [M.Sweat].",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729853313",
+            "type": { "text": "Rush" },
+            "text": "P.Nacua right end to CHI 5 for 2 yards (K.Byard).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729853335",
+            "type": { "text": "Rushing Touchdown" },
+            "text": "(No Huddle) K.Williams right end for 5 yards, TOUCHDOWN. H.Mevis extra point is GOOD, Center-J.McQuaide, Holder-E.Evans.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729853366",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 08:50.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729853373",
+            "type": { "text": "Kickoff" },
+            "text": "E.Evans kicks 59 yards from LA 35 to CHI 6. D.Duvernay to CHI 37 for 31 yards (E.Neal).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729853408",
+            "type": { "text": "Pass Incompletion" },
+            "text": "T.Benedet reported in as eligible.  C.Williams pass incomplete short left to T.Benedet.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729853433",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) C.Williams scrambles left tackle ran ob at LA 37 for 26 yards (K.Curl).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729853460",
+            "type": { "text": "Rush" },
+            "text": "D.Swift right guard to LA 33 for 4 yards (K.Curl; J.Stewart).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729853482",
+            "type": { "text": "Rush" },
+            "text": "D.Swift right guard to LA 28 for 5 yards (D.Johnson; N.Landman).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729853504",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) K.Monangai left tackle to LA 27 for 1 yard (D.Johnson; O.Speights).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729853526",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) C.Williams pass incomplete short left to C.Loveland (O.Speights).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729853549",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) C.Williams pass incomplete deep middle to O.Zaccheaus.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729853572",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) C.Williams pass deep right to R.Odunze pushed ob at LA 10 for 17 yards (D.Williams).PENALTY on LA-J.Verse, Roughing the Passer, 5 yards, enforced at LA 10.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729853613",
+            "type": { "text": "Rush" },
+            "text": "D.Swift left tackle to LA 3 for 2 yards (P.Ford).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729853635",
+            "type": { "text": "Rush" },
+            "text": "D.Swift right tackle to LA 2 for 1 yard (Q.Lake; O.Speights).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729853657",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) D.Swift right end to LA 2 for no gain (D.Williams; Q.Lake).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729853679",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) C.Williams pass incomplete short middle to L.Burden (O.Speights).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729853691",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 03:03.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729853702",
+            "type": { "text": "Rush" },
+            "text": "K.Williams right guard to LA 4 for 2 yards (D.Jackson; A.Ogbongbemiga).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729853717",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #1 by CHI at 02:59.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729853731",
+            "type": { "text": "Rush" },
+            "text": "K.Williams right end pushed ob at LA 14 for 10 yards (K.Byard).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729853765",
+            "type": { "text": "Rush" },
+            "text": "K.Williams right guard to LA 12 for -2 yards (K.Byard).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729853787",
+            "type": { "text": "Rush" },
+            "text": "K.Williams left end to LA 14 for 2 yards (J.Brisker; A.Booker).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729853798",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #2 by CHI at 02:07.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729853809",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) K.Williams right guard to LA 17 for 3 yards (M.Sweat). ** Injury Update: LA-D.Adams has returned to the game.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729853824",
+            "type": { "text": "Two-minute warning" },
+            "text": "Two-Minute Warning",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729853838",
+            "type": { "text": "Punt" },
+            "text": "E.Evans punts 33 yards to 50, Center-J.McQuaide, downed by LA-E.Neal.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729853868",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) C.Williams pass incomplete deep middle to L.Burden.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729853891",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) C.Williams pass deep middle to C.Loveland to LA 32 for 18 yards (K.Kinchens; K.Curl).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729853916",
+            "type": { "text": "Rush" },
+            "text": "(No Huddle, Shotgun) D.Swift left tackle to LA 20 for 12 yards (J.McCollough).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729853938",
+            "type": { "text": "Pass Reception" },
+            "text": "(No Huddle, Shotgun) C.Williams pass short right to L.Burden to LA 14 for 6 yards (Q.Lake).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729853963",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(No Huddle, Shotgun) C.Williams pass incomplete short right to L.Burden.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729853986",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) C.Williams pass incomplete short middle to D.Moore.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729853998",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #1 by LA at 00:27.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729854009",
+            "type": { "text": "Passing Touchdown" },
+            "text": "(Shotgun) C.Williams pass short left to C.Kmet for 14 yards, TOUCHDOWN [J.Verse]. C.Santos extra point is GOOD, Center-S.Daly, Holder-T.Taylor.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "3" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729854057",
+            "type": { "text": "Kickoff" },
+            "text": "C.Santos kicks 57 yards from CHI 35 to LA 8. J.Whittington to LA 27 for 19 yards (D.Robinson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729854080",
+            "type": { "text": "Rush" },
+            "text": "M.Stafford kneels to LA 26 for -1 yards.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729854102",
+            "type": { "text": "End of Regulation" },
+            "text": "END QUARTER 4",
+            "scoringPlay": false
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729854132",
+            "type": { "text": "Kickoff" },
+            "text": "C.Santos kicks 64 yards from CHI 35 to LA 1. R.Rivers to LA 27 for 26 yards (E.Hicks).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729854155",
+            "type": { "text": "Rush" },
+            "text": "K.Williams left end to LA 35 for 8 yards (D.Jackson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729854177",
+            "type": { "text": "Rush" },
+            "text": "K.Williams left tackle to LA 36 for 1 yard (J.Brisker).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729854199",
+            "type": { "text": "Rush" },
+            "text": "B.Corum left end to LA 34 for -2 yards (K.Byard).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729854221",
+            "type": { "text": "Punt" },
+            "text": "E.Evans punts 50 yards to CHI 16, Center-J.McQuaide, fair catch by D.Duvernay.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729854241",
+            "type": { "text": "Pass Reception" },
+            "text": "C.Williams pass short left to C.Kmet pushed ob at CHI 28 for 12 yards (K.Curl).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729854271",
+            "type": { "text": "Rush" },
+            "text": "D.Swift right guard to CHI 25 for -3 yards (J.Verse).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729854293",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) C.Williams pass short right to D.Moore to CHI 34 for 9 yards (K.Kinchens).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729854318",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) C.Williams scrambles right end to CHI 38 for 4 yards (N.Landman).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729854340",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) C.Williams pass short left to K.Monangai to CHI 44 for 6 yards (Q.Lake; O.Speights).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729854365",
+            "type": { "text": "Rush" },
+            "text": "D.Swift left end to CHI 42 for -2 yards (N.Landman).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729854387",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) C.Williams pass short right to C.Kmet pushed ob at CHI 47 for 5 yards (K.Kinchens) [K.Curl].",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729854417",
+            "type": { "text": "Rush" },
+            "text": "C.Williams left tackle to 50 for 3 yards (B.Fiske).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729854439",
+            "type": { "text": "Rush" },
+            "text": "K.Monangai right end to LA 48 for 2 yards (T.Davis; J.Verse).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          },
+          {
+            "id": "4017729854461",
+            "type": { "text": "Pass Interception Return" },
+            "text": "(Shotgun) C.Williams pass deep right intended for D.Moore INTERCEPTED by K.Curl at LA 22. K.Curl to LA 22 for no gain (L.Burden).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "3" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729854488",
+            "type": { "text": "Rush" },
+            "text": "P.Nacua right end to LA 26 for 4 yards (T.Edmunds).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729854510",
+            "type": { "text": "Pass Reception" },
+            "text": "(No Huddle, Shotgun) M.Stafford pass short right to C.Parkinson pushed ob at LA 41 for 15 yards (T.Edmunds).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729854540",
+            "type": { "text": "Pass Reception" },
+            "text": "(No Huddle, Shotgun) M.Stafford pass short left to D.Adams ran ob at CHI 47 for 12 yards.The Replay Official reviewed the pass completion ruling, and the play was Upheld. The ruling on the field stands.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729854570",
+            "type": { "text": "Rush" },
+            "text": "B.Corum left tackle to CHI 43 for 4 yards (N.Wright; K.Gordon).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729854632",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(No Huddle, Shotgun) M.Stafford pass incomplete short middle to D.Adams (G.Jarrett).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729854644",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #1 by LA at 04:54.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729854655",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) M.Stafford pass short right to P.Nacua to CHI 27 for 16 yards (J.Johnson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729854687",
+            "type": { "text": "Rush" },
+            "text": "B.Corum right guard to CHI 24 for 3 yards (G.Dexter; K.Gordon).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729854698",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #2 by LA at 03:35.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729854709",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) M.Stafford pass incomplete deep right to C.Parkinson (J.Brisker).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729854739",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) M.Stafford pass incomplete deep left to T.Ferguson (C.Gardner-Johnson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729854762",
+            "type": { "text": "Field Goal Good" },
+            "text": " H.Mevis 42 yard field goal is GOOD, Center-J.McQuaide, Holder-E.Evans.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729854782",
+            "type": { "text": "End of Game" },
+            "text": "END GAME",
+            "scoringPlay": false
+          }
+        ]
+      }
+    ]
+  }
+}

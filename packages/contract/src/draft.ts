@@ -3,6 +3,7 @@
  * team names only: no person names, emails or user ids (docs/design/13 §6).
  */
 import { z } from "zod";
+import { scoresUpdatedEvent } from "./ingest";
 
 export const TOTAL_PICKS = 90;
 export const TEAM_COUNT = 9;
@@ -316,9 +317,10 @@ export const wsClientMessage = z.object({
 });
 export type WsClientMessage = z.infer<typeof wsClientMessage>;
 
-/** Server -> client acks/errors (events use draftChangedEvent). */
+/** Server -> client acks/errors and the season's events. */
 export const wsServerMessage = z.discriminatedUnion("type", [
   draftChangedEvent,
+  scoresUpdatedEvent,
   z.object({ type: z.literal("subscribed"), channel: z.string() }),
   z.object({ type: z.literal("unsubscribed"), channel: z.string() }),
   z.object({ type: z.literal("error"), code: z.enum(["forbidden", "bad_request"]) }),

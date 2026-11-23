@@ -1,0 +1,54 @@
+{
+  "events": [
+    {
+      "id": "401772986",
+      "date": "2026-01-25T20:00Z",
+      "shortName": "NE @ DEN",
+      "status": { "type": { "name": "STATUS_FINAL", "completed": true } },
+      "competitions": [
+        {
+          "status": { "type": { "name": "STATUS_FINAL", "completed": true } },
+          "competitors": [
+            {
+              "homeAway": "home",
+              "score": "7",
+              "winner": false,
+              "team": { "id": "7", "abbreviation": "DEN" }
+            },
+            {
+              "homeAway": "away",
+              "score": "10",
+              "winner": true,
+              "team": { "id": "17", "abbreviation": "NE" }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "401772987",
+      "date": "2026-01-25T23:30Z",
+      "shortName": "LAR @ SEA",
+      "status": { "type": { "name": "STATUS_FINAL", "completed": true } },
+      "competitions": [
+        {
+          "status": { "type": { "name": "STATUS_FINAL", "completed": true } },
+          "competitors": [
+            {
+              "homeAway": "home",
+              "score": "31",
+              "winner": true,
+              "team": { "id": "26", "abbreviation": "SEA" }
+            },
+            {
+              "homeAway": "away",
+              "score": "27",
+              "winner": false,
+              "team": { "id": "14", "abbreviation": "LAR" }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -124,6 +124,9 @@ export const teamScoreKey = (seasonId: string, round: number, teamId: string): K
   pk: seasonPk(seasonId),
   sk: `TEAMSCORE#${round}#${teamId}`,
 });
+/** Global ingest registry partition (docs/design/10 A15): one tiny item per season. */
+export const INGEST_PK = "INGEST";
+export const ingestKey = (seasonId: string): Key => ({ pk: INGEST_PK, sk: `SEASON#${seasonId}` });
 export const txnKey = (seasonId: string, txnId: string): Key => ({
   pk: seasonPk(seasonId),
   sk: `TXN#${txnId}`,
@@ -147,6 +150,8 @@ export const skPrefix = {
   audit: "AUDIT#",
   teamScores: "TEAMSCORE#",
   points: "POINTS#",
+  /** One game's stat lines (A16). */
+  statsOfGame: (gameId: string) => `STATS#${gameId}#`,
   /** Every team's roster entries (redraft cleanup, doc 10 §4.8). */
   rosters: "ROSTER#",
   rosterOfTeam: (teamId: string) => `ROSTER#${teamId}#`,

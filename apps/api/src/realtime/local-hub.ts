@@ -5,12 +5,12 @@
  */
 import type { IncomingMessage } from "node:http";
 import type { AddressInfo } from "node:net";
-import { wsClientMessage, type DraftChangedEvent, type WsServerMessage } from "@dnp/contract";
+import { wsClientMessage, type WsServerMessage } from "@dnp/contract";
 import { consumeWsTicket, type Dynamo } from "@dnp/db";
 import { WebSocketServer, type WebSocket } from "ws";
 import { logError } from "../redact";
 import { canSubscribe } from "./channels";
-import type { Publisher } from "./types";
+import type { ChannelEvent, Publisher } from "./types";
 
 export interface LocalRealtime extends Publisher {
   readonly port: number;
@@ -86,7 +86,7 @@ export function startLocalRealtime(opts: {
     wss.once("listening", () =>
       resolve({
         port: (wss.address() as AddressInfo).port,
-        async publish(channel: string, event: DraftChangedEvent) {
+        async publish(channel: string, event: ChannelEvent) {
           for (const ws of channels.get(channel) ?? []) send(ws, event);
         },
         close: () =>

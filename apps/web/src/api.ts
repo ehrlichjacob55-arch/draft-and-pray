@@ -7,6 +7,7 @@ import {
   draftActionResponse,
   draftSnapshot,
   importPoolResponse,
+  ingestResponse,
   listPlayersResponse,
   makePickResponse,
   queueResponse,
@@ -29,6 +30,7 @@ import {
   type DraftActionResponse,
   type DraftSnapshot,
   type ImportPoolResponse,
+  type IngestResponse,
   type ListPlayersResponse,
   type ResetDraftResponse,
   type CreateScoringVersionRequest,
@@ -134,6 +136,11 @@ export interface Api {
   ): Promise<ScoringResponse>;
   lockScoringVersion(seasonId: string, version: number): Promise<ScoringResponse>;
   activateScoringVersion(seasonId: string, version: number): Promise<ScoringResponse>;
+  // ---- Live stats (docs/design/12; commissioner) ----
+  ingest(seasonId: string): Promise<IngestResponse>;
+  setIngest(seasonId: string, enabled: boolean): Promise<IngestResponse>;
+  /** Runs one stats update now; resolves with the new state (a failed update is in `lastError`). */
+  runIngest(seasonId: string): Promise<IngestResponse>;
 }
 
 export interface ApiOptions {
@@ -263,6 +270,10 @@ export function createApi({ baseUrl, getAuthHeaders }: ApiOptions): Api {
         scoringResponse,
         {},
       ),
+    ingest: (id) => request("GET", `/seasons/${enc(id)}/ingest`, ingestResponse),
+    setIngest: (id, enabled) =>
+      request("PUT", `/seasons/${enc(id)}/ingest`, ingestResponse, { enabled }),
+    runIngest: (id) => request("POST", `/seasons/${enc(id)}/ingest/run`, ingestResponse, {}),
   };
 }
 

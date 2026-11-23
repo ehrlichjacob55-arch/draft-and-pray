@@ -1,4 +1,9 @@
-import { draftChannel, wsServerMessage, type DraftChangedEvent } from "@dnp/contract";
+import {
+  draftChannel,
+  wsServerMessage,
+  type DraftChangedEvent,
+  type ScoresUpdatedEvent,
+} from "@dnp/contract";
 import { useEffect, useRef, useState } from "react";
 import { useApi } from "../api";
 
@@ -9,6 +14,8 @@ export interface DraftChannelHandlers {
   onEvent: (event: DraftChangedEvent) => void;
   /** The subscription was (re)confirmed: refetch, since events may have been missed. */
   onConnected: () => void;
+  /** Scores were recomputed (live stats): refetch whatever shows scores. */
+  onScoresUpdated?: (event: ScoresUpdatedEvent) => void;
 }
 
 export const RECONNECT_BASE_MS = 1000;
@@ -87,6 +94,9 @@ export function useDraftChannel(
             break;
           case "draft_changed":
             handlersRef.current.onEvent(msg.data);
+            break;
+          case "scores_updated":
+            handlersRef.current.onScoresUpdated?.(msg.data);
             break;
           case "error":
             // forbidden / bad_request: drop the socket; the backoff reconnect (and polling) take over.

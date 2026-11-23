@@ -1,0 +1,1860 @@
+{
+  "header": {
+    "competitions": [
+      {
+        "date": "2026-01-25T20:00Z",
+        "status": { "type": { "name": "STATUS_FINAL", "completed": true } },
+        "competitors": [
+          {
+            "homeAway": "home",
+            "score": "7",
+            "winner": false,
+            "team": { "id": "7", "abbreviation": "DEN" }
+          },
+          {
+            "homeAway": "away",
+            "score": "10",
+            "winner": true,
+            "team": { "id": "17", "abbreviation": "NE" }
+          }
+        ]
+      }
+    ]
+  },
+  "boxscore": {
+    "players": [
+      {
+        "team": { "id": "17", "abbreviation": "NE" },
+        "statistics": [
+          {
+            "name": "passing",
+            "keys": [
+              "completions/passingAttempts",
+              "passingYards",
+              "yardsPerPassAttempt",
+              "passingTouchdowns",
+              "interceptions",
+              "sacks-sackYardsLost",
+              "adjQBR",
+              "QBRating"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4431452",
+                  "displayName": "Drake Maye",
+                  "firstName": "Drake",
+                  "lastName": "Maye"
+                },
+                "stats": ["10/21", "86", "4.1", "0", "0", "5-21", "62.5", "58.8"]
+              }
+            ]
+          },
+          {
+            "name": "rushing",
+            "keys": [
+              "rushingAttempts",
+              "rushingYards",
+              "yardsPerRushAttempt",
+              "rushingTouchdowns",
+              "longRushing"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4569173",
+                  "displayName": "Rhamondre Stevenson",
+                  "firstName": "Rhamondre",
+                  "lastName": "Stevenson"
+                },
+                "stats": ["25", "71", "2.8", "0", "12"]
+              },
+              {
+                "athlete": {
+                  "id": "4431452",
+                  "displayName": "Drake Maye",
+                  "firstName": "Drake",
+                  "lastName": "Maye"
+                },
+                "stats": ["10", "65", "6.5", "1", "28"]
+              },
+              {
+                "athlete": {
+                  "id": "4432710",
+                  "displayName": "TreVeyon Henderson",
+                  "firstName": "TreVeyon",
+                  "lastName": "Henderson"
+                },
+                "stats": ["3", "5", "1.7", "0", "4"]
+              }
+            ]
+          },
+          {
+            "name": "receiving",
+            "keys": [
+              "receptions",
+              "receivingYards",
+              "yardsPerReception",
+              "receivingTouchdowns",
+              "longReception",
+              "receivingTargets"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "2991662",
+                  "displayName": "Mack Hollins",
+                  "firstName": "Mack",
+                  "lastName": "Hollins"
+                },
+                "stats": ["2", "51", "25.5", "0", "31", "2"]
+              },
+              {
+                "athlete": {
+                  "id": "2976212",
+                  "displayName": "Stefon Diggs",
+                  "firstName": "Stefon",
+                  "lastName": "Diggs"
+                },
+                "stats": ["5", "17", "3.4", "0", "6", "6"]
+              },
+              {
+                "athlete": {
+                  "id": "3046439",
+                  "displayName": "Hunter Henry",
+                  "firstName": "Hunter",
+                  "lastName": "Henry"
+                },
+                "stats": ["2", "12", "6.0", "0", "9", "3"]
+              },
+              {
+                "athlete": {
+                  "id": "4429022",
+                  "displayName": "Kayshon Boutte",
+                  "firstName": "Kayshon",
+                  "lastName": "Boutte"
+                },
+                "stats": ["1", "6", "6.0", "0", "6", "6"]
+              },
+              {
+                "athlete": {
+                  "id": "4427095",
+                  "displayName": "DeMario Douglas",
+                  "firstName": "DeMario",
+                  "lastName": "Douglas"
+                },
+                "stats": ["0", "0", "0.0", "0", "0", "1"]
+              },
+              {
+                "athlete": {
+                  "id": "4569173",
+                  "displayName": "Rhamondre Stevenson",
+                  "firstName": "Rhamondre",
+                  "lastName": "Stevenson"
+                },
+                "stats": ["0", "0", "0.0", "0", "0", "2"]
+              }
+            ]
+          },
+          {
+            "name": "fumbles",
+            "keys": ["fumbles", "fumblesLost", "fumblesRecovered"],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4688432",
+                  "displayName": "Elijah Ponder",
+                  "firstName": "Elijah",
+                  "lastName": "Ponder"
+                },
+                "stats": ["0", "0", "1"]
+              }
+            ]
+          },
+          {
+            "name": "kickReturns",
+            "keys": [
+              "kickReturns",
+              "kickReturnYards",
+              "yardsPerKickReturn",
+              "longKickReturn",
+              "kickReturnTouchdowns"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "3139602",
+                  "displayName": "D'Ernest Johnson",
+                  "firstName": "D'Ernest",
+                  "lastName": "Johnson"
+                },
+                "stats": ["2", "59", "29.5", "30", "0"]
+              }
+            ]
+          },
+          {
+            "name": "puntReturns",
+            "keys": [
+              "puntReturns",
+              "puntReturnYards",
+              "yardsPerPuntReturn",
+              "longPuntReturn",
+              "puntReturnTouchdowns"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4241720",
+                  "displayName": "Marcus Jones",
+                  "firstName": "Marcus",
+                  "lastName": "Jones"
+                },
+                "stats": ["1", "2", "2.0", "2", "0"]
+              }
+            ]
+          },
+          {
+            "name": "kicking",
+            "keys": [
+              "fieldGoalsMade/fieldGoalAttempts",
+              "fieldGoalPct",
+              "longFieldGoalMade",
+              "extraPointsMade/extraPointAttempts",
+              "totalKickingPoints"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4569923",
+                  "displayName": "Andy Borregales",
+                  "firstName": "Andy",
+                  "lastName": "Borregales"
+                },
+                "stats": ["1/3", "33.3", "23", "1/1", "4"]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "team": { "id": "7", "abbreviation": "DEN" },
+        "statistics": [
+          {
+            "name": "passing",
+            "keys": [
+              "completions/passingAttempts",
+              "passingYards",
+              "yardsPerPassAttempt",
+              "passingTouchdowns",
+              "interceptions",
+              "sacks-sackYardsLost",
+              "adjQBR",
+              "QBRating"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "3892775",
+                  "displayName": "Jarrett Stidham",
+                  "firstName": "Jarrett",
+                  "lastName": "Stidham"
+                },
+                "stats": ["17/31", "133", "4.3", "1", "1", "3-31", "19.6", "63.0"]
+              }
+            ]
+          },
+          {
+            "name": "rushing",
+            "keys": [
+              "rushingAttempts",
+              "rushingYards",
+              "yardsPerRushAttempt",
+              "rushingTouchdowns",
+              "longRushing"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4568490",
+                  "displayName": "RJ Harvey",
+                  "firstName": "RJ",
+                  "lastName": "Harvey"
+                },
+                "stats": ["13", "37", "2.8", "0", "9"]
+              },
+              {
+                "athlete": {
+                  "id": "3892775",
+                  "displayName": "Jarrett Stidham",
+                  "firstName": "Jarrett",
+                  "lastName": "Stidham"
+                },
+                "stats": ["4", "23", "5.8", "0", "8"]
+              },
+              {
+                "athlete": {
+                  "id": "4722893",
+                  "displayName": "Jaleel McLaughlin",
+                  "firstName": "Jaleel",
+                  "lastName": "McLaughlin"
+                },
+                "stats": ["4", "11", "2.8", "0", "5"]
+              },
+              {
+                "athlete": {
+                  "id": "4362748",
+                  "displayName": "Tyler Badie",
+                  "firstName": "Tyler",
+                  "lastName": "Badie"
+                },
+                "stats": ["1", "4", "4.0", "0", "4"]
+              },
+              {
+                "athlete": {
+                  "id": "3929914",
+                  "displayName": "Adam Prentice",
+                  "firstName": "Adam",
+                  "lastName": "Prentice"
+                },
+                "stats": ["1", "3", "3.0", "0", "3"]
+              },
+              {
+                "athlete": {
+                  "id": "4600981",
+                  "displayName": "Pat Bryant",
+                  "firstName": "Pat",
+                  "lastName": "Bryant"
+                },
+                "stats": ["1", "1", "1.0", "0", "1"]
+              }
+            ]
+          },
+          {
+            "name": "receiving",
+            "keys": [
+              "receptions",
+              "receivingYards",
+              "yardsPerReception",
+              "receivingTouchdowns",
+              "longReception",
+              "receivingTargets"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4686472",
+                  "displayName": "Marvin Mims Jr.",
+                  "firstName": "Marvin",
+                  "lastName": "Mims Jr."
+                },
+                "stats": ["4", "62", "15.5", "0", "52", "6"]
+              },
+              {
+                "athlete": {
+                  "id": "4568490",
+                  "displayName": "RJ Harvey",
+                  "firstName": "RJ",
+                  "lastName": "Harvey"
+                },
+                "stats": ["4", "22", "5.5", "0", "11", "6"]
+              },
+              {
+                "athlete": {
+                  "id": "3051876",
+                  "displayName": "Evan Engram",
+                  "firstName": "Evan",
+                  "lastName": "Engram"
+                },
+                "stats": ["2", "19", "9.5", "0", "12", "3"]
+              },
+              {
+                "athlete": {
+                  "id": "3128429",
+                  "displayName": "Courtland Sutton",
+                  "firstName": "Courtland",
+                  "lastName": "Sutton"
+                },
+                "stats": ["3", "17", "5.7", "1", "6", "5"]
+              },
+              {
+                "athlete": {
+                  "id": "4039057",
+                  "displayName": "Lil'Jordan Humphrey",
+                  "firstName": "Lil'Jordan",
+                  "lastName": "Humphrey"
+                },
+                "stats": ["1", "5", "5.0", "0", "5", "3"]
+              },
+              {
+                "athlete": {
+                  "id": "4372414",
+                  "displayName": "Elijah Moore",
+                  "firstName": "Elijah",
+                  "lastName": "Moore"
+                },
+                "stats": ["1", "4", "4.0", "0", "4", "1"]
+              },
+              {
+                "athlete": {
+                  "id": "4600981",
+                  "displayName": "Pat Bryant",
+                  "firstName": "Pat",
+                  "lastName": "Bryant"
+                },
+                "stats": ["1", "2", "2.0", "0", "2", "1"]
+              },
+              {
+                "athlete": {
+                  "id": "4722893",
+                  "displayName": "Jaleel McLaughlin",
+                  "firstName": "Jaleel",
+                  "lastName": "McLaughlin"
+                },
+                "stats": ["1", "2", "2.0", "0", "2", "2"]
+              }
+            ]
+          },
+          {
+            "name": "fumbles",
+            "keys": ["fumbles", "fumblesLost", "fumblesRecovered"],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "3892775",
+                  "displayName": "Jarrett Stidham",
+                  "firstName": "Jarrett",
+                  "lastName": "Stidham"
+                },
+                "stats": ["1", "1", "0"]
+              }
+            ]
+          },
+          {
+            "name": "kickReturns",
+            "keys": [
+              "kickReturns",
+              "kickReturnYards",
+              "yardsPerKickReturn",
+              "longKickReturn",
+              "kickReturnTouchdowns"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4362748",
+                  "displayName": "Tyler Badie",
+                  "firstName": "Tyler",
+                  "lastName": "Badie"
+                },
+                "stats": ["1", "20", "20.0", "20", "0"]
+              }
+            ]
+          },
+          {
+            "name": "puntReturns",
+            "keys": [
+              "puntReturns",
+              "puntReturnYards",
+              "yardsPerPuntReturn",
+              "longPuntReturn",
+              "puntReturnTouchdowns"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4686472",
+                  "displayName": "Marvin Mims Jr.",
+                  "firstName": "Marvin",
+                  "lastName": "Mims Jr."
+                },
+                "stats": ["3", "8", "2.7", "8", "0"]
+              }
+            ]
+          },
+          {
+            "name": "kicking",
+            "keys": [
+              "fieldGoalsMade/fieldGoalAttempts",
+              "fieldGoalPct",
+              "longFieldGoalMade",
+              "extraPointsMade/extraPointAttempts",
+              "totalKickingPoints"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "2985659",
+                  "displayName": "Wil Lutz",
+                  "firstName": "Wil",
+                  "lastName": "Lutz"
+                },
+                "stats": ["0/2", "0.0", "0", "1/1", "1"]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "scoringPlays": [
+    {
+      "id": "401772986357",
+      "type": { "text": "Passing Touchdown" },
+      "text": "Courtland Sutton 6 Yd pass from Jarrett Stidham (Wil Lutz Kick)",
+      "team": { "id": "7" }
+    },
+    {
+      "id": "4017729861605",
+      "type": { "text": "Rushing Touchdown" },
+      "text": "Drake Maye 6 Yd Rush (Andy Borregales Kick)",
+      "team": { "id": "17" }
+    },
+    {
+      "id": "4017729862642",
+      "type": { "text": "Field Goal Good" },
+      "text": "Andy Borregales 23 Yd Field Goal",
+      "team": { "id": "17" }
+    }
+  ],
+  "drives": {
+    "previous": [
+      {
+        "plays": [
+          {
+            "id": "40177298639",
+            "type": { "text": "Kickoff" },
+            "text": "A.Borregales kicks 65 yards from NE 35 to end zone, Touchback to the DEN 35.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "40177298656",
+            "type": { "text": "Rush" },
+            "text": "R.Harvey left guard to DEN 36 for 1 yard (R.Spillane).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "40177298678",
+            "type": { "text": "Rush" },
+            "text": "R.Harvey right guard to DEN 36 for no gain (A.Jennings; J.Hawkins).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "401772986100",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) J.Stidham pass incomplete short right [E.Ponder].",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "401772986123",
+            "type": { "text": "Punt" },
+            "text": "J.Crawshaw punts 56 yards to NE 8, Center-M.Fraboni, out of bounds.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "401772986142",
+            "type": { "text": "Rush" },
+            "text": "T.Munford reported in as eligible.  R.Stevenson up the middle to NE 13 for 5 yards (D.Jones; T.Hufanga).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772986166",
+            "type": { "text": "Rush" },
+            "text": "T.Munford reported in as eligible.  R.Stevenson right guard to NE 14 for 1 yard (Z.Allen).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772986188",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) D.Maye pass incomplete short left to S.Diggs (T.Hufanga).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772986211",
+            "type": { "text": "Punt" },
+            "text": "B.Baringer punts 44 yards to DEN 42, Center-J.Ashby. M.Mims to DEN 41 for -1 yards (B.Schooler).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772986224",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 12:00.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "401772986237",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) J.Stidham pass incomplete deep right to R.Harvey.PENALTY on DEN-R.Harvey, Illegal Touch Pass, 0 yards, enforced at DEN 41.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "401772986280",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) J.Stidham pass incomplete short right to M.Mims.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "401772986303",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Stidham pass deep right to M.Mims to NE 7 for 52 yards (C.Gonzalez).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "401772986316",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #1 by DEN at 11:06.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "401772986328",
+            "type": { "text": "Rush" },
+            "text": "P.Bryant right end to NE 6 for 1 yard (K.Chaisson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "401772986357",
+            "type": { "text": "Passing Touchdown" },
+            "text": "J.Stidham pass short right to C.Sutton for 6 yards, TOUCHDOWN. W.Lutz extra point is GOOD, Center-M.Fraboni, Holder-J.Crawshaw.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "401772986391",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 10:19.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "401772986398",
+            "type": { "text": "Kickoff" },
+            "text": "W.Lutz kicks 61 yards from DEN 35 to NE 4. D.Johnson to NE 33 for 29 yards (D.Tillman).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "401772986428",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) D.Maye pass short right to S.Diggs to NE 39 for 6 yards (A.Singleton).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772986453",
+            "type": { "text": "Rush" },
+            "text": "T.Munford reported in as eligible.  R.Stevenson right tackle to NE 42 for 3 yards (J.Franklin-Myers; D.Greenlaw).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772986477",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) T.Munford and K.Tonga reported in as eligible.  R.Stevenson right guard to NE 43 for 1 yard (P.Locke; D.Greenlaw).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772986503",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) D.Maye pass short left to S.Diggs to NE 41 for -2 yards (M.Roach).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772986528",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) D.Maye pass incomplete deep left to K.Boutte (P.Surtain).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772986551",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) D.Maye pass short middle to S.Diggs to NE 44 for 3 yards (D.Key).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772986576",
+            "type": { "text": "Punt" },
+            "text": " B.Baringer punts 33 yards to DEN 23, Center-J.Ashby, downed by NE-D.Pettus.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772986586",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 06:33.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "401772986596",
+            "type": { "text": "Rush" },
+            "text": "R.Harvey up the middle to DEN 32 for 9 yards (C.Woodson; J.Tavai).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "401772986625",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Stidham pass short right to P.Bryant ran ob at DEN 34 for 2 yards (M.Jones).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "401772986655",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) J.Stidham left guard to DEN 42 for 8 yards (M.Jones).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "401772986677",
+            "type": { "text": "Rush" },
+            "text": "R.Harvey left guard to DEN 44 for 2 yards (C.Davis; J.Gibbens).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "401772986699",
+            "type": { "text": "Rush" },
+            "text": "R.Harvey right guard to DEN 45 for 1 yard (R.Spillane; M.Jones). NE-R.Spillane was injured during the play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "401772986710",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 03:14.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "401772986721",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) R.Harvey right tackle to DEN 45 for no gain (C.Woodson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "401772986753",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(No Huddle, Shotgun) J.Stidham pass incomplete deep middle to C.Sutton [M.Williams].",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "401772986776",
+            "type": { "text": "Punt" },
+            "text": "J.Crawshaw punts 55 yards to end zone, Center-M.Fraboni, Touchback.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "401772986794",
+            "type": { "text": "Rush" },
+            "text": "T.Henderson left tackle to NE 24 for 4 yards (T.Hufanga; J.Strnad).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772986816",
+            "type": { "text": "Sack" },
+            "text": "D.Maye sacked at NE 15 for -9 yards (Q.Robinson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772986836",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) D.Maye pass incomplete short right to R.Stevenson.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772986859",
+            "type": { "text": "Punt" },
+            "text": "B.Baringer punts 43 yards to DEN 42, Center-J.Ashby. M.Mims to DEN 43 for 1 yard (B.Schooler).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772986872",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 00:54.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "401772986885",
+            "type": { "text": "Rush" },
+            "text": "F.Crum reported in as eligible.  J.McLaughlin up the middle to DEN 46 for 3 yards (K.Tonga).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "401772986916",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Stidham pass short left to E.Engram pushed ob at NE 47 for 7 yards (C.Gonzalez).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "401772986946",
+            "type": { "text": "End Period" },
+            "text": "END QUARTER 1",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "401772986966",
+            "type": { "text": "Pass Reception" },
+            "text": "F.Crum reported in as eligible.  J.Stidham pass short right to J.McLaughlin to NE 45 for 2 yards (J.Gibbens).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "401772986998",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Stidham pass short right to C.Sutton to NE 40 for 5 yards (C.Gonzalez).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729861023",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Stidham pass short left to L.Humphrey pushed ob at NE 35 for 5 yards (C.Davis).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729861053",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) R.Harvey left guard to NE 26 for 9 yards (C.Davis; C.Elliss).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729861075",
+            "type": { "text": "Rush" },
+            "text": "A.Prentice up the middle to NE 23 for 3 yards (C.Woodson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729861097",
+            "type": { "text": "Rush" },
+            "text": "R.Harvey up the middle to NE 21 for 2 yards (A.Jennings; C.Durden).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729861119",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) J.Stidham scrambles left end to NE 19 for 2 yards (J.Gibbens).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729861141",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) J.Stidham scrambles right end to NE 14 for 5 yards (M.Jones).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729861152",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #2 by DEN at 09:28.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729861163",
+            "type": { "text": "Pass Incompletion" },
+            "text": "J.Stidham pass incomplete short right to R.Harvey (C.Woodson) [M.Williams].",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729861185",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 09:22.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729861207",
+            "type": { "text": "Sack" },
+            "text": "(Shotgun) D.Maye sacked at NE 11 for -3 yards (D.Jones).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729861234",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) D.Maye pass incomplete deep left to D.Douglas (T.Hufanga).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729861257",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) D.Maye pass deep right to M.Hollins to NE 31 for 20 yards (T.Hufanga).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729861282",
+            "type": { "text": "Rush" },
+            "text": "R.Stevenson up the middle to NE 33 for 2 yards (D.Greenlaw; E.Uwazurike).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729861304",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) D.Maye pass short middle to S.Diggs to NE 38 for 5 yards (P.Surtain).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729861329",
+            "type": { "text": "Sack" },
+            "text": "(Shotgun) D.Maye sacked at NE 38 for 0 yards (Z.Allen).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729861349",
+            "type": { "text": "Punt" },
+            "text": "B.Baringer punts 45 yards to DEN 17, Center-J.Ashby, fair catch by M.Mims.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729861359",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 05:50.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729861369",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) R.Harvey right guard to DEN 22 for 5 yards (M.Jones; J.Gibbens).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729861398",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) J.Stidham pass incomplete short right to C.Sutton.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729861421",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Stidham pass short right to M.Mims to DEN 27 for 5 yards (M.Jones).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729861446",
+            "type": { "text": "Rush" },
+            "text": "J.McLaughlin left guard to DEN 32 for 5 yards (K.Tonga).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729861473",
+            "type": { "text": "Rush" },
+            "text": "J.McLaughlin left tackle to DEN 33 for 1 yard (K.Chaisson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729861495",
+            "type": { "text": "Sack Opp Fumble Recovery" },
+            "text": "(Shotgun) J.Stidham sacked at DEN 14 for -19 yards (C.Elliss). FUMBLES (C.Elliss) [C.Elliss], RECOVERED by NE-E.Ponder at DEN 12.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729861578",
+            "type": { "text": "Pass Reception" },
+            "text": "T.Munford reported in as eligible.  D.Maye pass short left to K.Boutte to DEN 6 for 6 yards (R.Moss).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729861605",
+            "type": { "text": "Rushing Touchdown" },
+            "text": "(Shotgun) D.Maye right guard for 6 yards, TOUCHDOWN. A.Borregales extra point is GOOD, Center-J.Ashby, Holder-B.Baringer.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729861636",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 02:10.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729861643",
+            "type": { "text": "Kickoff" },
+            "text": "A.Borregales kicks 65 yards from NE 35 to end zone, Touchback to the DEN 35.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729861667",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) J.Stidham pass incomplete short left.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729861690",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Stidham pass short middle to R.Harvey to DEN 45 for 10 yards (C.Elliss).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729861703",
+            "type": { "text": "Two-minute warning" },
+            "text": "Two-Minute Warning",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729861715",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) J.Stidham pass incomplete deep middle to L.Humphrey.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729861745",
+            "type": { "text": "Sack" },
+            "text": "(Shotgun) J.Stidham sacked at DEN 37 for -8 yards (C.Barmore).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729861755",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #1 by NE at 01:50.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729861765",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Stidham pass short middle to E.Engram to DEN 49 for 12 yards (C.Davis; J.Gibbens).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729861781",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #2 by NE at 01:42.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729861797",
+            "type": { "text": "Punt" },
+            "text": "J.Crawshaw punts 41 yards to NE 10, Center-M.Fraboni, fair catch by M.Jones.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729861824",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) R.Stevenson right tackle to NE 15 for 5 yards (A.Singleton; J.McMillian).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729861846",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(No Huddle, Shotgun) D.Maye pass incomplete short middle to H.Henry.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729861869",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) D.Maye pass short right to H.Henry to NE 18 for 3 yards (P.Surtain; J.Strnad).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729861882",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #3 by DEN at 00:57.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729861894",
+            "type": { "text": "Punt" },
+            "text": " B.Baringer punts 41 yards to DEN 41, Center-J.Ashby. M.Mims to DEN 49 for 8 yards (M.Mapu; J.Ashby).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729861927",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Stidham pass short left to R.Harvey pushed ob at NE 40 for 11 yards (D.Pettus).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729861963",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) J.Stidham pass incomplete short right.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729861986",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Stidham pass short left to C.Sutton pushed ob at NE 34 for 6 yards (C.Gonzalez).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729862016",
+            "type": { "text": "Sack" },
+            "text": "(Shotgun) J.Stidham sacked ob at NE 36 for -2 yards (C.Gonzalez).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729862045",
+            "type": { "text": "Field Goal Missed" },
+            "text": "W.Lutz 54 yard field goal is No Good, Wide Right, Center-M.Fraboni, Holder-J.Crawshaw.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729862066",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) D.Maye pass incomplete deep right to K.Boutte.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729862089",
+            "type": { "text": "Penalty" },
+            "text": "(Shotgun) PENALTY on NE-W.Campbell, False Start, 5 yards, enforced at NE 44 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729862113",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) D.Maye pass incomplete deep middle to K.Boutte.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729862136",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) D.Maye scrambles right guard to DEN 45 for 16 yards (D.Key).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729862147",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #3 by NE at 00:01.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729862158",
+            "type": { "text": "Field Goal Missed" },
+            "text": "A.Borregales 63 yard field goal is No Good, Wide Left, Center-J.Ashby, Holder-B.Baringer.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729862186",
+            "type": { "text": "End of Half" },
+            "text": "END QUARTER 2",
+            "scoringPlay": false
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729862206",
+            "type": { "text": "Kickoff" },
+            "text": "W.Lutz kicks 64 yards from DEN 35 to NE 1. D.Johnson to NE 31 for 30 yards (Q.Robinson; J.Elliss).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729862229",
+            "type": { "text": "Pass Reception" },
+            "text": "D.Maye pass short left to S.Diggs to NE 36 for 5 yards (M.Roach).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729862254",
+            "type": { "text": "Rush" },
+            "text": "T.Munford reported in as eligible.  R.Stevenson right guard to NE 38 for 2 yards (A.Singleton; E.Uwazurike).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729862278",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) R.Stevenson right guard to NE 41 for 3 yards (A.Singleton).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729862300",
+            "type": { "text": "Rush" },
+            "text": "T.Munford reported in as eligible.  R.Stevenson left end to NE 42 for 1 yard (A.Singleton; E.Uwazurike).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729862324",
+            "type": { "text": "Rush" },
+            "text": "R.Stevenson up the middle to DEN 46 for 12 yards (P.Locke; D.Tillman).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729862346",
+            "type": { "text": "Rush" },
+            "text": "T.Munford reported in as eligible.  T.Henderson right guard to DEN 42 for 4 yards (A.Singleton).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729862370",
+            "type": { "text": "Rush" },
+            "text": "T.Munford reported in as eligible.  T.Henderson left tackle to DEN 45 for -3 yards (J.Elliss, D.Greenlaw).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729862392",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) D.Maye scrambles up the middle ran ob at DEN 17 for 28 yards (T.Hufanga).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729862419",
+            "type": { "text": "Rush" },
+            "text": "R.Stevenson up the middle to DEN 17 for no gain (E.Uwazurike; D.Jones).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729862441",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) D.Maye pass incomplete deep left to R.Stevenson [M.Roach].",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729862464",
+            "type": { "text": "Pass Reception" },
+            "text": "D.Maye pass short right to H.Henry to DEN 8 for 9 yards (J.Barron; P.Locke).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729862478",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #1 by NE at 08:10.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729862491",
+            "type": { "text": "Rush" },
+            "text": "K.Tonga and M.Williams reported in as eligible.  D.Maye up the middle to DEN 7 for 1 yard (Z.Allen).Denver challenged the first down ruling, and the play was Upheld. The ruling on the field stands. (Timeout #1.)",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729862569",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) T.Munford reported in as eligible.  R.Stevenson right guard to DEN 2 for 5 yards (E.Uwazurike).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729862593",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) Direct snap to R.Stevenson.  R.Stevenson up the middle to DEN 3 for -1 yards (T.Hufanga, D.Jones).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729862617",
+            "type": { "text": "Sack" },
+            "text": "(Shotgun) D.Maye sacked at DEN 5 for -2 yards (J.Cooper).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729862642",
+            "type": { "text": "Field Goal Good" },
+            "text": "A.Borregales 23 yard field goal is GOOD, Center-J.Ashby, Holder-B.Baringer.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729862652",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 05:29.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729862662",
+            "type": { "text": "Kickoff" },
+            "text": "A.Borregales kicks 62 yards from NE 35 to DEN 3. T.Badie to DEN 23 for 20 yards (C.Muma).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729862692",
+            "type": { "text": "Rush" },
+            "text": "F.Crum reported in as eligible.  J.McLaughlin left end to DEN 25 for 2 yards (J.Gibbens; C.Gonzalez).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729862716",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) J.Stidham pass incomplete short middle to J.McLaughlin [K.Chaisson].",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729862751",
+            "type": { "text": "Pass Reception" },
+            "text": "(No Huddle, Shotgun) J.Stidham pass short right to M.Mims to DEN 29 for 4 yards (K.Chaisson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729862776",
+            "type": { "text": "Punt" },
+            "text": " J.Crawshaw punts 52 yards to NE 19, Center-M.Fraboni. M.Jones to NE 21 for 2 yards (K.Abrams-Draine).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729862789",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 03:50.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729862802",
+            "type": { "text": "Pass Incompletion" },
+            "text": "T.Munford reported in as eligible.  D.Maye pass incomplete short middle to K.Boutte.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729862834",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) D.Maye scrambles up the middle to NE 34 for 13 yards (T.Hufanga).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729862856",
+            "type": { "text": "Rush" },
+            "text": "R.Stevenson left guard to NE 38 for 4 yards (E.Uwazurike; P.Surtain).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729862878",
+            "type": { "text": "Pass Reception" },
+            "text": "T.Munford reported in as eligible.  D.Maye pass deep left to M.Hollins pushed ob at DEN 31 for 31 yards (R.Moss).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729862910",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) R.Stevenson left tackle to DEN 28 for 3 yards (P.Surtain; A.Singleton).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729862932",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) D.Maye pass incomplete short right to K.Boutte.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729862955",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) R.Stevenson right tackle to DEN 28 for no gain (J.Strnad; A.Singleton).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729862977",
+            "type": { "text": "Field Goal Missed" },
+            "text": "A.Borregales 46 yard field goal is No Good, Wide Right, Center-J.Ashby, Holder-B.Baringer.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729862988",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 00:11.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729862998",
+            "type": { "text": "Rush" },
+            "text": "F.Crum reported in as eligible.  R.Harvey up the middle to DEN 39 for 2 yards (A.Jennings).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729863029",
+            "type": { "text": "End Period" },
+            "text": "END QUARTER 3",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729863049",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Stidham pass short left to M.Mims ran ob at DEN 40 for 1 yard (C.Davis).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729863079",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) J.Stidham pass incomplete short right to L.Humphrey (M.Jones).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729863102",
+            "type": { "text": "Punt" },
+            "text": "J.Crawshaw punts 60 yards to end zone, Center-M.Fraboni, Touchback.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729863111",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 14:11.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729863120",
+            "type": { "text": "Rush" },
+            "text": "T.Munford reported in as eligible.  R.Stevenson left tackle to NE 31 for 11 yards (T.Hufanga; Q.Robinson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729863151",
+            "type": { "text": "Rush" },
+            "text": "T.Munford reported in as eligible.  R.Stevenson right guard to NE 33 for 2 yards (A.Singleton; Z.Allen).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729863173",
+            "type": { "text": "Rush" },
+            "text": "R.Stevenson right guard to NE 37 for 4 yards (J.Cooper).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729863195",
+            "type": { "text": "Sack" },
+            "text": "(Shotgun) D.Maye sacked at NE 30 for -7 yards (sack split by D.Jones and M.Roach).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729863215",
+            "type": { "text": "Punt" },
+            "text": "B.Baringer punts 40 yards to DEN 30, Center-J.Ashby, out of bounds.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729863225",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 11:29.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729863234",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) R.Harvey right end ran ob at DEN 39 for 9 yards (J.Hawkins).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729863270",
+            "type": { "text": "Rush" },
+            "text": "R.Harvey left end to DEN 39 for no gain (K.Chaisson; C.Elliss).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729863292",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) T.Badie up the middle to DEN 43 for 4 yards (C.Barmore).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729863314",
+            "type": { "text": "Pass Incompletion" },
+            "text": "F.Crum reported in as eligible.  J.Stidham pass incomplete short right.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729863339",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(No Huddle, Shotgun) J.Stidham pass incomplete short right to E.Engram.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729863374",
+            "type": { "text": "Pass Reception" },
+            "text": "(No Huddle, Shotgun) J.Stidham pass short middle to E.Moore to DEN 47 for 4 yards (C.Davis).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729863399",
+            "type": { "text": "Punt" },
+            "text": "J.Crawshaw punts 45 yards to NE 8, Center-M.Fraboni, out of bounds.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729863409",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 08:21.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729863418",
+            "type": { "text": "Rush" },
+            "text": "T.Munford reported in as eligible.  D.Maye up the middle to NE 5 for -3 yards (D.Jones).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729863454",
+            "type": { "text": "Rush" },
+            "text": "R.Stevenson left end to NE 7 for 2 yards (P.Surtain).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729863476",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) D.Maye pass incomplete short right.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729863499",
+            "type": { "text": "Punt" },
+            "text": " B.Baringer punts 26 yards to NE 33, Center-J.Ashby, out of bounds.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729863518",
+            "type": { "text": "Rush" },
+            "text": "R.Harvey right end to NE 36 for -3 yards (K.Tonga).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729863540",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Stidham pass short left to R.Harvey to NE 36 for no gain (C.Davis).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729863565",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) J.Stidham scrambles right guard to NE 28 for 8 yards (K.Chaisson; J.Hawkins).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729863587",
+            "type": { "text": "Blocked Field Goal" },
+            "text": "W.Lutz 45 yard field goal is BLOCKED (L.Taylor), Center-M.Fraboni, Holder-J.Crawshaw.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729863608",
+            "type": { "text": "Rush" },
+            "text": "T.Munford reported in as eligible.  R.Stevenson left guard to NE 38 for 2 yards (D.Tillman; D.Greenlaw).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729863632",
+            "type": { "text": "Rush" },
+            "text": "T.Munford reported in as eligible.  R.Stevenson left guard to NE 36 for -2 yards (M.Roach, A.Singleton).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729863654",
+            "type": { "text": "Rush" },
+            "text": "T.Munford reported in as eligible.  R.Stevenson right tackle to NE 37 for 1 yard (A.Singleton).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729863666",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #2 by DEN at 03:11.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729863678",
+            "type": { "text": "Punt" },
+            "text": "B.Baringer punts 31 yards to DEN 32, Center-J.Ashby, out of bounds.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729863706",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Stidham pass short right to R.Harvey to DEN 33 for 1 yard (C.Woodson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729863731",
+            "type": { "text": "Pass Interception Return" },
+            "text": "(Shotgun) J.Stidham pass deep right intended for M.Mims INTERCEPTED by C.Gonzalez [K.Chaisson] at NE 36. C.Gonzalez to NE 36 for no gain (M.Mims).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729863758",
+            "type": { "text": "Rush" },
+            "text": "T.Munford reported in as eligible.  R.Stevenson right tackle to NE 40 for 4 yards (A.Singleton; D.Greenlaw).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729863770",
+            "type": { "text": "Two-minute warning" },
+            "text": "Two-Minute Warning",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729863782",
+            "type": { "text": "Rush" },
+            "text": "T.Munford reported in as eligible.  R.Stevenson right tackle to NE 41 for 1 yard (E.Uwazurike).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729863798",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #3 by DEN at 01:57.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729863813",
+            "type": { "text": "Rush" },
+            "text": "T.Munford reported in as eligible.  D.Maye left end pushed ob at NE 48 for 7 yards (J.Elliss).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729863849",
+            "type": { "text": "Penalty" },
+            "text": " PENALTY on DEN-D.Jones, Encroachment, 5 yards, enforced at NE 48 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729863873",
+            "type": { "text": "Rush" },
+            "text": "D.Maye kneels to DEN 48 for -1 yards.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729863895",
+            "type": { "text": "Rush" },
+            "text": "D.Maye kneels to DEN 49 for -1 yards.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729863917",
+            "type": { "text": "Rush" },
+            "text": "D.Maye kneels to 50 for -1 yards.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729863939",
+            "type": { "text": "End of Game" },
+            "text": "END GAME",
+            "scoringPlay": false
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,4 +1,4 @@
-import type { AvailablePlayer, DraftSnapshot, SlotName } from "@dnp/contract";
+import type { AvailablePlayer, DraftSnapshot, IngestResponse, SlotName } from "@dnp/contract";
 import { act, render } from "@testing-library/react";
 import { useEffect, useState, type ReactNode } from "react";
 import { createMemoryRouter, RouterProvider } from "react-router";
@@ -32,6 +32,18 @@ export function fakeAuth(over: Partial<AuthContextValue> = {}): AuthContextValue
     ...over,
   };
 }
+
+/** Live stats switched off and never run: the default for pages that only embed the card. */
+export const idleIngest: IngestResponse = {
+  enabled: false,
+  nextPollAt: null,
+  lastRunAt: null,
+  lastSuccessAt: null,
+  lastError: null,
+  lastSummary: null,
+  warnings: [],
+  rounds: [],
+};
 
 export function fakeApi(over: Partial<Api> = {}): Api {
   const unexpected = (name: string) => () => Promise.reject(new Error(`unexpected api.${name}`));
@@ -68,6 +80,9 @@ export function fakeApi(over: Partial<Api> = {}): Api {
     createScoringVersion: unexpected("createScoringVersion"),
     lockScoringVersion: unexpected("lockScoringVersion"),
     activateScoringVersion: unexpected("activateScoringVersion"),
+    ingest: async () => idleIngest,
+    setIngest: unexpected("setIngest"),
+    runIngest: unexpected("runIngest"),
     ...over,
   } as Api;
 }

@@ -28,6 +28,8 @@ export interface PoolPlayerInput {
   /** Fixed id (DST rows). Otherwise matched by `providerPlayerId` and given a new id. */
   playerId?: string;
   providerPlayerId: string | null;
+  /** ESPN athlete id when the player source knows it (Sleeper `espn_id`); absent = keep the stored one. */
+  espnId?: string;
   name: string;
   position: Position;
   nflTeam: string;
@@ -175,6 +177,7 @@ export async function importPool(db: Dynamo, input: ImportPoolInput): Promise<Im
         position: p.position,
         nflTeam: p.nflTeam,
         providerPlayerId: p.providerPlayerId,
+        ...(p.espnId ? { espnId: p.espnId } : {}),
         injuryStatus: p.injuryStatus,
         inPool: true,
         depthChartOrder: p.depthChartOrder ?? null,
@@ -219,9 +222,10 @@ export async function importPool(db: Dynamo, input: ImportPoolInput): Promise<Im
       new UpdateCommand({
         TableName,
         Key: playerKey(seasonId, item.playerId),
-        UpdateExpression: `SET #n = :name, #p = :pos, nflTeam = :team, injuryStatus = :inj, depthChartOrder = :dco, #rk = :rank, providerPlayerId = :pp, inPool = :inPool${statsSeason === undefined ? "" : ", stats = :stats, statsSeason = :ss"}`,
+        UpdateExpression: `SET #n = :name, #p = :pos, nflTeam = :team, injuryStatus = :inj, depthChartOrder = :dco, #rk = :rank, providerPlayerId = :pp, inPool = :inPool${next.espnId ? ", espnId = :espn" : ""}${statsSeason === undefined ? "" : ", stats = :stats, statsSeason = :ss"}`,
         ExpressionAttributeNames: { "#n": "name", "#p": "position", "#rk": "rank" },
         ExpressionAttributeValues: {
+          ...(next.espnId ? { ":espn": next.espnId } : {}),
           ...(statsSeason === undefined
             ? {}
             : { ":stats": next.stats ?? null, ":ss": statsSeason }),

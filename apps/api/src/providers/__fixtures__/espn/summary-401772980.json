@@ -1,0 +1,1916 @@
+{
+  "header": {
+    "competitions": [
+      {
+        "date": "2026-01-11T21:30Z",
+        "status": { "type": { "name": "STATUS_FINAL", "completed": true } },
+        "competitors": [
+          {
+            "homeAway": "home",
+            "score": "19",
+            "winner": false,
+            "team": { "id": "21", "abbreviation": "PHI" }
+          },
+          {
+            "homeAway": "away",
+            "score": "23",
+            "winner": true,
+            "team": { "id": "25", "abbreviation": "SF" }
+          }
+        ]
+      }
+    ]
+  },
+  "boxscore": {
+    "players": [
+      {
+        "team": { "id": "25", "abbreviation": "SF" },
+        "statistics": [
+          {
+            "name": "passing",
+            "keys": [
+              "completions/passingAttempts",
+              "passingYards",
+              "yardsPerPassAttempt",
+              "passingTouchdowns",
+              "interceptions",
+              "sacks-sackYardsLost",
+              "adjQBR",
+              "QBRating"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4361741",
+                  "displayName": "Brock Purdy",
+                  "firstName": "Brock",
+                  "lastName": "Purdy"
+                },
+                "stats": ["18/31", "262", "8.5", "2", "2", "1-5", "60.4", "80.3"]
+              },
+              {
+                "athlete": {
+                  "id": "3886598",
+                  "displayName": "Jauan Jennings",
+                  "firstName": "Jauan",
+                  "lastName": "Jennings"
+                },
+                "stats": ["1/1", "29", "29.0", "1", "0", "0-0", "100.0", "158.3"]
+              }
+            ]
+          },
+          {
+            "name": "rushing",
+            "keys": [
+              "rushingAttempts",
+              "rushingYards",
+              "yardsPerRushAttempt",
+              "rushingTouchdowns",
+              "longRushing"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "3117251",
+                  "displayName": "Christian McCaffrey",
+                  "firstName": "Christian",
+                  "lastName": "McCaffrey"
+                },
+                "stats": ["15", "48", "3.2", "0", "10"]
+              },
+              {
+                "athlete": {
+                  "id": "4361741",
+                  "displayName": "Brock Purdy",
+                  "firstName": "Brock",
+                  "lastName": "Purdy"
+                },
+                "stats": ["9", "24", "2.7", "0", "8"]
+              },
+              {
+                "athlete": {
+                  "id": "4430191",
+                  "displayName": "Skyy Moore",
+                  "firstName": "Skyy",
+                  "lastName": "Moore"
+                },
+                "stats": ["1", "3", "3.0", "0", "3"]
+              }
+            ]
+          },
+          {
+            "name": "receiving",
+            "keys": [
+              "receptions",
+              "receivingYards",
+              "yardsPerReception",
+              "receivingTouchdowns",
+              "longReception",
+              "receivingTargets"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "3043116",
+                  "displayName": "Demarcus Robinson",
+                  "firstName": "Demarcus",
+                  "lastName": "Robinson"
+                },
+                "stats": ["6", "111", "18.5", "1", "61", "7"]
+              },
+              {
+                "athlete": {
+                  "id": "3117251",
+                  "displayName": "Christian McCaffrey",
+                  "firstName": "Christian",
+                  "lastName": "McCaffrey"
+                },
+                "stats": ["6", "66", "11.0", "2", "29", "8"]
+              },
+              {
+                "athlete": {
+                  "id": "16002",
+                  "displayName": "Kyle Juszczyk",
+                  "firstName": "Kyle",
+                  "lastName": "Juszczyk"
+                },
+                "stats": ["4", "49", "12.3", "0", "27", "4"]
+              },
+              {
+                "athlete": {
+                  "id": "3886598",
+                  "displayName": "Jauan Jennings",
+                  "firstName": "Jauan",
+                  "lastName": "Jennings"
+                },
+                "stats": ["1", "45", "45.0", "0", "45", "3"]
+              },
+              {
+                "athlete": {
+                  "id": "4259147",
+                  "displayName": "Jake Tonges",
+                  "firstName": "Jake",
+                  "lastName": "Tonges"
+                },
+                "stats": ["1", "14", "14.0", "0", "14", "3"]
+              },
+              {
+                "athlete": {
+                  "id": "3040151",
+                  "displayName": "George Kittle",
+                  "firstName": "George",
+                  "lastName": "Kittle"
+                },
+                "stats": ["1", "6", "6.0", "0", "6", "2"]
+              },
+              {
+                "athlete": {
+                  "id": "3115928",
+                  "displayName": "Malik Turner",
+                  "firstName": "Malik",
+                  "lastName": "Turner"
+                },
+                "stats": ["0", "0", "0.0", "0", "0", "1"]
+              },
+              {
+                "athlete": {
+                  "id": "4040612",
+                  "displayName": "Luke Farrell",
+                  "firstName": "Luke",
+                  "lastName": "Farrell"
+                },
+                "stats": ["0", "0", "0.0", "0", "0", "1"]
+              },
+              {
+                "athlete": {
+                  "id": "4430191",
+                  "displayName": "Skyy Moore",
+                  "firstName": "Skyy",
+                  "lastName": "Moore"
+                },
+                "stats": ["0", "0", "0.0", "0", "0", "1"]
+              }
+            ]
+          },
+          {
+            "name": "fumbles",
+            "keys": ["fumbles", "fumblesLost", "fumblesRecovered"],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4361741",
+                  "displayName": "Brock Purdy",
+                  "firstName": "Brock",
+                  "lastName": "Purdy"
+                },
+                "stats": ["1", "0", "0"]
+              },
+              {
+                "athlete": {
+                  "id": "4430191",
+                  "displayName": "Skyy Moore",
+                  "firstName": "Skyy",
+                  "lastName": "Moore"
+                },
+                "stats": ["1", "0", "1"]
+              }
+            ]
+          },
+          {
+            "name": "kickReturns",
+            "keys": [
+              "kickReturns",
+              "kickReturnYards",
+              "yardsPerKickReturn",
+              "longKickReturn",
+              "kickReturnTouchdowns"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4241474",
+                  "displayName": "Brian Robinson Jr.",
+                  "firstName": "Brian",
+                  "lastName": "Robinson Jr."
+                },
+                "stats": ["3", "64", "21.3", "26", "0"]
+              },
+              {
+                "athlete": {
+                  "id": "4430191",
+                  "displayName": "Skyy Moore",
+                  "firstName": "Skyy",
+                  "lastName": "Moore"
+                },
+                "stats": ["2", "42", "21.0", "23", "0"]
+              }
+            ]
+          },
+          {
+            "name": "puntReturns",
+            "keys": [
+              "puntReturns",
+              "puntReturnYards",
+              "yardsPerPuntReturn",
+              "longPuntReturn",
+              "puntReturnTouchdowns"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4430191",
+                  "displayName": "Skyy Moore",
+                  "firstName": "Skyy",
+                  "lastName": "Moore"
+                },
+                "stats": ["2", "12", "6.0", "10", "0"]
+              }
+            ]
+          },
+          {
+            "name": "kicking",
+            "keys": [
+              "fieldGoalsMade/fieldGoalAttempts",
+              "fieldGoalPct",
+              "longFieldGoalMade",
+              "extraPointsMade/extraPointAttempts",
+              "totalKickingPoints"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4034949",
+                  "displayName": "Eddy Pineiro",
+                  "firstName": "Eddy",
+                  "lastName": "Pineiro"
+                },
+                "stats": ["1/1", "100.0", "36", "2/3", "5"]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "team": { "id": "21", "abbreviation": "PHI" },
+        "statistics": [
+          {
+            "name": "passing",
+            "keys": [
+              "completions/passingAttempts",
+              "passingYards",
+              "yardsPerPassAttempt",
+              "passingTouchdowns",
+              "interceptions",
+              "sacks-sackYardsLost",
+              "adjQBR",
+              "QBRating"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4040715",
+                  "displayName": "Jalen Hurts",
+                  "firstName": "Jalen",
+                  "lastName": "Hurts"
+                },
+                "stats": ["20/35", "168", "4.8", "1", "0", "1-1", "40.5", "79.2"]
+              }
+            ]
+          },
+          {
+            "name": "rushing",
+            "keys": [
+              "rushingAttempts",
+              "rushingYards",
+              "yardsPerRushAttempt",
+              "rushingTouchdowns",
+              "longRushing"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "3929630",
+                  "displayName": "Saquon Barkley",
+                  "firstName": "Saquon",
+                  "lastName": "Barkley"
+                },
+                "stats": ["26", "106", "4.1", "0", "29"]
+              },
+              {
+                "athlete": {
+                  "id": "4429013",
+                  "displayName": "Tank Bigsby",
+                  "firstName": "Tank",
+                  "lastName": "Bigsby"
+                },
+                "stats": ["4", "19", "4.8", "0", "9"]
+              },
+              {
+                "athlete": {
+                  "id": "4040715",
+                  "displayName": "Jalen Hurts",
+                  "firstName": "Jalen",
+                  "lastName": "Hurts"
+                },
+                "stats": ["5", "14", "2.8", "0", "4"]
+              },
+              {
+                "athlete": {
+                  "id": "3121023",
+                  "displayName": "Dallas Goedert",
+                  "firstName": "Dallas",
+                  "lastName": "Goedert"
+                },
+                "stats": ["1", "1", "1.0", "1", "1"]
+              }
+            ]
+          },
+          {
+            "name": "receiving",
+            "keys": [
+              "receptions",
+              "receivingYards",
+              "yardsPerReception",
+              "receivingTouchdowns",
+              "longReception",
+              "receivingTargets"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4241478",
+                  "displayName": "DeVonta Smith",
+                  "firstName": "DeVonta",
+                  "lastName": "Smith"
+                },
+                "stats": ["8", "70", "8.8", "0", "15", "11"]
+              },
+              {
+                "athlete": {
+                  "id": "3121023",
+                  "displayName": "Dallas Goedert",
+                  "firstName": "Dallas",
+                  "lastName": "Goedert"
+                },
+                "stats": ["4", "33", "8.3", "1", "15", "7"]
+              },
+              {
+                "athlete": {
+                  "id": "3929630",
+                  "displayName": "Saquon Barkley",
+                  "firstName": "Saquon",
+                  "lastName": "Barkley"
+                },
+                "stats": ["3", "25", "8.3", "0", "20", "6"]
+              },
+              {
+                "athlete": {
+                  "id": "4047646",
+                  "displayName": "A.J. Brown",
+                  "firstName": "A.J.",
+                  "lastName": "Brown"
+                },
+                "stats": ["3", "25", "8.3", "0", "10", "7"]
+              },
+              {
+                "athlete": {
+                  "id": "4715355",
+                  "displayName": "Darius Cooper",
+                  "firstName": "Darius",
+                  "lastName": "Cooper"
+                },
+                "stats": ["1", "9", "9.0", "0", "9", "1"]
+              },
+              {
+                "athlete": {
+                  "id": "4431545",
+                  "displayName": "Will Shipley",
+                  "firstName": "Will",
+                  "lastName": "Shipley"
+                },
+                "stats": ["1", "6", "6.0", "0", "6", "1"]
+              },
+              {
+                "athlete": {
+                  "id": "4361409",
+                  "displayName": "Jahan Dotson",
+                  "firstName": "Jahan",
+                  "lastName": "Dotson"
+                },
+                "stats": ["0", "0", "0.0", "0", "0", "1"]
+              }
+            ]
+          },
+          {
+            "name": "fumbles",
+            "keys": ["fumbles", "fumblesLost", "fumblesRecovered"],
+            "athletes": []
+          },
+          {
+            "name": "kickReturns",
+            "keys": [
+              "kickReturns",
+              "kickReturnYards",
+              "yardsPerKickReturn",
+              "longKickReturn",
+              "kickReturnTouchdowns"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "3926231",
+                  "displayName": "Britain Covey",
+                  "firstName": "Britain",
+                  "lastName": "Covey"
+                },
+                "stats": ["2", "61", "30.5", "31", "0"]
+              }
+            ]
+          },
+          {
+            "name": "puntReturns",
+            "keys": [
+              "puntReturns",
+              "puntReturnYards",
+              "yardsPerPuntReturn",
+              "longPuntReturn",
+              "puntReturnTouchdowns"
+            ],
+            "athletes": []
+          },
+          {
+            "name": "kicking",
+            "keys": [
+              "fieldGoalsMade/fieldGoalAttempts",
+              "fieldGoalPct",
+              "longFieldGoalMade",
+              "extraPointsMade/extraPointAttempts",
+              "totalKickingPoints"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "3050478",
+                  "displayName": "Jake Elliott",
+                  "firstName": "Jake",
+                  "lastName": "Elliott"
+                },
+                "stats": ["2/2", "100.0", "41", "1/2", "7"]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "scoringPlays": [
+    {
+      "id": "401772980178",
+      "type": { "text": "Passing Touchdown" },
+      "text": "Demarcus Robinson 2 Yd pass from Brock Purdy (Eddy Pineiro Kick)",
+      "team": { "id": "25" }
+    },
+    {
+      "id": "401772980473",
+      "type": { "text": "Rushing Touchdown" },
+      "text": "Dallas Goedert 1 Yd Rush (Jake Elliott PAT Failed)",
+      "team": { "id": "21" }
+    },
+    {
+      "id": "4017729801319",
+      "type": { "text": "Passing Touchdown" },
+      "text": "Dallas Goedert 9 Yd pass from Jalen Hurts (Jake Elliott Kick)",
+      "team": { "id": "21" }
+    },
+    {
+      "id": "4017729801557",
+      "type": { "text": "Field Goal Good" },
+      "text": "Eddy Pineiro 36 Yd Field Goal",
+      "team": { "id": "25" }
+    },
+    {
+      "id": "4017729802843",
+      "type": { "text": "Field Goal Good" },
+      "text": "Jake Elliott 41 Yd Field Goal",
+      "team": { "id": "21" }
+    },
+    {
+      "id": "4017729802997",
+      "type": { "text": "Passing Touchdown" },
+      "text": "Christian McCaffrey 29 Yd pass from Jauan Jennings (Eddy Pineiro Kick)",
+      "team": { "id": "25" }
+    },
+    {
+      "id": "4017729803474",
+      "type": { "text": "Field Goal Good" },
+      "text": "Jake Elliott 33 Yd Field Goal",
+      "team": { "id": "21" }
+    },
+    {
+      "id": "4017729803771",
+      "type": { "text": "Passing Touchdown" },
+      "text": "Christian McCaffrey 4 Yd pass from Brock Purdy (Eddy Pineiro PAT Failed)",
+      "team": { "id": "25" }
+    }
+  ],
+  "drives": {
+    "previous": [
+      {
+        "plays": [
+          {
+            "id": "40177298039",
+            "type": { "text": "Kickoff" },
+            "text": "J.Elliott kicks 59 yards from PHI 35 to SF 6. B.Robinson to SF 24 for 18 yards (W.Shipley).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "40177298062",
+            "type": { "text": "Rush" },
+            "text": "C.McCaffrey left end to SF 23 for -1 yards (N.Smith, Q.Mitchell).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "40177298084",
+            "type": { "text": "Pass Reception" },
+            "text": "(No Huddle, Shotgun) B.Purdy pass deep middle to D.Robinson to PHI 16 for 61 yards (A.Jackson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "401772980109",
+            "type": { "text": "Rush" },
+            "text": "(No Huddle) C.McCaffrey left tackle to PHI 16 for no gain (Z.Baun).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "401772980131",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) B.Purdy pass short middle to C.McCaffrey to PHI 5 for 11 yards (Q.Mitchell).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "401772980156",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) C.McCaffrey right guard to PHI 2 for 3 yards (J.Carter; J.Davis).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "401772980178",
+            "type": { "text": "Passing Touchdown" },
+            "text": "B.Purdy pass short middle to D.Robinson for 2 yards, TOUCHDOWN. E.Pineiro extra point is GOOD, Center-J.Weeks, Holder-T.Morstead.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "401772980212",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 11:51.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "401772980219",
+            "type": { "text": "Kickoff" },
+            "text": "E.Pineiro kicks 59 yards from SF 35 to PHI 6. B.Covey to PHI 37 for 31 yards (J.Pinnock).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "401772980250",
+            "type": { "text": "Rush" },
+            "text": "S.Barkley right guard to PHI 39 for 2 yards (J.Brown).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "401772980272",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) S.Barkley right end pushed ob at SF 32 for 29 yards (M.Mustapha). PHI-F.Johnson was injured during the play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "401772980299",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) S.Barkley right guard to SF 27 for 5 yards (U.Stout; B.Huff).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "401772980324",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Hurts pass short right to A.Brown to SF 17 for 10 yards (D.Lenoir). ** Injury Update: PHI-F.Johnson has returned to the game.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "401772980349",
+            "type": { "text": "Pass Reception" },
+            "text": "(No Huddle, Shotgun) J.Hurts pass short right to D.Goedert to SF 13 for 4 yards (E.Kendricks).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "401772980377",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Hurts pass short middle to D.Smith pushed ob at SF 10 for 3 yards (S.Okuayinonu).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "401772980407",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) S.Barkley left tackle to SF 7 for 3 yards (A.Collins; G.Wallow).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "401772980429",
+            "type": { "text": "Rush" },
+            "text": "S.Barkley right tackle to SF 4 for 3 yards (M.Mustapha).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "401772980451",
+            "type": { "text": "Rush" },
+            "text": "S.Barkley right guard to SF 1 for 3 yards (K.White).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "401772980473",
+            "type": { "text": "Rushing Touchdown" },
+            "text": "(No Huddle) D.Goedert left end for 1 yard, TOUCHDOWN. J.Elliott extra point is No Good, Hit Left Upright, Center-C.Hughlett, Holder-B.Mann.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "401772980504",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 06:16.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "401772980511",
+            "type": { "text": "Kickoff" },
+            "text": "J.Elliott kicks 59 yards from PHI 35 to SF 6. B.Robinson to SF 26 for 20 yards (S.Brown).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "401772980541",
+            "type": { "text": "Rush" },
+            "text": "C.McCaffrey right end to SF 30 for 4 yards (M.Epps).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "401772980563",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(No Huddle, Shotgun) B.Purdy pass incomplete short right to G.Kittle (Q.Mitchell).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "401772980586",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) B.Purdy pass short left to D.Robinson ran ob at SF 33 for 3 yards.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "401772980616",
+            "type": { "text": "Punt" },
+            "text": "T.Morstead punts 35 yards to PHI 32, Center-J.Weeks, out of bounds.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "401772980626",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 05:01.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "401772980635",
+            "type": { "text": "Rush" },
+            "text": "S.Barkley left guard to PHI 33 for 1 yard (E.Kendricks).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "401772980669",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) S.Barkley left guard to PHI 35 for 2 yards (G.Wallow; E.Kendricks).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "401772980695",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Hurts pass short middle to D.Cooper to PHI 44 for 9 yards (D.Lenoir).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "401772980720",
+            "type": { "text": "Pass Reception" },
+            "text": "(No Huddle, Shotgun) J.Hurts pass short left to A.Brown to SF 48 for 8 yards (D.Lenoir).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "401772980745",
+            "type": { "text": "Pass Incompletion" },
+            "text": "J.Hurts pass incomplete deep left to D.Goedert.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "401772980768",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) S.Barkley left guard to SF 48 for no gain (S.Okuayinonu).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "401772980790",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) J.Hurts pass incomplete short left to D.Smith (U.Stout).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "401772980802",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 01:29.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "401772980813",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) C.McCaffrey right end to SF 49 for 1 yard (N.Smith).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "401772980842",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(No Huddle, Shotgun) B.Purdy pass incomplete short left to J.Jennings (C.DeJean).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "401772980865",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) B.Purdy scrambles left end pushed ob at PHI 49 for 2 yards (M.Ojomo).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "401772980892",
+            "type": { "text": "Punt" },
+            "text": "T.Morstead punts 43 yards to PHI 6, Center-J.Weeks, downed by SF-M.Sigle.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "401772980912",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Hurts pass short left to A.Brown pushed ob at PHI 13 for 7 yards (D.Lenoir).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "401772980947",
+            "type": { "text": "End Period" },
+            "text": "END QUARTER 1",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "401772980967",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) S.Barkley left guard to PHI 20 for 7 yards (C.West).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "401772980989",
+            "type": { "text": "Pass Reception" },
+            "text": "(No Huddle, Shotgun) J.Hurts pass short left to D.Smith to PHI 29 for 9 yards (G.Wallow).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729801014",
+            "type": { "text": "Rush" },
+            "text": "(No Huddle, Shotgun) S.Barkley right guard to PHI 34 for 5 yards (C.West).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729801036",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(No Huddle, Shotgun) J.Hurts pass incomplete short left to D.Smith.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729801059",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Hurts pass short left to D.Smith to PHI 35 for 1 yard (J.Brown).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729801084",
+            "type": { "text": "Penalty" },
+            "text": "(Shotgun) PENALTY on PHI-J.Dotson, False Start, 5 yards, enforced at PHI 35 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729801108",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Hurts pass short left to D.Smith to PHI 43 for 13 yards (J.Brown; D.Lenoir).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729801133",
+            "type": { "text": "Rush" },
+            "text": "J.Hurts up the middle to PHI 46 for 3 yards (A.Collins).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729801144",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #1 by SF at 11:00.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729801155",
+            "type": { "text": "Rush" },
+            "text": "S.Barkley right end to 50 for 4 yards (C.Ferrell).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729801184",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Hurts pass short left to S.Barkley to SF 30 for 20 yards (E.Kendricks).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729801209",
+            "type": { "text": "Rush" },
+            "text": "(No Huddle, Shotgun) T.Bigsby right guard to SF 26 for 4 yards (U.Stout).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729801231",
+            "type": { "text": "Rush" },
+            "text": "T.Bigsby left guard to SF 17 for 9 yards (J.Brown; U.Stout).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729801253",
+            "type": { "text": "Rush" },
+            "text": "(No Huddle, Shotgun) T.Bigsby left end to SF 10 for 7 yards (U.Stout).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729801275",
+            "type": { "text": "Rush" },
+            "text": "S.Barkley right end to SF 12 for -2 yards (E.Kendricks).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729801297",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) S.Barkley left guard to SF 9 for 3 yards (S.Okuayinonu; K.White).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729801319",
+            "type": { "text": "Passing Touchdown" },
+            "text": "Dallas Goedert 9 Yd pass from Jalen Hurts (Jake Elliott Kick)",
+            "scoringPlay": true,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729801370",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 06:08.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729801383",
+            "type": { "text": "Kickoff" },
+            "text": "J.Elliott kicks 65 yards from PHI 35 to SF 0. S.Moore to SF 23 for 23 yards (S.Brown; S.Mondon).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729801418",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) B.Purdy pass short right to G.Kittle pushed ob at SF 29 for 6 yards (M.Epps). SF-G.Kittle was injured during the play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729801435",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 05:58.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729801451",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) B.Purdy pass deep middle to J.Jennings pushed ob at PHI 26 for 45 yards (C.DeJean).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729801488",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) B.Purdy pass short left to C.McCaffrey to PHI 20 for 6 yards (Z.Baun; J.Davis).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729801513",
+            "type": { "text": "Rush" },
+            "text": "C.McCaffrey right end to PHI 17 for 3 yards (J.Davis).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729801535",
+            "type": { "text": "Rush" },
+            "text": "C.McCaffrey right tackle to PHI 18 for -1 yards (J.Davis).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729801546",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #2 by SF at 02:54.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729801557",
+            "type": { "text": "Field Goal Good" },
+            "text": "E.Pineiro 36 yard field goal is GOOD, Center-J.Weeks, Holder-T.Morstead.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729801571",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 02:50.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729801584",
+            "type": { "text": "Kickoff" },
+            "text": "E.Pineiro kicks 65 yards from SF 35 to end zone, Touchback to the PHI 35.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729801617",
+            "type": { "text": "Rush" },
+            "text": "S.Barkley left guard to PHI 41 for 6 yards (M.Sigle).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729801639",
+            "type": { "text": "Pass Incompletion" },
+            "text": "J.Hurts pass incomplete deep middle to A.Brown.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729801665",
+            "type": { "text": "Penalty" },
+            "text": "(Shotgun) PENALTY on PHI-F.Johnson, False Start, 5 yards, enforced at PHI 41 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729801689",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) J.Hurts pass incomplete deep right to A.Brown.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729801712",
+            "type": { "text": "Punt" },
+            "text": "B.Mann punts 43 yards to SF 21, impetus ends at SF 17, Center-C.Hughlett. S.Moore to SF 23 for 2 yards (S.Mondon).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729801726",
+            "type": { "text": "Two-minute warning" },
+            "text": "Two-Minute Warning",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729801740",
+            "type": { "text": "Rush" },
+            "text": "C.McCaffrey right guard to SF 27 for 4 yards (N.Smith).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729801769",
+            "type": { "text": "Sack" },
+            "text": "B.Purdy sacked at SF 22 for -5 yards (J.Carter).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729801779",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #1 by PHI at 01:12.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729801789",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) B.Purdy pass short left to D.Robinson ran ob at SF 37 for 15 yards (A.Jackson).Penalty on PHI-J.Carter, Defensive Offside, declined.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729801837",
+            "type": { "text": "Pass Incompletion" },
+            "text": "B.Purdy pass incomplete short right to C.McCaffrey.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729801849",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #3 by SF at 01:02.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729801860",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) B.Purdy pass incomplete short right to M.Turner.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729801890",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) B.Purdy pass short left to J.Tonges to PHI 49 for 14 yards (N.Dean).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729801915",
+            "type": { "text": "Pass Reception" },
+            "text": "(No Huddle, Shotgun) B.Purdy pass short left to C.McCaffrey to PHI 44 for 5 yards (R.Blankenship).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729801940",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(No Huddle, Shotgun) B.Purdy pass incomplete short left.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729801952",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #2 by PHI at 00:08.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729801963",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) B.Purdy left end pushed ob at PHI 37 for 7 yards (Q.Mitchell).The Replay Official reviewed the runner was out of bounds ruling, and the play was REVERSED.(Shotgun) B.Purdy left end to PHI 36 for 8 yards (Q.Mitchell). FUMBLES (Q.Mitchell), ball out of bounds at PHI 36.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729801997",
+            "type": { "text": "End of Half" },
+            "text": "END QUARTER 2",
+            "scoringPlay": false
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729802053",
+            "type": { "text": "Kickoff" },
+            "text": "E.Pineiro kicks 65 yards from SF 35 to PHI 0. B.Covey to PHI 30 for 30 yards (R.Beal; J.Graham).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729802086",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) S.Barkley right guard to PHI 38 for 8 yards (M.Sigle).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729802108",
+            "type": { "text": "Rush" },
+            "text": "(No Huddle, Shotgun) S.Barkley left guard to PHI 37 for -1 yards (B.Huff).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729802130",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) J.Hurts pass incomplete short right to S.Barkley.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729802153",
+            "type": { "text": "Punt" },
+            "text": "B.Mann punts 58 yards to SF 5, Center-C.Hughlett, fair catch by S.Moore.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729802163",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 13:29.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729802173",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) B.Purdy scrambles right end pushed ob at SF 11 for 6 yards (Z.Baun).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729802207",
+            "type": { "text": "Rush" },
+            "text": "C.McCaffrey up the middle to SF 14 for 3 yards (N.Dean; N.Smith).PENALTY on PHI-M.Epps, Illegal Use of Hands, 5 yards, enforced at SF 14.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729802240",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) B.Purdy pass incomplete short left to L.Farrell.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729802252",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #1 by SF at 12:20.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729802263",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) B.Purdy pass short left to D.Robinson pushed ob at SF 33 for 14 yards (A.Jackson) [N.Smith].",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729802300",
+            "type": { "text": "Pass Incompletion" },
+            "text": "B.Purdy pass incomplete deep left to D.Robinson.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729802323",
+            "type": { "text": "Rush" },
+            "text": "C.McCaffrey left tackle to SF 42 for 9 yards (C.DeJean; R.Blankenship).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729802345",
+            "type": { "text": "Rush" },
+            "text": "B.Purdy up the middle to SF 46 for 4 yards (J.Davis).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729802367",
+            "type": { "text": "Pass Interception Return" },
+            "text": "B.Purdy pass short left intended for S.Moore INTERCEPTED by Q.Mitchell at PHI 45. Q.Mitchell to PHI 48 for 3 yards (S.Moore).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729802381",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 10:22.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729802394",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) J.Hurts pass incomplete deep right to A.Brown.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729802424",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) J.Hurts right tackle ran ob at SF 42 for 10 yards (M.Sigle).PENALTY on PHI-C.Jurgens, Offensive Holding, 10 yards, enforced at 50.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729802462",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) S.Barkley right end to PHI 39 for -1 yards (D.Lenoir).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729802484",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Hurts pass short right to D.Goedert to PHI 44 for 5 yards (G.Wallow; D.Lenoir).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729802509",
+            "type": { "text": "Punt" },
+            "text": "B.Mann punts 56 yards to end zone, Center-C.Hughlett, Touchback.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729802521",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 08:17.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729802532",
+            "type": { "text": "Rush" },
+            "text": "C.McCaffrey left guard to SF 21 for 1 yard (Z.Baun; J.Carter).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729802561",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) B.Purdy pass incomplete short left to J.Tonges.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729802584",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) B.Purdy pass incomplete short left to C.McCaffrey.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729802607",
+            "type": { "text": "Punt" },
+            "text": " T.Morstead punts 25 yards to SF 46, Center-J.Weeks, downed by SF-J.Graham.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729802617",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 07:22.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729802627",
+            "type": { "text": "Rush" },
+            "text": "S.Barkley right tackle to SF 48 for -2 yards (C.West).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729802656",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Hurts pass short left to D.Smith to SF 37 for 11 yards (E.Kendricks).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729802685",
+            "type": { "text": "Rush" },
+            "text": "(No Huddle) J.Hurts up the middle to SF 35 for 2 yards (G.Wallow).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729802707",
+            "type": { "text": "Rush" },
+            "text": "(No Huddle, Shotgun) T.Bigsby right end to SF 36 for -1 yards (E.Kendricks).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729802729",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Hurts pass short right to D.Smith to SF 28 for 8 yards (M.Sigle).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729802754",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) S.Barkley up the middle to SF 24 for 4 yards (G.Wallow).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729802776",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(No Huddle, Shotgun) J.Hurts pass incomplete short left to S.Barkley.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729802799",
+            "type": { "text": "Rush" },
+            "text": "S.Barkley up the middle to SF 27 for -3 yards (B.Huff).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729802821",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) J.Hurts right tackle to SF 23 for 4 yards (U.Stout).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729802843",
+            "type": { "text": "Field Goal Good" },
+            "text": "J.Elliott 41 yard field goal is GOOD, Center-C.Hughlett, Holder-B.Mann.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "21" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729802863",
+            "type": { "text": "Kickoff" },
+            "text": "J.Elliott kicks 58 yards from PHI 35 to SF 7. B.Robinson to SF 33 for 26 yards (S.Brown; J.Trotter).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729802886",
+            "type": { "text": "Pass Reception" },
+            "text": "B.Purdy pass short left to K.Juszczyk to PHI 40 for 27 yards (R.Blankenship; Z.Baun).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729802911",
+            "type": { "text": "Rush" },
+            "text": "C.McCaffrey left guard to PHI 34 for 6 yards (N.Dean).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729802933",
+            "type": { "text": "Rush" },
+            "text": "S.Moore right end to PHI 31 for 3 yards (N.Dean).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729802955",
+            "type": { "text": "Rush" },
+            "text": "B.Purdy up the middle to PHI 29 for 2 yards (M.Ojomo).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729802977",
+            "type": { "text": "End Period" },
+            "text": "END QUARTER 3",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729802997",
+            "type": { "text": "Passing Touchdown" },
+            "text": "J.Jennings pass deep right to C.McCaffrey for 29 yards, TOUCHDOWN.PENALTY on PHI-J.Carter, Roughing the Passer, 8 yards, enforced between downs. E.Pineiro extra point is GOOD, Center-J.Weeks, Holder-T.Morstead.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "25" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729803049",
+            "type": { "text": "Kickoff" },
+            "text": "E.Pineiro kicks 65 yards from SF 35 to end zone, Touchback to the PHI 35.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729803074",
+            "type": { "text": "Penalty" },
+            "text": "(Shotgun) J.Hurts pass short right to S.Barkley to PHI 46 for 11 yards (E.Kendricks).PENALTY on PHI-D.Cooper, Offensive Holding, 10 yards, enforced at PHI 35 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729803110",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) J.Hurts pass incomplete short left to D.Goedert (G.Wallow).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729803133",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) S.Barkley right end to PHI 32 for 7 yards (R.Green).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729803155",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) J.Hurts pass incomplete short right to S.Barkley.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729803178",
+            "type": { "text": "Punt" },
+            "text": "B.Mann punts 46 yards to SF 22, Center-C.Hughlett. S.Moore MUFFS catch, and recovers at SF 21. S.Moore to SF 31 for 10 yards (J.Trotter).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729803198",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 13:15.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729803218",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) B.Purdy pass short left to K.Juszczyk to SF 42 for 11 yards (Z.Baun).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729803250",
+            "type": { "text": "Rush" },
+            "text": "C.McCaffrey right end to SF 44 for 2 yards (J.Davis).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729803272",
+            "type": { "text": "Pass Interception Return" },
+            "text": "B.Purdy pass deep left intended for J.Tonges INTERCEPTED by Q.Mitchell at PHI 38. Q.Mitchell to PHI 38 for no gain (J.Tonges).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729803299",
+            "type": { "text": "Rush" },
+            "text": "S.Barkley left tackle to PHI 46 for 8 yards (M.Sigle).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729803321",
+            "type": { "text": "Rush" },
+            "text": "J.Hurts scrambles left end to PHI 49 for 3 yards (M.Sigle; C.Ferrell).PENALTY on SF-M.Sigle, Unnecessary Roughness, 15 yards, enforced at PHI 49.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729803354",
+            "type": { "text": "Rush" },
+            "text": "S.Barkley up the middle to SF 27 for 9 yards (M.Sigle).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729803376",
+            "type": { "text": "Rush" },
+            "text": "S.Barkley right guard to SF 21 for 6 yards (G.Wallow; E.Kendricks).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729803398",
+            "type": { "text": "Rush" },
+            "text": "S.Barkley right guard to SF 21 for no gain (M.Sigle). PHI-S.Barkley was injured during the play. PHI-T.Steen was injured during the play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729803420",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) J.Hurts pass incomplete deep left to J.Dotson.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729803449",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Hurts pass short middle to W.Shipley to SF 15 for 6 yards (G.Wallow). ** Injury Update: PHI-T.Steen has returned to the game.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729803474",
+            "type": { "text": "Field Goal Good" },
+            "text": "J.Elliott 33 yard field goal is GOOD, Center-C.Hughlett, Holder-B.Mann.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729803486",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 08:00.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729803497",
+            "type": { "text": "Kickoff" },
+            "text": "J.Elliott kicks 50 yards from PHI 35 to SF 15. S.Moore to SF 34 for 19 yards (S.Brown; W.Shipley).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729803528",
+            "type": { "text": "Pass Reception" },
+            "text": "B.Purdy pass short left to K.Juszczyk to SF 39 for 5 yards (N.Dean).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729803553",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) B.Purdy scrambles up the middle to SF 44 for 5 yards (N.Dean).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729803575",
+            "type": { "text": "Pass Reception" },
+            "text": "B.Purdy pass deep right to D.Robinson to PHI 40 for 16 yards (A.Jackson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729803600",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(No Huddle, Shotgun) B.Purdy pass incomplete short left.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729803623",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) B.Purdy pass short right to C.McCaffrey to PHI 29 for 11 yards (R.Blankenship).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729803648",
+            "type": { "text": "Rush" },
+            "text": "C.McCaffrey up the middle to PHI 25 for 4 yards (M.Epps).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729803670",
+            "type": { "text": "Penalty" },
+            "text": "(Shotgun) B.Purdy sacked at PHI 29 for -4 yards (J.Carter).PENALTY on PHI-R.Blankenship, Defensive Holding, 5 yards, enforced at PHI 25 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729803701",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) C.McCaffrey left guard to PHI 10 for 10 yards (B.Young; R.Blankenship).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729803723",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) B.Purdy pass short left to K.Juszczyk to PHI 4 for 6 yards (R.Blankenship).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729803748",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) B.Purdy pass incomplete short middle to J.Jennings (C.DeJean).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729803771",
+            "type": { "text": "Passing Touchdown" },
+            "text": "(Shotgun) B.Purdy pass short middle to C.McCaffrey for 4 yards, TOUCHDOWN. E.Pineiro extra point is No Good, Wide Left, Center-J.Weeks, Holder-T.Morstead.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "25" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729803812",
+            "type": { "text": "Kickoff" },
+            "text": "E.Pineiro kicks 65 yards from SF 35 to end zone, Touchback to the PHI 35.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729803829",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Hurts pass short left to S.Barkley to PHI 38 for 3 yards (E.Kendricks). ** Injury Update: PHI-S.Barkley has returned to the game.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729803854",
+            "type": { "text": "Pass Reception" },
+            "text": "(No Huddle, Shotgun) J.Hurts pass short left to S.Barkley pushed ob at PHI 40 for 2 yards (D.Lenoir; G.Wallow).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729803887",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) J.Hurts pass incomplete short middle to A.Brown.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729803910",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Hurts pass short left to D.Goedert to SF 45 for 15 yards (M.Mustapha).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729803923",
+            "type": { "text": "Two-minute warning" },
+            "text": "Two-Minute Warning",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729803935",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Hurts pass short left to D.Smith pushed ob at SF 35 for 10 yards (G.Wallow).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729803972",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Hurts pass short left to D.Smith to SF 20 for 15 yards (E.Kendricks; G.Wallow).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729803997",
+            "type": { "text": "Sack" },
+            "text": "(No Huddle, Shotgun) J.Hurts sacked at SF 21 for -1 yards (K.White).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729804017",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(No Huddle, Shotgun) J.Hurts pass incomplete deep right.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729804040",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) J.Hurts pass incomplete short middle to D.Smith.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729804052",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #1 by PHI at 00:43.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          },
+          {
+            "id": "4017729804063",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) J.Hurts pass incomplete short middle to D.Goedert (E.Kendricks).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "21" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729804093",
+            "type": { "text": "Rush" },
+            "text": "B.Purdy kneels to SF 20 for -1 yards.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729804104",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #2 by PHI at 00:38.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729804115",
+            "type": { "text": "Rush" },
+            "text": "B.Purdy kneels to SF 19 for -1 yards.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729804130",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #3 by PHI at 00:37.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729804144",
+            "type": { "text": "Rush" },
+            "text": " B.Purdy kneels to SF 18 for -1 yards.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "25" } }
+          },
+          {
+            "id": "4017729804173",
+            "type": { "text": "End of Game" },
+            "text": "END GAME",
+            "scoringPlay": false
+          }
+        ]
+      }
+    ]
+  }
+}

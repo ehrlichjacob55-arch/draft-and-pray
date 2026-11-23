@@ -1,0 +1,154 @@
+{
+  "events": [
+    {
+      "id": "401772979",
+      "date": "2026-01-10T21:30Z",
+      "shortName": "LAR @ CAR",
+      "status": { "type": { "name": "STATUS_FINAL", "completed": true } },
+      "competitions": [
+        {
+          "status": { "type": { "name": "STATUS_FINAL", "completed": true } },
+          "competitors": [
+            {
+              "homeAway": "home",
+              "score": "31",
+              "winner": false,
+              "team": { "id": "29", "abbreviation": "CAR" }
+            },
+            {
+              "homeAway": "away",
+              "score": "34",
+              "winner": true,
+              "team": { "id": "14", "abbreviation": "LAR" }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "401772981",
+      "date": "2026-01-11T01:00Z",
+      "shortName": "GB @ CHI",
+      "status": { "type": { "name": "STATUS_FINAL", "completed": true } },
+      "competitions": [
+        {
+          "status": { "type": { "name": "STATUS_FINAL", "completed": true } },
+          "competitors": [
+            {
+              "homeAway": "home",
+              "score": "31",
+              "winner": true,
+              "team": { "id": "3", "abbreviation": "CHI" }
+            },
+            {
+              "homeAway": "away",
+              "score": "27",
+              "winner": false,
+              "team": { "id": "9", "abbreviation": "GB" }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "401772977",
+      "date": "2026-01-11T18:00Z",
+      "shortName": "BUF @ JAX",
+      "status": { "type": { "name": "STATUS_FINAL", "completed": true } },
+      "competitions": [
+        {
+          "status": { "type": { "name": "STATUS_FINAL", "completed": true } },
+          "competitors": [
+            {
+              "homeAway": "home",
+              "score": "24",
+              "winner": false,
+              "team": { "id": "30", "abbreviation": "JAX" }
+            },
+            {
+              "homeAway": "away",
+              "score": "27",
+              "winner": true,
+              "team": { "id": "2", "abbreviation": "BUF" }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "401772980",
+      "date": "2026-01-11T21:30Z",
+      "shortName": "SF @ PHI",
+      "status": { "type": { "name": "STATUS_FINAL", "completed": true } },
+      "competitions": [
+        {
+          "status": { "type": { "name": "STATUS_FINAL", "completed": true } },
+          "competitors": [
+            {
+              "homeAway": "home",
+              "score": "19",
+              "winner": false,
+              "team": { "id": "21", "abbreviation": "PHI" }
+            },
+            {
+              "homeAway": "away",
+              "score": "23",
+              "winner": true,
+              "team": { "id": "25", "abbreviation": "SF" }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "401772978",
+      "date": "2026-01-12T01:15Z",
+      "shortName": "LAC @ NE",
+      "status": { "type": { "name": "STATUS_FINAL", "completed": true } },
+      "competitions": [
+        {
+          "status": { "type": { "name": "STATUS_FINAL", "completed": true } },
+          "competitors": [
+            {
+              "homeAway": "home",
+              "score": "16",
+              "winner": true,
+              "team": { "id": "17", "abbreviation": "NE" }
+            },
+            {
+              "homeAway": "away",
+              "score": "3",
+              "winner": false,
+              "team": { "id": "24", "abbreviation": "LAC" }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "401772976",
+      "date": "2026-01-13T01:15Z",
+      "shortName": "HOU @ PIT",
+      "status": { "type": { "name": "STATUS_FINAL", "completed": true } },
+      "competitions": [
+        {
+          "status": { "type": { "name": "STATUS_FINAL", "completed": true } },
+          "competitors": [
+            {
+              "homeAway": "home",
+              "score": "6",
+              "winner": false,
+              "team": { "id": "23", "abbreviation": "PIT" }
+            },
+            {
+              "homeAway": "away",
+              "score": "30",
+              "winner": true,
+              "team": { "id": "34", "abbreviation": "HOU" }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

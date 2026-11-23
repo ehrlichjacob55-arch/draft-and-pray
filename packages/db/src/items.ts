@@ -186,6 +186,8 @@ export const playerItem = z.object({
   position,
   nflTeam: z.string(),
   providerPlayerId: z.string().nullable(),
+  /** ESPN athlete id (from Sleeper's `espn_id`); matches box-score athletes to this player (doc 12). */
+  espnId: z.string().optional(),
   injuryStatus: z.string().nullable(),
   inPool: z.boolean(),
   draftedByTeamId: z.string().optional(),
@@ -238,14 +240,24 @@ export const gameItem = z.object({
   homeScore: z.number(),
   awayScore: z.number(),
   winner: z.string().optional(),
+  /** When a FINAL game's summary was last fetched (drives the 6 h stat-correction re-poll; doc 12). */
+  statsFetchedAt: isoDate.optional(),
 });
 export const statLineItem = z.object({
   ...base,
   type: z.literal("StatLine"),
   gameId: z.string(),
   playerId: z.string(),
+  /** The compact provider values read for this player (not the whole summary). */
   raw: z.record(z.string(), z.unknown()),
   canonical: z.record(z.string(), z.number()),
+  /** Per-kick distances (yards) for the distance-scored stats, same order as the plays. */
+  events: z
+    .object({
+      fg_made: z.array(z.number().int()).optional(),
+      fg_missed: z.array(z.number().int()).optional(),
+    })
+    .optional(),
   fetchedAt: isoDate,
   providerHash: z.string(),
 });
@@ -313,6 +325,36 @@ export const auditItem = z.object({
   at: isoDate,
 });
 
+/** docs/design/10 §2 (global INGEST partition): per-season live-stats registry and run bookkeeping. */
+export const ingestStateItem = z.object({
+  ...base,
+  type: z.literal("IngestState"),
+  seasonId: z.string(),
+  leagueId: z.string(),
+  year: z.number().int(),
+  enabled: z.boolean(),
+  /** ISO time the next run is due; null = nothing scheduled (off, or the season is done). */
+  nextPollAt: isoDate.nullable(),
+  lastRunAt: isoDate.optional(),
+  lastSuccessAt: isoDate.optional(),
+  /** Short, PII-free message of the last failed run; cleared by a successful one. */
+  lastError: z.string().optional(),
+  /** A run holds the lease until this time (a crashed run's lease simply expires). */
+  leaseUntil: isoDate.optional(),
+  lastSummary: z
+    .object({
+      games: z.number().int(),
+      statLines: z.number().int(),
+      changedStatLines: z.number().int(),
+      pointsWritten: z.number().int(),
+      teamScoresWritten: z.number().int(),
+    })
+    .optional(),
+  /** At most 100, deduplicated. */
+  warnings: z.array(z.string()).default([]),
+});
+export const INGEST_WARNINGS_MAX = 100;
+
 export const anyItem = z.discriminatedUnion("type", [
   userItem,
   leagueItem,
@@ -339,6 +381,7 @@ export const anyItem = z.discriminatedUnion("type", [
   teamScoreItem,
   txnItem,
   auditItem,
+  ingestStateItem,
 ]);
 
 export type UserItem = z.infer<typeof userItem>;
@@ -366,6 +409,7 @@ export type PointsItem = z.infer<typeof pointsItem>;
 export type TeamScoreItem = z.infer<typeof teamScoreItem>;
 export type RosterTxnItem = z.infer<typeof txnItem>;
 export type AuditItem = z.infer<typeof auditItem>;
+export type IngestStateItem = z.infer<typeof ingestStateItem>;
 export type AnyItem = z.infer<typeof anyItem>;
 export type ItemType = AnyItem["type"];
 

@@ -68,6 +68,8 @@ export interface DraftServiceDeps {
   db: Dynamo;
   publisher: Publisher;
   now: () => Date;
+  /** Recompute scores after rosters change (draft complete, redraft, undo from complete). Best-effort. */
+  onRostersChanged?: (seasonId: string) => Promise<void>;
 }
 
 type ChangeKind = DraftChangedEvent["kind"];
@@ -107,7 +109,16 @@ interface ChainState {
   nextPick: number;
 }
 
-export function createDraftService({ db, publisher, now }: DraftServiceDeps) {
+export function createDraftService({ db, publisher, now, onRostersChanged }: DraftServiceDeps) {
+  /** Rosters changed: scores must follow. A failure here never fails the draft action. */
+  const rostersChanged = async (seasonId: string): Promise<void> => {
+    try {
+      await onRostersChanged?.(seasonId);
+    } catch (err) {
+      logError("Recompute after a roster change failed", err);
+    }
+  };
+
   const emit = async (
     seasonId: string,
     kind: ChangeKind,
@@ -271,8 +282,9 @@ export function createDraftService({ db, publisher, now }: DraftServiceDeps) {
     },
   ): Promise<PickItem> {
     const n = draft.currentPick;
+    let made: PickItem;
     try {
-      return await recordPick(db, {
+      made = await recordPick(db, {
         seasonId: season.seasonId,
         expectedPick: n,
         round: roundOf(n),
@@ -285,6 +297,9 @@ export function createDraftService({ db, publisher, now }: DraftServiceDeps) {
     } catch (err) {
       throw mapPickConflict(err);
     }
+    // The rosters are complete: team scores can exist now.
+    if (n === TOTAL_PICKS) await rostersChanged(season.seasonId);
+    return made;
   }
 
   function requireActiveDraft(draft: DraftItem, expectedPick: number): string {
@@ -466,6 +481,7 @@ export function createDraftService({ db, publisher, now }: DraftServiceDeps) {
       throw err;
     }
     await emit(season.seasonId, "undo");
+    if (draft.status === "complete") await rostersChanged(season.seasonId);
     return result(season.seasonId);
   }
 
@@ -483,6 +499,7 @@ export function createDraftService({ db, publisher, now }: DraftServiceDeps) {
       now: iso(now()),
     });
     await emit(season.seasonId, "reset");
+    await rostersChanged(season.seasonId);
     return { ...(await result(season.seasonId)), picksCleared };
   }
 

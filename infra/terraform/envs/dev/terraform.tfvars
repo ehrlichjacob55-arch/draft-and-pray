@@ -2,7 +2,7 @@
 region = "us-east-2"
 
 # Flip on only when needed.
-ingest_enabled         = false
+ingest_enabled         = true
 draft_backstop_enabled = false
 
 # Optional: SES sender for Cognito email OTP (docs/design/09 section 7).
