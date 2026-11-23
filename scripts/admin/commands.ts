@@ -25,6 +25,8 @@ import {
   type TestUser,
 } from "../lib/runtime";
 import { defaultPoolKind, setupDraftLeague, type PoolKind } from "../lib/draft-league";
+import { createEspnLiveSource } from "../../apps/api/src/providers";
+import { runIngest } from "../../apps/api/src/scoring/ingest";
 import { importCsvPool, importRealPool, importSyntheticPool, resolveSeasonId } from "../lib/pool";
 import { resetTestLeague, seedTestLeague } from "../lib/test-league";
 import { bootstrapLeague, seedBuiltinRuleset } from "@dnp/db";
@@ -48,6 +50,8 @@ const USAGE = `Usage: pnpm admin <command> [flags]
       Imports the playoff field + players from ESPN and Sleeper. Emergency fallback: --from-csv --teams t.csv --players p.csv
   seed-pool --env <local|dev|test> --season-year 2026 (same season selection)   (synthetic fictional pool; refuses prod)
   seed-ruleset --env <local|dev|test> [--ruleset league|placeholder] (same season selection)   (default league; seeds v1 unlocked, skips if v1 exists; refuses prod)
+  ingest --env local (--season-id <id> | --test-league | --email <commissioner> --league "<name>" [--year 2026])
+      Runs one live-stats ingest from ESPN into the LOCAL table (dev/test ingest through the app's Commissioner > Scoring page)
   draft-league setup --env <local|dev|test> [--pool real|synthetic] [--season-year 2025]
       9 joined teams + pool + draft order. Test League by default; locally add --email x@local.test --league "<new name>" for a scratch league
 Common overrides: --table, --user-pool-id, --client-id, --base-url, --region`;
@@ -68,6 +72,8 @@ export async function runAdmin(argv: string[], deps: Deps = defaultDeps): Promis
       return seedPoolCommand(flags, deps);
     case "seed-ruleset":
       return seedRulesetCommand(flags, deps);
+    case "ingest":
+      return ingestCommand(flags, deps);
     case "draft-league":
       return draftLeague(sub, flags, deps);
     default:
@@ -236,6 +242,30 @@ async function seedRulesetCommand(flags: ReturnType<typeof parseCli>["flags"], d
       ? `Seeded ruleset v1 (${name}.v1.json) into ${seasonId} (${env})`
       : `Ruleset v1 already exists in ${seasonId} (${env}); nothing changed`,
   );
+}
+
+/** One live-stats ingest against the local table (the deployed envs run it through the app). */
+async function ingestCommand(flags: ReturnType<typeof parseCli>["flags"], deps: Deps) {
+  const env = parseEnv(flags.env);
+  if (env !== "local")
+    throw new Error(
+      "ingest runs against --env local only; in dev/test turn on live stats in Commissioner > Scoring",
+    );
+  const { db, seasonId } = await prepare(flags, deps, env);
+  const r = await runIngest({
+    db,
+    seasonId,
+    now: new Date(),
+    source: createEspnLiveSource(),
+    publish: async () => undefined,
+  });
+  if (r.busy) throw new Error("Another ingest run holds the lease; try again shortly");
+  const s = r.summary!;
+  deps.log(
+    `Ingested ${seasonId} (${env}): ${s.games} games, ${s.statLines} stat lines (${s.changedStatLines} changed), ` +
+      `${s.pointsWritten} points and ${s.teamScoresWritten} team scores written, ${r.warnings.length} warning(s)`,
+  );
+  for (const w of r.warnings.slice(0, 20)) deps.log(`  warning: ${w}`);
 }
 
 async function draftLeague(

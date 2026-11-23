@@ -7,7 +7,7 @@ import { installMockWebSocket, MockWebSocket } from "../test/ws";
 import { reconnectDelay, useDraftChannel } from "./useDraftChannel";
 
 function setup(realtimeTicket = vi.fn(async () => ({ ticket: "tkt/1", wsUrl: "ws://x.test:1" }))) {
-  const handlers = { onEvent: vi.fn(), onConnected: vi.fn() };
+  const handlers = { onEvent: vi.fn(), onConnected: vi.fn(), onScoresUpdated: vi.fn() };
   const wrapper = ({ children }: { children: ReactNode }) => (
     <ApiContext.Provider value={fakeApi({ realtimeTicket })}>{children}</ApiContext.Provider>
   );
@@ -63,6 +63,19 @@ describe("useDraftChannel", () => {
       version: 7,
       kind: "pick",
     });
+  });
+
+  it("forwards scores_updated to its own handler, not to onEvent", async () => {
+    const { handlers } = setup();
+    await flush();
+    const ws = MockWebSocket.last();
+    const event = { type: "scores_updated", seasonId: "s1", at: "2026-01-10T00:00:00.000Z" };
+    act(() => {
+      ws.open();
+      ws.message(event);
+    });
+    expect(handlers.onScoresUpdated).toHaveBeenCalledWith(event);
+    expect(handlers.onEvent).not.toHaveBeenCalled();
   });
 
   it("reconnects with exponential backoff and a fresh ticket each time", async () => {

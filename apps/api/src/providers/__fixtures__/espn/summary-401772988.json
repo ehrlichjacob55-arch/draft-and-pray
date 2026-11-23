@@ -1,0 +1,2104 @@
+{
+  "header": {
+    "competitions": [
+      {
+        "date": "2026-02-08T23:30Z",
+        "status": { "type": { "name": "STATUS_FINAL", "completed": true } },
+        "competitors": [
+          {
+            "homeAway": "home",
+            "score": "13",
+            "winner": false,
+            "team": { "id": "17", "abbreviation": "NE" }
+          },
+          {
+            "homeAway": "away",
+            "score": "29",
+            "winner": true,
+            "team": { "id": "26", "abbreviation": "SEA" }
+          }
+        ]
+      }
+    ]
+  },
+  "boxscore": {
+    "players": [
+      {
+        "team": { "id": "26", "abbreviation": "SEA" },
+        "statistics": [
+          {
+            "name": "passing",
+            "keys": [
+              "completions/passingAttempts",
+              "passingYards",
+              "yardsPerPassAttempt",
+              "passingTouchdowns",
+              "interceptions",
+              "sacks-sackYardsLost",
+              "adjQBR",
+              "QBRating"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "3912547",
+                  "displayName": "Sam Darnold",
+                  "firstName": "Sam",
+                  "lastName": "Darnold"
+                },
+                "stats": ["19/38", "202", "5.3", "1", "0", "1-8", "53.0", "74.7"]
+              }
+            ]
+          },
+          {
+            "name": "rushing",
+            "keys": [
+              "rushingAttempts",
+              "rushingYards",
+              "yardsPerRushAttempt",
+              "rushingTouchdowns",
+              "longRushing"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4567048",
+                  "displayName": "Kenneth Walker III",
+                  "firstName": "Kenneth",
+                  "lastName": "Walker III"
+                },
+                "stats": ["27", "135", "5.0", "0", "30"]
+              },
+              {
+                "athlete": {
+                  "id": "4429835",
+                  "displayName": "George Holani",
+                  "firstName": "George",
+                  "lastName": "Holani"
+                },
+                "stats": ["2", "6", "3.0", "0", "5"]
+              },
+              {
+                "athlete": {
+                  "id": "3912547",
+                  "displayName": "Sam Darnold",
+                  "firstName": "Sam",
+                  "lastName": "Darnold"
+                },
+                "stats": ["2", "5", "2.5", "0", "11"]
+              },
+              {
+                "athlete": {
+                  "id": "4032473",
+                  "displayName": "Rashid Shaheed",
+                  "firstName": "Rashid",
+                  "lastName": "Shaheed"
+                },
+                "stats": ["1", "-5", "-5.0", "0", "-5"]
+              }
+            ]
+          },
+          {
+            "name": "receiving",
+            "keys": [
+              "receptions",
+              "receivingYards",
+              "yardsPerReception",
+              "receivingTouchdowns",
+              "longReception",
+              "receivingTargets"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "2977187",
+                  "displayName": "Cooper Kupp",
+                  "firstName": "Cooper",
+                  "lastName": "Kupp"
+                },
+                "stats": ["6", "61", "10.2", "0", "23", "12"]
+              },
+              {
+                "athlete": {
+                  "id": "4576297",
+                  "displayName": "AJ Barner",
+                  "firstName": "AJ",
+                  "lastName": "Barner"
+                },
+                "stats": ["4", "54", "13.5", "1", "16", "4"]
+              },
+              {
+                "athlete": {
+                  "id": "4032473",
+                  "displayName": "Rashid Shaheed",
+                  "firstName": "Rashid",
+                  "lastName": "Shaheed"
+                },
+                "stats": ["2", "27", "13.5", "0", "16", "5"]
+              },
+              {
+                "athlete": {
+                  "id": "4430878",
+                  "displayName": "Jaxon Smith-Njigba",
+                  "firstName": "Jaxon",
+                  "lastName": "Smith-Njigba"
+                },
+                "stats": ["4", "27", "6.8", "0", "16", "10"]
+              },
+              {
+                "athlete": {
+                  "id": "4567048",
+                  "displayName": "Kenneth Walker III",
+                  "firstName": "Kenneth",
+                  "lastName": "Walker III"
+                },
+                "stats": ["2", "26", "13.0", "0", "20", "4"]
+              },
+              {
+                "athlete": {
+                  "id": "4429835",
+                  "displayName": "George Holani",
+                  "firstName": "George",
+                  "lastName": "Holani"
+                },
+                "stats": ["1", "7", "7.0", "0", "7", "1"]
+              }
+            ]
+          },
+          {
+            "name": "fumbles",
+            "keys": ["fumbles", "fumblesLost", "fumblesRecovered"],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4570040",
+                  "displayName": "Byron Murphy II",
+                  "firstName": "Byron",
+                  "lastName": "Murphy II"
+                },
+                "stats": ["0", "0", "1"]
+              }
+            ]
+          },
+          {
+            "name": "kickReturns",
+            "keys": [
+              "kickReturns",
+              "kickReturnYards",
+              "yardsPerKickReturn",
+              "longKickReturn",
+              "kickReturnTouchdowns"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4032473",
+                  "displayName": "Rashid Shaheed",
+                  "firstName": "Rashid",
+                  "lastName": "Shaheed"
+                },
+                "stats": ["1", "20", "20.0", "20", "0"]
+              }
+            ]
+          },
+          {
+            "name": "puntReturns",
+            "keys": [
+              "puntReturns",
+              "puntReturnYards",
+              "yardsPerPuntReturn",
+              "longPuntReturn",
+              "puntReturnTouchdowns"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4032473",
+                  "displayName": "Rashid Shaheed",
+                  "firstName": "Rashid",
+                  "lastName": "Shaheed"
+                },
+                "stats": ["2", "16", "8.0", "10", "0"]
+              }
+            ]
+          },
+          {
+            "name": "kicking",
+            "keys": [
+              "fieldGoalsMade/fieldGoalAttempts",
+              "fieldGoalPct",
+              "longFieldGoalMade",
+              "extraPointsMade/extraPointAttempts",
+              "totalKickingPoints"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "2473037",
+                  "displayName": "Jason Myers",
+                  "firstName": "Jason",
+                  "lastName": "Myers"
+                },
+                "stats": ["5/5", "100.0", "41", "2/2", "17"]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "team": { "id": "17", "abbreviation": "NE" },
+        "statistics": [
+          {
+            "name": "passing",
+            "keys": [
+              "completions/passingAttempts",
+              "passingYards",
+              "yardsPerPassAttempt",
+              "passingTouchdowns",
+              "interceptions",
+              "sacks-sackYardsLost",
+              "adjQBR",
+              "QBRating"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4431452",
+                  "displayName": "Drake Maye",
+                  "firstName": "Drake",
+                  "lastName": "Maye"
+                },
+                "stats": ["27/43", "295", "6.9", "2", "2", "6-43", "16.3", "79.1"]
+              }
+            ]
+          },
+          {
+            "name": "rushing",
+            "keys": [
+              "rushingAttempts",
+              "rushingYards",
+              "yardsPerRushAttempt",
+              "rushingTouchdowns",
+              "longRushing"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4431452",
+                  "displayName": "Drake Maye",
+                  "firstName": "Drake",
+                  "lastName": "Maye"
+                },
+                "stats": ["5", "37", "7.4", "0", "16"]
+              },
+              {
+                "athlete": {
+                  "id": "4569173",
+                  "displayName": "Rhamondre Stevenson",
+                  "firstName": "Rhamondre",
+                  "lastName": "Stevenson"
+                },
+                "stats": ["7", "23", "3.3", "0", "6"]
+              },
+              {
+                "athlete": {
+                  "id": "4432710",
+                  "displayName": "TreVeyon Henderson",
+                  "firstName": "TreVeyon",
+                  "lastName": "Henderson"
+                },
+                "stats": ["6", "19", "3.2", "0", "9"]
+              }
+            ]
+          },
+          {
+            "name": "receiving",
+            "keys": [
+              "receptions",
+              "receivingYards",
+              "yardsPerReception",
+              "receivingTouchdowns",
+              "longReception",
+              "receivingTargets"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "2991662",
+                  "displayName": "Mack Hollins",
+                  "firstName": "Mack",
+                  "lastName": "Hollins"
+                },
+                "stats": ["4", "78", "19.5", "1", "35", "8"]
+              },
+              {
+                "athlete": {
+                  "id": "4427095",
+                  "displayName": "DeMario Douglas",
+                  "firstName": "DeMario",
+                  "lastName": "Douglas"
+                },
+                "stats": ["5", "45", "9.0", "0", "11", "7"]
+              },
+              {
+                "athlete": {
+                  "id": "4569173",
+                  "displayName": "Rhamondre Stevenson",
+                  "firstName": "Rhamondre",
+                  "lastName": "Stevenson"
+                },
+                "stats": ["5", "40", "8.0", "1", "13", "5"]
+              },
+              {
+                "athlete": {
+                  "id": "2976212",
+                  "displayName": "Stefon Diggs",
+                  "firstName": "Stefon",
+                  "lastName": "Diggs"
+                },
+                "stats": ["3", "37", "12.3", "0", "26", "3"]
+              },
+              {
+                "athlete": {
+                  "id": "3046439",
+                  "displayName": "Hunter Henry",
+                  "firstName": "Hunter",
+                  "lastName": "Henry"
+                },
+                "stats": ["3", "31", "10.3", "0", "16", "5"]
+              },
+              {
+                "athlete": {
+                  "id": "4432710",
+                  "displayName": "TreVeyon Henderson",
+                  "firstName": "TreVeyon",
+                  "lastName": "Henderson"
+                },
+                "stats": ["3", "26", "8.7", "0", "24", "3"]
+              },
+              {
+                "athlete": {
+                  "id": "4429022",
+                  "displayName": "Kayshon Boutte",
+                  "firstName": "Kayshon",
+                  "lastName": "Boutte"
+                },
+                "stats": ["1", "21", "21.0", "0", "21", "5"]
+              },
+              {
+                "athlete": {
+                  "id": "3043275",
+                  "displayName": "Austin Hooper",
+                  "firstName": "Austin",
+                  "lastName": "Hooper"
+                },
+                "stats": ["2", "10", "5.0", "0", "5", "3"]
+              },
+              {
+                "athlete": {
+                  "id": "4613202",
+                  "displayName": "Kyle Williams",
+                  "firstName": "Kyle",
+                  "lastName": "Williams"
+                },
+                "stats": ["1", "7", "7.0", "0", "7", "2"]
+              }
+            ]
+          },
+          {
+            "name": "fumbles",
+            "keys": ["fumbles", "fumblesLost", "fumblesRecovered"],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4431452",
+                  "displayName": "Drake Maye",
+                  "firstName": "Drake",
+                  "lastName": "Maye"
+                },
+                "stats": ["1", "1", "0"]
+              }
+            ]
+          },
+          {
+            "name": "kickReturns",
+            "keys": [
+              "kickReturns",
+              "kickReturnYards",
+              "yardsPerKickReturn",
+              "longKickReturn",
+              "kickReturnTouchdowns"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "3139602",
+                  "displayName": "D'Ernest Johnson",
+                  "firstName": "D'Ernest",
+                  "lastName": "Johnson"
+                },
+                "stats": ["4", "103", "25.8", "28", "0"]
+              },
+              {
+                "athlete": {
+                  "id": "4432710",
+                  "displayName": "TreVeyon Henderson",
+                  "firstName": "TreVeyon",
+                  "lastName": "Henderson"
+                },
+                "stats": ["1", "38", "38.0", "38", "0"]
+              }
+            ]
+          },
+          {
+            "name": "puntReturns",
+            "keys": [
+              "puntReturns",
+              "puntReturnYards",
+              "yardsPerPuntReturn",
+              "longPuntReturn",
+              "puntReturnTouchdowns"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4241720",
+                  "displayName": "Marcus Jones",
+                  "firstName": "Marcus",
+                  "lastName": "Jones"
+                },
+                "stats": ["2", "4", "2.0", "4", "0"]
+              }
+            ]
+          },
+          {
+            "name": "kicking",
+            "keys": [
+              "fieldGoalsMade/fieldGoalAttempts",
+              "fieldGoalPct",
+              "longFieldGoalMade",
+              "extraPointsMade/extraPointAttempts",
+              "totalKickingPoints"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4569923",
+                  "displayName": "Andy Borregales",
+                  "firstName": "Andy",
+                  "lastName": "Borregales"
+                },
+                "stats": ["0/0", "0.0", "0", "1/1", "1"]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "scoringPlays": [
+    {
+      "id": "401772988229",
+      "type": { "text": "Field Goal Good" },
+      "text": "Jason Myers 33 Yd Field Goal",
+      "team": { "id": "26" }
+    },
+    {
+      "id": "4017729881159",
+      "type": { "text": "Field Goal Good" },
+      "text": "Jason Myers 39 Yd Field Goal",
+      "team": { "id": "26" }
+    },
+    {
+      "id": "4017729882018",
+      "type": { "text": "Field Goal Good" },
+      "text": "Jason Myers 41 Yd Field Goal",
+      "team": { "id": "26" }
+    },
+    {
+      "id": "4017729882450",
+      "type": { "text": "Field Goal Good" },
+      "text": "Jason Myers 41 Yd Field Goal ",
+      "team": { "id": "26" }
+    },
+    {
+      "id": "4017729883166",
+      "type": { "text": "Passing Touchdown" },
+      "text": "AJ Barner 16 Yd pass from Sam Darnold (Jason Myers Kick)",
+      "team": { "id": "26" }
+    },
+    {
+      "id": "4017729883278",
+      "type": { "text": "Passing Touchdown" },
+      "text": "Mack Hollins 35 Yd pass from Drake Maye (Andy Borregales Kick)",
+      "team": { "id": "17" }
+    },
+    {
+      "id": "4017729883763",
+      "type": { "text": "Field Goal Good" },
+      "text": "Jason Myers 26 Yd Field Goal",
+      "team": { "id": "26" }
+    },
+    {
+      "id": "4017729883910",
+      "type": { "text": "Interception Return Touchdown" },
+      "text": "Uchenna Nwosu 45 Yd Interception Return (Jason Myers Kick)",
+      "team": { "id": "26" }
+    },
+    {
+      "id": "4017729884210",
+      "type": { "text": "Passing Touchdown" },
+      "text": "Rhamondre Stevenson 7 Yd pass from Drake Maye (Two-Point Pass Conversion Failed)",
+      "team": { "id": "17" }
+    }
+  ],
+  "drives": {
+    "previous": [
+      {
+        "plays": [
+          {
+            "id": "40177298840",
+            "type": { "text": "Kickoff" },
+            "text": "A.Borregales kicks 65 yards from NE 35 to end zone, Touchback to the SEA 35.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "40177298857",
+            "type": { "text": "Rush" },
+            "text": "K.Walker left end pushed ob at SEA 45 for 10 yards (C.Davis).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "40177298884",
+            "type": { "text": "Rush" },
+            "text": "K.Walker right tackle to SEA 45 for no gain (C.Barmore).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "401772988106",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) S.Darnold pass short left to A.Barner to NE 40 for 15 yards (C.Woodson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "401772988131",
+            "type": { "text": "Pass Reception" },
+            "text": "(No Huddle) S.Darnold pass deep left to C.Kupp pushed ob at NE 17 for 23 yards (M.Jones).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "401772988161",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(No Huddle, Shotgun) S.Darnold pass incomplete deep left.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "401772988184",
+            "type": { "text": "Rush" },
+            "text": "K.Walker right tackle to NE 14 for 3 yards (A.Jennings).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "401772988206",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) S.Darnold pass incomplete short left to R.Shaheed.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "401772988229",
+            "type": { "text": "Field Goal Good" },
+            "text": "J.Myers 33 yard field goal is GOOD, Center-C.Stoll, Holder-M.Dickson.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "401772988239",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 11:58.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "401772988249",
+            "type": { "text": "Kickoff" },
+            "text": "J.Myers kicks 65 yards from SEA 35 to NE 0. D.Johnson to NE 28 for 28 yards (D.Young).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "401772988279",
+            "type": { "text": "Rush" },
+            "text": "R.Stevenson up the middle to NE 34 for 6 yards (E.Jones).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772988301",
+            "type": { "text": "Rush" },
+            "text": "R.Stevenson up the middle to NE 36 for 2 yards (E.Jones; D.Thomas).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772988323",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) D.Maye pass short left to R.Stevenson ran ob at NE 43 for 7 yards (D.Thomas) [U.Nwosu].",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772988353",
+            "type": { "text": "Pass Reception" },
+            "text": "D.Maye pass short left to D.Douglas to SEA 49 for 8 yards (E.Jones).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772988378",
+            "type": { "text": "Rush" },
+            "text": "R.Stevenson right tackle to SEA 45 for 4 yards (C.Bryant).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772988400",
+            "type": { "text": "Sack" },
+            "text": "(Shotgun) D.Maye sacked at NE 45 for -10 yards (D.Hall).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772988420",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) D.Maye scrambles right tackle to SEA 44 for 11 yards (N.Emmanwori).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772988442",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) D.Maye pass incomplete deep right [D.Witherspoon].",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772988465",
+            "type": { "text": "Punt" },
+            "text": "B.Baringer punts 34 yards to SEA 10, Center-J.Ashby, fair catch by R.Shaheed.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772988475",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 07:11.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "401772988485",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) S.Darnold pass incomplete short left to J.Smith-Njigba (C.Woodson) [A.Jennings].",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "401772988515",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) S.Darnold pass short left to J.Smith-Njigba to SEA 14 for 4 yards (C.Davis).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "401772988540",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) S.Darnold pass incomplete deep left to J.Smith-Njigba [J.Hawkins].",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "401772988563",
+            "type": { "text": "Punt" },
+            "text": "M.Dickson punts 50 yards to NE 36, Center-C.Stoll, fair catch by M.Jones.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "401772988573",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 06:07.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "401772988583",
+            "type": { "text": "Pass Reception" },
+            "text": "T.Munford reported in as eligible.  D.Maye pass deep left to K.Boutte to SEA 43 for 21 yards (J.Love).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772988617",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) T.Henderson up the middle to SEA 46 for -3 yards (E.Jones).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772988639",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) D.Maye pass short left to T.Henderson to SEA 48 for -2 yards (J.Jobe).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772988664",
+            "type": { "text": "Sack" },
+            "text": "(Shotgun) D.Maye sacked at NE 42 for -10 yards (D.Witherspoon).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772988684",
+            "type": { "text": "Punt" },
+            "text": "B.Baringer punts 51 yards to SEA 7, Center-J.Ashby. R.Shaheed to SEA 13 for 6 yards (D.Pettus).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772988697",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 03:29.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "401772988710",
+            "type": { "text": "Rush" },
+            "text": "K.Walker right tackle to SEA 15 for 2 yards (C.Barmore; J.Gibbens).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "401772988739",
+            "type": { "text": "Rush" },
+            "text": "K.Walker left tackle to SEA 16 for 1 yard (C.Barmore).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "401772988761",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) S.Darnold pass short right to A.Barner to SEA 28 for 12 yards (M.Jones).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "401772988786",
+            "type": { "text": "Rush" },
+            "text": "R.Shaheed left end to SEA 23 for -5 yards (C.Woodson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "401772988808",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) S.Darnold pass incomplete short left to J.Smith-Njigba (A.Jennings).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "401772988831",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) S.Darnold pass incomplete deep left to J.Smith-Njigba.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "401772988854",
+            "type": { "text": "Punt" },
+            "text": "M.Dickson punts 45 yards to NE 32, Center-C.Stoll. M.Jones to NE 32 for no gain (D.Thomas).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "401772988880",
+            "type": { "text": "Rush" },
+            "text": "R.Stevenson right tackle to NE 37 for 5 yards (J.Reed; D.Thomas).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772988902",
+            "type": { "text": "End Period" },
+            "text": "END QUARTER 1",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772988922",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) D.Maye pass incomplete short middle to H.Henry.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772988950",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) R.Stevenson up the middle to NE 37 for no gain (J.Reed; L.Williams).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772988972",
+            "type": { "text": "Punt" },
+            "text": "B.Baringer punts 39 yards to SEA 24, Center-J.Ashby, fair catch by R.Shaheed.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "401772988992",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) S.Darnold pass incomplete deep middle to R.Shaheed (C.Gonzalez).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729881015",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) K.Walker left end pushed ob at NE 46 for 30 yards (M.Jones).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729881042",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(No Huddle, Shotgun) S.Darnold pass incomplete short middle to J.Smith-Njigba (M.Williams).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729881065",
+            "type": { "text": "Rush" },
+            "text": "K.Walker right guard pushed ob at NE 17 for 29 yards (C.Gonzalez).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729881092",
+            "type": { "text": "Rush" },
+            "text": "K.Walker right end to NE 19 for -2 yards (C.Woodson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729881114",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) S.Darnold pass incomplete short middle to C.Kupp [K.Chaisson].",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729881137",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) K.Walker left end to NE 21 for -2 yards (C.Woodson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729881159",
+            "type": { "text": "Field Goal Good" },
+            "text": "J.Myers 39 yard field goal is GOOD, Center-C.Stoll, Holder-M.Dickson.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729881172",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 11:16.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729881184",
+            "type": { "text": "Kickoff" },
+            "text": "J.Myers kicks 65 yards from SEA 35 to end zone, Touchback to the NE 35. ** Injury Update: SEA-T.Okada has returned to the game.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729881213",
+            "type": { "text": "Rush" },
+            "text": "T.Henderson right tackle to NE 38 for 3 yards (E.Jones).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729881238",
+            "type": { "text": "Sack" },
+            "text": "(Shotgun) D.Maye sacked at NE 28 for -10 yards (R.Mills).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729881258",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) D.Maye pass short left to S.Diggs pushed ob at NE 33 for 5 yards (T.Woolen).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729881283",
+            "type": { "text": "Punt" },
+            "text": "B.Baringer punts -12 yards to SEA 29, Center-J.Ashby, fair catch by R.Shaheed. ** Injury Update: NE-J.Tavai has returned to the game.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729881293",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 09:16.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729881303",
+            "type": { "text": "Rush" },
+            "text": "K.Walker right end pushed ob at SEA 38 for 9 yards (C.Gonzalez).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729881340",
+            "type": { "text": "Rush" },
+            "text": "K.Walker right guard to SEA 40 for 2 yards (J.Gibbens).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729881362",
+            "type": { "text": "Pass Incompletion" },
+            "text": "S.Darnold pass incomplete short left to K.Walker.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729881385",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) S.Darnold pass short right to C.Kupp to SEA 47 for 7 yards (M.Jones).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729881410",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) S.Darnold pass short right to K.Walker to NE 47 for 6 yards (C.Davis; D.Pettus).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729881440",
+            "type": { "text": "Rush" },
+            "text": "K.Walker up the middle to NE 43 for 4 yards (C.Elliss; R.Spillane).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729881462",
+            "type": { "text": "Rush" },
+            "text": "G.Holani right tackle to NE 42 for 1 yard (A.Jennings; C.Durden).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729881484",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) S.Darnold pass incomplete short left to K.Walker.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729881514",
+            "type": { "text": "Punt" },
+            "text": "M.Dickson punts 40 yards to NE 2, Center-C.Stoll, downed by SEA-V.Jones.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729881524",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 04:58.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729881533",
+            "type": { "text": "Rush" },
+            "text": "R.Stevenson right end to NE 5 for 3 yards (J.Jobe).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729881550",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #1 by SEA at 04:21.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729881566",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) D.Maye pass incomplete short middle to M.Hollins.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729881596",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) D.Maye pass short right to D.Douglas to NE 14 for 9 yards (J.Jobe).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729881621",
+            "type": { "text": "Rush" },
+            "text": "R.Stevenson right end pushed ob at NE 17 for 3 yards (J.Jobe).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729881648",
+            "type": { "text": "Pass Incompletion" },
+            "text": "D.Maye pass incomplete short right.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729881671",
+            "type": { "text": "Penalty" },
+            "text": "(Shotgun) PENALTY on NE-W.Campbell, False Start, 5 yards, enforced at NE 17 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729881695",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) D.Maye pass incomplete deep right to M.Hollins.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729881718",
+            "type": { "text": "Punt" },
+            "text": "B.Baringer punts 55 yards to SEA 33, Center-J.Ashby. R.Shaheed to SEA 43 for 10 yards (E.Ponder).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729881731",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 02:50.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729881744",
+            "type": { "text": "Pass Reception" },
+            "text": "S.Darnold pass short middle to C.Kupp to 50 for 7 yards (J.Hawkins) [H.Landry].",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729881776",
+            "type": { "text": "Rush" },
+            "text": "K.Walker right tackle to NE 43 for 7 yards (R.Spillane; C.Woodson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729881787",
+            "type": { "text": "Two-minute warning" },
+            "text": "Two-Minute Warning",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729881798",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) K.Walker left end to NE 42 for 1 yard (C.Woodson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729881827",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) S.Darnold pass short middle to G.Holani to NE 35 for 7 yards (C.Elliss).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729881852",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) G.Holani left guard to NE 30 for 5 yards (C.Woodson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729881863",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #2 by SEA at 00:32.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729881874",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) S.Darnold pass short right to C.Kupp to NE 23 for 7 yards (C.Davis).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729881890",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #3 by SEA at 00:23.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729881906",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) S.Darnold pass incomplete short right to C.Kupp.The Replay Official reviewed the incomplete pass ruling, and the play was Upheld. The ruling on the field stands.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729881927",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #1 by NE at 00:20.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729881948",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) S.Darnold pass incomplete deep middle to J.Smith-Njigba (C.Gonzalez).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729882018",
+            "type": { "text": "Field Goal Good" },
+            "text": "J.Myers 41 yard field goal is GOOD, Center-C.Stoll, Holder-M.Dickson.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "26" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729882038",
+            "type": { "text": "Kickoff" },
+            "text": "J.Myers kicks 61 yards from SEA 35 to NE 4. D.Johnson to NE 29 for 25 yards (B.Russell; P.O'Connell).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729882061",
+            "type": { "text": "Rush" },
+            "text": "D.Maye kneels to NE 28 for -1 yards.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729882083",
+            "type": { "text": "End of Half" },
+            "text": "END QUARTER 2",
+            "scoringPlay": false
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729882103",
+            "type": { "text": "Kickoff" },
+            "text": "J.Myers kicks 55 yards from SEA 35 to NE 10. D.Johnson to NE 32 for 22 yards (B.Russell; J.Bobo).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729882126",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) D.Maye pass incomplete deep left to D.Douglas.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729882149",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) T.Henderson left end ran ob at NE 39 for 7 yards (C.Bryant).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729882176",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) D.Maye pass incomplete short left to K.Boutte (J.Jobe).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729882199",
+            "type": { "text": "Punt" },
+            "text": "B.Baringer punts 52 yards to SEA 9, Center-J.Ashby, fair catch by R.Shaheed.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729882219",
+            "type": { "text": "Rush" },
+            "text": "K.Walker right end to SEA 11 for 2 yards (J.Gibbens).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729882246",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) S.Darnold pass short middle to R.Shaheed to SEA 27 for 16 yards (C.Davis) [C.Elliss].",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729882271",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) S.Darnold pass short middle to J.Smith-Njigba to SEA 43 for 16 yards (J.Hawkins).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729882296",
+            "type": { "text": "Rush" },
+            "text": "(No Huddle) S.Darnold scrambles right tackle to NE 46 for 11 yards (R.Spillane).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729882318",
+            "type": { "text": "Rush" },
+            "text": "K.Walker right tackle to NE 43 for 3 yards (C.Woodson; R.Spillane).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729882340",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) S.Darnold pass short right to K.Walker pushed ob at NE 23 for 20 yards (M.Jones).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729882370",
+            "type": { "text": "Rush" },
+            "text": "K.Walker right end pushed ob at NE 22 for 1 yard (C.Woodson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729882384",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #1 by SEA at 09:23.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729882397",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) S.Darnold pass incomplete short right to C.Kupp.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729882427",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) S.Darnold pass incomplete short right to C.Kupp.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729882450",
+            "type": { "text": "Field Goal Good" },
+            "text": " J.Myers 41 yard field goal is GOOD, Center-C.Stoll, Holder-M.Dickson.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729882460",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 09:12.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729882470",
+            "type": { "text": "Kickoff" },
+            "text": "J.Myers kicks 61 yards from SEA 35 to NE 4. D.Johnson to NE 32 for 28 yards (T.Knight).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729882500",
+            "type": { "text": "Rush" },
+            "text": "T.Henderson left end to NE 41 for 9 yards (C.Bryant; J.Love).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729882522",
+            "type": { "text": "Rush" },
+            "text": "T.Henderson up the middle to NE 41 for no gain (D.Thomas; D.Lawrence).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729882544",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) D.Maye pass incomplete deep left to D.Douglas.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729882567",
+            "type": { "text": "Punt" },
+            "text": "B.Baringer punts 41 yards to SEA 18, Center-J.Ashby, fair catch by R.Shaheed.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729882577",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 07:34.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729882587",
+            "type": { "text": "Sack" },
+            "text": "S.Darnold sacked at SEA 10 for -8 yards (M.Williams).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729882619",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) S.Darnold pass short left to J.Smith-Njigba to SEA 14 for 4 yards (M.Jones).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729882644",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) K.Walker right guard to SEA 20 for 6 yards (J.Tavai; C.Elliss).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729882666",
+            "type": { "text": "Punt" },
+            "text": "M.Dickson punts 47 yards to NE 33, Center-C.Stoll. M.Jones pushed ob at SEA 48 for 19 yards (M.Dickson). ** Injury Update: SEA-T.Knight has returned to the game. PENALTY on NE-D.Pettus, Illegal Block Above the Waist, 10 yards, enforced at NE 37.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729882687",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 05:10.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729882708",
+            "type": { "text": "Sack" },
+            "text": "(Shotgun) D.Maye sacked at NE 25 for -2 yards (B.Murphy).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729882738",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) D.Maye pass short right to M.Hollins to NE 33 for 8 yards (E.Jones).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729882763",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) D.Maye pass incomplete short middle to K.Boutte.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729882786",
+            "type": { "text": "Punt" },
+            "text": "B.Baringer punts 46 yards to SEA 21, Center-J.Ashby, fair catch by R.Shaheed.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729882796",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 03:38.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729882806",
+            "type": { "text": "Rush" },
+            "text": "K.Walker up the middle to SEA 19 for -2 yards (A.Jennings, L.Taylor).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729882835",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) S.Darnold pass incomplete short middle to C.Kupp (C.Gonzalez).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729882858",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) S.Darnold pass short middle to C.Kupp to SEA 27 for 8 yards (J.Hawkins).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729882883",
+            "type": { "text": "Punt" },
+            "text": "M.Dickson punts 46 yards to NE 27, Center-C.Stoll, downed by SEA-N.Pritchett.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729882907",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) T.Henderson up the middle to NE 30 for 3 yards (D.Lawrence).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729882935",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) D.Maye scrambles right tackle pushed ob at NE 35 for 5 yards (E.Jones).PENALTY on SEA-D.Witherspoon, Defensive Holding, 5 yards, enforced at NE 35.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729882973",
+            "type": { "text": "Pass Incompletion" },
+            "text": "D.Maye pass incomplete short right to H.Henry (D.Lawrence) [D.Lawrence].",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729882996",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) D.Maye pass short right to T.Henderson pushed ob at NE 44 for 4 yards (N.Emmanwori).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729883021",
+            "type": { "text": "Sack Opp Fumble Recovery" },
+            "text": "(Shotgun) D.Maye sacked at NE 37 for -7 yards (D.Hall). FUMBLES (D.Hall) [D.Hall], RECOVERED by SEA-B.Murphy at NE 37.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729883051",
+            "type": { "text": "Pass Reception" },
+            "text": "S.Darnold pass short right to A.Barner to NE 26 for 11 yards (A.Jennings).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729883076",
+            "type": { "text": "End Period" },
+            "text": "END QUARTER 3",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729883096",
+            "type": { "text": "Rush" },
+            "text": "K.Walker right tackle to NE 25 for 1 yard (J.Gibbens).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729883118",
+            "type": { "text": "Pass Incompletion" },
+            "text": "S.Darnold pass incomplete deep right to C.Kupp (C.Woodson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729883141",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) S.Darnold pass short left to C.Kupp to NE 16 for 9 yards (C.Gonzalez).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729883166",
+            "type": { "text": "Passing Touchdown" },
+            "text": "S.Darnold pass deep right to A.Barner for 16 yards, TOUCHDOWN. J.Myers extra point is GOOD, Center-C.Stoll, Holder-M.Dickson.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729883195",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 13:24.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729883202",
+            "type": { "text": "Kickoff" },
+            "text": "J.Myers kicks 65 yards from SEA 35 to end zone, Touchback to the NE 35.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729883226",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) D.Maye scrambles right end ran ob at NE 41 for 6 yards (D.Thomas).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729883253",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) D.Maye pass deep middle to M.Hollins to SEA 35 for 24 yards (T.Woolen) [B.Mafe].",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729883278",
+            "type": { "text": "Passing Touchdown" },
+            "text": "(No Huddle, Shotgun) D.Maye pass deep left to M.Hollins for 35 yards, TOUCHDOWN. A.Borregales extra point is GOOD, Center-J.Ashby, Holder-B.Baringer.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729883307",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 12:27.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729883314",
+            "type": { "text": "Kickoff" },
+            "text": "A.Borregales kicks 54 yards from NE 35 to SEA 11. R.Shaheed to SEA 31 for 20 yards (C.Muma).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729883344",
+            "type": { "text": "Pass Reception" },
+            "text": "S.Darnold pass short right to R.Shaheed pushed ob at SEA 42 for 11 yards (C.Gonzalez).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729883374",
+            "type": { "text": "Rush" },
+            "text": "K.Walker up the middle to SEA 41 for -1 yards (K.Chaisson). ** Injury Update: SEA-J.Smith-Njigba has returned to the game.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729883396",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) S.Darnold pass incomplete short right.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729883422",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) S.Darnold pass incomplete deep right to R.Shaheed.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729883445",
+            "type": { "text": "Punt" },
+            "text": "M.Dickson punts 55 yards to NE 4, Center-C.Stoll, downed by SEA-V.Jones.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729883465",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) D.Maye pass incomplete deep left to A.Hooper.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729883488",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) D.Maye pass short left to R.Stevenson ran ob at NE 17 for 13 yards (J.Jobe).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729883518",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(No Huddle, Shotgun) D.Maye pass incomplete deep left to M.Hollins (C.Bryant).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729883541",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) D.Maye pass short left to H.Henry to NE 21 for 4 yards (N.Emmanwori).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729883566",
+            "type": { "text": "Rush" },
+            "text": "(No Huddle, Shotgun) D.Maye scrambles up the middle to NE 37 for 16 yards (T.Woolen).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729883588",
+            "type": { "text": "Pass Reception" },
+            "text": "(No Huddle, Shotgun) D.Maye pass short left to K.Williams ran ob at NE 44 for 7 yards (J.Jobe).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729883618",
+            "type": { "text": "Pass Interception Return" },
+            "text": "(No Huddle, Shotgun) D.Maye pass deep middle intended for K.Williams INTERCEPTED by J.Love at SEA 27. J.Love pushed ob at NE 38 for 35 yards (T.Henderson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729883645",
+            "type": { "text": "Rush" },
+            "text": "K.Walker right end pushed ob at NE 24 for 14 yards (J.Hawkins).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729883672",
+            "type": { "text": "Rush" },
+            "text": "K.Walker right guard to NE 14 for 10 yards (C.Woodson; J.Hawkins).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729883694",
+            "type": { "text": "Rush" },
+            "text": "K.Walker right end to NE 12 for 2 yards (H.Landry).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729883716",
+            "type": { "text": "Rush" },
+            "text": "K.Walker right end to NE 11 for 1 yard (C.Davis).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729883738",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) S.Darnold pass short left to J.Smith-Njigba to NE 8 for 3 yards (M.Jones).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729883751",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #1 by NE at 05:38.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729883763",
+            "type": { "text": "Field Goal Good" },
+            "text": "J.Myers 26 yard field goal is GOOD, Center-C.Stoll, Holder-M.Dickson.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729883777",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 05:35.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729883790",
+            "type": { "text": "Kickoff" },
+            "text": "J.Myers kicks 65 yards from SEA 35 to NE 0. T.Henderson ran ob at NE 38 for 38 yards (J.Myers).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729883830",
+            "type": { "text": "Sack" },
+            "text": "(Shotgun) D.Maye sacked at NE 34 for -4 yards (B.Murphy).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729883850",
+            "type": { "text": "Pass Reception" },
+            "text": "(No Huddle, Shotgun) D.Maye pass short right to R.Stevenson ran ob at NE 40 for 6 yards (N.Emmanwori; J.Jobe).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729883885",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) D.Maye pass short middle to H.Henry to SEA 44 for 16 yards (E.Jones).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729883910",
+            "type": { "text": "Interception Return Touchdown" },
+            "text": "(No Huddle, Shotgun) D.Maye pass short middle intended for K.Boutte INTERCEPTED by U.Nwosu (D.Witherspoon) [D.Witherspoon] at NE 45. U.Nwosu for 45 yards, TOUCHDOWN. J.Myers extra point is GOOD, Center-C.Stoll, Holder-M.Dickson.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "17" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729883951",
+            "type": { "text": "Kickoff" },
+            "text": "J.Myers kicks 65 yards from SEA 35 to end zone, Touchback to the NE 35.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729883982",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) D.Maye pass short middle to D.Douglas to NE 46 for 11 yards (E.Jones).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729884007",
+            "type": { "text": "Pass Reception" },
+            "text": "(No Huddle, Shotgun) D.Maye pass short middle to D.Douglas to SEA 46 for 8 yards (B.Mafe).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729884032",
+            "type": { "text": "Pass Reception" },
+            "text": "(No Huddle, Shotgun) D.Maye pass short left to A.Hooper pushed ob at SEA 41 for 5 yards (D.Witherspoon).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729884072",
+            "type": { "text": "Penalty" },
+            "text": "(No Huddle, Shotgun) D.Maye scrambles left guard to SEA 37 for 4 yards (N.Emmanwori).PENALTY on NE-G.Bradbury, Offensive Holding, 10 yards, enforced at SEA 41 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729884105",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) D.Maye pass short right to R.Stevenson pushed ob at SEA 44 for 7 yards (D.Witherspoon).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729884130",
+            "type": { "text": "Pass Reception" },
+            "text": "(No Huddle, Shotgun) D.Maye pass short middle to H.Henry to SEA 33 for 11 yards (D.Witherspoon).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729884155",
+            "type": { "text": "Pass Reception" },
+            "text": "(No Huddle, Shotgun) D.Maye pass deep middle to S.Diggs to SEA 7 for 26 yards (C.Bryant).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729884168",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #2 by SEA at 02:32.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729884180",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) D.Maye pass incomplete short left to M.Hollins.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729884210",
+            "type": { "text": "Passing Touchdown" },
+            "text": "(Shotgun) D.Maye pass short left to R.Stevenson for 7 yards, TOUCHDOWN. TWO-POINT CONVERSION ATTEMPT. D.Maye pass to H.Henry is incomplete. ATTEMPT FAILS. SEA-C.Bryant was injured during the play.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729884238",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #3 by SEA at 02:21.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729884244",
+            "type": { "text": "Kickoff" },
+            "text": "A.Borregales kicks onside 11 yards from NE 35 to NE 46. G.Holani (didn't try to advance) to NE 46 for no gain.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729884280",
+            "type": { "text": "Rush" },
+            "text": "K.Walker right end to NE 43 for 3 yards (A.Jennings).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729884291",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #2 by NE at 02:14.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729884302",
+            "type": { "text": "Rush" },
+            "text": "O.Oluwatimi and J.Jones reported in as eligible.  S.Darnold right tackle to NE 49 for -6 yards (M.Williams).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729884319",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #3 by NE at 02:10.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729884335",
+            "type": { "text": "Penalty" },
+            "text": "O.Oluwatimi and J.Jones reported in as eligible.  K.Walker up the middle for 49 yards, TOUCHDOWN NULLIFIED by Penalty.PENALTY on SEA-J.Sundell, Offensive Holding, 10 yards, enforced at NE 49 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729884376",
+            "type": { "text": "Rush" },
+            "text": "O.Oluwatimi and J.Jones reported in as eligible.  K.Walker right guard to SEA 42 for 1 yard (A.Jennings; K.Tonga).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729884390",
+            "type": { "text": "Two-minute warning" },
+            "text": "Two-Minute Warning",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729884403",
+            "type": { "text": "Punt" },
+            "text": "M.Dickson punts 52 yards to NE 6, Center-C.Stoll, out of bounds.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729884434",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) D.Maye pass short middle to S.Diggs to NE 12 for 6 yards (E.Jones). ** Injury Update: SEA-C.Bryant has returned to the game.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729884459",
+            "type": { "text": "Pass Reception" },
+            "text": "(No Huddle, Shotgun) D.Maye pass short left to A.Hooper to NE 17 for 5 yards (N.Emmanwori).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729884484",
+            "type": { "text": "Pass Reception" },
+            "text": "(No Huddle, Shotgun) D.Maye pass short left to M.Hollins to NE 28 for 11 yards (T.Woolen).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729884512",
+            "type": { "text": "Penalty" },
+            "text": "(No Huddle, Shotgun) D.Maye sacked at NE 27 for -1 yards (L.Williams).PENALTY on SEA-U.Nwosu, Defensive Offside, 5 yards, enforced at NE 28 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729884544",
+            "type": { "text": "Penalty" },
+            "text": "(No Huddle, Shotgun) D.Maye pass incomplete deep right [B.Mafe].PENALTY on SEA-T.Woolen, Illegal Use of Hands, 5 yards, enforced at NE 33 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729884578",
+            "type": { "text": "Pass Reception" },
+            "text": "(No Huddle, Shotgun) D.Maye pass short middle to D.Douglas to NE 47 for 9 yards (E.Jones).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729884603",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(No Huddle, Shotgun) D.Maye pass incomplete deep right to K.Boutte.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729884626",
+            "type": { "text": "Pass Reception" },
+            "text": "(No Huddle, Shotgun) D.Maye pass short right to T.Henderson to SEA 29 for 24 yards (J.Love).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729884651",
+            "type": { "text": "End of Game" },
+            "text": "END GAME",
+            "scoringPlay": false
+          }
+        ]
+      }
+    ]
+  }
+}

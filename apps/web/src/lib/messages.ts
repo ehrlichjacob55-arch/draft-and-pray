@@ -44,6 +44,8 @@ export function friendlyError(err: unknown): string {
         return "Those rules are locked. Save your changes as a new version instead.";
       case "ruleset_exists":
         return "This season already has scoring rules. Refresh to see them.";
+      case "ingest_busy":
+        return "A stats update is already running. Give it a moment and try again.";
       case "conflict":
         return "That changed while you were working. Refresh and try again.";
       case "not_found":

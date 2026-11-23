@@ -21,6 +21,7 @@ interface SleeperPlayer {
   injury_status?: unknown;
   depth_chart_order?: unknown;
   search_rank?: unknown;
+  espn_id?: unknown;
 }
 
 /** Sleeper uses 9,999,999 (or nothing) for "unranked". */
@@ -30,6 +31,14 @@ const rankOf = (v: unknown): number | null =>
 
 const str = (v: unknown): string | undefined =>
   typeof v === "string" && v.trim() ? v.trim() : undefined;
+
+/** Sleeper's `espn_id` is a number (or a numeric string); it is the ESPN athlete id used to match box scores. */
+const espnIdOf = (v: unknown): string | undefined =>
+  typeof v === "number" && Number.isInteger(v) && v > 0
+    ? String(v)
+    : /^\d+$/.test(str(v) ?? "")
+      ? str(v)
+      : undefined;
 
 export interface ParsedSleeperPlayers {
   players: PoolPlayerInput[];
@@ -72,8 +81,10 @@ export function parseSleeperPlayersWithWarnings(
       typeof raw.depth_chart_order === "number" && Number.isInteger(raw.depth_chart_order)
         ? raw.depth_chart_order
         : null;
+    const espnId = espnIdOf(raw.espn_id);
     (raw.depth_chart_order == null ? noDepth : out).push({
       providerPlayerId: id,
+      ...(espnId ? { espnId } : {}),
       name,
       position,
       nflTeam,

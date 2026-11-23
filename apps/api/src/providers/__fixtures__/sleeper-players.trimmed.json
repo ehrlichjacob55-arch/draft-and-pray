@@ -17,7 +17,8 @@
     "status": "Active",
     "injury_status": null,
     "depth_chart_order": 1,
-    "search_rank": 240
+    "search_rank": 240,
+    "espn_id": 2976212
   },
   "3214": {
     "player_id": "3214",
@@ -28,7 +29,8 @@
     "team": "NE",
     "status": "Active",
     "injury_status": null,
-    "depth_chart_order": 1
+    "depth_chart_order": 1,
+    "espn_id": 3046439
   },
   "3678": {
     "player_id": "3678",
@@ -39,7 +41,8 @@
     "team": "DEN",
     "status": "Active",
     "injury_status": null,
-    "depth_chart_order": 1
+    "depth_chart_order": 1,
+    "espn_id": "2985659"
   },
   "4046": {
     "player_id": "4046",

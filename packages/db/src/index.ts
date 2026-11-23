@@ -15,3 +15,6 @@ export * from "./repos/pool";
 export * from "./repos/tickets";
 export * from "./pool-synthetic";
 export * from "./repos/rulesets";
+export * from "./repos/batch";
+export * from "./repos/ingest";
+export * from "./repos/live";

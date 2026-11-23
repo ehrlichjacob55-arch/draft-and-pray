@@ -1,0 +1,2248 @@
+{
+  "header": {
+    "competitions": [
+      {
+        "date": "2026-01-17T21:30Z",
+        "status": { "type": { "name": "STATUS_FINAL", "completed": true } },
+        "competitors": [
+          {
+            "homeAway": "home",
+            "score": "33",
+            "winner": true,
+            "team": { "id": "7", "abbreviation": "DEN" }
+          },
+          {
+            "homeAway": "away",
+            "score": "30",
+            "winner": false,
+            "team": { "id": "2", "abbreviation": "BUF" }
+          }
+        ]
+      }
+    ]
+  },
+  "boxscore": {
+    "players": [
+      {
+        "team": { "id": "2", "abbreviation": "BUF" },
+        "statistics": [
+          {
+            "name": "passing",
+            "keys": [
+              "completions/passingAttempts",
+              "passingYards",
+              "yardsPerPassAttempt",
+              "passingTouchdowns",
+              "interceptions",
+              "sacks-sackYardsLost",
+              "adjQBR",
+              "QBRating"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "3918298",
+                  "displayName": "Josh Allen",
+                  "firstName": "Josh",
+                  "lastName": "Allen"
+                },
+                "stats": ["25/39", "283", "7.3", "3", "2", "3-17", "47.6", "90.0"]
+              }
+            ]
+          },
+          {
+            "name": "rushing",
+            "keys": [
+              "rushingAttempts",
+              "rushingYards",
+              "yardsPerRushAttempt",
+              "rushingTouchdowns",
+              "longRushing"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4379399",
+                  "displayName": "James Cook III",
+                  "firstName": "James",
+                  "lastName": "Cook III"
+                },
+                "stats": ["24", "117", "4.9", "0", "24"]
+              },
+              {
+                "athlete": {
+                  "id": "3918298",
+                  "displayName": "Josh Allen",
+                  "firstName": "Josh",
+                  "lastName": "Allen"
+                },
+                "stats": ["12", "66", "5.5", "0", "26"]
+              }
+            ]
+          },
+          {
+            "name": "receiving",
+            "keys": [
+              "receptions",
+              "receivingYards",
+              "yardsPerReception",
+              "receivingTouchdowns",
+              "longReception",
+              "receivingTargets"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4385690",
+                  "displayName": "Dalton Kincaid",
+                  "firstName": "Dalton",
+                  "lastName": "Kincaid"
+                },
+                "stats": ["6", "83", "13.8", "1", "25", "6"]
+              },
+              {
+                "athlete": {
+                  "id": "4373678",
+                  "displayName": "Khalil Shakir",
+                  "firstName": "Khalil",
+                  "lastName": "Shakir"
+                },
+                "stats": ["7", "75", "10.7", "0", "46", "9"]
+              },
+              {
+                "athlete": {
+                  "id": "4429501",
+                  "displayName": "Ray Davis",
+                  "firstName": "Ray",
+                  "lastName": "Davis"
+                },
+                "stats": ["2", "33", "16.5", "0", "24", "2"]
+              },
+              {
+                "athlete": {
+                  "id": "3930086",
+                  "displayName": "Dawson Knox",
+                  "firstName": "Dawson",
+                  "lastName": "Knox"
+                },
+                "stats": ["3", "32", "10.7", "0", "13", "5"]
+              },
+              {
+                "athlete": {
+                  "id": "4379399",
+                  "displayName": "James Cook III",
+                  "firstName": "James",
+                  "lastName": "Cook III"
+                },
+                "stats": ["2", "24", "12.0", "0", "24", "3"]
+              },
+              {
+                "athlete": {
+                  "id": "16731",
+                  "displayName": "Brandin Cooks",
+                  "firstName": "Brandin",
+                  "lastName": "Cooks"
+                },
+                "stats": ["2", "20", "10.0", "0", "15", "6"]
+              },
+              {
+                "athlete": {
+                  "id": "4635008",
+                  "displayName": "Keon Coleman",
+                  "firstName": "Keon",
+                  "lastName": "Coleman"
+                },
+                "stats": ["1", "10", "10.0", "1", "10", "3"]
+              },
+              {
+                "athlete": {
+                  "id": "4035004",
+                  "displayName": "Mecole Hardman Jr.",
+                  "firstName": "Mecole",
+                  "lastName": "Hardman Jr."
+                },
+                "stats": ["1", "4", "4.0", "1", "4", "2"]
+              },
+              {
+                "athlete": {
+                  "id": "3121427",
+                  "displayName": "Curtis Samuel",
+                  "firstName": "Curtis",
+                  "lastName": "Samuel"
+                },
+                "stats": ["1", "2", "2.0", "0", "2", "3"]
+              }
+            ]
+          },
+          {
+            "name": "fumbles",
+            "keys": ["fumbles", "fumblesLost", "fumblesRecovered"],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "3918298",
+                  "displayName": "Josh Allen",
+                  "firstName": "Josh",
+                  "lastName": "Allen"
+                },
+                "stats": ["3", "2", "1"]
+              },
+              {
+                "athlete": {
+                  "id": "4379399",
+                  "displayName": "James Cook III",
+                  "firstName": "James",
+                  "lastName": "Cook III"
+                },
+                "stats": ["1", "1", "0"]
+              },
+              {
+                "athlete": {
+                  "id": "4367203",
+                  "displayName": "Alec Anderson",
+                  "firstName": "Alec",
+                  "lastName": "Anderson"
+                },
+                "stats": ["1", "0", "0"]
+              },
+              {
+                "athlete": {
+                  "id": "4030899",
+                  "displayName": "Spencer Brown",
+                  "firstName": "Spencer",
+                  "lastName": "Brown"
+                },
+                "stats": ["0", "0", "1"]
+              }
+            ]
+          },
+          {
+            "name": "kickReturns",
+            "keys": [
+              "kickReturns",
+              "kickReturnYards",
+              "yardsPerKickReturn",
+              "longKickReturn",
+              "kickReturnTouchdowns"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4429501",
+                  "displayName": "Ray Davis",
+                  "firstName": "Ray",
+                  "lastName": "Davis"
+                },
+                "stats": ["5", "130", "26.0", "28", "0"]
+              },
+              {
+                "athlete": {
+                  "id": "4035004",
+                  "displayName": "Mecole Hardman Jr.",
+                  "firstName": "Mecole",
+                  "lastName": "Hardman Jr."
+                },
+                "stats": ["1", "22", "22.0", "22", "0"]
+              }
+            ]
+          },
+          {
+            "name": "puntReturns",
+            "keys": [
+              "puntReturns",
+              "puntReturnYards",
+              "yardsPerPuntReturn",
+              "longPuntReturn",
+              "puntReturnTouchdowns"
+            ],
+            "athletes": []
+          },
+          {
+            "name": "kicking",
+            "keys": [
+              "fieldGoalsMade/fieldGoalAttempts",
+              "fieldGoalPct",
+              "longFieldGoalMade",
+              "extraPointsMade/extraPointAttempts",
+              "totalKickingPoints"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "11122",
+                  "displayName": "Matt Prater",
+                  "firstName": "Matt",
+                  "lastName": "Prater"
+                },
+                "stats": ["3/3", "100.0", "50", "3/3", "12"]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "team": { "id": "7", "abbreviation": "DEN" },
+        "statistics": [
+          {
+            "name": "passing",
+            "keys": [
+              "completions/passingAttempts",
+              "passingYards",
+              "yardsPerPassAttempt",
+              "passingTouchdowns",
+              "interceptions",
+              "sacks-sackYardsLost",
+              "adjQBR",
+              "QBRating"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4426338",
+                  "displayName": "Bo Nix",
+                  "firstName": "Bo",
+                  "lastName": "Nix"
+                },
+                "stats": ["26/46", "279", "6.1", "3", "1", "0-0", "64.6", "87.1"]
+              }
+            ]
+          },
+          {
+            "name": "rushing",
+            "keys": [
+              "rushingAttempts",
+              "rushingYards",
+              "yardsPerRushAttempt",
+              "rushingTouchdowns",
+              "longRushing"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4426338",
+                  "displayName": "Bo Nix",
+                  "firstName": "Bo",
+                  "lastName": "Nix"
+                },
+                "stats": ["12", "29", "2.4", "0", "11"]
+              },
+              {
+                "athlete": {
+                  "id": "4722893",
+                  "displayName": "Jaleel McLaughlin",
+                  "firstName": "Jaleel",
+                  "lastName": "McLaughlin"
+                },
+                "stats": ["4", "21", "5.3", "0", "13"]
+              },
+              {
+                "athlete": {
+                  "id": "4568490",
+                  "displayName": "RJ Harvey",
+                  "firstName": "RJ",
+                  "lastName": "Harvey"
+                },
+                "stats": ["6", "20", "3.3", "0", "12"]
+              }
+            ]
+          },
+          {
+            "name": "receiving",
+            "keys": [
+              "receptions",
+              "receivingYards",
+              "yardsPerReception",
+              "receivingTouchdowns",
+              "longReception",
+              "receivingTargets"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4686472",
+                  "displayName": "Marvin Mims Jr.",
+                  "firstName": "Marvin",
+                  "lastName": "Mims Jr."
+                },
+                "stats": ["8", "93", "11.6", "1", "27", "8"]
+              },
+              {
+                "athlete": {
+                  "id": "3128429",
+                  "displayName": "Courtland Sutton",
+                  "firstName": "Courtland",
+                  "lastName": "Sutton"
+                },
+                "stats": ["4", "53", "13.3", "0", "25", "9"]
+              },
+              {
+                "athlete": {
+                  "id": "4568490",
+                  "displayName": "RJ Harvey",
+                  "firstName": "RJ",
+                  "lastName": "Harvey"
+                },
+                "stats": ["5", "46", "9.2", "0", "24", "6"]
+              },
+              {
+                "athlete": {
+                  "id": "4039057",
+                  "displayName": "Lil'Jordan Humphrey",
+                  "firstName": "Lil'Jordan",
+                  "lastName": "Humphrey"
+                },
+                "stats": ["2", "33", "16.5", "1", "29", "5"]
+              },
+              {
+                "athlete": {
+                  "id": "4600981",
+                  "displayName": "Pat Bryant",
+                  "firstName": "Pat",
+                  "lastName": "Bryant"
+                },
+                "stats": ["3", "32", "10.7", "0", "15", "3"]
+              },
+              {
+                "athlete": {
+                  "id": "4361691",
+                  "displayName": "Frank Crum",
+                  "firstName": "Frank",
+                  "lastName": "Crum"
+                },
+                "stats": ["1", "7", "7.0", "1", "7", "1"]
+              },
+              {
+                "athlete": {
+                  "id": "3051876",
+                  "displayName": "Evan Engram",
+                  "firstName": "Evan",
+                  "lastName": "Engram"
+                },
+                "stats": ["1", "7", "7.0", "0", "7", "3"]
+              },
+              {
+                "athlete": {
+                  "id": "4362748",
+                  "displayName": "Tyler Badie",
+                  "firstName": "Tyler",
+                  "lastName": "Badie"
+                },
+                "stats": ["1", "7", "7.0", "0", "7", "2"]
+              },
+              {
+                "athlete": {
+                  "id": "4383440",
+                  "displayName": "Nate Adkins",
+                  "firstName": "Nate",
+                  "lastName": "Adkins"
+                },
+                "stats": ["1", "1", "1.0", "0", "1", "1"]
+              },
+              {
+                "athlete": {
+                  "id": "3911853",
+                  "displayName": "Adam Trautman",
+                  "firstName": "Adam",
+                  "lastName": "Trautman"
+                },
+                "stats": ["0", "0", "0.0", "0", "0", "2"]
+              },
+              {
+                "athlete": {
+                  "id": "3929914",
+                  "displayName": "Adam Prentice",
+                  "firstName": "Adam",
+                  "lastName": "Prentice"
+                },
+                "stats": ["0", "0", "0.0", "0", "0", "1"]
+              },
+              {
+                "athlete": {
+                  "id": "4722893",
+                  "displayName": "Jaleel McLaughlin",
+                  "firstName": "Jaleel",
+                  "lastName": "McLaughlin"
+                },
+                "stats": ["0", "0", "0.0", "0", "0", "1"]
+              }
+            ]
+          },
+          {
+            "name": "fumbles",
+            "keys": ["fumbles", "fumblesLost", "fumblesRecovered"],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4426338",
+                  "displayName": "Bo Nix",
+                  "firstName": "Bo",
+                  "lastName": "Nix"
+                },
+                "stats": ["1", "0", "1"]
+              },
+              {
+                "athlete": {
+                  "id": "4037559",
+                  "displayName": "Devon Key",
+                  "firstName": "Devon",
+                  "lastName": "Key"
+                },
+                "stats": ["0", "0", "1"]
+              },
+              {
+                "athlete": {
+                  "id": "4039064",
+                  "displayName": "Malcolm Roach",
+                  "firstName": "Malcolm",
+                  "lastName": "Roach"
+                },
+                "stats": ["0", "0", "1"]
+              },
+              {
+                "athlete": {
+                  "id": "4360853",
+                  "displayName": "Talanoa Hufanga",
+                  "firstName": "Talanoa",
+                  "lastName": "Hufanga"
+                },
+                "stats": ["0", "0", "1"]
+              }
+            ]
+          },
+          {
+            "name": "kickReturns",
+            "keys": [
+              "kickReturns",
+              "kickReturnYards",
+              "yardsPerKickReturn",
+              "longKickReturn",
+              "kickReturnTouchdowns"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4722893",
+                  "displayName": "Jaleel McLaughlin",
+                  "firstName": "Jaleel",
+                  "lastName": "McLaughlin"
+                },
+                "stats": ["3", "59", "19.7", "27", "0"]
+              },
+              {
+                "athlete": {
+                  "id": "4686472",
+                  "displayName": "Marvin Mims Jr.",
+                  "firstName": "Marvin",
+                  "lastName": "Mims Jr."
+                },
+                "stats": ["2", "50", "25.0", "25", "0"]
+              },
+              {
+                "athlete": {
+                  "id": "4362748",
+                  "displayName": "Tyler Badie",
+                  "firstName": "Tyler",
+                  "lastName": "Badie"
+                },
+                "stats": ["1", "27", "27.0", "27", "0"]
+              }
+            ]
+          },
+          {
+            "name": "puntReturns",
+            "keys": [
+              "puntReturns",
+              "puntReturnYards",
+              "yardsPerPuntReturn",
+              "longPuntReturn",
+              "puntReturnTouchdowns"
+            ],
+            "athletes": []
+          },
+          {
+            "name": "kicking",
+            "keys": [
+              "fieldGoalsMade/fieldGoalAttempts",
+              "fieldGoalPct",
+              "longFieldGoalMade",
+              "extraPointsMade/extraPointAttempts",
+              "totalKickingPoints"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "2985659",
+                  "displayName": "Wil Lutz",
+                  "firstName": "Wil",
+                  "lastName": "Lutz"
+                },
+                "stats": ["4/4", "100.0", "50", "3/3", "15"]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "scoringPlays": [
+    {
+      "id": "401772982455",
+      "type": { "text": "Field Goal Good" },
+      "text": "Wil Lutz 28 Yd Field Goal",
+      "team": { "id": "7" }
+    },
+    {
+      "id": "401772982786",
+      "type": { "text": "Passing Touchdown" },
+      "text": "Mecole Hardman Jr. 4 Yd pass from Josh Allen (Matt Prater Kick)",
+      "team": { "id": "2" }
+    },
+    {
+      "id": "4017729821257",
+      "type": { "text": "Passing Touchdown" },
+      "text": "Frank Crum 7 Yd pass from Bo Nix (Wil Lutz Kick)",
+      "team": { "id": "7" }
+    },
+    {
+      "id": "4017729821645",
+      "type": { "text": "Field Goal Good" },
+      "text": "Matt Prater 33 Yd Field Goal ",
+      "team": { "id": "2" }
+    },
+    {
+      "id": "4017729822039",
+      "type": { "text": "Passing Touchdown" },
+      "text": "Lil'Jordan Humphrey 29 Yd pass from Bo Nix (Wil Lutz Kick)",
+      "team": { "id": "7" }
+    },
+    {
+      "id": "4017729822141",
+      "type": { "text": "Field Goal Good" },
+      "text": "Wil Lutz 50 Yd Field Goal ",
+      "team": { "id": "7" }
+    },
+    {
+      "id": "4017729822353",
+      "type": { "text": "Field Goal Good" },
+      "text": "Wil Lutz 33 Yd Field Goal ",
+      "team": { "id": "7" }
+    },
+    {
+      "id": "4017729822602",
+      "type": { "text": "Passing Touchdown" },
+      "text": "Keon Coleman 10 Yd pass from Josh Allen (Matt Prater Kick)",
+      "team": { "id": "2" }
+    },
+    {
+      "id": "4017729823178",
+      "type": { "text": "Passing Touchdown" },
+      "text": "Dalton Kincaid 14 Yd pass from Josh Allen (Matt Prater Kick)",
+      "team": { "id": "2" }
+    },
+    {
+      "id": "4017729823674",
+      "type": { "text": "Field Goal Good" },
+      "text": "Matt Prater 31 Yd Field Goal",
+      "team": { "id": "2" }
+    },
+    {
+      "id": "4017729823925",
+      "type": { "text": "Passing Touchdown" },
+      "text": "Marvin Mims Jr. 26 Yd pass from Bo Nix (Wil Lutz Kick)",
+      "team": { "id": "7" }
+    },
+    {
+      "id": "4017729824227",
+      "type": { "text": "Field Goal Good" },
+      "text": "Matt Prater 50 Yd Field Goal",
+      "team": { "id": "2" }
+    },
+    {
+      "id": "4017729824921",
+      "type": { "text": "Field Goal Good" },
+      "text": "Wil Lutz 23 Yd Field Goal ",
+      "team": { "id": "7" }
+    }
+  ],
+  "drives": {
+    "previous": [
+      {
+        "plays": [
+          {
+            "id": "40177298239",
+            "type": { "text": "Kickoff" },
+            "text": "M.Wishnowsky kicks 64 yards from BUF 35 to DEN 1. M.Mims to DEN 26 for 25 yards (D.Williams). BUF-D.Williams was injured during the play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "40177298252",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 14:56.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "40177298265",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) B.Nix pass short right to P.Bryant to DEN 38 for 12 yards (T.White; C.Lewis).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "40177298297",
+            "type": { "text": "Rush" },
+            "text": "J.McLaughlin right tackle to DEN 44 for 6 yards (D.Jones; G.Rousseau).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "401772982119",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) B.Nix pass short right to P.Bryant to BUF 41 for 15 yards (Ta.Johnson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "401772982144",
+            "type": { "text": "Pass Reception" },
+            "text": "(No Huddle, Shotgun) B.Nix pass short left to P.Bryant to BUF 36 for 5 yards (A.Epenesa; S.Thompson). DEN-P.Bryant was injured during the play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "401772982172",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) B.Nix pass short right to L.Humphrey to BUF 32 for 4 yards (C.Bishop) [G.Rousseau].",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "401772982207",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) B.Nix right tackle to BUF 27 for 5 yards (C.Lewis).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "401772982229",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) B.Nix pass short left to R.Harvey to BUF 21 for 6 yards (Ta.Johnson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "401772982254",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) B.Nix left end to BUF 18 for 3 yards (S.Thompson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "401772982276",
+            "type": { "text": "Rush" },
+            "text": "B.Nix right guard to BUF 18 for no gain (J.Bosa). (Virtual Measurement).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "401772982302",
+            "type": { "text": "Rush" },
+            "text": "B.Nix up the middle to BUF 14 for 4 yards (D.Walker).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "401772982324",
+            "type": { "text": "Penalty" },
+            "text": "J.McLaughlin up the middle to BUF 11 for 3 yards (G.Rousseau). FUMBLES (G.Rousseau), touched at BUF 6, RECOVERED by BUF-C.Lewis at BUF 5.PENALTY on BUF-L.Ogunjobi, Defensive Offside, 5 yards, enforced at BUF 14 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "401772982373",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) F.Crum reported in as eligible.  B.Nix left end to BUF 10 for -1 yards (S.Thompson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "401772982397",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) B.Nix pass incomplete short right to L.Humphrey.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "401772982432",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) B.Nix pass incomplete short left to E.Engram.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "401772982455",
+            "type": { "text": "Field Goal Good" },
+            "text": "W.Lutz 28 yard field goal is GOOD, Center-M.Fraboni, Holder-J.Crawshaw.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "401772982465",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 07:29.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "401772982475",
+            "type": { "text": "Kickoff" },
+            "text": "W.Lutz kicks 60 yards from DEN 35 to BUF 5. R.Davis to BUF 33 for 28 yards (D.Key).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "401772982510",
+            "type": { "text": "Rush" },
+            "text": "J.Cook right tackle to DEN 43 for 24 yards (P.Locke).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "401772982524",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #1 by BUF at 06:35.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "401772982537",
+            "type": { "text": "Rush" },
+            "text": "J.Cook right end to DEN 33 for 10 yards (T.Hufanga). DEN-P.Surtain was injured during the play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "401772982569",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Allen pass short middle to K.Shakir to DEN 22 for 11 yards (P.Locke).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "401772982594",
+            "type": { "text": "Rush" },
+            "text": "J.Cook right tackle to DEN 18 for 4 yards (T.Hufanga).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "401772982616",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Allen pass short right to B.Cooks to DEN 13 for 5 yards (J.Cooper).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "401772982641",
+            "type": { "text": "Rush" },
+            "text": "A.Anderson reported in as eligible.  J.Allen left guard to DEN 11 for 2 yards (D.Tillman; T.Hufanga).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "401772982652",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #1 by DEN at 03:22.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "401772982663",
+            "type": { "text": "Rush" },
+            "text": "J.Cook left guard to DEN 10 for 1 yard (M.Roach; D.Greenlaw).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "401772982692",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Allen pass short middle to K.Shakir to DEN 7 for 3 yards (A.Singleton).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "401772982717",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) J.Allen scrambles left guard to DEN 2 for 5 yards (P.Locke). ** Injury Update: DEN-P.Surtain has returned to the game.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "401772982739",
+            "type": { "text": "Rush" },
+            "text": "(No Huddle) J.Allen left guard to DEN 1 for 1 yard (D.Tillman).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "401772982764",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) J.Cook left tackle to DEN 4 for -3 yards (D.Tillman).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "401772982786",
+            "type": { "text": "Passing Touchdown" },
+            "text": "J.Allen pass short right to M.Hardman for 4 yards, TOUCHDOWN. M.Prater extra point is GOOD, Center-R.Ferguson, Holder-M.Wishnowsky.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "2" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "401772982827",
+            "type": { "text": "Kickoff" },
+            "text": "M.Wishnowsky kicks 65 yards from BUF 35 to landing zone to end zone, Touchback to the DEN 20.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "401772982844",
+            "type": { "text": "Fumble Recovery (Own)" },
+            "text": "B.Nix to DEN 15 for -5 yards. FUMBLES, touched at DEN 14, and recovers at DEN 12. B.Nix pass incomplete short left to A.Trautman.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "401772982897",
+            "type": { "text": "End Period" },
+            "text": "END QUARTER 1",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "401772982917",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) B.Nix pass incomplete short right.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "401772982940",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) B.Nix pass incomplete deep right to C.Sutton (C.Lewis).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "401772982975",
+            "type": { "text": "Punt" },
+            "text": "J.Crawshaw punts 43 yards to BUF 37, Center-M.Fraboni, fair catch by M.Hardman.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "401772982985",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 14:42.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "401772982995",
+            "type": { "text": "Rush" },
+            "text": "J.Cook right tackle to BUF 42 for 5 yards (J.Elliss; P.Locke).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729821024",
+            "type": { "text": "Rush" },
+            "text": "J.Allen scrambles up the middle to DEN 32 for 26 yards (A.Singleton).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729821046",
+            "type": { "text": "Fumble Recovery (Opponent)" },
+            "text": "J.Cook left end to DEN 30 for 2 yards (A.Singleton). FUMBLES (A.Singleton), RECOVERED by DEN-T.Hufanga at DEN 31. BUF-C.McGovern was injured during the play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729821067",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 13:20.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729821087",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) J.McLaughlin left guard to DEN 44 for 13 yards (C.Lewis; C.Bishop).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729821116",
+            "type": { "text": "Pass Incompletion" },
+            "text": "B.Nix pass incomplete short left to J.McLaughlin (A.Epenesa).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729821139",
+            "type": { "text": "Rush" },
+            "text": "(No Huddle, Shotgun) R.Harvey up the middle to BUF 44 for 12 yards (C.Bishop; C.Lewis).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729821161",
+            "type": { "text": "Rush" },
+            "text": "(No Huddle) B.Nix scrambles right end to BUF 43 for 1 yard (T.White).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729821183",
+            "type": { "text": "Pass Reception" },
+            "text": "(No Huddle, Shotgun) B.Nix pass deep left to M.Mims to BUF 16 for 27 yards (C.Bishop).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729821208",
+            "type": { "text": "Rush" },
+            "text": "(No Huddle) R.Harvey left tackle to BUF 18 for -2 yards (S.Thompson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729821230",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) B.Nix scrambles right end to BUF 7 for 11 yards (C.Lewis).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729821257",
+            "type": { "text": "Passing Touchdown" },
+            "text": "F.Crum reported in as eligible.  B.Nix pass short right to F.Crum for 7 yards, TOUCHDOWN. W.Lutz extra point is GOOD, Center-M.Fraboni, Holder-J.Crawshaw.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729821293",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 09:33.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729821300",
+            "type": { "text": "Kickoff" },
+            "text": "W.Lutz kicks 65 yards from DEN 35 to BUF 0. R.Davis to BUF 33 for 33 yards (D.Key).PENALTY on BUF-R.Van Demark, Illegal Block Above the Waist, 10 yards, enforced at BUF 27.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729821341",
+            "type": { "text": "Pass Incompletion" },
+            "text": "J.Allen pass incomplete deep left to B.Cooks [Z.Allen].",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729821364",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) J.Cook left guard to BUF 26 for 9 yards (P.Surtain; A.Singleton).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729821386",
+            "type": { "text": "Rush" },
+            "text": "J.Allen left tackle to BUF 29 for 3 yards (R.Moss).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729821408",
+            "type": { "text": "Rush" },
+            "text": "J.Cook right tackle to BUF 34 for 5 yards (M.Roach).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729821430",
+            "type": { "text": "Pass Reception" },
+            "text": "J.Allen pass short right to J.Cook to DEN 42 for 24 yards (P.Locke).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729821455",
+            "type": { "text": "Pass Reception" },
+            "text": "J.Allen pass short left to D.Knox pushed ob at DEN 30 for 12 yards (T.Hufanga).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729821485",
+            "type": { "text": "Sack" },
+            "text": "(Shotgun) J.Allen sacked at DEN 37 for -7 yards (sack split by M.Roach and Z.Allen).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729821505",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Allen pass short left to K.Shakir to DEN 30 for 7 yards (Z.Allen).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729821530",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Allen pass short left to B.Cooks ran ob at DEN 15 for 15 yards.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729821560",
+            "type": { "text": "Rush" },
+            "text": "J.Cook left tackle to DEN 14 for 1 yard (D.Greenlaw; E.Uwazurike).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729821582",
+            "type": { "text": "Fumble Recovery (Own)" },
+            "text": "(Shotgun) A.Anderson to DEN 18 for -4 yards. FUMBLES, recovered by BUF-J.Allen at DEN 18. J.Allen sacked at DEN 14 for 0 yards (M.Roach).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729821611",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) J.Allen pass incomplete short right to K.Coleman [J.Franklin-Myers].Penalty on BUF-O.Torrence, Offensive Holding, declined.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729821645",
+            "type": { "text": "Field Goal Good" },
+            "text": " M.Prater 33 yard field goal is GOOD, Center-R.Ferguson, Holder-M.Wishnowsky.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729821667",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 02:13.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729821689",
+            "type": { "text": "Kickoff" },
+            "text": "M.Wishnowsky kicks 62 yards from BUF 35 to DEN 3. J.McLaughlin to DEN 30 for 27 yards (F.Gore; D.Savage).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729821724",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) B.Nix pass incomplete deep right to C.Sutton.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729821747",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) B.Nix pass short middle to E.Engram to DEN 37 for 7 yards (C.Lewis).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729821760",
+            "type": { "text": "Two-minute warning" },
+            "text": "Two-Minute Warning",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729821772",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) B.Nix pass short middle to M.Mims to DEN 43 for 6 yards (T.White).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729821804",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(No Huddle, Shotgun) B.Nix pass incomplete short middle to R.Harvey (G.Rousseau).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729821827",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) B.Nix pass short right to T.Badie to 50 for 7 yards (C.Bishop; M.Milano).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729821852",
+            "type": { "text": "Rush" },
+            "text": "(No Huddle, Shotgun) B.Nix scrambles left guard ran ob at BUF 44 for 6 yards (T.White).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729821879",
+            "type": { "text": "Penalty" },
+            "text": "(Shotgun) T.Badie left end to BUF 35 for 9 yards (C.Bishop).PENALTY on DEN-A.Forsyth, Offensive Holding, 10 yards, enforced at BUF 44 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729821912",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) B.Nix pass short right to R.Harvey to BUF 44 for 10 yards (C.Benford; Ta.Johnson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729821925",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #2 by DEN at 00:44.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729821931",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #2 by BUF at 00:44.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729821937",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) B.Nix pass incomplete short right to C.Sutton (C.Lewis). BUF-C.Lewis was injured during the play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729821956",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #3 by BUF at 00:38.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729821974",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) B.Nix pass short left to M.Mims to BUF 29 for 15 yards (Ta.Johnson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729821992",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #3 by DEN at 00:32.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729822009",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) B.Nix pass incomplete short middle.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729822039",
+            "type": { "text": "Passing Touchdown" },
+            "text": "(Shotgun) B.Nix pass deep left to L.Humphrey for 29 yards, TOUCHDOWN [G.Rousseau]. W.Lutz extra point is GOOD, Center-M.Fraboni, Holder-J.Crawshaw.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "7" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729822085",
+            "type": { "text": "Kickoff" },
+            "text": "W.Lutz kicks 62 yards from DEN 35 to BUF 3. R.Davis to BUF 30 for 27 yards (J.Turner; J.Skinner).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729822108",
+            "type": { "text": "Fumble Recovery (Opponent)" },
+            "text": "(Shotgun) J.Allen scrambles up the middle to BUF 42 for 12 yards (N.Bonitto). FUMBLES (N.Bonitto), touched at BUF 34, RECOVERED by DEN-D.Key at BUF 35. D.Key to BUF 32 for 3 yards (K.Shakir). ** Injury Update: BUF-C.McGovern has returned to the game.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729822141",
+            "type": { "text": "Field Goal Good" },
+            "text": " W.Lutz 50 yard field goal is GOOD, Center-M.Fraboni, Holder-J.Crawshaw.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729822161",
+            "type": { "text": "End of Half" },
+            "text": "END QUARTER 2",
+            "scoringPlay": false
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729822179",
+            "type": { "text": "Kickoff" },
+            "text": "W.Lutz kicks 63 yards from DEN 35 to BUF 2. R.Davis to BUF 25 for 23 yards (J.Skinner).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729822205",
+            "type": { "text": "Rush" },
+            "text": "J.Cook left tackle to BUF 25 for no gain (N.Bonitto; P.Locke).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729822227",
+            "type": { "text": "Sack Opp Fumble Recovery" },
+            "text": "(Shotgun) J.Allen sacked at BUF 14 for -11 yards (N.Bonitto). FUMBLES (N.Bonitto) [N.Bonitto], touched at BUF 15, RECOVERED by DEN-M.Roach at BUF 17.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729822257",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) B.Nix pass short left to R.Harvey to BUF 11 for 6 yards (C.Bishop; C.Lewis). ** Injury Update: BUF-C.Lewis has returned to the game.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729822282",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) R.Harvey left tackle to BUF 10 for 1 yard (Ta.Johnson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729822307",
+            "type": { "text": "Rush" },
+            "text": "J.McLaughlin right tackle to BUF 10 for no gain (D.Walker).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729822329",
+            "type": { "text": "Penalty" },
+            "text": "(Run formation) PENALTY on DEN, Delay of Game, 5 yards, enforced at BUF 10 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729822353",
+            "type": { "text": "Field Goal Good" },
+            "text": " W.Lutz 33 yard field goal is GOOD, Center-M.Fraboni, Holder-J.Crawshaw.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729822363",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 11:35.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729822373",
+            "type": { "text": "Kickoff" },
+            "text": "W.Lutz kicks 63 yards from DEN 35 to BUF 2. R.Davis to BUF 27 for 25 yards (D.Key).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729822403",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) J.Allen pass incomplete short right to J.Cook.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729822426",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Allen pass short left to D.Kincaid pushed ob at DEN 48 for 25 yards (A.Singleton).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729822456",
+            "type": { "text": "Rush" },
+            "text": "J.Cook right guard to DEN 46 for 2 yards (A.Singleton).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729822483",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Allen pass short left to D.Kincaid to DEN 39 for 7 yards (A.Singleton; R.Moss).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729822508",
+            "type": { "text": "Rush" },
+            "text": "(No Huddle) J.Allen up the middle to DEN 37 for 2 yards (Z.Allen).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729822530",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Allen pass short middle to D.Knox to DEN 30 for 7 yards (T.Hufanga).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729822555",
+            "type": { "text": "Rush" },
+            "text": "J.Cook up the middle to DEN 19 for 11 yards (P.Locke).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729822577",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Allen pass short middle to K.Shakir to DEN 10 for 9 yards (R.Moss) [A.Singleton].",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729822602",
+            "type": { "text": "Passing Touchdown" },
+            "text": "J.Allen pass short left to K.Coleman for 10 yards, TOUCHDOWN. M.Prater extra point is GOOD, Center-R.Ferguson, Holder-M.Wishnowsky.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729822636",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 06:49.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729822643",
+            "type": { "text": "Kickoff" },
+            "text": "M.Wishnowsky kicks 65 yards from BUF 35 to end zone, Touchback to the DEN 35.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729822667",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) B.Nix pass incomplete short left to A.Trautman.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729822690",
+            "type": { "text": "Rush" },
+            "text": "(No Huddle, Shotgun) R.Harvey left tackle to DEN 40 for 5 yards (M.Milano; J.Bosa).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729822712",
+            "type": { "text": "Pass Interception Return" },
+            "text": "(No Huddle, Shotgun) B.Nix pass short middle intended for E.Engram INTERCEPTED by D.Walker at DEN 39. D.Walker to DEN 36 for 3 yards (G.Bolles).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729822739",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Allen pass short left to K.Shakir to DEN 40 for -4 yards (J.McMillian).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729822764",
+            "type": { "text": "Pass Interception Return" },
+            "text": "(Shotgun) J.Allen pass deep middle intended for C.Samuel INTERCEPTED by P.Locke at DEN 8. P.Locke to DEN 38 for 30 yards (D.Kincaid).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729822778",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 04:55.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729822791",
+            "type": { "text": "Pass Incompletion" },
+            "text": "B.Nix pass incomplete short right.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729822821",
+            "type": { "text": "Rush" },
+            "text": "(No Huddle, Shotgun) J.McLaughlin left guard to DEN 40 for 2 yards (D.Walker; C.Bishop).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729822843",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) B.Nix pass short left to M.Mims to BUF 41 for 19 yards (C.Lewis).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729822868",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) F.Crum reported in as eligible.  R.Harvey up the middle to BUF 40 for 1 yard (G.Rousseau; D.Jones).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729822892",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) B.Nix pass incomplete short right to A.Prentice.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729822915",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(No Huddle, Shotgun) B.Nix pass incomplete short left to T.Badie [G.Rousseau].",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729822938",
+            "type": { "text": "Punt" },
+            "text": "J.Crawshaw punts 25 yards to BUF 15, Center-M.Fraboni, fair catch by K.Shakir.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729822948",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 02:30.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729822958",
+            "type": { "text": "Rush" },
+            "text": "J.Cook right end to BUF 22 for 7 yards (P.Surtain).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729822992",
+            "type": { "text": "Rush" },
+            "text": "J.Cook left guard to BUF 24 for 2 yards (Z.Allen).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729823014",
+            "type": { "text": "Rush" },
+            "text": "A.Anderson reported in as eligible.  J.Allen left guard to BUF 26 for 2 yards (D.Tillman).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729823038",
+            "type": { "text": "Rush" },
+            "text": "J.Cook right end pushed ob at BUF 38 for 12 yards (R.Moss).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729823065",
+            "type": { "text": "End Period" },
+            "text": "END QUARTER 3",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729823085",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) J.Allen pass incomplete short right to D.Knox.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729823108",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Allen pass short middle to K.Shakir to DEN 16 for 46 yards (A.Singleton).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729823133",
+            "type": { "text": "Rush" },
+            "text": "J.Cook right tackle to DEN 14 for 2 yards (A.Singleton).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729823155",
+            "type": { "text": "Pass Incompletion" },
+            "text": "J.Allen pass incomplete short right to C.Samuel.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729823178",
+            "type": { "text": "Passing Touchdown" },
+            "text": "(Shotgun) J.Allen pass short left to D.Kincaid for 14 yards, TOUCHDOWN. M.Prater extra point is GOOD, Center-R.Ferguson, Holder-M.Wishnowsky.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729823212",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 13:24.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729823219",
+            "type": { "text": "Kickoff" },
+            "text": "M.Wishnowsky kicks 60 yards from BUF 35 to DEN 5. T.Badie to DEN 32 for 27 yards (D.Savage).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729823249",
+            "type": { "text": "Pass Reception" },
+            "text": "B.Nix pass short right to R.Harvey to DEN 32 for no gain (M.Milano).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729823274",
+            "type": { "text": "Rush" },
+            "text": "(No Huddle, Shotgun) R.Harvey right end to DEN 35 for 3 yards (J.Bosa).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729823296",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) B.Nix pass incomplete short left to L.Humphrey (A.Epenesa).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729823319",
+            "type": { "text": "Punt" },
+            "text": "J.Crawshaw punts 65 yards to end zone, Center-M.Fraboni, Touchback.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729823328",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 11:50.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729823337",
+            "type": { "text": "Pass Reception" },
+            "text": "J.Allen pass short left to D.Kincaid pushed ob at BUF 35 for 15 yards (T.Hufanga).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729823374",
+            "type": { "text": "Rush" },
+            "text": "J.Cook right tackle to BUF 47 for 12 yards (T.Hufanga; D.Tillman).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729823396",
+            "type": { "text": "Pass Reception" },
+            "text": "J.Allen pass short right to D.Knox pushed ob at DEN 40 for 13 yards (J.Elliss).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729823426",
+            "type": { "text": "Rush" },
+            "text": "J.Cook right tackle to DEN 34 for 6 yards (E.Uwazurike).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729823448",
+            "type": { "text": "Rush" },
+            "text": "J.Cook left end to DEN 31 for 3 yards (D.Tillman).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729823470",
+            "type": { "text": "Rush" },
+            "text": "A.Anderson reported in as eligible.  J.Allen right guard to DEN 28 for 3 yards (A.Singleton).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729823494",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Allen pass short right to R.Davis to DEN 28 for no gain (J.Strnad).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729823519",
+            "type": { "text": "Fumble Recovery (Own)" },
+            "text": "(Shotgun) J.Allen left end to DEN 23 for 5 yards (A.Singleton, P.Locke). FUMBLES (P.Locke), recovered by BUF-S.Brown at DEN 23. DEN-P.Locke was injured during the play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729823540",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 06:39.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729823560",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) J.Allen right end to DEN 14 for 9 yards (D.Key).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729823589",
+            "type": { "text": "Rush" },
+            "text": "J.Cook right end to DEN 14 for no gain (E.Uwazurike; D.Greenlaw). ** Injury Update: DEN-P.Locke has returned to the game.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729823611",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Allen pass short left to C.Samuel to DEN 12 for 2 yards (T.Hufanga).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729823639",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) J.Allen pass incomplete short right to K.Shakir.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729823674",
+            "type": { "text": "Field Goal Good" },
+            "text": "M.Prater 31 yard field goal is GOOD, Center-R.Ferguson, Holder-M.Wishnowsky.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "2" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729823694",
+            "type": { "text": "Kickoff" },
+            "text": "M.Wishnowsky kicks 60 yards from BUF 35 to DEN 5. J.McLaughlin to DEN 27 for 22 yards (J.Solomon; J.Andreessen).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729823717",
+            "type": { "text": "Pass Reception" },
+            "text": "B.Nix pass short right to C.Sutton ran ob at DEN 38 for 11 yards.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729823747",
+            "type": { "text": "Pass Reception" },
+            "text": "(No Huddle, Shotgun) B.Nix pass short right to N.Adkins to DEN 39 for 1 yard (C.Benford).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729823772",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) B.Nix pass short left to M.Mims to DEN 37 for -2 yards (C.Bishop).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729823797",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) B.Nix pass deep right to C.Sutton to BUF 38 for 25 yards (C.Bishop). DEN-A.Forsyth was injured during the play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729823810",
+            "type": { "text": "Official Timeout" },
+            "text": "Two-Minute Warning",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729823822",
+            "type": { "text": "Pass Incompletion" },
+            "text": "F.Crum reported in as eligible.  B.Nix pass incomplete short right.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729823878",
+            "type": { "text": "Pass Reception" },
+            "text": "(No Huddle, Shotgun) B.Nix pass short right to C.Sutton to BUF 32 for 6 yards (C.Lewis).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729823903",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) B.Nix right tackle to BUF 26 for 6 yards (C.Bishop). BUF-T.White was injured during the play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729823914",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #1 by DEN at 01:01.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729823925",
+            "type": { "text": "Passing Touchdown" },
+            "text": "(Shotgun) B.Nix pass deep left to M.Mims for 26 yards, TOUCHDOWN. DEN-M.Mims was injured during the play. W.Lutz extra point is GOOD, Center-M.Fraboni, Holder-J.Crawshaw.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729823947",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #2 by DEN at 00:55.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729823991",
+            "type": { "text": "Kickoff" },
+            "text": "W.Lutz kicks 60 yards from DEN 35 to BUF 5. M.Hardman to BUF 27 for 22 yards (J.Elliss).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729824014",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Allen pass short left to D.Kincaid to BUF 36 for 9 yards (P.Surtain) [J.Cooper].",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729824027",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #1 by BUF at 00:41.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729824039",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) J.Allen pass incomplete deep right to B.Cooks.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729824069",
+            "type": { "text": "Penalty" },
+            "text": "(Shotgun) PENALTY on DEN-J.Cooper, Neutral Zone Infraction, 5 yards, enforced at BUF 36 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729824093",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) J.Allen pass incomplete deep left to K.Coleman [Z.Allen].",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729824116",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Allen pass short left to K.Shakir to BUF 44 for 3 yards. Lateral to R.Davis to DEN 32 for 24 yards (A.Singleton; T.Hufanga).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729824134",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #2 by BUF at 00:24.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729824151",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) J.Allen pass incomplete deep right to B.Cooks.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729824181",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) J.Allen pass incomplete short middle to K.Shakir.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729824204",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) J.Allen pass incomplete deep left to D.Knox.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729824216",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #2 by DEN at 00:10.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729824227",
+            "type": { "text": "Field Goal Good" },
+            "text": "M.Prater 50 yard field goal is GOOD, Center-R.Ferguson, Holder-M.Wishnowsky.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "2" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729824254",
+            "type": { "text": "Kickoff" },
+            "text": "M.Wishnowsky kicks 59 yards from BUF 35 to DEN 6. J.McLaughlin to DEN 16 for 10 yards.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729824277",
+            "type": { "text": "Rush" },
+            "text": "B.Nix kneels to DEN 15 for -1 yards. ** Injury Update: BUF-T.White has returned to the game.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729824299",
+            "type": { "text": "End of Regulation" },
+            "text": "END QUARTER 4",
+            "scoringPlay": false
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729824322",
+            "type": { "text": "Kickoff" },
+            "text": "M.Wishnowsky kicks 62 yards from BUF 35 to DEN 3. M.Mims pushed ob at DEN 28 for 25 yards (D.Savage). ** Injury Update: DEN-M.Mims has returned to the game.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729824350",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) B.Nix pass short left to C.Sutton to DEN 39 for 11 yards (C.Bishop).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729824378",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) B.Nix pass incomplete short left to C.Sutton.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729824413",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) B.Nix pass short right to M.Mims to DEN 38 for -1 yards (Ta.Johnson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729824438",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) B.Nix pass incomplete deep middle to C.Sutton.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729824473",
+            "type": { "text": "Punt" },
+            "text": "J.Crawshaw punts 55 yards to BUF 7, Center-M.Fraboni, out of bounds.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729824492",
+            "type": { "text": "Rush" },
+            "text": "J.Cook right guard to BUF 8 for 1 yard (P.Locke).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729824514",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) J.Allen scrambles left tackle to BUF 12 for 4 yards (J.Cooper).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729824536",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Allen pass short left to D.Kincaid to BUF 25 for 13 yards (T.Hufanga).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729824561",
+            "type": { "text": "Rush" },
+            "text": "J.Cook left tackle to BUF 28 for 3 yards (D.Greenlaw; Z.Allen).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729824572",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #1 by DEN at 10:12.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729824583",
+            "type": { "text": "Pass Reception" },
+            "text": "J.Allen pass short right to J.Cook to BUF 28 for no gain (A.Singleton) [M.Roach].",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729824615",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Allen pass short right to R.Davis pushed ob at BUF 37 for 9 yards (A.Singleton).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729824645",
+            "type": { "text": "Rush" },
+            "text": "J.Cook right tackle to BUF 36 for -1 yards (M.Roach).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729824667",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) J.Allen pass incomplete deep left to M.Hardman.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729824690",
+            "type": { "text": "Pass Interception Return" },
+            "text": "(Shotgun) J.Allen pass deep right intended for B.Cooks INTERCEPTED by J.McMillian at DEN 20. J.McMillian to DEN 20 for no gain (B.Cooks).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729824704",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #1 by BUF at 07:46.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729824717",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) B.Nix pass short right to M.Mims to DEN 23 for 3 yards (S.Thompson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729824749",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) B.Nix pass short right to R.Harvey pushed ob at DEN 47 for 24 yards (C.Lewis).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729824779",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) B.Nix pass incomplete deep left to L.Humphrey (C.Benford).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729824791",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #2 by BUF at 06:09.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729824802",
+            "type": { "text": "Penalty" },
+            "text": "(Shotgun) B.Nix pass incomplete deep left to C.Sutton.PENALTY on BUF-Ta.Johnson, Defensive Pass Interference, 17 yards, enforced at DEN 47 - No Play.Penalty on BUF-J.Bosa, Roughing the Passer, declined.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729824843",
+            "type": { "text": "Rush" },
+            "text": " (Shotgun) B.Nix left end to BUF 38 for -2 yards (C.Bishop).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729824865",
+            "type": { "text": "Penalty" },
+            "text": "(Shotgun) B.Nix pass incomplete deep left to M.Mims.PENALTY on BUF-T.White, Defensive Pass Interference, 30 yards, enforced at BUF 38 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729824899",
+            "type": { "text": "Rush" },
+            "text": "B.Nix kneels to BUF 11 for -3 yards.PENALTY on BUF-T.White, Unsportsmanlike Conduct, 6 yards, enforced at BUF 11.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729824910",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #3 by BUF at 04:46.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729824921",
+            "type": { "text": "Field Goal Good" },
+            "text": " W.Lutz 23 yard field goal is GOOD, Center-M.Fraboni, Holder-J.Crawshaw.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "7" } }
+          },
+          {
+            "id": "4017729824986",
+            "type": { "text": "End of Game" },
+            "text": "END GAME",
+            "scoringPlay": false
+          }
+        ]
+      }
+    ]
+  }
+}

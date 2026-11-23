@@ -36,9 +36,19 @@ import { noopCognito, type CognitoAdmin } from "../cognito";
 import type { Config } from "../config";
 import { createDraftService } from "../draft/service";
 import { registerDraftRoutes } from "../draft/routes";
-import { recomputeAfterRulesetChange, type RulesetChangeHook } from "../scoring/hooks";
+import {
+  createScoringHooks,
+  type RostersChangedHook,
+  type RulesetChangeHook,
+} from "../scoring/hooks";
+import { registerIngestRoutes } from "../scoring/ingest-routes";
 import { registerScoringRoutes } from "../scoring/routes";
-import { createRealPoolSource, type PoolSource } from "../providers";
+import {
+  createEspnLiveSource,
+  createRealPoolSource,
+  type LiveSource,
+  type PoolSource,
+} from "../providers";
 import { noopPublisher, type Publisher } from "../realtime/types";
 import { logError } from "../redact";
 import { authMiddleware, isPublicRoute, type AppEnv, type TokenVerifier } from "./auth";
@@ -59,8 +69,12 @@ export interface AppDeps {
   publisher?: Publisher;
   /** Player pool source; defaults to ESPN standings + Sleeper players. */
   poolSource?: PoolSource;
-  /** Runs after a scoring-rules change that alters points (recompute hook; a no-op until Task 9/10). */
+  /** ESPN live stats source; defaults to the real one. Tests pass recorded fixtures. */
+  liveSource?: LiveSource;
+  /** Runs after a scoring-rules change that alters points; defaults to a recompute (doc 10 §4.4). */
   onRulesetChange?: RulesetChangeHook;
+  /** Runs after the draft completes / a redraft finalizes; defaults to a recompute. */
+  onRostersChanged?: RostersChangedHook;
 }
 
 export function createApp({
@@ -71,10 +85,13 @@ export function createApp({
   now,
   publisher = noopPublisher,
   poolSource = createRealPoolSource(),
-  onRulesetChange = recomputeAfterRulesetChange,
+  liveSource = createEspnLiveSource(),
+  onRulesetChange,
+  onRostersChanged,
 }: AppDeps) {
   const app = new Hono<AppEnv>().basePath("/api");
   const clock = now ?? (() => new Date());
+  const scoringHooks = createScoringHooks({ db, publisher, now: clock });
 
   app.onError((err, c) => {
     if (err instanceof HTTPException) {
@@ -398,12 +415,23 @@ export function createApp({
   registerDraftRoutes(app, {
     db,
     config,
-    service: createDraftService({ db, publisher, now: clock }),
+    service: createDraftService({
+      db,
+      publisher,
+      now: clock,
+      onRostersChanged: onRostersChanged ?? scoringHooks.onRostersChanged,
+    }),
     poolSource,
     now: clock,
   });
 
-  registerScoringRoutes(app, { db, now: clock, onRulesetChange });
+  registerScoringRoutes(app, {
+    db,
+    now: clock,
+    onRulesetChange: onRulesetChange ?? scoringHooks.onRulesetChange,
+  });
+
+  registerIngestRoutes(app, { db, now: clock, source: liveSource, publisher });
 
   return app;
 }

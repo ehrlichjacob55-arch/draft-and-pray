@@ -11,8 +11,10 @@ import type { StatLine } from "./stat-line";
  *   - DST lines: points allowed = the opponent's final score (every point in this game was an
  *     offensive TD, FG or XP, so nothing defensive/return is counted against anyone); sacks =
  *     opponent QB "SACKS" (1-9 / 2-14 -> 1 and 2 sacks); INTs = `interceptions` categories;
- *     fumble recoveries = `fumbles.REC`. No safeties or blocked kicks in the scoring plays or
- *     box score, so those are 0 (not independently verified).
+ *     fumble recoveries = the opponent's `fumbles.LOST` (a muffed punt lost counts). The only
+ *     blocked kick is CAR's block of LAR's punt (a blocked punt is a "blocked kick", doc 08);
+ *     there are no safeties. Task 9's ESPN parser reproduces every line below from the recorded
+ *     summary (apps/api espn-boxscore.test.ts).
  *
  * `placeholder` / `league` are the engine's expected points under rulesets/placeholder.v1.json and
  * rulesets/league.v1.json, each with the hand calculation (placeholder: whole units, so 304 yds / 25 = 12; league: fractional yardage).
@@ -109,13 +111,16 @@ export const GOLDEN_PLAYERS: GoldenPlayer[] = [
     league: 4,
   },
   {
-    // CAR defense vs LAR: allowed 34, 1 sack (Gipson), 1 INT (Jackson), 0 fumble recoveries.
+    // CAR defense vs LAR: allowed 34, 1 sack (Gipson), 1 INT (Jackson), 0 fumble recoveries,
+    // 1 blocked punt (I. Simmons blocked E. Evans's punt; a blocked punt counts as a blocked kick).
     name: "CAR DST",
     position: "DST",
-    stats: { counts: { def_pts_allowed: 34, def_sack: 1, def_int: 1, def_fum_rec: 0 } },
-    // placeholder: 28+ band -4; 1 sack 1; 1 INT 2 -> -1
+    stats: {
+      counts: { def_pts_allowed: 34, def_sack: 1, def_int: 1, def_fum_rec: 0, def_block: 1 },
+    },
+    // placeholder: 28+ band -4; 1 sack 1; 1 INT 2; blocked kicks unscored -> -1
     placeholder: -1,
-    // league: 28-34 band 0 (34 is the top of that band); 1 + 1 = 2
-    league: 2,
+    // league: 28-34 band 0 (34 is the top of that band); 1 sack + 1 INT + 1 blocked kick = 3
+    league: 3,
   },
 ];

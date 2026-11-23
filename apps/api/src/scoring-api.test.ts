@@ -1,4 +1,4 @@
-import { beforeAll, describe, expect, it, vi } from "vitest";
+import { beforeAll, describe, expect, it } from "vitest";
 import { apiError, scoringResponse, type ScoringResponse } from "@dnp/contract";
 import { bootstrapLeague, localSub, queryPrefix, seasonPk, type Dynamo } from "@dnp/db";
 import { createTestDynamo } from "@dnp/db/testing";
@@ -328,16 +328,5 @@ describe("validation", () => {
     expect((await s.call(s.commish, "PUT", `${s.base}/versions/1`, { rounding: 2 })).status).toBe(
       400,
     );
-  });
-});
-
-describe("recompute hook default", () => {
-  it("the default hook is a no-op that resolves", async () => {
-    const { recomputeAfterRulesetChange } = await import("./scoring/hooks");
-    const spy = vi.fn();
-    await expect(
-      recomputeAfterRulesetChange({ seasonId: "s", version: 1, reason: "seed" }),
-    ).resolves.toBeUndefined();
-    expect(spy).not.toHaveBeenCalled();
   });
 });

@@ -2,7 +2,9 @@ import { serve } from "@hono/node-server";
 import { createDynamo, dynamoConfigFromEnv, ensureTable } from "@dnp/db";
 import { loadConfig } from "./config";
 import { createApp } from "./http/app";
+import { createEspnLiveSource } from "./providers";
 import { startLocalRealtime } from "./realtime/local-hub";
+import { runDueIngests } from "./scoring/job";
 
 const config = loadConfig();
 const db = createDynamo(
@@ -43,3 +45,20 @@ if (await ensureTableWithRetry()) {
       ": run `pnpm ddb:local` (needs Java). /api/health will report db: error until it is up.",
   );
 }
+
+/**
+ * Mirrors the AWS scheduler (rate(2 minutes) -> job-ingest) so `pnpm dev` behaves like AWS: any
+ * season with live stats turned on is polled when its next check is due.
+ */
+const INGEST_TICK_MS = 2 * 60_000;
+const liveSource = createEspnLiveSource();
+let ingestRunning = false;
+setInterval(() => {
+  if (ingestRunning) return;
+  ingestRunning = true;
+  runDueIngests({ db, now: () => new Date(), source: liveSource, publisher: realtime })
+    .catch((err: unknown) => console.error("Scheduled ingest failed", err))
+    .finally(() => {
+      ingestRunning = false;
+    });
+}, INGEST_TICK_MS).unref();

@@ -19,6 +19,7 @@ import {
   seasonMetaKey,
   seasonPk,
   seasonPointerKey,
+  seedBuiltinRuleset,
   syntheticPool,
   type Dynamo,
 } from "@dnp/db";
@@ -56,7 +57,13 @@ interface Ctx {
   snap: (as: string) => Promise<DraftSnapshot>;
 }
 
-async function setupLeague(opts: { pool?: boolean; order?: boolean } = {}): Promise<Ctx> {
+async function setupLeague(
+  opts: {
+    pool?: boolean;
+    order?: boolean;
+    onRostersChanged?: (seasonId: string) => Promise<void>;
+  } = {},
+): Promise<Ctx> {
   n++;
   const commish = `boss${n}@local.test`;
   const r = await bootstrapLeague(db, {
@@ -70,7 +77,7 @@ async function setupLeague(opts: { pool?: boolean; order?: boolean } = {}): Prom
   const pub: Publisher = {
     async publish(_c, e) {
       if (publisher.failing) throw new Error("socket down");
-      events.push(e);
+      if (e.type === "draft_changed") events.push(e);
     },
   };
   const app = createApp({
@@ -78,6 +85,7 @@ async function setupLeague(opts: { pool?: boolean; order?: boolean } = {}): Prom
     db,
     publisher: pub,
     now: () => new Date(nowMs),
+    ...(opts.onRostersChanged ? { onRostersChanged: opts.onRostersChanged } : {}),
   });
   const call: Ctx["call"] = async (as, method, path, body) => {
     const res = await app.request(`/api${path}`, {
@@ -1297,5 +1305,58 @@ describe("redraft", () => {
     const r = await reset(c);
     expect(r.json).toMatchObject({ status: "scheduled", picksCleared: 1 });
     expect((await c.snap(c.commish)).picks).toHaveLength(0);
+  });
+});
+
+describe("scores follow the rosters (doc 10 §4.4)", () => {
+  const completeByAutoDraft = async (c: Ctx) => {
+    await c.call(c.commish, "POST", `${base(c)}/start`);
+    for (const e of c.members.slice(1))
+      await c.call(e, "PUT", `${base(c)}/auto-draft`, { enabled: true });
+    return c.call(c.members[0]!, "PUT", `${base(c)}/auto-draft`, { enabled: true });
+  };
+
+  it("recomputes once when the 90th pick completes the draft, and again after undo and redraft", async () => {
+    const calls: string[] = [];
+    const c = await setupLeague({
+      onRostersChanged: async (id) => {
+        calls.push(id);
+      },
+    });
+    expect((await completeByAutoDraft(c)).json.status).toBe("complete");
+    expect(calls).toEqual([c.seasonId]);
+    expect((await c.call(c.commish, "POST", `${base(c)}/undo`)).status).toBe(200);
+    expect(calls).toHaveLength(2);
+    // undo while not complete changes no finished roster
+    expect((await c.call(c.commish, "POST", `${base(c)}/undo`)).status).toBe(200);
+    expect(calls).toHaveLength(2);
+    expect(
+      (await c.call(c.commish, "POST", `${base(c)}/reset`, { confirm: "REDRAFT" })).status,
+    ).toBe(200);
+    expect(calls).toHaveLength(3);
+  });
+
+  it("a failing recompute never fails the pick or the reset", async () => {
+    const c = await setupLeague({
+      onRostersChanged: async () => {
+        throw new Error("recompute exploded");
+      },
+    });
+    const r = await completeByAutoDraft(c);
+    expect(r.status).toBe(200);
+    expect(r.json.status).toBe("complete");
+    expect(
+      (await c.call(c.commish, "POST", `${base(c)}/reset`, { confirm: "REDRAFT" })).status,
+    ).toBe(200);
+  });
+
+  it("with the real hook, finishing the draft writes a zero TEAMSCORE for every team and round", async () => {
+    const c = await setupLeague();
+    await seedBuiltinRuleset(db, { seasonId: c.seasonId, name: "league" });
+    expect((await completeByAutoDraft(c)).json.status).toBe("complete");
+    const rows = await queryPrefix(db, seasonPk(c.seasonId), "TEAMSCORE#");
+    expect(rows).toHaveLength(9 * 4);
+    expect(rows.every((r) => r.points === 0 && r.provisional === true)).toBe(true);
+    expect(c.events.some((e) => e.type === "draft_changed")).toBe(true);
   });
 });

@@ -1,0 +1,1984 @@
+{
+  "header": {
+    "competitions": [
+      {
+        "date": "2026-01-25T23:30Z",
+        "status": { "type": { "name": "STATUS_FINAL", "completed": true } },
+        "competitors": [
+          {
+            "homeAway": "home",
+            "score": "31",
+            "winner": true,
+            "team": { "id": "26", "abbreviation": "SEA" }
+          },
+          {
+            "homeAway": "away",
+            "score": "27",
+            "winner": false,
+            "team": { "id": "14", "abbreviation": "LAR" }
+          }
+        ]
+      }
+    ]
+  },
+  "boxscore": {
+    "players": [
+      {
+        "team": { "id": "14", "abbreviation": "LAR" },
+        "statistics": [
+          {
+            "name": "passing",
+            "keys": [
+              "completions/passingAttempts",
+              "passingYards",
+              "yardsPerPassAttempt",
+              "passingTouchdowns",
+              "interceptions",
+              "sacks-sackYardsLost",
+              "adjQBR",
+              "QBRating"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "12483",
+                  "displayName": "Matthew Stafford",
+                  "firstName": "Matthew",
+                  "lastName": "Stafford"
+                },
+                "stats": ["22/35", "374", "10.7", "3", "0", "1-9", "82.8", "127.6"]
+              }
+            ]
+          },
+          {
+            "name": "rushing",
+            "keys": [
+              "rushingAttempts",
+              "rushingYards",
+              "yardsPerRushAttempt",
+              "rushingTouchdowns",
+              "longRushing"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4429096",
+                  "displayName": "Blake Corum",
+                  "firstName": "Blake",
+                  "lastName": "Corum"
+                },
+                "stats": ["9", "55", "6.1", "0", "19"]
+              },
+              {
+                "athlete": {
+                  "id": "4430737",
+                  "displayName": "Kyren Williams",
+                  "firstName": "Kyren",
+                  "lastName": "Williams"
+                },
+                "stats": ["10", "39", "3.9", "0", "11"]
+              },
+              {
+                "athlete": {
+                  "id": "12483",
+                  "displayName": "Matthew Stafford",
+                  "firstName": "Matthew",
+                  "lastName": "Stafford"
+                },
+                "stats": ["2", "16", "8.0", "0", "13"]
+              },
+              {
+                "athlete": {
+                  "id": "4426515",
+                  "displayName": "Puka Nacua",
+                  "firstName": "Puka",
+                  "lastName": "Nacua"
+                },
+                "stats": ["1", "4", "4.0", "0", "4"]
+              }
+            ]
+          },
+          {
+            "name": "receiving",
+            "keys": [
+              "receptions",
+              "receivingYards",
+              "yardsPerReception",
+              "receivingTouchdowns",
+              "longReception",
+              "receivingTargets"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4426515",
+                  "displayName": "Puka Nacua",
+                  "firstName": "Puka",
+                  "lastName": "Nacua"
+                },
+                "stats": ["9", "165", "18.3", "1", "44", "14"]
+              },
+              {
+                "athlete": {
+                  "id": "16800",
+                  "displayName": "Davante Adams",
+                  "firstName": "Davante",
+                  "lastName": "Adams"
+                },
+                "stats": ["4", "89", "22.3", "1", "35", "6"]
+              },
+              {
+                "athlete": {
+                  "id": "4242557",
+                  "displayName": "Colby Parkinson",
+                  "firstName": "Colby",
+                  "lastName": "Parkinson"
+                },
+                "stats": ["3", "62", "20.7", "0", "40", "4"]
+              },
+              {
+                "athlete": {
+                  "id": "4429096",
+                  "displayName": "Blake Corum",
+                  "firstName": "Blake",
+                  "lastName": "Corum"
+                },
+                "stats": ["3", "24", "8.0", "0", "15", "3"]
+              },
+              {
+                "athlete": {
+                  "id": "4430737",
+                  "displayName": "Kyren Williams",
+                  "firstName": "Kyren",
+                  "lastName": "Williams"
+                },
+                "stats": ["2", "22", "11.0", "1", "13", "2"]
+              },
+              {
+                "athlete": {
+                  "id": "2573401",
+                  "displayName": "Tyler Higbee",
+                  "firstName": "Tyler",
+                  "lastName": "Higbee"
+                },
+                "stats": ["1", "12", "12.0", "0", "12", "1"]
+              },
+              {
+                "athlete": {
+                  "id": "4243003",
+                  "displayName": "Ronnie Rivers",
+                  "firstName": "Ronnie",
+                  "lastName": "Rivers"
+                },
+                "stats": ["0", "0", "0.0", "0", "0", "1"]
+              },
+              {
+                "athlete": {
+                  "id": "4570037",
+                  "displayName": "Terrance Ferguson",
+                  "firstName": "Terrance",
+                  "lastName": "Ferguson"
+                },
+                "stats": ["0", "0", "0.0", "0", "0", "1"]
+              },
+              {
+                "athlete": {
+                  "id": "4710855",
+                  "displayName": "Konata Mumpfield",
+                  "firstName": "Konata",
+                  "lastName": "Mumpfield"
+                },
+                "stats": ["0", "0", "0.0", "0", "0", "2"]
+              }
+            ]
+          },
+          {
+            "name": "fumbles",
+            "keys": ["fumbles", "fumblesLost", "fumblesRecovered"],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4386544",
+                  "displayName": "Xavier Smith",
+                  "firstName": "Xavier",
+                  "lastName": "Smith"
+                },
+                "stats": ["2", "1", "1"]
+              },
+              {
+                "athlete": {
+                  "id": "12483",
+                  "displayName": "Matthew Stafford",
+                  "firstName": "Matthew",
+                  "lastName": "Stafford"
+                },
+                "stats": ["1", "0", "0"]
+              },
+              {
+                "athlete": {
+                  "id": "4242557",
+                  "displayName": "Colby Parkinson",
+                  "firstName": "Colby",
+                  "lastName": "Parkinson"
+                },
+                "stats": ["1", "0", "0"]
+              },
+              {
+                "athlete": {
+                  "id": "3917599",
+                  "displayName": "Kevin Dotson",
+                  "firstName": "Kevin",
+                  "lastName": "Dotson"
+                },
+                "stats": ["0", "0", "1"]
+              }
+            ]
+          },
+          {
+            "name": "kickReturns",
+            "keys": [
+              "kickReturns",
+              "kickReturnYards",
+              "yardsPerKickReturn",
+              "longKickReturn",
+              "kickReturnTouchdowns"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4569382",
+                  "displayName": "Jordan Whittington",
+                  "firstName": "Jordan",
+                  "lastName": "Whittington"
+                },
+                "stats": ["5", "116", "23.2", "25", "0"]
+              },
+              {
+                "athlete": {
+                  "id": "4243003",
+                  "displayName": "Ronnie Rivers",
+                  "firstName": "Ronnie",
+                  "lastName": "Rivers"
+                },
+                "stats": ["1", "29", "29.0", "29", "0"]
+              }
+            ]
+          },
+          {
+            "name": "puntReturns",
+            "keys": [
+              "puntReturns",
+              "puntReturnYards",
+              "yardsPerPuntReturn",
+              "longPuntReturn",
+              "puntReturnTouchdowns"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4386544",
+                  "displayName": "Xavier Smith",
+                  "firstName": "Xavier",
+                  "lastName": "Smith"
+                },
+                "stats": ["2", "0", "0.0", "0", "0"]
+              }
+            ]
+          },
+          {
+            "name": "kicking",
+            "keys": [
+              "fieldGoalsMade/fieldGoalAttempts",
+              "fieldGoalPct",
+              "longFieldGoalMade",
+              "extraPointsMade/extraPointAttempts",
+              "totalKickingPoints"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4574716",
+                  "displayName": "Harrison Mevis",
+                  "firstName": "Harrison",
+                  "lastName": "Mevis"
+                },
+                "stats": ["2/2", "100.0", "50", "3/3", "9"]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "team": { "id": "26", "abbreviation": "SEA" },
+        "statistics": [
+          {
+            "name": "passing",
+            "keys": [
+              "completions/passingAttempts",
+              "passingYards",
+              "yardsPerPassAttempt",
+              "passingTouchdowns",
+              "interceptions",
+              "sacks-sackYardsLost",
+              "adjQBR",
+              "QBRating"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "3912547",
+                  "displayName": "Sam Darnold",
+                  "firstName": "Sam",
+                  "lastName": "Darnold"
+                },
+                "stats": ["25/36", "346", "9.6", "3", "0", "3-25", "82.8", "127.8"]
+              }
+            ]
+          },
+          {
+            "name": "rushing",
+            "keys": [
+              "rushingAttempts",
+              "rushingYards",
+              "yardsPerRushAttempt",
+              "rushingTouchdowns",
+              "longRushing"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4567048",
+                  "displayName": "Kenneth Walker III",
+                  "firstName": "Kenneth",
+                  "lastName": "Walker III"
+                },
+                "stats": ["19", "62", "3.3", "1", "11"]
+              },
+              {
+                "athlete": {
+                  "id": "3912547",
+                  "displayName": "Sam Darnold",
+                  "firstName": "Sam",
+                  "lastName": "Darnold"
+                },
+                "stats": ["3", "9", "3.0", "0", "14"]
+              },
+              {
+                "athlete": {
+                  "id": "4429835",
+                  "displayName": "George Holani",
+                  "firstName": "George",
+                  "lastName": "Holani"
+                },
+                "stats": ["3", "4", "1.3", "0", "3"]
+              },
+              {
+                "athlete": {
+                  "id": "4032473",
+                  "displayName": "Rashid Shaheed",
+                  "firstName": "Rashid",
+                  "lastName": "Shaheed"
+                },
+                "stats": ["1", "0", "0.0", "0", "0"]
+              }
+            ]
+          },
+          {
+            "name": "receiving",
+            "keys": [
+              "receptions",
+              "receivingYards",
+              "yardsPerReception",
+              "receivingTouchdowns",
+              "longReception",
+              "receivingTargets"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4430878",
+                  "displayName": "Jaxon Smith-Njigba",
+                  "firstName": "Jaxon",
+                  "lastName": "Smith-Njigba"
+                },
+                "stats": ["10", "153", "15.3", "1", "42", "12"]
+              },
+              {
+                "athlete": {
+                  "id": "4032473",
+                  "displayName": "Rashid Shaheed",
+                  "firstName": "Rashid",
+                  "lastName": "Shaheed"
+                },
+                "stats": ["1", "51", "51.0", "0", "51", "3"]
+              },
+              {
+                "athlete": {
+                  "id": "4567048",
+                  "displayName": "Kenneth Walker III",
+                  "firstName": "Kenneth",
+                  "lastName": "Walker III"
+                },
+                "stats": ["4", "49", "12.3", "0", "15", "4"]
+              },
+              {
+                "athlete": {
+                  "id": "2977187",
+                  "displayName": "Cooper Kupp",
+                  "firstName": "Cooper",
+                  "lastName": "Kupp"
+                },
+                "stats": ["4", "36", "9.0", "1", "13", "6"]
+              },
+              {
+                "athlete": {
+                  "id": "4429835",
+                  "displayName": "George Holani",
+                  "firstName": "George",
+                  "lastName": "Holani"
+                },
+                "stats": ["3", "27", "9.0", "0", "13", "4"]
+              },
+              {
+                "athlete": {
+                  "id": "4360405",
+                  "displayName": "Jake Bobo",
+                  "firstName": "Jake",
+                  "lastName": "Bobo"
+                },
+                "stats": ["1", "17", "17.0", "1", "17", "2"]
+              },
+              {
+                "athlete": {
+                  "id": "4576297",
+                  "displayName": "AJ Barner",
+                  "firstName": "AJ",
+                  "lastName": "Barner"
+                },
+                "stats": ["2", "13", "6.5", "0", "7", "3"]
+              }
+            ]
+          },
+          {
+            "name": "fumbles",
+            "keys": ["fumbles", "fumblesLost", "fumblesRecovered"],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "3912547",
+                  "displayName": "Sam Darnold",
+                  "firstName": "Sam",
+                  "lastName": "Darnold"
+                },
+                "stats": ["1", "0", "1"]
+              },
+              {
+                "athlete": {
+                  "id": "4576297",
+                  "displayName": "AJ Barner",
+                  "firstName": "AJ",
+                  "lastName": "Barner"
+                },
+                "stats": ["1", "0", "0"]
+              },
+              {
+                "athlete": {
+                  "id": "4401805",
+                  "displayName": "Dareke Young",
+                  "firstName": "Dareke",
+                  "lastName": "Young"
+                },
+                "stats": ["0", "0", "1"]
+              }
+            ]
+          },
+          {
+            "name": "kickReturns",
+            "keys": [
+              "kickReturns",
+              "kickReturnYards",
+              "yardsPerKickReturn",
+              "longKickReturn",
+              "kickReturnTouchdowns"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4032473",
+                  "displayName": "Rashid Shaheed",
+                  "firstName": "Rashid",
+                  "lastName": "Shaheed"
+                },
+                "stats": ["1", "21", "21.0", "21", "0"]
+              }
+            ]
+          },
+          {
+            "name": "puntReturns",
+            "keys": [
+              "puntReturns",
+              "puntReturnYards",
+              "yardsPerPuntReturn",
+              "longPuntReturn",
+              "puntReturnTouchdowns"
+            ],
+            "athletes": []
+          },
+          {
+            "name": "kicking",
+            "keys": [
+              "fieldGoalsMade/fieldGoalAttempts",
+              "fieldGoalPct",
+              "longFieldGoalMade",
+              "extraPointsMade/extraPointAttempts",
+              "totalKickingPoints"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "2473037",
+                  "displayName": "Jason Myers",
+                  "firstName": "Jason",
+                  "lastName": "Myers"
+                },
+                "stats": ["1/1", "100.0", "27", "4/4", "7"]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "scoringPlays": [
+    {
+      "id": "401772987296",
+      "type": { "text": "Rushing Touchdown" },
+      "text": "Kenneth Walker III 2 Yd Rush (Jason Myers Kick)",
+      "team": { "id": "26" }
+    },
+    {
+      "id": "401772987480",
+      "type": { "text": "Field Goal Good" },
+      "text": "Harrison Mevis 44 Yd Field Goal ",
+      "team": { "id": "14" }
+    },
+    {
+      "id": "401772987848",
+      "type": { "text": "Field Goal Good" },
+      "text": "Jason Myers 27 Yd Field Goal ",
+      "team": { "id": "26" }
+    },
+    {
+      "id": "4017729871084",
+      "type": { "text": "Field Goal Good" },
+      "text": "Harrison Mevis 50 Yd Field Goal ",
+      "team": { "id": "14" }
+    },
+    {
+      "id": "4017729871537",
+      "type": { "text": "Passing Touchdown" },
+      "text": "Kyren Williams 9 Yd pass from Matthew Stafford (Harrison Mevis Kick)",
+      "team": { "id": "14" }
+    },
+    {
+      "id": "4017729871991",
+      "type": { "text": "Passing Touchdown" },
+      "text": "Jaxon Smith-Njigba 14 Yd pass from Sam Darnold (Jason Myers Kick)",
+      "team": { "id": "26" }
+    },
+    {
+      "id": "4017729872327",
+      "type": { "text": "Passing Touchdown" },
+      "text": "Jake Bobo 17 Yd pass from Sam Darnold (Jason Myers Kick)",
+      "team": { "id": "26" }
+    },
+    {
+      "id": "4017729872485",
+      "type": { "text": "Passing Touchdown" },
+      "text": "Davante Adams 2 Yd pass from Matthew Stafford (Harrison Mevis Kick)",
+      "team": { "id": "14" }
+    },
+    {
+      "id": "4017729872739",
+      "type": { "text": "Passing Touchdown" },
+      "text": "Cooper Kupp 13 Yd pass from Sam Darnold (Jason Myers Kick)",
+      "team": { "id": "26" }
+    },
+    {
+      "id": "4017729872990",
+      "type": { "text": "Passing Touchdown" },
+      "text": "Puka Nacua 34 Yd pass from Matthew Stafford (Harrison Mevis Kick)",
+      "team": { "id": "14" }
+    }
+  ],
+  "drives": {
+    "previous": [
+      {
+        "plays": [
+          {
+            "id": "40177298739",
+            "type": { "text": "Kickoff" },
+            "text": "J.Myers kicks 59 yards from SEA 35 to LA 6. J.Whittington to LA 31 for 25 yards (E.Saubert; T.Knight).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "40177298762",
+            "type": { "text": "Rush" },
+            "text": "K.Williams left guard to LA 35 for 4 yards (E.Jones).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "40177298784",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) M.Stafford pass short left to P.Nacua to LA 38 for 3 yards (D.Thomas; J.Jobe).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "401772987109",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) M.Stafford pass incomplete short right to P.Nacua (T.Woolen).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "401772987132",
+            "type": { "text": "Punt" },
+            "text": "E.Evans punts 43 yards to SEA 19, Center-J.McQuaide, fair catch by R.Shaheed.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "401772987152",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) K.Walker left guard to SEA 24 for 5 yards (K.Curl).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "401772987174",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) S.Darnold pass incomplete short right to J.Smith-Njigba (N.Landman).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "401772987197",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) S.Darnold pass deep right to R.Shaheed to LA 25 for 51 yards (D.Williams).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "401772987222",
+            "type": { "text": "Pass Reception" },
+            "text": "S.Darnold pass short right to J.Smith-Njigba pushed ob at LA 9 for 16 yards (Q.Lake).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "401772987252",
+            "type": { "text": "Rush" },
+            "text": "K.Walker up the middle to LA 6 for 3 yards (N.Landman).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "401772987274",
+            "type": { "text": "Rush" },
+            "text": "K.Walker up the middle to LA 2 for 4 yards (P.Ford; D.Williams).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "401772987296",
+            "type": { "text": "Rushing Touchdown" },
+            "text": "K.Walker right end for 2 yards, TOUCHDOWN. J.Myers extra point is GOOD, Center-C.Stoll, Holder-M.Dickson.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "401772987334",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 09:57.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "401772987341",
+            "type": { "text": "Kickoff" },
+            "text": "J.Myers kicks 62 yards from SEA 35 to LA 3. J.Whittington to LA 27 for 24 yards (T.Knight; D.Young).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "401772987364",
+            "type": { "text": "Rush" },
+            "text": "B.Corum left guard to LA 30 for 3 yards (J.Reed; B.Murphy).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "401772987386",
+            "type": { "text": "Pass Reception" },
+            "text": "M.Stafford pass deep right to P.Nacua to SEA 26 for 44 yards (D.Witherspoon).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "401772987411",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) M.Stafford pass incomplete deep right to P.Nacua.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "401772987434",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) M.Stafford pass incomplete deep right to D.Adams.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "401772987457",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) M.Stafford pass incomplete short left to P.Nacua.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "401772987480",
+            "type": { "text": "Field Goal Good" },
+            "text": " H.Mevis 44 yard field goal is GOOD, Center-J.McQuaide, Holder-E.Evans.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "401772987490",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 08:15.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "401772987500",
+            "type": { "text": "Kickoff" },
+            "text": "E.Evans kicks 65 yards from LA 35 to end zone, Touchback to the SEA 35.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "401772987524",
+            "type": { "text": "Rush" },
+            "text": "K.Walker left end to SEA 40 for 5 yards (D.Johnson; R.McCreary).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "401772987546",
+            "type": { "text": "Pass Reception" },
+            "text": "S.Darnold pass short left to A.Barner to SEA 46 for 6 yards (N.Landman; R.McCreary). FUMBLES (N.Landman), ball out of bounds at SEA 46.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "401772987589",
+            "type": { "text": "Rush" },
+            "text": "K.Walker up the middle to LA 46 for 8 yards (R.McCreary; K.Curl).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "401772987611",
+            "type": { "text": "Rush" },
+            "text": "K.Walker up the middle to LA 38 for 8 yards (N.Landman).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "401772987633",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) S.Darnold pass short right to K.Walker to LA 24 for 14 yards (C.Durant).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "401772987658",
+            "type": { "text": "Rush" },
+            "text": "K.Walker left guard to LA 24 for no gain (K.Turner).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "401772987680",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) S.Darnold pass short left to J.Smith-Njigba pushed ob at LA 16 for 8 yards (R.McCreary).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "401772987710",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) S.Darnold pass short left to J.Smith-Njigba pushed ob at LA 7 for 9 yards (C.Durant).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "401772987745",
+            "type": { "text": "Rush" },
+            "text": "(No Huddle) G.Holani right end to LA 9 for -2 yards (B.Young, Q.Lake).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "401772987767",
+            "type": { "text": "Penalty" },
+            "text": "K.Walker up the middle to LA 5 for 4 yards (O.Speights; P.Ford).PENALTY on SEA-A.Bradford, Offensive Holding, 10 yards, enforced at LA 9 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "401772987800",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) S.Darnold pass short right to K.Walker to LA 9 for 10 yards (R.McCreary).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "401772987825",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) S.Darnold pass incomplete short left to A.Barner.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "401772987848",
+            "type": { "text": "Field Goal Good" },
+            "text": " J.Myers 27 yard field goal is GOOD, Center-C.Stoll, Holder-M.Dickson.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "401772987858",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 00:54.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "401772987868",
+            "type": { "text": "Kickoff" },
+            "text": "J.Myers kicks 55 yards from SEA 35 to LA 10. J.Whittington to LA 35 for 25 yards (B.Russell; C.O'Toole).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "401772987898",
+            "type": { "text": "Rush" },
+            "text": "K.Williams left tackle to LA 39 for 4 yards (E.Jones).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "401772987920",
+            "type": { "text": "Rush" },
+            "text": "K.Williams up the middle to 50 for 11 yards (N.Emmanwori).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "401772987942",
+            "type": { "text": "End Period" },
+            "text": "END QUARTER 1",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "401772987962",
+            "type": { "text": "Rush" },
+            "text": "P.Nacua right end to SEA 46 for 4 yards (D.Thomas; J.Love).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "401772987984",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) M.Stafford pass short right to D.Adams to SEA 23 for 23 yards (T.Woolen).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729871009",
+            "type": { "text": "Rush" },
+            "text": "K.Williams right guard to SEA 23 for no gain (N.Emmanwori).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729871031",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) M.Stafford pass incomplete short middle to D.Adams (N.Emmanwori).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729871054",
+            "type": { "text": "Fumble Recovery (Own)" },
+            "text": "(Shotgun) M.Stafford sacked at SEA 32 for -9 yards (D.Lawrence). FUMBLES (D.Lawrence) [D.Lawrence], recovered by LA-K.Dotson at SEA 32.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729871084",
+            "type": { "text": "Field Goal Good" },
+            "text": " H.Mevis 50 yard field goal is GOOD, Center-J.McQuaide, Holder-E.Evans.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729871094",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 12:11.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729871104",
+            "type": { "text": "Kickoff" },
+            "text": "E.Evans kicks 65 yards from LA 35 to end zone, Touchback to the SEA 35.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729871128",
+            "type": { "text": "Pass Reception" },
+            "text": "S.Darnold pass short right to J.Smith-Njigba to LA 49 for 16 yards (D.Williams).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729871153",
+            "type": { "text": "Fumble Recovery (Own)" },
+            "text": "(Shotgun) S.Darnold FUMBLES (Aborted) at SEA 46, and recovers at SEA 42.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729871187",
+            "type": { "text": "Sack" },
+            "text": "(Shotgun) S.Darnold sacked at SEA 34 for -8 yards (B.Fiske).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729871207",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) G.Holani up the middle to SEA 37 for 3 yards (R.McCreary).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729871229",
+            "type": { "text": "Punt" },
+            "text": "M.Dickson punts 53 yards to LA 10, Center-C.Stoll. X.Smith MUFFS catch, and recovers at LA 13.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729871262",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 09:18.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729871269",
+            "type": { "text": "Rush" },
+            "text": "B.Corum left end to LA 21 for 8 yards (D.Thomas; E.Jones).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729871291",
+            "type": { "text": "Rush" },
+            "text": "B.Corum right guard to LA 24 for 3 yards (N.Emmanwori; C.Bryant).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729871313",
+            "type": { "text": "Rush" },
+            "text": "B.Corum right guard to LA 29 for 5 yards (D.Witherspoon).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729871335",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) M.Stafford pass short left to C.Parkinson to LA 35 for 6 yards (E.Jones).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729871360",
+            "type": { "text": "Pass Reception" },
+            "text": "M.Stafford pass deep right to P.Nacua to SEA 44 for 21 yards (C.Bryant).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729871385",
+            "type": { "text": "Rush" },
+            "text": "B.Corum right guard to SEA 44 for no gain (U.Nwosu).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729871407",
+            "type": { "text": "Rush" },
+            "text": "B.Corum left guard pushed ob at SEA 25 for 19 yards (N.Emmanwori).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729871434",
+            "type": { "text": "Rush" },
+            "text": "K.Williams left guard to SEA 23 for 2 yards (L.Williams).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729871456",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) M.Stafford pass short left to P.Nacua pushed ob at SEA 16 for 7 yards (J.Love).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729871486",
+            "type": { "text": "Rush" },
+            "text": "K.Williams right guard to SEA 11 for 5 yards (D.Thomas).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729871497",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #1 by LA at 02:41.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729871508",
+            "type": { "text": "Rush" },
+            "text": "B.Corum right tackle to SEA 9 for 2 yards (D.Thomas; D.Hall).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729871523",
+            "type": { "text": "Two-minute warning" },
+            "text": "Two-Minute Warning",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729871537",
+            "type": { "text": "Passing Touchdown" },
+            "text": "(Shotgun) M.Stafford pass short left to K.Williams for 9 yards, TOUCHDOWN. H.Mevis extra point is GOOD, Center-J.McQuaide, Holder-E.Evans.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729871583",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 01:55.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729871590",
+            "type": { "text": "Kickoff" },
+            "text": "E.Evans kicks 65 yards from LA 35 to end zone, Touchback to the SEA 35.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729871614",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) K.Walker right end pushed ob at SEA 37 for 2 yards (K.Turner).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729871641",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) S.Darnold pass incomplete short middle to C.Kupp (C.Durant).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729871664",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) S.Darnold pass incomplete short right to G.Holani.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729871687",
+            "type": { "text": "Punt" },
+            "text": "M.Dickson punts 45 yards to LA 18, Center-C.Stoll, fair catch by X.Smith.PENALTY on SEA-C.Stoll, Offensive Holding, 10 yards, enforced at LA 18.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729871718",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 01:33.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729871725",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) K.Williams up the middle to LA 33 for 5 yards (B.Murphy).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729871747",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(No Huddle, Shotgun) M.Stafford pass incomplete short right to P.Nacua (N.Emmanwori).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729871759",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #2 by LA at 01:09.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729871770",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) M.Stafford pass incomplete short right to R.Rivers (N.Emmanwori).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729871800",
+            "type": { "text": "Punt" },
+            "text": "E.Evans punts 41 yards to SEA 26, Center-J.McQuaide, fair catch by R.Shaheed.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729871820",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 00:54.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729871827",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) S.Darnold pass short right to J.Smith-Njigba pushed ob at SEA 36 for 10 yards (D.Williams).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729871857",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) S.Darnold pass incomplete short left to C.Kupp (J.McCollough).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729871880",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) S.Darnold pass deep middle to J.Smith-Njigba to LA 22 for 42 yards (K.Curl).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729871893",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #1 by SEA at 00:37.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729871905",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) S.Darnold pass short right to G.Holani to LA 9 for 13 yards (K.Kinchens; C.Durant).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729871921",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #2 by SEA at 00:30.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729871937",
+            "type": { "text": "Penalty" },
+            "text": "(Shotgun) PENALTY on SEA-J.Sundell, False Start, 5 yards, enforced at LA 9 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729871968",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) S.Darnold pass incomplete short middle to J.Smith-Njigba.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729871991",
+            "type": { "text": "Passing Touchdown" },
+            "text": "(Shotgun) S.Darnold pass short left to J.Smith-Njigba for 14 yards, TOUCHDOWN [J.Verse]. J.Myers extra point is GOOD, Center-C.Stoll, Holder-M.Dickson.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "26" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729872032",
+            "type": { "text": "Kickoff" },
+            "text": "J.Myers kicks 65 yards from SEA 35 to LA 0. R.Rivers to LA 29 for 29 yards (J.Bobo).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729872055",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) M.Stafford pass short middle to T.Higbee to LA 41 for 12 yards (E.Jones).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729872068",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #3 by LA at 00:08.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729872074",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #3 by SEA at 00:08.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729872080",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) M.Stafford scrambles left end to SEA 46 for 13 yards (B.Mafe).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729872128",
+            "type": { "text": "End of Half" },
+            "text": "END QUARTER 2",
+            "scoringPlay": false
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729872148",
+            "type": { "text": "Kickoff" },
+            "text": "E.Evans kicks 65 yards from LA 35 to landing zone to end zone, Touchback to the SEA 20.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729872174",
+            "type": { "text": "Rush" },
+            "text": "K.Walker right guard to SEA 25 for 5 yards (N.Landman; O.Speights).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729872196",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) S.Darnold pass short right to J.Smith-Njigba to SEA 37 for 12 yards (Q.Lake).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729872221",
+            "type": { "text": "Pass Incompletion" },
+            "text": "S.Darnold pass incomplete short right [J.Verse].",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729872244",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) K.Walker right end to SEA 35 for -2 yards (E.Forbes, J.Stewart).Penalty on SEA-G.Zabel, Offensive Holding, declined.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729872277",
+            "type": { "text": "Sack" },
+            "text": "(Shotgun) S.Darnold sacked at SEA 27 for -8 yards (J.Verse).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729872297",
+            "type": { "text": "Muffed Punt Recovery (Opponent)" },
+            "text": "M.Dickson punts 55 yards to LA 18, Center-C.Stoll. X.Smith MUFFS catch, RECOVERED by SEA-D.Young at LA 17.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729872327",
+            "type": { "text": "Passing Touchdown" },
+            "text": "S.Darnold pass deep middle to J.Bobo for 17 yards, TOUCHDOWN [K.Turner]. J.Myers extra point is GOOD, Center-C.Stoll, Holder-M.Dickson.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729872368",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 12:02.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729872375",
+            "type": { "text": "Kickoff" },
+            "text": "J.Myers kicks 62 yards from SEA 35 to LA 3. J.Whittington to LA 25 for 22 yards (E.Saubert).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729872398",
+            "type": { "text": "Pass Reception" },
+            "text": "M.Stafford pass deep right to C.Parkinson to SEA 35 for 40 yards (J.Jobe). FUMBLES (J.Jobe), ball out of bounds at SEA 35.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729872428",
+            "type": { "text": "Rush" },
+            "text": "B.Corum up the middle to SEA 31 for 4 yards (B.Murphy).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729872457",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) M.Stafford pass deep right to D.Adams to SEA 2 for 29 yards (J.Jobe).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729872485",
+            "type": { "text": "Passing Touchdown" },
+            "text": "(Shotgun) M.Stafford pass short left to D.Adams for 2 yards, TOUCHDOWN. H.Mevis extra point is GOOD, Center-J.McQuaide, Holder-E.Evans.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729872519",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 09:41.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729872526",
+            "type": { "text": "Kickoff" },
+            "text": "E.Evans kicks 65 yards from LA 35 to end zone, Touchback to the SEA 35.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729872550",
+            "type": { "text": "Rush" },
+            "text": "G.Holani right guard to SEA 38 for 3 yards (B.Young; Q.Lake).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729872572",
+            "type": { "text": "Rush" },
+            "text": "K.Walker right end to SEA 36 for -2 yards (N.Landman).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729872594",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) S.Darnold pass short left to C.Kupp to SEA 48 for 12 yards (J.McCollough).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729872619",
+            "type": { "text": "Rush" },
+            "text": "K.Walker right guard to LA 41 for 11 yards (Q.Lake; O.Speights).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729872641",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) S.Darnold pass short middle to G.Holani to LA 32 for 9 yards (O.Speights).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729872666",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) S.Darnold pass short left to J.Smith-Njigba to LA 20 for 12 yards (O.Speights).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729872691",
+            "type": { "text": "Pass Reception" },
+            "text": "S.Darnold pass short left to A.Barner to LA 13 for 7 yards (O.Speights).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729872716",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(No Huddle) S.Darnold pass incomplete short left to J.Bobo.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729872739",
+            "type": { "text": "Passing Touchdown" },
+            "text": "(Shotgun) S.Darnold pass short right to C.Kupp for 13 yards, TOUCHDOWN [K.Turner]. J.Myers extra point is GOOD, Center-C.Stoll, Holder-M.Dickson.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729872780",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 04:52.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729872787",
+            "type": { "text": "Kickoff" },
+            "text": "J.Myers kicks 62 yards from SEA 35 to LA 3. J.Whittington to LA 25 for 22 yards (E.Saubert; M.Morris).PENALTY on LA-O.Speights, Illegal Block Above the Waist, 10 yards, enforced at LA 23.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729872821",
+            "type": { "text": "Pass Reception" },
+            "text": "M.Stafford pass deep left to D.Adams pushed ob at LA 48 for 35 yards (J.Love).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729872851",
+            "type": { "text": "Penalty" },
+            "text": "(No Huddle, Shotgun) M.Stafford pass short right to C.Parkinson to 50 for 2 yards (N.Emmanwori) [B.Murphy].PENALTY on SEA-T.Woolen, Illegal Contact, 5 yards, enforced at LA 48 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729872887",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) K.Williams up the middle to SEA 42 for 5 yards (B.Murphy).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729872909",
+            "type": { "text": "Penalty" },
+            "text": "M.Stafford pass short left to K.Williams to SEA 41 for 1 yard (D.Witherspoon).PENALTY on LA-A.Jackson, Illegal Use of Hands, 10 yards, enforced at SEA 42 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729872945",
+            "type": { "text": "Rush" },
+            "text": "K.Williams up the middle to SEA 49 for 3 yards (B.Murphy; D.Thomas).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729872967",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) M.Stafford pass incomplete deep right to P.Nacua (T.Woolen) [U.Nwosu].PENALTY on SEA-T.Woolen, Taunting, 15 yards, enforced at SEA 49.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729872990",
+            "type": { "text": "Passing Touchdown" },
+            "text": "M.Stafford pass deep left to P.Nacua for 34 yards, TOUCHDOWN.The Replay Official reviewed the pass completion ruling, and the play was Upheld. The ruling on the field stands. H.Mevis extra point is GOOD, Center-J.McQuaide, Holder-E.Evans.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729873027",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 02:06.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729873085",
+            "type": { "text": "Kickoff" },
+            "text": "E.Evans kicks 59 yards from LA 35 to SEA 6. R.Shaheed to SEA 27 for 21 yards (X.Smith; N.Hampton).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729873118",
+            "type": { "text": "Rush" },
+            "text": "R.Shaheed right end ran ob at SEA 27 for no gain (K.Kinchens).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729873145",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) S.Darnold pass incomplete short right.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729873168",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) S.Darnold pass short left to K.Walker pushed ob at SEA 37 for 10 yards (K.Curl).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729873198",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) S.Darnold pass short right to G.Holani to SEA 42 for 5 yards (N.Landman).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729873223",
+            "type": { "text": "End Period" },
+            "text": "END QUARTER 3",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729873243",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) S.Darnold scrambles left end pushed ob at LA 44 for 14 yards (O.Speights).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729873270",
+            "type": { "text": "Sack" },
+            "text": "S.Darnold sacked at SEA 47 for -9 yards (K.Kinchens).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729873290",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) S.Darnold pass short left to C.Kupp to LA 49 for 4 yards (J.McCollough).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729873315",
+            "type": { "text": "Penalty" },
+            "text": "(Shotgun) PENALTY on LA-J.Verse, Neutral Zone Infraction, 5 yards, enforced at LA 49 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729873339",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) S.Darnold pass incomplete short right to R.Shaheed (C.Durant).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729873362",
+            "type": { "text": "Punt" },
+            "text": " M.Dickson punts 34 yards to LA 10, Center-C.Stoll, fair catch by K.Williams.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729873382",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 12:18.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729873389",
+            "type": { "text": "Rush" },
+            "text": "B.Corum left tackle to LA 21 for 11 yards (T.Woolen).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729873411",
+            "type": { "text": "Pass Reception" },
+            "text": "M.Stafford pass short middle to B.Corum to LA 36 for 15 yards (D.Witherspoon).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729873436",
+            "type": { "text": "Pass Reception" },
+            "text": "M.Stafford pass short left to K.Williams pushed ob at LA 49 for 13 yards (J.Love) [L.Williams]. SEA-D.Thomas was injured during the play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729873469",
+            "type": { "text": "Pass Incompletion" },
+            "text": "M.Stafford pass incomplete deep right to K.Mumpfield.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729873492",
+            "type": { "text": "Pass Reception" },
+            "text": "M.Stafford pass short middle to C.Parkinson to SEA 35 for 16 yards (D.Witherspoon).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729873517",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) M.Stafford pass short right to B.Corum to SEA 33 for 2 yards (N.Emmanwori).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729873542",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) M.Stafford pass short right to B.Corum to SEA 26 for 7 yards (E.Jones).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729873567",
+            "type": { "text": "Pass Incompletion" },
+            "text": "M.Stafford pass incomplete short middle to C.Parkinson.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729873590",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) M.Stafford scrambles up the middle to SEA 23 for 3 yards (D.Lawrence).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729873612",
+            "type": { "text": "Penalty" },
+            "text": "B.Corum up the middle to SEA 24 for -1 yards (N.Emmanwori).PENALTY on SEA-B.Mafe, Defensive Offside, 5 yards, enforced at SEA 23 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729873645",
+            "type": { "text": "Pass Reception" },
+            "text": "M.Stafford pass short right to P.Nacua pushed ob at SEA 12 for 6 yards (D.Witherspoon).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729873675",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) M.Stafford pass short middle to P.Nacua to SEA 6 for 6 yards (E.Jones; T.Knight).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729873700",
+            "type": { "text": "Rush" },
+            "text": "K.Williams up the middle to SEA 6 for no gain (T.Knight). ** Injury Update: LA-J.Whittington has returned to the game.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729873722",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) M.Stafford pass incomplete short right to K.Mumpfield (D.Witherspoon).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729873753",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) M.Stafford pass incomplete short middle to T.Ferguson (D.Witherspoon).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729873765",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 04:54.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729873776",
+            "type": { "text": "Rush" },
+            "text": "K.Walker up the middle to SEA 10 for 4 yards (O.Speights).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729873805",
+            "type": { "text": "Pass Reception" },
+            "text": "S.Darnold pass short left to K.Walker to SEA 25 for 15 yards (C.Durant).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729873830",
+            "type": { "text": "Rush" },
+            "text": "K.Walker up the middle to SEA 28 for 3 yards (O.Speights).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729873852",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #1 by LA at 03:26.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729873859",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) S.Darnold pass incomplete deep right to R.Shaheed (Q.Lake).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729873873",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #1 by SEA at 03:20.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729873887",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) S.Darnold pass short left to C.Kupp to SEA 35 for 7 yards (C.Durant).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729873908",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #2 by LA at 03:11.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729873929",
+            "type": { "text": "Rush" },
+            "text": "K.Walker left tackle to SEA 35 for no gain (J.Verse; J.Stewart).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729873944",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #3 by LA at 03:05.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729873958",
+            "type": { "text": "Pass Reception" },
+            "text": "S.Darnold pass short right to J.Smith-Njigba pushed ob at SEA 49 for 14 yards (Q.Lake).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729873990",
+            "type": { "text": "Rush" },
+            "text": "K.Walker up the middle to LA 48 for 3 yards (J.Verse; O.Speights).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729874017",
+            "type": { "text": "Penalty" },
+            "text": "S.Darnold pass incomplete short left to J.Smith-Njigba.PENALTY on LA-C.Durant, Defensive Holding, 5 yards, enforced at LA 48 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729874051",
+            "type": { "text": "Rush" },
+            "text": "K.Walker left tackle to LA 37 for 6 yards (O.Speights; Q.Lake).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729874062",
+            "type": { "text": "Two-minute warning" },
+            "text": "Two-Minute Warning",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729874073",
+            "type": { "text": "Rush" },
+            "text": "K.Walker up the middle to LA 40 for -3 yards (O.Speights, T.Reeder).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729874088",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #2 by SEA at 01:16.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729874102",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) S.Darnold left end to LA 45 for -5 yards (B.Fiske).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          },
+          {
+            "id": "4017729874138",
+            "type": { "text": "Punt" },
+            "text": "M.Dickson punts 38 yards to LA 7, Center-C.Stoll, fair catch by K.Williams. ** Injury Update: SEA-D.Thomas has returned to the game.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "26" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729874158",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) M.Stafford pass deep right to P.Nacua to LA 30 for 23 yards (E.Jones).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729874186",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(No Huddle) M.Stafford spiked the ball to stop the clock.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729874198",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #3 by SEA at 00:10.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729874209",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) M.Stafford pass deep right to P.Nacua to SEA 49 for 21 yards (D.Witherspoon).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729874241",
+            "type": { "text": "End of Game" },
+            "text": "END GAME",
+            "scoringPlay": false
+          }
+        ]
+      }
+    ]
+  }
+}

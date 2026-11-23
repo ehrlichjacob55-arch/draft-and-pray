@@ -45,6 +45,13 @@ describe("prod refusal", () => {
     expect(noAws.calls).toBe(0);
   });
 
+  it("ingest refuses every env except local, before resolving config", async () => {
+    for (const env of ["dev", "test", "prod"]) {
+      await expect(runAdmin(["ingest", "--env", env], noAws)).rejects.toThrow(/local only/);
+    }
+    expect(noAws.calls).toBe(0);
+  });
+
   it("resolveEnvConfig for local never consults Terraform", () => {
     const cfg = resolveEnvConfig("local", {}, () => {
       throw new Error("terraform must not run");

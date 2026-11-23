@@ -1,0 +1,1816 @@
+{
+  "header": {
+    "competitions": [
+      {
+        "date": "2026-01-11T18:00Z",
+        "status": { "type": { "name": "STATUS_FINAL", "completed": true } },
+        "competitors": [
+          {
+            "homeAway": "home",
+            "score": "24",
+            "winner": false,
+            "team": { "id": "30", "abbreviation": "JAX" }
+          },
+          {
+            "homeAway": "away",
+            "score": "27",
+            "winner": true,
+            "team": { "id": "2", "abbreviation": "BUF" }
+          }
+        ]
+      }
+    ]
+  },
+  "boxscore": {
+    "players": [
+      {
+        "team": { "id": "2", "abbreviation": "BUF" },
+        "statistics": [
+          {
+            "name": "passing",
+            "keys": [
+              "completions/passingAttempts",
+              "passingYards",
+              "yardsPerPassAttempt",
+              "passingTouchdowns",
+              "interceptions",
+              "sacks-sackYardsLost",
+              "adjQBR",
+              "QBRating"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "3918298",
+                  "displayName": "Josh Allen",
+                  "firstName": "Josh",
+                  "lastName": "Allen"
+                },
+                "stats": ["28/35", "273", "7.8", "1", "0", "1-12", "87.1", "108.7"]
+              }
+            ]
+          },
+          {
+            "name": "rushing",
+            "keys": [
+              "rushingAttempts",
+              "rushingYards",
+              "yardsPerRushAttempt",
+              "rushingTouchdowns",
+              "longRushing"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4379399",
+                  "displayName": "James Cook III",
+                  "firstName": "James",
+                  "lastName": "Cook III"
+                },
+                "stats": ["15", "46", "3.1", "0", "11"]
+              },
+              {
+                "athlete": {
+                  "id": "3918298",
+                  "displayName": "Josh Allen",
+                  "firstName": "Josh",
+                  "lastName": "Allen"
+                },
+                "stats": ["11", "33", "3.0", "2", "10"]
+              }
+            ]
+          },
+          {
+            "name": "receiving",
+            "keys": [
+              "receptions",
+              "receivingYards",
+              "yardsPerReception",
+              "receivingTouchdowns",
+              "longReception",
+              "receivingTargets"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4373678",
+                  "displayName": "Khalil Shakir",
+                  "firstName": "Khalil",
+                  "lastName": "Shakir"
+                },
+                "stats": ["12", "82", "6.8", "0", "18", "12"]
+              },
+              {
+                "athlete": {
+                  "id": "16731",
+                  "displayName": "Brandin Cooks",
+                  "firstName": "Brandin",
+                  "lastName": "Cooks"
+                },
+                "stats": ["3", "58", "19.3", "0", "36", "5"]
+              },
+              {
+                "athlete": {
+                  "id": "4635008",
+                  "displayName": "Keon Coleman",
+                  "firstName": "Keon",
+                  "lastName": "Coleman"
+                },
+                "stats": ["1", "36", "36.0", "0", "36", "1"]
+              },
+              {
+                "athlete": {
+                  "id": "3930086",
+                  "displayName": "Dawson Knox",
+                  "firstName": "Dawson",
+                  "lastName": "Knox"
+                },
+                "stats": ["3", "30", "10.0", "0", "24", "3"]
+              },
+              {
+                "athlete": {
+                  "id": "4385690",
+                  "displayName": "Dalton Kincaid",
+                  "firstName": "Dalton",
+                  "lastName": "Kincaid"
+                },
+                "stats": ["3", "28", "9.3", "1", "15", "5"]
+              },
+              {
+                "athlete": {
+                  "id": "4241476",
+                  "displayName": "Tyrell Shavers",
+                  "firstName": "Tyrell",
+                  "lastName": "Shavers"
+                },
+                "stats": ["1", "14", "14.0", "0", "14", "2"]
+              },
+              {
+                "athlete": {
+                  "id": "4243537",
+                  "displayName": "Gabe Davis",
+                  "firstName": "Gabe",
+                  "lastName": "Davis"
+                },
+                "stats": ["2", "14", "7.0", "0", "9", "3"]
+              },
+              {
+                "athlete": {
+                  "id": "4429805",
+                  "displayName": "Frank Gore Jr.",
+                  "firstName": "Frank",
+                  "lastName": "Gore Jr."
+                },
+                "stats": ["1", "6", "6.0", "0", "6", "1"]
+              },
+              {
+                "athlete": {
+                  "id": "4379399",
+                  "displayName": "James Cook III",
+                  "firstName": "James",
+                  "lastName": "Cook III"
+                },
+                "stats": ["2", "5", "2.5", "0", "4", "3"]
+              }
+            ]
+          },
+          {
+            "name": "fumbles",
+            "keys": ["fumbles", "fumblesLost", "fumblesRecovered"],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4429501",
+                  "displayName": "Ray Davis",
+                  "firstName": "Ray",
+                  "lastName": "Davis"
+                },
+                "stats": ["1", "1", "0"]
+              }
+            ]
+          },
+          {
+            "name": "kickReturns",
+            "keys": [
+              "kickReturns",
+              "kickReturnYards",
+              "yardsPerKickReturn",
+              "longKickReturn",
+              "kickReturnTouchdowns"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4429501",
+                  "displayName": "Ray Davis",
+                  "firstName": "Ray",
+                  "lastName": "Davis"
+                },
+                "stats": ["4", "119", "29.8", "34", "0"]
+              }
+            ]
+          },
+          {
+            "name": "puntReturns",
+            "keys": [
+              "puntReturns",
+              "puntReturnYards",
+              "yardsPerPuntReturn",
+              "longPuntReturn",
+              "puntReturnTouchdowns"
+            ],
+            "athletes": []
+          },
+          {
+            "name": "kicking",
+            "keys": [
+              "fieldGoalsMade/fieldGoalAttempts",
+              "fieldGoalPct",
+              "longFieldGoalMade",
+              "extraPointsMade/extraPointAttempts",
+              "totalKickingPoints"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "11122",
+                  "displayName": "Matt Prater",
+                  "firstName": "Matt",
+                  "lastName": "Prater"
+                },
+                "stats": ["2/2", "100.0", "50", "3/3", "9"]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "team": { "id": "30", "abbreviation": "JAX" },
+        "statistics": [
+          {
+            "name": "passing",
+            "keys": [
+              "completions/passingAttempts",
+              "passingYards",
+              "yardsPerPassAttempt",
+              "passingTouchdowns",
+              "interceptions",
+              "sacks-sackYardsLost",
+              "adjQBR",
+              "QBRating"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4360310",
+                  "displayName": "Trevor Lawrence",
+                  "firstName": "Trevor",
+                  "lastName": "Lawrence"
+                },
+                "stats": ["18/30", "207", "6.9", "3", "2", "1-2", "30.0", "86.4"]
+              }
+            ]
+          },
+          {
+            "name": "rushing",
+            "keys": [
+              "rushingAttempts",
+              "rushingYards",
+              "yardsPerRushAttempt",
+              "rushingTouchdowns",
+              "longRushing"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4239996",
+                  "displayName": "Travis Etienne Jr.",
+                  "firstName": "Travis",
+                  "lastName": "Etienne Jr."
+                },
+                "stats": ["10", "67", "6.7", "0", "26"]
+              },
+              {
+                "athlete": {
+                  "id": "4882093",
+                  "displayName": "Bhayshul Tuten",
+                  "firstName": "Bhayshul",
+                  "lastName": "Tuten"
+                },
+                "stats": ["4", "51", "12.8", "0", "20"]
+              },
+              {
+                "athlete": {
+                  "id": "4360310",
+                  "displayName": "Trevor Lawrence",
+                  "firstName": "Trevor",
+                  "lastName": "Lawrence"
+                },
+                "stats": ["6", "31", "5.2", "0", "18"]
+              },
+              {
+                "athlete": {
+                  "id": "4911851",
+                  "displayName": "LeQuint Allen Jr.",
+                  "firstName": "LeQuint",
+                  "lastName": "Allen Jr."
+                },
+                "stats": ["1", "3", "3.0", "0", "3"]
+              },
+              {
+                "athlete": {
+                  "id": "4432620",
+                  "displayName": "Parker Washington",
+                  "firstName": "Parker",
+                  "lastName": "Washington"
+                },
+                "stats": ["2", "2", "1.0", "0", "5"]
+              }
+            ]
+          },
+          {
+            "name": "receiving",
+            "keys": [
+              "receptions",
+              "receivingYards",
+              "yardsPerReception",
+              "receivingTouchdowns",
+              "longReception",
+              "receivingTargets"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4432620",
+                  "displayName": "Parker Washington",
+                  "firstName": "Parker",
+                  "lastName": "Washington"
+                },
+                "stats": ["7", "107", "15.3", "1", "34", "12"]
+              },
+              {
+                "athlete": {
+                  "id": "4239996",
+                  "displayName": "Travis Etienne Jr.",
+                  "firstName": "Travis",
+                  "lastName": "Etienne Jr."
+                },
+                "stats": ["5", "49", "9.8", "1", "14", "5"]
+              },
+              {
+                "athlete": {
+                  "id": "4432773",
+                  "displayName": "Brian Thomas Jr.",
+                  "firstName": "Brian",
+                  "lastName": "Thomas Jr."
+                },
+                "stats": ["2", "21", "10.5", "1", "18", "2"]
+              },
+              {
+                "athlete": {
+                  "id": "3916433",
+                  "displayName": "Jakobi Meyers",
+                  "firstName": "Jakobi",
+                  "lastName": "Meyers"
+                },
+                "stats": ["1", "12", "12.0", "0", "12", "4"]
+              },
+              {
+                "athlete": {
+                  "id": "4911851",
+                  "displayName": "LeQuint Allen Jr.",
+                  "firstName": "LeQuint",
+                  "lastName": "Allen Jr."
+                },
+                "stats": ["1", "9", "9.0", "0", "9", "1"]
+              },
+              {
+                "athlete": {
+                  "id": "4430539",
+                  "displayName": "Brenton Strange",
+                  "firstName": "Brenton",
+                  "lastName": "Strange"
+                },
+                "stats": ["2", "9", "4.5", "0", "9", "5"]
+              },
+              {
+                "athlete": {
+                  "id": "3134353",
+                  "displayName": "Tim Patrick",
+                  "firstName": "Tim",
+                  "lastName": "Patrick"
+                },
+                "stats": ["0", "0", "0.0", "0", "0", "1"]
+              }
+            ]
+          },
+          {
+            "name": "fumbles",
+            "keys": ["fumbles", "fumblesLost", "fumblesRecovered"],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4243256",
+                  "displayName": "Devin Lloyd",
+                  "firstName": "Devin",
+                  "lastName": "Lloyd"
+                },
+                "stats": ["0", "0", "1"]
+              }
+            ]
+          },
+          {
+            "name": "kickReturns",
+            "keys": [
+              "kickReturns",
+              "kickReturnYards",
+              "yardsPerKickReturn",
+              "longKickReturn",
+              "kickReturnTouchdowns"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4882093",
+                  "displayName": "Bhayshul Tuten",
+                  "firstName": "Bhayshul",
+                  "lastName": "Tuten"
+                },
+                "stats": ["3", "49", "16.3", "21", "0"]
+              },
+              {
+                "athlete": {
+                  "id": "4911851",
+                  "displayName": "LeQuint Allen Jr.",
+                  "firstName": "LeQuint",
+                  "lastName": "Allen Jr."
+                },
+                "stats": ["1", "26", "26.0", "26", "0"]
+              }
+            ]
+          },
+          {
+            "name": "puntReturns",
+            "keys": [
+              "puntReturns",
+              "puntReturnYards",
+              "yardsPerPuntReturn",
+              "longPuntReturn",
+              "puntReturnTouchdowns"
+            ],
+            "athletes": []
+          },
+          {
+            "name": "kicking",
+            "keys": [
+              "fieldGoalsMade/fieldGoalAttempts",
+              "fieldGoalPct",
+              "longFieldGoalMade",
+              "extraPointsMade/extraPointAttempts",
+              "totalKickingPoints"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4686361",
+                  "displayName": "Cam Little",
+                  "firstName": "Cam",
+                  "lastName": "Little"
+                },
+                "stats": ["1/2", "50.0", "43", "3/3", "6"]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "scoringPlays": [
+    {
+      "id": "401772977684",
+      "type": { "text": "Field Goal Good" },
+      "text": "Matt Prater 50 Yd Field Goal",
+      "team": { "id": "2" }
+    },
+    {
+      "id": "401772977894",
+      "type": { "text": "Passing Touchdown" },
+      "text": "Brian Thomas Jr. 3 Yd pass from Trevor Lawrence (Cam Little Kick)",
+      "team": { "id": "30" }
+    },
+    {
+      "id": "4017729771441",
+      "type": { "text": "Rushing Touchdown" },
+      "text": "Josh Allen 2 Yd Rush (Matt Prater Kick)",
+      "team": { "id": "2" }
+    },
+    {
+      "id": "4017729772408",
+      "type": { "text": "Field Goal Good" },
+      "text": "Matt Prater 47 Yd Field Goal",
+      "team": { "id": "2" }
+    },
+    {
+      "id": "4017729772572",
+      "type": { "text": "Field Goal Good" },
+      "text": "Cam Little 43 Yd Field Goal",
+      "team": { "id": "30" }
+    },
+    {
+      "id": "4017729772972",
+      "type": { "text": "Passing Touchdown" },
+      "text": "Parker Washington 6 Yd pass from Trevor Lawrence (Cam Little Kick)",
+      "team": { "id": "30" }
+    },
+    {
+      "id": "4017729773269",
+      "type": { "text": "Passing Touchdown" },
+      "text": "Dalton Kincaid 15 Yd pass from Josh Allen (Matt Prater Kick)",
+      "team": { "id": "2" }
+    },
+    {
+      "id": "4017729773605",
+      "type": { "text": "Passing Touchdown" },
+      "text": "Travis Etienne Jr. 14 Yd pass from Trevor Lawrence (Cam Little Kick)",
+      "team": { "id": "30" }
+    },
+    {
+      "id": "4017729773924",
+      "type": { "text": "Rushing Touchdown" },
+      "text": "Josh Allen 1 Yd Rush (Matt Prater Kick)",
+      "team": { "id": "2" }
+    }
+  ],
+  "drives": {
+    "previous": [
+      {
+        "plays": [
+          {
+            "id": "40177297739",
+            "type": { "text": "Kickoff" },
+            "text": "M.Wishnowsky kicks 57 yards from BUF 35 to JAX 8. L.Allen to JAX 34 for 26 yards (J.Andreessen).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "40177297762",
+            "type": { "text": "Rush" },
+            "text": "P.Washington right end to JAX 31 for -3 yards (M.Milano).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "40177297784",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) T.Lawrence pass short left to T.Etienne to JAX 36 for 5 yards (G.Rousseau; D.Walker).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "401772977109",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(No Huddle, Shotgun) T.Lawrence pass incomplete short left to J.Meyers.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "401772977132",
+            "type": { "text": "Punt" },
+            "text": "L.Cooke punts 58 yards to BUF 6, Center-R.Matiscik, downed by JAX-R.Lane.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "401772977152",
+            "type": { "text": "Rush" },
+            "text": "J.Cook right guard to BUF 9 for 3 yards (T.Walker).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "401772977174",
+            "type": { "text": "Pass Reception" },
+            "text": "J.Allen pass short left to K.Shakir to BUF 9 for no gain (G.Newsome; E.Murray).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "401772977199",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Allen pass short left to T.Shavers pushed ob at BUF 23 for 14 yards (E.Murray).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "401772977229",
+            "type": { "text": "Penalty" },
+            "text": "J.Cook right tackle to BUF 27 for 4 yards (M.Brown).PENALTY on BUF-T.Shavers, Offensive Holding, 10 yards, enforced at BUF 23 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "401772977262",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Allen pass short left to K.Shakir to BUF 25 for 12 yards (E.Murray).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "401772977292",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Allen pass short right to B.Cooks ran ob at BUF 35 for 10 yards (M.Brown).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "401772977322",
+            "type": { "text": "Penalty" },
+            "text": "PENALTY on BUF-J.Hawes, False Start, 5 yards, enforced at BUF 35 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "401772977346",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) J.Allen scrambles left end to BUF 38 for 8 yards (D.Lloyd).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "401772977368",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Allen pass short right to K.Shakir to BUF 38 for no gain (J.Jones).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "401772977393",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) J.Allen pass incomplete short middle to D.Kincaid.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "401772977416",
+            "type": { "text": "Punt" },
+            "text": "M.Wishnowsky punts 42 yards to JAX 20, Center-R.Ferguson, fair catch by P.Washington.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "401772977426",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 07:51.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "401772977436",
+            "type": { "text": "Rush" },
+            "text": "T.Etienne up the middle to JAX 23 for 3 yards (A.Epenesa).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "401772977465",
+            "type": { "text": "Penalty" },
+            "text": "(Shotgun) PENALTY on JAX-W.Little, False Start, 5 yards, enforced at JAX 23 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "401772977489",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) T.Lawrence pass short left to T.Etienne pushed ob at JAX 28 for 10 yards (S.Thompson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "401772977519",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) T.Etienne up the middle to JAX 40 for 12 yards (J.Poyer).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "401772977541",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(No Huddle, Shotgun) T.Lawrence pass incomplete short middle to P.Washington.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "401772977564",
+            "type": { "text": "Pass Interception Return" },
+            "text": "(Shotgun) T.Lawrence pass short middle intended for P.Washington INTERCEPTED by S.Thompson at BUF 48. S.Thompson to JAX 33 for 19 yards (T.Lawrence).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "401772977591",
+            "type": { "text": "Rush" },
+            "text": "J.Cook right tackle to JAX 30 for 3 yards (A.Armstead).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "401772977613",
+            "type": { "text": "Pass Reception" },
+            "text": "J.Allen pass short right to J.Cook to JAX 29 for 1 yard (D.Lloyd).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "401772977638",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) J.Allen up the middle to JAX 27 for 2 yards (J.Hines-Allen; T.Walker).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "401772977660",
+            "type": { "text": "Penalty" },
+            "text": "(Field Goal formation) PENALTY on BUF, Delay of Game, 5 yards, enforced at JAX 27 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "401772977684",
+            "type": { "text": "Field Goal Good" },
+            "text": "M.Prater 50 yard field goal is GOOD, Center-R.Ferguson, Holder-M.Wishnowsky.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "401772977694",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 02:54.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "401772977704",
+            "type": { "text": "Kickoff" },
+            "text": "M.Wishnowsky kicks 65 yards from BUF 35 to end zone, Touchback to the JAX 35.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "401772977728",
+            "type": { "text": "Pass Reception" },
+            "text": "T.Lawrence pass short left to B.Strange to JAX 44 for 9 yards (M.Milano).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "401772977753",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) T.Lawrence pass short left to T.Etienne to 50 for 6 yards (D.Williams).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "401772977778",
+            "type": { "text": "Rush" },
+            "text": "B.Tuten right end to BUF 30 for 20 yards (M.Milano).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "401772977800",
+            "type": { "text": "Rush" },
+            "text": "(No Huddle) B.Tuten right tackle to BUF 16 for 14 yards (J.Poyer).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "401772977822",
+            "type": { "text": "Rush" },
+            "text": "B.Tuten left end pushed ob at BUF 3 for 13 yards (T.White).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "401772977849",
+            "type": { "text": "End Period" },
+            "text": "END QUARTER 1",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "401772977869",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) T.Lawrence pass short middle to B.Strange to BUF 3 for no gain (G.Rousseau).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "401772977894",
+            "type": { "text": "Passing Touchdown" },
+            "text": "(Shotgun) T.Lawrence pass short left to B.Thomas for 3 yards, TOUCHDOWN. C.Little extra point is GOOD, Center-R.Matiscik, Holder-L.Cooke.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "401772977928",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 14:14.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "401772977935",
+            "type": { "text": "Kickoff" },
+            "text": "C.Little kicks 65 yards from JAX 35 to BUF 0. R.Davis to BUF 34 for 34 yards (L.Allen; M.Brown). FUMBLES (L.Allen), RECOVERED by JAX-D.Lloyd at BUF 36. BUF-R.Davis was injured during the play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "401772977984",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) T.Etienne right end to BUF 29 for 7 yards (Ta.Johnson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729771006",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) T.Lawrence pass short left to J.Meyers to BUF 17 for 12 yards (Ta.Johnson) [G.Rousseau].",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729771031",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(No Huddle, Shotgun) T.Lawrence pass incomplete short left to J.Meyers (M.Milano).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729771054",
+            "type": { "text": "Sack" },
+            "text": "(Shotgun) T.Lawrence sacked at BUF 19 for -2 yards (G.Rousseau).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729771083",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) T.Lawrence scrambles left tackle to BUF 9 for 10 yards (D.Jones).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729771094",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #1 by JAX at 11:21.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729771105",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) T.Lawrence left end to BUF 7 for 2 yards (S.Thompson). (Virtual Measurement).Buffalo challenged the first down ruling, and the play was REVERSED.(Shotgun) T.Lawrence left end to BUF 8 for 1 yard (S.Thompson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729771143",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Allen pass short right to K.Shakir to BUF 12 for 4 yards (M.Brown).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729771199",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Allen pass short left to K.Shakir pushed ob at BUF 27 for 15 yards (F.Oluokun).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729771229",
+            "type": { "text": "Pass Reception" },
+            "text": "J.Allen pass short left to F.Gore pushed ob at BUF 33 for 6 yards (D.Lloyd).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729771259",
+            "type": { "text": "Rush" },
+            "text": "J.Cook left tackle to BUF 44 for 11 yards (A.Wingard). JAX-A.Wingard was injured during the play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729771284",
+            "type": { "text": "Pass Reception" },
+            "text": "J.Allen pass short left to B.Cooks to JAX 44 for 12 yards (J.Jones). ** Injury Update: BUF-R.Davis has returned to the game. Penalty on JAX-J.Jones, Defensive Pass Interference, declined.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729771330",
+            "type": { "text": "Rush" },
+            "text": "J.Cook left end to JAX 44 for no gain (T.Walker).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729771343",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #1 by BUF at 07:47.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729771355",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Allen pass deep right to K.Coleman pushed ob at JAX 8 for 36 yards (D.Lloyd).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729771392",
+            "type": { "text": "Rush" },
+            "text": "J.Cook right end pushed ob at JAX 2 for 6 yards (M.Brown).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729771419",
+            "type": { "text": "Rush" },
+            "text": "J.Cook right guard to JAX 2 for no gain (An.Johnson; F.Oluokun).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729771441",
+            "type": { "text": "Rushing Touchdown" },
+            "text": "(Shotgun) J.Allen right tackle for 2 yards, TOUCHDOWN. M.Prater extra point is GOOD, Center-R.Ferguson, Holder-M.Wishnowsky. ** Injury Update: JAX-A.Wingard has returned to the game.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729771477",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 05:37.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729771484",
+            "type": { "text": "Kickoff" },
+            "text": "M.Wishnowsky kicks 59 yards from BUF 35 to JAX 6. B.Tuten to JAX 26 for 20 yards (S.Franklin; B.Spector).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729771517",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) B.Tuten left end to JAX 30 for 4 yards (S.Thompson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729771539",
+            "type": { "text": "Pass Incompletion" },
+            "text": "T.Lawrence pass incomplete deep left to B.Strange (D.Walker).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729771551",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #2 by JAX at 04:46.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729771562",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) T.Lawrence pass incomplete deep middle to P.Washington.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729771592",
+            "type": { "text": "Punt" },
+            "text": "L.Cooke punts 42 yards to BUF 28, Center-R.Matiscik, out of bounds. BUF-T.Shavers was injured during the play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729771603",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 04:35.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729771614",
+            "type": { "text": "Pass Incompletion" },
+            "text": "J.Allen pass incomplete deep right to B.Cooks.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729771644",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Allen pass short middle to G.Davis to BUF 37 for 9 yards (E.Murray).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729771669",
+            "type": { "text": "Rush" },
+            "text": "J.Cook up the middle to BUF 38 for 1 yard (T.Walker).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729771691",
+            "type": { "text": "Pass Reception" },
+            "text": "J.Allen pass short right to D.Kincaid to BUF 44 for 6 yards (J.Jones).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729771716",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) J.Cook left guard to BUF 49 for 5 yards (E.Murray; D.Lloyd).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729771727",
+            "type": { "text": "Two-minute warning" },
+            "text": "Two-Minute Warning",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729771738",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) J.Cook up the middle to JAX 49 for 2 yards (A.Armstead).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729771772",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) J.Allen pass deep middle to B.Cooks to JAX 22 for 27 yards (M.Brown).The Replay Official reviewed the pass completion ruling, and the play was REVERSED.(Shotgun) J.Allen pass incomplete deep middle to B.Cooks.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729771795",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 01:20.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729771802",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Allen pass short right to D.Knox to JAX 45 for 4 yards (F.Oluokun).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729771841",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #3 by JAX at 01:14.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729771879",
+            "type": { "text": "Penalty" },
+            "text": "(Shotgun) PENALTY on BUF, Delay of Game, 5 yards, enforced at JAX 45 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729771910",
+            "type": { "text": "Punt" },
+            "text": "M.Wishnowsky punts 47 yards to JAX 3, Center-R.Ferguson, out of bounds.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729771929",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) T.Lawrence scrambles left end to JAX 21 for 18 yards (S.Thompson; J.Hancock).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729771951",
+            "type": { "text": "Penalty" },
+            "text": "(No Huddle, Shotgun) PENALTY on JAX-W.Little, False Start, 5 yards, enforced at JAX 21 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729771975",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) T.Lawrence pass short left to L.Allen pushed ob at JAX 25 for 9 yards (M.Milano).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729772005",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) T.Lawrence pass deep middle to P.Washington to BUF 41 for 34 yards (J.Hancock).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729772030",
+            "type": { "text": "Penalty" },
+            "text": "(No Huddle) PENALTY on BUF-J.Bosa, Defensive Offside, 5 yards, enforced at BUF 41 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729772064",
+            "type": { "text": "Field Goal Missed" },
+            "text": "C.Little 54 yard field goal is No Good, Hit Left Upright, Center-R.Matiscik, Holder-L.Cooke.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729772085",
+            "type": { "text": "End of Half" },
+            "text": "END QUARTER 2",
+            "scoringPlay": false
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729772105",
+            "type": { "text": "Kickoff" },
+            "text": "C.Little kicks 64 yards from JAX 35 to BUF 1. R.Davis to BUF 26 for 25 yards (D.Gardeck).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729772129",
+            "type": { "text": "Rush" },
+            "text": "J.Cook up the middle to BUF 28 for 2 yards (D.Hamilton). ** Injury Update: BUF-T.Shavers has returned to the game.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729772156",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) J.Allen pass incomplete short right to T.Shavers [T.Walker].",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729772179",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Allen pass short right to K.Shakir to BUF 37 for 9 yards (E.Murray).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729772207",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Allen pass deep middle to K.Shakir to JAX 45 for 18 yards (M.Brown) [J.Hines-Allen].",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729772235",
+            "type": { "text": "Pass Reception" },
+            "text": "J.Allen pass short left to J.Cook to JAX 41 for 4 yards (G.Newsome).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729772260",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) J.Cook left guard to JAX 40 for 1 yard (D.Hamilton).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729772282",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Allen pass short left to G.Davis pushed ob at JAX 35 for 5 yards (G.Newsome).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729772312",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) J.Allen scrambles up the middle to JAX 33 for 2 yards (J.Hines-Allen). ** Injury Update: JAX-D.Striggow has returned to the game.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729772334",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) J.Cook up the middle to JAX 30 for 3 yards (Au.Johnson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729772359",
+            "type": { "text": "Penalty" },
+            "text": "(Shotgun) PENALTY on BUF-D.Knox, False Start, 4 yards, enforced at JAX 30 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729772383",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Allen pass short left to K.Shakir to JAX 29 for 5 yards (A.Wingard).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729772408",
+            "type": { "text": "Field Goal Good" },
+            "text": "M.Prater 47 yard field goal is GOOD, Center-R.Ferguson, Holder-M.Wishnowsky.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729772418",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 08:12.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729772428",
+            "type": { "text": "Kickoff" },
+            "text": "M.Wishnowsky kicks 65 yards from BUF 35 to end zone, Touchback to the JAX 35.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729772452",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) T.Lawrence pass short left to P.Washington pushed ob at JAX 48 for 13 yards (C.Benford).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729772482",
+            "type": { "text": "Rush" },
+            "text": "T.Etienne right tackle to BUF 26 for 26 yards (T.White).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729772504",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) T.Lawrence pass incomplete short right to B.Strange (T.White).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729772527",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) T.Lawrence up the middle to BUF 25 for 1 yard (D.Walker; G.Rousseau).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729772549",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) T.Lawrence pass incomplete deep right to B.Strange (T.White).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729772572",
+            "type": { "text": "Field Goal Good" },
+            "text": "C.Little 43 yard field goal is GOOD, Center-R.Matiscik, Holder-L.Cooke.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729772582",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 05:47.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729772592",
+            "type": { "text": "Kickoff" },
+            "text": "C.Little kicks 64 yards from JAX 35 to BUF 1. R.Davis to BUF 31 for 30 yards (B.Combs).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729772622",
+            "type": { "text": "Rush" },
+            "text": "J.Cook up the middle to BUF 33 for 2 yards (M.Dickerson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729772644",
+            "type": { "text": "Sack" },
+            "text": "(Shotgun) J.Allen sacked at BUF 21 for -12 yards (J.Hines-Allen).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729772664",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) J.Allen pass incomplete short right to D.Kincaid.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729772687",
+            "type": { "text": "Punt" },
+            "text": "M.Wishnowsky punts 41 yards to JAX 38, Center-R.Ferguson, out of bounds.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729772697",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 03:58.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729772706",
+            "type": { "text": "Rush" },
+            "text": "T.Etienne left guard to JAX 43 for 5 yards (D.Williams).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729772735",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) T.Etienne up the middle to JAX 44 for 1 yard (A.Jones).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729772757",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) T.Lawrence pass deep right to B.Thomas to BUF 38 for 18 yards (J.Hancock).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729772782",
+            "type": { "text": "Rush" },
+            "text": "(No Huddle, Shotgun) L.Allen right end to BUF 35 for 3 yards (M.Milano).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729772804",
+            "type": { "text": "Rush" },
+            "text": "T.Etienne right end to BUF 30 for 5 yards (S.Thompson; J.Hancock).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729772826",
+            "type": { "text": "Pass Reception" },
+            "text": "C.Edoga reported in as eligible.  T.Lawrence pass short right to P.Washington to BUF 16 for 14 yards (J.Hancock).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729772853",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) T.Lawrence pass short left to P.Washington pushed ob at BUF 12 for 4 yards (C.Benford).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729772883",
+            "type": { "text": "End Period" },
+            "text": "END QUARTER 3",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729772903",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) T.Lawrence pass short right to P.Washington to BUF 7 for 5 yards (S.Thompson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729772928",
+            "type": { "text": "Rush" },
+            "text": "T.Lawrence right guard to BUF 5 for 2 yards (G.Rousseau).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729772950",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) T.Lawrence right end to BUF 6 for -1 yards (G.Rousseau, J.Hancock).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729772972",
+            "type": { "text": "Passing Touchdown" },
+            "text": "(Shotgun) T.Lawrence pass short middle to P.Washington for 6 yards, TOUCHDOWN. JAX-A.Harrison was injured during the play. C.Little extra point is GOOD, Center-R.Matiscik, Holder-L.Cooke.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729772989",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 12:55.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729773021",
+            "type": { "text": "Kickoff" },
+            "text": "C.Little kicks 65 yards from JAX 35 to end zone, Touchback to the BUF 35.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729773045",
+            "type": { "text": "Rush" },
+            "text": "J.Cook right tackle to BUF 41 for 6 yards (M.Dickerson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729773067",
+            "type": { "text": "Pass Incompletion" },
+            "text": "J.Allen pass incomplete short right to J.Cook.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729773090",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Allen pass short left to D.Kincaid pushed ob at BUF 48 for 7 yards (An.Johnson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729773120",
+            "type": { "text": "Pass Reception" },
+            "text": "J.Allen pass deep middle to D.Knox to JAX 28 for 24 yards (A.Wingard).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729773145",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) J.Allen pass incomplete short middle to G.Davis. BUF-G.Davis was injured during the play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729773171",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Allen pass short middle to K.Shakir to JAX 24 for 4 yards (A.Wingard; T.Walker).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729773196",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) J.Allen scrambles up the middle to JAX 18 for 6 yards (An.Johnson).Jacksonville challenged the first down ruling, and the play was REVERSED.(Shotgun) J.Allen scrambles up the middle to JAX 19 for 5 yards (An.Johnson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729773218",
+            "type": { "text": "Rush" },
+            "text": "A.Anderson reported in as eligible.  J.Allen left guard to JAX 15 for 4 yards (D.Gardeck).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729773269",
+            "type": { "text": "Passing Touchdown" },
+            "text": "(Shotgun) J.Allen pass short left to D.Kincaid for 15 yards, TOUCHDOWN. M.Prater extra point is GOOD, Center-R.Ferguson, Holder-M.Wishnowsky.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729773303",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 08:56.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729773310",
+            "type": { "text": "Kickoff" },
+            "text": "M.Wishnowsky kicks 50 yards from BUF 35 to JAX 15. B.Tuten to JAX 23 for 8 yards (D.Jackson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729773345",
+            "type": { "text": "Pass Incompletion" },
+            "text": "T.Lawrence pass incomplete short right to P.Washington (G.Rousseau). ** Injury Update: JAX-A.Harrison has returned to the game.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729773368",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) T.Lawrence pass short middle to T.Etienne to JAX 37 for 14 yards (C.Bishop).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729773396",
+            "type": { "text": "Rush" },
+            "text": "T.Etienne up the middle to JAX 39 for 2 yards (S.Thompson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729773418",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) T.Lawrence pass incomplete short left to P.Washington (C.Benford).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729773441",
+            "type": { "text": "Penalty" },
+            "text": "(Shotgun) T.Lawrence pass incomplete short right to B.Strange [S.Thompson].PENALTY on BUF-C.Benford, Defensive Holding, 5 yards, enforced at JAX 39 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729773475",
+            "type": { "text": "Pass Incompletion" },
+            "text": "C.Edoga reported in as eligible.  T.Lawrence pass incomplete deep left to T.Patrick [J.Bosa].",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729773500",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) T.Lawrence pass deep middle to P.Washington to BUF 25 for 31 yards (C.Bishop).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729773525",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) P.Washington left end ran ob at BUF 20 for 5 yards (S.Thompson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729773552",
+            "type": { "text": "Rush" },
+            "text": "T.Etienne left end pushed ob at BUF 16 for 4 yards (C.Benford).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729773579",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) C.Edoga reported in as eligible. Direct snap to T.Etienne.  T.Etienne up the middle to BUF 14 for 2 yards (D.Walker).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729773605",
+            "type": { "text": "Passing Touchdown" },
+            "text": "T.Lawrence pass short right to T.Etienne for 14 yards, TOUCHDOWN. C.Little extra point is GOOD, Center-R.Matiscik, Holder-L.Cooke.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729773639",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 04:03.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729773646",
+            "type": { "text": "Kickoff" },
+            "text": "C.Little kicks 61 yards from JAX 35 to BUF 4. R.Davis to BUF 34 for 30 yards (D.Gardeck).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          },
+          {
+            "id": "4017729773676",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Allen pass short left to K.Shakir to BUF 42 for 8 yards (D.Lloyd).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729773701",
+            "type": { "text": "Rush" },
+            "text": "J.Cook up the middle to BUF 43 for 1 yard (D.Hamilton; A.Armstead).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729773723",
+            "type": { "text": "Rush" },
+            "text": "(No Huddle) J.Allen left tackle to BUF 44 for 1 yard (E.Murray; F.Oluokun).(Virtual Measurement).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729773749",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Allen pass deep left to B.Cooks to JAX 20 for 36 yards (An.Johnson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729773762",
+            "type": { "text": "Two-minute warning" },
+            "text": "Two-Minute Warning",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729773774",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Allen pass short middle to D.Knox to JAX 18 for 2 yards (F.Oluokun).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729773806",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Allen pass short left to K.Shakir to JAX 14 for 4 yards (J.Hines-Allen).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729773819",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #1 by JAX at 01:16.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729773831",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) J.Allen pass short right to K.Shakir to JAX 11 for 3 yards (An.Johnson; M.Brown).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729773847",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #2 by JAX at 01:10.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729773863",
+            "type": { "text": "Rush" },
+            "text": "A.Anderson reported in as eligible.  J.Allen up the middle for 11 yards, TOUCHDOWN.The Replay Official reviewed the runner broke the plane ruling, and the play was REVERSED.A.Anderson reported in as eligible.  J.Allen up the middle to JAX 1 for 10 yards (An.Johnson; A.Armstead).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729773894",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #3 by JAX at 01:05.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729773924",
+            "type": { "text": "Rushing Touchdown" },
+            "text": "A.Anderson reported in as eligible.  J.Allen left guard for 1 yard, TOUCHDOWN. M.Prater extra point is GOOD, Center-R.Ferguson, Holder-M.Wishnowsky.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "2" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729773971",
+            "type": { "text": "Kickoff" },
+            "text": "M.Wishnowsky kicks 63 yards from BUF 35 to JAX 2. B.Tuten to JAX 23 for 21 yards (J.Solomon).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729773994",
+            "type": { "text": "Pass Interception Return" },
+            "text": "(Shotgun) T.Lawrence pass short middle intended for J.Meyers INTERCEPTED by C.Bishop (T.White) at JAX 37. C.Bishop to JAX 35 for 2 yards.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "30" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729774021",
+            "type": { "text": "Rush" },
+            "text": "J.Allen kneels to JAX 36 for -1 yards.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729774043",
+            "type": { "text": "Rush" },
+            "text": "J.Allen kneels to JAX 37 for -1 yards.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "2" } }
+          },
+          {
+            "id": "4017729774065",
+            "type": { "text": "End of Game" },
+            "text": "END GAME",
+            "scoringPlay": false
+          }
+        ]
+      }
+    ]
+  }
+}

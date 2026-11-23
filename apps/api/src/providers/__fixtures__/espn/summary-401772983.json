@@ -1,0 +1,2113 @@
+{
+  "header": {
+    "competitions": [
+      {
+        "date": "2026-01-18T20:00Z",
+        "status": { "type": { "name": "STATUS_FINAL", "completed": true } },
+        "competitors": [
+          {
+            "homeAway": "home",
+            "score": "28",
+            "winner": true,
+            "team": { "id": "17", "abbreviation": "NE" }
+          },
+          {
+            "homeAway": "away",
+            "score": "16",
+            "winner": false,
+            "team": { "id": "34", "abbreviation": "HOU" }
+          }
+        ]
+      }
+    ]
+  },
+  "boxscore": {
+    "players": [
+      {
+        "team": { "id": "34", "abbreviation": "HOU" },
+        "statistics": [
+          {
+            "name": "passing",
+            "keys": [
+              "completions/passingAttempts",
+              "passingYards",
+              "yardsPerPassAttempt",
+              "passingTouchdowns",
+              "interceptions",
+              "sacks-sackYardsLost",
+              "adjQBR",
+              "QBRating"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4432577",
+                  "displayName": "C.J. Stroud",
+                  "firstName": "C.J.",
+                  "lastName": "Stroud"
+                },
+                "stats": ["20/47", "212", "4.5", "1", "4", "3-19", "22.2", "28.0"]
+              }
+            ]
+          },
+          {
+            "name": "rushing",
+            "keys": [
+              "rushingAttempts",
+              "rushingYards",
+              "yardsPerRushAttempt",
+              "rushingTouchdowns",
+              "longRushing"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4429059",
+                  "displayName": "Woody Marks",
+                  "firstName": "Woody",
+                  "lastName": "Marks"
+                },
+                "stats": ["14", "17", "1.2", "0", "8"]
+              },
+              {
+                "athlete": {
+                  "id": "3128720",
+                  "displayName": "Nick Chubb",
+                  "firstName": "Nick",
+                  "lastName": "Chubb"
+                },
+                "stats": ["4", "14", "3.5", "0", "7"]
+              },
+              {
+                "athlete": {
+                  "id": "4432577",
+                  "displayName": "C.J. Stroud",
+                  "firstName": "C.J.",
+                  "lastName": "Stroud"
+                },
+                "stats": ["2", "11", "5.5", "0", "10"]
+              },
+              {
+                "athlete": {
+                  "id": "4426496",
+                  "displayName": "Cade Stover",
+                  "firstName": "Cade",
+                  "lastName": "Stover"
+                },
+                "stats": ["2", "6", "3.0", "0", "4"]
+              }
+            ]
+          },
+          {
+            "name": "receiving",
+            "keys": [
+              "receptions",
+              "receivingYards",
+              "yardsPerReception",
+              "receivingTouchdowns",
+              "longReception",
+              "receivingTargets"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4877706",
+                  "displayName": "Jayden Higgins",
+                  "firstName": "Jayden",
+                  "lastName": "Higgins"
+                },
+                "stats": ["6", "59", "9.8", "0", "16", "10"]
+              },
+              {
+                "athlete": {
+                  "id": "3117256",
+                  "displayName": "Dalton Schultz",
+                  "firstName": "Dalton",
+                  "lastName": "Schultz"
+                },
+                "stats": ["2", "47", "23.5", "0", "42", "2"]
+              },
+              {
+                "athlete": {
+                  "id": "4686422",
+                  "displayName": "Xavier Hutchinson",
+                  "firstName": "Xavier",
+                  "lastName": "Hutchinson"
+                },
+                "stats": ["4", "44", "11.0", "0", "23", "13"]
+              },
+              {
+                "athlete": {
+                  "id": "4040774",
+                  "displayName": "Harrison Bryant",
+                  "firstName": "Harrison",
+                  "lastName": "Bryant"
+                },
+                "stats": ["3", "21", "7.0", "0", "9", "6"]
+              },
+              {
+                "athlete": {
+                  "id": "3895856",
+                  "displayName": "Christian Kirk",
+                  "firstName": "Christian",
+                  "lastName": "Kirk"
+                },
+                "stats": ["2", "20", "10.0", "1", "10", "6"]
+              },
+              {
+                "athlete": {
+                  "id": "4429059",
+                  "displayName": "Woody Marks",
+                  "firstName": "Woody",
+                  "lastName": "Marks"
+                },
+                "stats": ["2", "19", "9.5", "0", "13", "3"]
+              },
+              {
+                "athlete": {
+                  "id": "4426496",
+                  "displayName": "Cade Stover",
+                  "firstName": "Cade",
+                  "lastName": "Stover"
+                },
+                "stats": ["1", "2", "2.0", "0", "2", "3"]
+              },
+              {
+                "athlete": {
+                  "id": "3128720",
+                  "displayName": "Nick Chubb",
+                  "firstName": "Nick",
+                  "lastName": "Chubb"
+                },
+                "stats": ["0", "0", "0.0", "0", "0", "1"]
+              },
+              {
+                "athlete": {
+                  "id": "4586312",
+                  "displayName": "Jaylin Noel",
+                  "firstName": "Jaylin",
+                  "lastName": "Noel"
+                },
+                "stats": ["0", "0", "0.0", "0", "0", "1"]
+              }
+            ]
+          },
+          {
+            "name": "fumbles",
+            "keys": ["fumbles", "fumblesLost", "fumblesRecovered"],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4429059",
+                  "displayName": "Woody Marks",
+                  "firstName": "Woody",
+                  "lastName": "Marks"
+                },
+                "stats": ["1", "1", "0"]
+              },
+              {
+                "athlete": {
+                  "id": "3919117",
+                  "displayName": "Azeez Al-Shaair",
+                  "firstName": "Azeez",
+                  "lastName": "Al-Shaair"
+                },
+                "stats": ["0", "0", "2"]
+              }
+            ]
+          },
+          {
+            "name": "kickReturns",
+            "keys": [
+              "kickReturns",
+              "kickReturnYards",
+              "yardsPerKickReturn",
+              "longKickReturn",
+              "kickReturnTouchdowns"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4586312",
+                  "displayName": "Jaylin Noel",
+                  "firstName": "Jaylin",
+                  "lastName": "Noel"
+                },
+                "stats": ["3", "69", "23.0", "26", "0"]
+              },
+              {
+                "athlete": {
+                  "id": "3123075",
+                  "displayName": "Braxton Berrios",
+                  "firstName": "Braxton",
+                  "lastName": "Berrios"
+                },
+                "stats": ["1", "19", "19.0", "19", "0"]
+              }
+            ]
+          },
+          {
+            "name": "puntReturns",
+            "keys": [
+              "puntReturns",
+              "puntReturnYards",
+              "yardsPerPuntReturn",
+              "longPuntReturn",
+              "puntReturnTouchdowns"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4586312",
+                  "displayName": "Jaylin Noel",
+                  "firstName": "Jaylin",
+                  "lastName": "Noel"
+                },
+                "stats": ["3", "29", "9.7", "11", "0"]
+              }
+            ]
+          },
+          {
+            "name": "kicking",
+            "keys": [
+              "fieldGoalsMade/fieldGoalAttempts",
+              "fieldGoalPct",
+              "longFieldGoalMade",
+              "extraPointsMade/extraPointAttempts",
+              "totalKickingPoints"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "2971573",
+                  "displayName": "Ka'imi Fairbairn",
+                  "firstName": "Ka'imi",
+                  "lastName": "Fairbairn"
+                },
+                "stats": ["3/3", "100.0", "51", "1/1", "10"]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "team": { "id": "17", "abbreviation": "NE" },
+        "statistics": [
+          {
+            "name": "passing",
+            "keys": [
+              "completions/passingAttempts",
+              "passingYards",
+              "yardsPerPassAttempt",
+              "passingTouchdowns",
+              "interceptions",
+              "sacks-sackYardsLost",
+              "adjQBR",
+              "QBRating"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4431452",
+                  "displayName": "Drake Maye",
+                  "firstName": "Drake",
+                  "lastName": "Maye"
+                },
+                "stats": ["16/27", "179", "6.6", "3", "1", "5-36", "20.7", "100.7"]
+              }
+            ]
+          },
+          {
+            "name": "rushing",
+            "keys": [
+              "rushingAttempts",
+              "rushingYards",
+              "yardsPerRushAttempt",
+              "rushingTouchdowns",
+              "longRushing"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4569173",
+                  "displayName": "Rhamondre Stevenson",
+                  "firstName": "Rhamondre",
+                  "lastName": "Stevenson"
+                },
+                "stats": ["16", "70", "4.4", "0", "20"]
+              },
+              {
+                "athlete": {
+                  "id": "4432710",
+                  "displayName": "TreVeyon Henderson",
+                  "firstName": "TreVeyon",
+                  "lastName": "Henderson"
+                },
+                "stats": ["12", "25", "2.1", "0", "6"]
+              },
+              {
+                "athlete": {
+                  "id": "4431452",
+                  "displayName": "Drake Maye",
+                  "firstName": "Drake",
+                  "lastName": "Maye"
+                },
+                "stats": ["4", "10", "2.5", "0", "8"]
+              }
+            ]
+          },
+          {
+            "name": "receiving",
+            "keys": [
+              "receptions",
+              "receivingYards",
+              "yardsPerReception",
+              "receivingTouchdowns",
+              "longReception",
+              "receivingTargets"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4429022",
+                  "displayName": "Kayshon Boutte",
+                  "firstName": "Kayshon",
+                  "lastName": "Boutte"
+                },
+                "stats": ["3", "75", "25.0", "1", "32", "5"]
+              },
+              {
+                "athlete": {
+                  "id": "2976212",
+                  "displayName": "Stefon Diggs",
+                  "firstName": "Stefon",
+                  "lastName": "Diggs"
+                },
+                "stats": ["4", "40", "10.0", "1", "14", "6"]
+              },
+              {
+                "athlete": {
+                  "id": "4427095",
+                  "displayName": "DeMario Douglas",
+                  "firstName": "DeMario",
+                  "lastName": "Douglas"
+                },
+                "stats": ["2", "36", "18.0", "1", "28", "2"]
+              },
+              {
+                "athlete": {
+                  "id": "3043275",
+                  "displayName": "Austin Hooper",
+                  "firstName": "Austin",
+                  "lastName": "Hooper"
+                },
+                "stats": ["1", "14", "14.0", "0", "14", "2"]
+              },
+              {
+                "athlete": {
+                  "id": "4569173",
+                  "displayName": "Rhamondre Stevenson",
+                  "firstName": "Rhamondre",
+                  "lastName": "Stevenson"
+                },
+                "stats": ["4", "11", "2.8", "0", "9", "4"]
+              },
+              {
+                "athlete": {
+                  "id": "3046439",
+                  "displayName": "Hunter Henry",
+                  "firstName": "Hunter",
+                  "lastName": "Henry"
+                },
+                "stats": ["1", "5", "5.0", "0", "5", "2"]
+              },
+              {
+                "athlete": {
+                  "id": "4613202",
+                  "displayName": "Kyle Williams",
+                  "firstName": "Kyle",
+                  "lastName": "Williams"
+                },
+                "stats": ["0", "0", "0.0", "0", "0", "3"]
+              },
+              {
+                "athlete": {
+                  "id": "4432710",
+                  "displayName": "TreVeyon Henderson",
+                  "firstName": "TreVeyon",
+                  "lastName": "Henderson"
+                },
+                "stats": ["1", "-2", "-2.0", "0", "-2", "2"]
+              }
+            ]
+          },
+          {
+            "name": "fumbles",
+            "keys": ["fumbles", "fumblesLost", "fumblesRecovered"],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4431452",
+                  "displayName": "Drake Maye",
+                  "firstName": "Drake",
+                  "lastName": "Maye"
+                },
+                "stats": ["4", "2", "0"]
+              },
+              {
+                "athlete": {
+                  "id": "4428930",
+                  "displayName": "Craig Woodson",
+                  "firstName": "Craig",
+                  "lastName": "Woodson"
+                },
+                "stats": ["0", "0", "1"]
+              },
+              {
+                "athlete": {
+                  "id": "4685298",
+                  "displayName": "Will Campbell",
+                  "firstName": "Will",
+                  "lastName": "Campbell"
+                },
+                "stats": ["0", "0", "2"]
+              }
+            ]
+          },
+          {
+            "name": "kickReturns",
+            "keys": [
+              "kickReturns",
+              "kickReturnYards",
+              "yardsPerKickReturn",
+              "longKickReturn",
+              "kickReturnTouchdowns"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "3139602",
+                  "displayName": "D'Ernest Johnson",
+                  "firstName": "D'Ernest",
+                  "lastName": "Johnson"
+                },
+                "stats": ["2", "47", "23.5", "25", "0"]
+              },
+              {
+                "athlete": {
+                  "id": "4613202",
+                  "displayName": "Kyle Williams",
+                  "firstName": "Kyle",
+                  "lastName": "Williams"
+                },
+                "stats": ["1", "22", "22.0", "22", "0"]
+              },
+              {
+                "athlete": {
+                  "id": "4695193",
+                  "displayName": "Efton Chism III",
+                  "firstName": "Efton",
+                  "lastName": "Chism III"
+                },
+                "stats": ["1", "20", "20.0", "20", "0"]
+              }
+            ]
+          },
+          {
+            "name": "puntReturns",
+            "keys": [
+              "puntReturns",
+              "puntReturnYards",
+              "yardsPerPuntReturn",
+              "longPuntReturn",
+              "puntReturnTouchdowns"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4241720",
+                  "displayName": "Marcus Jones",
+                  "firstName": "Marcus",
+                  "lastName": "Jones"
+                },
+                "stats": ["4", "53", "13.3", "24", "0"]
+              }
+            ]
+          },
+          {
+            "name": "kicking",
+            "keys": [
+              "fieldGoalsMade/fieldGoalAttempts",
+              "fieldGoalPct",
+              "longFieldGoalMade",
+              "extraPointsMade/extraPointAttempts",
+              "totalKickingPoints"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4569923",
+                  "displayName": "Andy Borregales",
+                  "firstName": "Andy",
+                  "lastName": "Borregales"
+                },
+                "stats": ["0/0", "0.0", "0", "4/4", "4"]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "scoringPlays": [
+    {
+      "id": "401772983383",
+      "type": { "text": "Passing Touchdown" },
+      "text": "DeMario Douglas 28 Yd pass from Drake Maye (Andy Borregales Kick)",
+      "team": { "id": "17" }
+    },
+    {
+      "id": "401772983749",
+      "type": { "text": "Field Goal Good" },
+      "text": "Ka'imi Fairbairn 25 Yd Field Goal ",
+      "team": { "id": "34" }
+    },
+    {
+      "id": "4017729831298",
+      "type": { "text": "Passing Touchdown" },
+      "text": "Christian Kirk 10 Yd pass from C.J. Stroud (Ka'imi Fairbairn Kick)",
+      "team": { "id": "34" }
+    },
+    {
+      "id": "4017729831545",
+      "type": { "text": "Interception Return Touchdown" },
+      "text": "Marcus Jones 26 Yd Interception Return (Andy Borregales Kick)",
+      "team": { "id": "17" }
+    },
+    {
+      "id": "4017729832032",
+      "type": { "text": "Passing Touchdown" },
+      "text": "Stefon Diggs 7 Yd pass from Drake Maye (Andy Borregales Kick)",
+      "team": { "id": "17" }
+    },
+    {
+      "id": "4017729832972",
+      "type": { "text": "Field Goal Good" },
+      "text": "Ka'imi Fairbairn 25 Yd Field Goal ",
+      "team": { "id": "34" }
+    },
+    {
+      "id": "4017729833514",
+      "type": { "text": "Field Goal Good" },
+      "text": "Ka'imi Fairbairn 51 Yd Field Goal ",
+      "team": { "id": "34" }
+    },
+    {
+      "id": "4017729833730",
+      "type": { "text": "Passing Touchdown" },
+      "text": "Kayshon Boutte 32 Yd pass from Drake Maye (Andy Borregales Kick)",
+      "team": { "id": "17" }
+    }
+  ],
+  "drives": {
+    "previous": [
+      {
+        "plays": [
+          {
+            "id": "40177298339",
+            "type": { "text": "Kickoff" },
+            "text": "K.Fairbairn kicks 65 yards from HST 35 to end zone, Touchback to the NE 35.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "40177298357",
+            "type": { "text": "Rush" },
+            "text": "R.Stevenson right guard to NE 35 for no gain (S.Rankins).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "40177298379",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) D.Maye pass incomplete short right to H.Henry (H.To'oTo'o).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772983102",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) D.Maye pass short right to S.Diggs to NE 41 for 6 yards (H.To'oTo'o; C.Bullock).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772983127",
+            "type": { "text": "Punt" },
+            "text": "B.Baringer punts 44 yards to HST 15, Center-J.Ashby. J.Noel to HST 26 for 11 yards (C.Muma).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "401772983153",
+            "type": { "text": "Pass Incompletion" },
+            "text": "C.Stroud pass incomplete short right to X.Hutchinson.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "401772983176",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) W.Marks up the middle to HST 29 for 3 yards (R.Spillane).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "401772983198",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(No Huddle, Shotgun) C.Stroud pass incomplete short right to C.Kirk.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "401772983221",
+            "type": { "text": "Punt" },
+            "text": "T.Townsend punts 56 yards to NE 15, Center-A.Brinkman. M.Jones to NE 34 for 19 yards (E.Speed).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "401772983234",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 12:53.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "401772983247",
+            "type": { "text": "Pass Reception" },
+            "text": "D.Maye pass short middle to R.Stevenson to NE 43 for 9 yards (K.Lassiter).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772983279",
+            "type": { "text": "Rush" },
+            "text": "R.Stevenson right end pushed ob at HST 37 for 20 yards (C.Bullock).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772983306",
+            "type": { "text": "Rush" },
+            "text": "T.Henderson left end to HST 39 for -2 yards (J.Pitre, J.Reed).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772983328",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) D.Maye pass short left to T.Henderson to HST 41 for -2 yards (H.To'oTo'o).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772983353",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) D.Maye pass short middle to S.Diggs to HST 28 for 13 yards (J.Pitre).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772983383",
+            "type": { "text": "Passing Touchdown" },
+            "text": "(Shotgun) D.Maye pass short middle to D.Douglas for 28 yards, TOUCHDOWN. A.Borregales extra point is GOOD, Center-J.Ashby, Holder-B.Baringer.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772983417",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 09:35.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "401772983424",
+            "type": { "text": "Kickoff" },
+            "text": "A.Borregales kicks 55 yards from NE 35 to HST 10. B.Berrios to HST 29 for 19 yards (B.Schooler).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772983454",
+            "type": { "text": "Rush" },
+            "text": "B.Fisher reported in as eligible.  W.Marks right guard to HST 31 for 2 yards (K.Tonga; A.Jennings).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "401772983478",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) C.Stroud pass incomplete deep left to J.Higgins (C.Davis).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "401772983501",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) C.Stroud pass short left to D.Schultz pushed ob at NE 27 for 42 yards (C.Woodson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "401772983531",
+            "type": { "text": "Penalty" },
+            "text": "PENALTY on HST-D.Schultz, False Start, 5 yards, enforced at NE 27 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "401772983555",
+            "type": { "text": "Pass Reception" },
+            "text": "C.Stroud pass short left to J.Higgins to NE 23 for 9 yards (J.Hawkins).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "401772983580",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) C.Stroud pass incomplete short left to X.Hutchinson (C.Elliss).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "401772983603",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) C.Stroud pass short right to C.Kirk to NE 13 for 10 yards (C.Davis).PENALTY on NE-C.Davis, Face Mask, 7 yards, enforced at NE 13.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "401772983639",
+            "type": { "text": "Rush" },
+            "text": "B.Fisher reported in as eligible.  W.Marks left guard to NE 6 for no gain (J.Tavai; C.Woodson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "401772983663",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) C.Stroud pass short right to D.Schultz to NE 1 for 5 yards (M.Jones).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "401772983688",
+            "type": { "text": "Penalty" },
+            "text": "T.Togiai and B.Fisher reported in as eligible.  W.Marks up the middle for 1 yard, TOUCHDOWN NULLIFIED by Penalty.PENALTY on HST, Illegal Shift, 5 yards, enforced at NE 1 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "401772983726",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) C.Stroud pass incomplete short right to W.Marks [C.Barmore].",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "401772983749",
+            "type": { "text": "Field Goal Good" },
+            "text": " K.Fairbairn 25 yard field goal is GOOD, Center-A.Brinkman, Holder-T.Townsend.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "401772983759",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 05:26.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "401772983769",
+            "type": { "text": "Kickoff" },
+            "text": "K.Fairbairn kicks 65 yards from HST 35 to NE 0. K.Williams to NE 22 for 22 yards (C.Harris).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "401772983823",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) T.Henderson left guard to NE 22 for no gain (D.Barnett; T.Togiai).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772983845",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) D.Maye pass incomplete short middle to S.Diggs (D.Barnett).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772983868",
+            "type": { "text": "Fumble Recovery (Own)" },
+            "text": "(Shotgun) D.Maye sacked at NE 12 for -10 yards (D.Hunter). FUMBLES (D.Hunter), recovered by NE-W.Campbell at NE 3.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772983898",
+            "type": { "text": "Punt" },
+            "text": "B.Baringer punts 55 yards to HST 42, Center-J.Ashby. J.Noel pushed ob at NE 47 for 11 yards (E.Ponder).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "401772983914",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 03:41.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "401772983930",
+            "type": { "text": "Rush" },
+            "text": "W.Marks right guard to NE 47 for no gain (K.Chaisson; A.Jennings).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "401772983964",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) C.Stroud pass incomplete short middle to J.Higgins (C.Woodson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "401772983987",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) C.Stroud pass short left to J.Higgins pushed ob at NE 38 for 9 yards (C.Davis) [C.Woodson].",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729831017",
+            "type": { "text": "Rush" },
+            "text": "B.Fisher reported in as eligible.  N.Chubb right guard to NE 36 for 2 yards (K.Tonga).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729831041",
+            "type": { "text": "Pass Interception Return" },
+            "text": "(Shotgun) C.Stroud pass deep left intended for C.Kirk INTERCEPTED by C.Davis [K.Chaisson] at NE 18. C.Davis to NE 18 for no gain (C.Kirk).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729831057",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 01:37.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729831073",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) R.Stevenson up the middle to NE 23 for 5 yards (L.Fotu; C.Bullock).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729831107",
+            "type": { "text": "Fumble Recovery (Opponent)" },
+            "text": "D.Maye up the middle to NE 27 for 4 yards (T.Togiai). FUMBLES (T.Togiai), RECOVERED by HST-A.Al-Shaair at NE 27.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729831145",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) C.Stroud pass short left to J.Higgins pushed ob at NE 22 for 5 yards (C.Gonzalez). ** Injury Update: NE-R.Spillane has returned to the game.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729831175",
+            "type": { "text": "Rush" },
+            "text": "B.Fisher reported in as eligible.  W.Marks right end to NE 18 for 4 yards (H.Landry).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729831202",
+            "type": { "text": "End Period" },
+            "text": "END QUARTER 1",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729831222",
+            "type": { "text": "Rush" },
+            "text": "B.Fisher reported in as eligible. Direct snap to C.Stover.  C.Stover right guard to NE 16 for 2 yards (C.Woodson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729831249",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) C.Stroud pass short left to W.Marks to NE 10 for 6 yards (C.Elliss).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729831274",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) B.Fisher reported in as eligible.  W.Marks left tackle to NE 10 for no gain (M.Williams; C.Elliss).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729831298",
+            "type": { "text": "Passing Touchdown" },
+            "text": "(Shotgun) C.Stroud pass short right to C.Kirk for 10 yards, TOUCHDOWN. K.Fairbairn extra point is GOOD, Center-A.Brinkman, Holder-T.Townsend.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729831332",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 12:51.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729831339",
+            "type": { "text": "Kickoff" },
+            "text": "K.Fairbairn kicks 58 yards from HST 35 to NE 7. E.Chism to NE 27 for 20 yards (T.Smith).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729831375",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) D.Maye pass incomplete deep left to K.Boutte (K.Lassiter).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729831398",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) T.Henderson right guard to NE 30 for 3 yards (S.Rankins; C.Bullock).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729831420",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) D.Maye scrambles left end ran ob at NE 38 for 8 yards (A.Al-Shaair; K.Lassiter).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729831447",
+            "type": { "text": "Rush" },
+            "text": "T.Henderson left guard to NE 39 for 1 yard (D.Hunter). NE-T.Henderson was injured during the play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729831460",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 11:07.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729831472",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) D.Maye pass incomplete short left to K.Boutte.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729831502",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) D.Maye pass incomplete deep left to K.Williams.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729831525",
+            "type": { "text": "Punt" },
+            "text": "B.Baringer punts 36 yards to HST 25, Center-J.Ashby, fair catch by J.Noel.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729831535",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 10:41.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729831545",
+            "type": { "text": "Interception Return Touchdown" },
+            "text": "C.Stroud pass short left intended for X.Hutchinson INTERCEPTED by M.Jones [K.Chaisson] at HST 26. M.Jones for 26 yards, TOUCHDOWN. A.Borregales extra point is GOOD, Center-J.Ashby, Holder-B.Baringer.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729831588",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 10:31.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729831595",
+            "type": { "text": "Kickoff" },
+            "text": "A.Borregales kicks 65 yards from NE 35 to HST 0. J.Noel to HST 26 for 26 yards (J.Tavai; D.Pettus).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729831625",
+            "type": { "text": "Rush" },
+            "text": "W.Marks left guard to HST 25 for -1 yards (C.Elliss).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729831647",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) C.Stroud pass short middle to X.Hutchinson to HST 37 for 12 yards (K.Chaisson; C.Gonzalez).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729831672",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) W.Marks right guard to HST 36 for -1 yards (C.Davis, M.Jones).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729831694",
+            "type": { "text": "Pass Interception Return" },
+            "text": "(Shotgun) C.Stroud pass short middle intended for X.Hutchinson INTERCEPTED by C.Woodson at HST 48. C.Woodson to HST 48 for no gain (X.Hutchinson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729831721",
+            "type": { "text": "Rush" },
+            "text": "T.Munford reported in as eligible.  T.Henderson up the middle to HST 43 for 5 yards (K.Lassiter). ** Injury Update: NE-T.Henderson has returned to the game.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729831745",
+            "type": { "text": "Sack" },
+            "text": "D.Maye sacked at NE 49 for -8 yards (W.Anderson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729831768",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) D.Maye pass short middle to H.Henry to HST 46 for 5 yards (A.Al-Shaair; H.To'oTo'o).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729831793",
+            "type": { "text": "Punt" },
+            "text": "B.Baringer punts 37 yards to HST 9, Center-J.Ashby, fair catch by J.Noel.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729831813",
+            "type": { "text": "Pass Incompletion" },
+            "text": "B.Fisher reported in as eligible.  C.Stroud pass incomplete short right to X.Hutchinson (D.Pettus) [K.Tonga]. HST-T.Howard was injured during the play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729831827",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 06:28.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729831841",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) C.Stroud pass incomplete short left to N.Chubb.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729831881",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) C.Stroud pass incomplete short middle. ** Injury Update: NE-C.Woodson has returned to the game.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729831904",
+            "type": { "text": "Punt" },
+            "text": "T.Townsend punts 45 yards to NE 46, Center-A.Brinkman. M.Jones to NE 44 for -2 yards (J.Ingram; D.Clark). NE-C.Woods was injured during the play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729831936",
+            "type": { "text": "Rush" },
+            "text": "T.Henderson right tackle to NE 47 for 3 yards (T.Togiai; D.Horton).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729831958",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) D.Maye pass short left to K.Boutte to HST 28 for 25 yards (H.To'oTo'o).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729831983",
+            "type": { "text": "Rush" },
+            "text": "T.Munford reported in as eligible.  T.Henderson up the middle to HST 25 for 3 yards (A.Al-Shaair; T.Togiai).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729832007",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) D.Maye pass short left to K.Boutte to HST 7 for 18 yards (K.Lassiter).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729832032",
+            "type": { "text": "Passing Touchdown" },
+            "text": "(Shotgun) D.Maye pass short left to S.Diggs for 7 yards, TOUCHDOWN. A.Borregales extra point is GOOD, Center-J.Ashby, Holder-B.Baringer.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729832066",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 03:12.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729832073",
+            "type": { "text": "Kickoff" },
+            "text": "A.Borregales kicks 64 yards from NE 35 to HST 1. J.Noel to HST 24 for 23 yards (C.Woods; D.Pettus). ** Injury Update: NE-C.Woods has returned to the game.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729832103",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) C.Stroud pass incomplete short middle to H.Bryant (K.Chaisson). ** Injury Update: HST-T.Howard has returned to the game.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729832129",
+            "type": { "text": "Penalty" },
+            "text": "(Shotgun) PENALTY on HST-C.Stover, False Start, 5 yards, enforced at HST 24 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729832156",
+            "type": { "text": "Penalty" },
+            "text": "(Shotgun) C.Stroud pass incomplete deep right to C.Kirk.PENALTY on NE-C.Davis, Defensive Pass Interference, 20 yards, enforced at HST 19 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729832190",
+            "type": { "text": "Rush" },
+            "text": "B.Fisher reported in as eligible.  W.Marks left end to HST 35 for -4 yards (C.Barmore).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729832214",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) C.Stroud pass deep right to J.Higgins to NE 49 for 16 yards (J.Hawkins).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729832227",
+            "type": { "text": "Two-minute warning" },
+            "text": "Two-Minute Warning",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729832239",
+            "type": { "text": "Pass Interception Return" },
+            "text": "(Shotgun) C.Stroud pass short left intended for X.Hutchinson INTERCEPTED by C.Davis at NE 48. C.Davis ran ob at NE 48 for no gain.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729832278",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) T.Henderson left tackle to HST 49 for 3 yards (T.Togiai).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729832300",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) D.Maye pass incomplete short left to K.Williams (K.Lassiter).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729832333",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) D.Maye pass incomplete short right to T.Henderson.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729832356",
+            "type": { "text": "Punt" },
+            "text": "B.Baringer punts 39 yards to HST 10, Center-J.Ashby, fair catch by J.Noel.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729832376",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) C.Stroud pass incomplete short right to J.Higgins. ** Injury Update: HST-W.Marks has returned to the game.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729832399",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) C.Stroud pass incomplete short left to C.Kirk.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729832425",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) C.Stroud scrambles up the middle to HST 11 for 1 yard (M.Williams).Penalty on HST-A.Ersery, Illegal Formation, declined.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729832458",
+            "type": { "text": "Punt" },
+            "text": "T.Townsend punts 58 yards to NE 31, Center-A.Brinkman. M.Jones pushed ob at HST 45 for 24 yards (A.Brinkman).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729832489",
+            "type": { "text": "Fumble Recovery (Own)" },
+            "text": "(Shotgun) D.Maye sacked at NE 47 for -8 yards (W.Anderson). FUMBLES (W.Anderson), recovered by NE-W.Campbell at NE 46.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729832504",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #1 by NE at 00:13.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729832519",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) D.Maye pass short left to D.Douglas to HST 46 for 8 yards (A.Al-Shaair).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729832535",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #2 by NE at 00:07.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729832551",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) D.Maye pass incomplete deep left to S.Diggs (K.Lassiter).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729832581",
+            "type": { "text": "Pass Interception Return" },
+            "text": "(Shotgun) D.Maye pass deep left INTERCEPTED by J.Ingram at HST -7. Touchback.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729832609",
+            "type": { "text": "End of Half" },
+            "text": "END QUARTER 2",
+            "scoringPlay": false
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729832629",
+            "type": { "text": "Kickoff" },
+            "text": "A.Borregales kicks 65 yards from NE 35 to end zone, Touchback to the HST 35.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729832646",
+            "type": { "text": "Rush" },
+            "text": "W.Marks right guard to HST 37 for 2 yards (J.Gibbens).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729832668",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) C.Stroud pass deep right to X.Hutchinson to NE 40 for 23 yards (C.Gonzalez).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729832693",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) C.Stroud pass short middle to X.Hutchinson to NE 35 for 5 yards (C.Gonzalez). FUMBLES (C.Gonzalez), RECOVERED by NE-M.Jones at NE 40.The Replay Official reviewed the runner was not down by contact ruling, and the play was REVERSED.(Shotgun) C.Stroud pass short middle to X.Hutchinson to NE 36 for 4 yards (C.Gonzalez).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729832801",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) C.Stroud pass short right to J.Higgins to NE 28 for 8 yards (J.Tavai).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729832826",
+            "type": { "text": "Rush" },
+            "text": "B.Fisher reported in as eligible.  N.Chubb right guard to NE 21 for 7 yards (J.Gibbens; J.Hawkins).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729832850",
+            "type": { "text": "Rush" },
+            "text": "N.Chubb right guard to NE 19 for 2 yards (A.Jennings; R.Spillane).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729832872",
+            "type": { "text": "Rush" },
+            "text": "B.Fisher reported in as eligible. Direct snap to C.Stover.  C.Stover right guard to NE 15 for 4 yards (C.Woodson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729832898",
+            "type": { "text": "Rush" },
+            "text": "B.Fisher reported in as eligible.  W.Marks left guard to NE 7 for 8 yards (C.Barmore; R.Spillane).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729832920",
+            "type": { "text": "Rush" },
+            "text": "B.Fisher reported in as eligible.  W.Marks left guard to NE 7 for no gain (H.Landry).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729832931",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #1 by HST at 09:52.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729832942",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) C.Stroud pass incomplete short right to C.Kirk (M.Jones).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729832972",
+            "type": { "text": "Field Goal Good" },
+            "text": " K.Fairbairn 25 yard field goal is GOOD, Center-A.Brinkman, Holder-T.Townsend.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729832982",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 09:45.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729832992",
+            "type": { "text": "Kickoff" },
+            "text": "K.Fairbairn kicks 56 yards from HST 35 to NE 9. D.Johnson to NE 31 for 22 yards (D.Clark; J.Hill).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729833024",
+            "type": { "text": "Rush" },
+            "text": "R.Stevenson left tackle to NE 36 for 5 yards (J.Reed; S.Rankins). ** Injury Update: NE-R.Stevenson has returned to the game.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729833046",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) D.Maye pass short left to R.Stevenson to NE 35 for -1 yards (T.Togiai).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729833073",
+            "type": { "text": "Sack Opp Fumble Recovery" },
+            "text": "(Shotgun) D.Maye sacked at NE 28 for -7 yards (W.Anderson). FUMBLES (W.Anderson), RECOVERED by HST-A.Al-Shaair at NE 35. A.Al-Shaair to NE 33 for 2 yards (G.Bradbury). NE-M.Moses was injured during the play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729833109",
+            "type": { "text": "Sack" },
+            "text": "C.Stroud sacked at NE 41 for -8 yards (K.Chaisson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729833129",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) C.Stroud pass short right to J.Higgins to NE 29 for 12 yards (C.Gonzalez).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729833154",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) C.Stroud scrambles right end ran ob at NE 19 for 10 yards (J.Hawkins; C.Woodson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729833181",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) C.Stroud pass short right to C.Stover to NE 17 for 2 yards (C.Gonzalez).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729833206",
+            "type": { "text": "Fumble Recovery (Opponent)" },
+            "text": "(Shotgun) W.Marks right tackle to NE 17 for no gain (C.Gonzalez; E.Ponder). FUMBLES (C.Gonzalez), RECOVERED by NE-C.Woodson at NE 12.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729833225",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 05:21.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729833244",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) R.Stevenson up the middle to NE 10 for -2 yards (N.Jones). ** Injury Update: NE-M.Moses has returned to the game.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729833273",
+            "type": { "text": "Rush" },
+            "text": "R.Stevenson up the middle to NE 14 for 4 yards (J.Pitre; N.Jones).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729833298",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) D.Maye pass short right to R.Stevenson pushed ob at NE 15 for 1 yard (D.Stingley).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729833328",
+            "type": { "text": "Punt" },
+            "text": " B.Baringer punts 44 yards to HST 41, Center-J.Ashby, fair catch by J.Noel.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729833338",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 03:28.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729833348",
+            "type": { "text": "Rush" },
+            "text": "B.Fisher reported in as eligible.  N.Chubb up the middle to HST 44 for 3 yards (A.Jennings).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729833379",
+            "type": { "text": "Pass Incompletion" },
+            "text": "B.Fisher reported in as eligible.  C.Stroud pass incomplete short middle to X.Hutchinson (C.Davis).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729833402",
+            "type": { "text": "Penalty" },
+            "text": "(Shotgun) C.Stroud pass incomplete deep right to J.Higgins.PENALTY on NE-C.Davis, Defensive Pass Interference, 21 yards, enforced at HST 44 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729833436",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) C.Stroud pass incomplete short left to C.Stover.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729833459",
+            "type": { "text": "Sack" },
+            "text": "(Shotgun) C.Stroud sacked at NE 38 for -3 yards (A.Jennings). NE-A.Jennings was injured during the play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729833469",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 02:25.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729833479",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) C.Stroud pass short right to X.Hutchinson to NE 33 for 5 yards (R.Spillane).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729833514",
+            "type": { "text": "Field Goal Good" },
+            "text": " K.Fairbairn 51 yard field goal is GOOD, Center-A.Brinkman, Holder-T.Townsend.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "34" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729833534",
+            "type": { "text": "Kickoff" },
+            "text": "K.Fairbairn kicks 61 yards from HST 35 to NE 4. D.Johnson to NE 29 for 25 yards (J.Hill; D.Clark). ** Injury Update: NE-A.Jennings has returned to the game.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729833559",
+            "type": { "text": "Pass Reception" },
+            "text": "D.Maye pass short right to A.Hooper to NE 43 for 14 yards (A.Al-Shaair).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729833587",
+            "type": { "text": "Sack" },
+            "text": "D.Maye sacked at NE 43 for 0 yards (D.Hunter).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729833607",
+            "type": { "text": "End Period" },
+            "text": "END QUARTER 3",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729833627",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) D.Maye pass short right to R.Stevenson to NE 45 for 2 yards (H.To'oTo'o).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729833652",
+            "type": { "text": "Penalty" },
+            "text": "(Shotgun) D.Maye pass incomplete deep right to K.Boutte.PENALTY on HST-D.Stingley, Defensive Pass Interference, 17 yards, enforced at NE 45 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729833686",
+            "type": { "text": "Rush" },
+            "text": "T.Henderson right guard to HST 32 for 6 yards (D.Horton).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729833708",
+            "type": { "text": "Rush" },
+            "text": "T.Henderson up the middle to HST 32 for no gain (H.To'oTo'o; A.Al-Shaair).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729833730",
+            "type": { "text": "Passing Touchdown" },
+            "text": "(Shotgun) D.Maye pass deep right to K.Boutte for 32 yards, TOUCHDOWN.The Replay Official reviewed the pass completion ruling, and the play was Upheld. The ruling on the field stands. A.Borregales extra point is GOOD, Center-J.Ashby, Holder-B.Baringer.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "17" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729833806",
+            "type": { "text": "Kickoff" },
+            "text": "A.Borregales kicks 62 yards from NE 35 to HST 3. J.Noel to HST 23 for 20 yards (B.Schooler).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729833829",
+            "type": { "text": "Rush" },
+            "text": "B.Fisher reported in as eligible.  W.Marks left end pushed ob at HST 27 for 4 yards (C.Davis).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729833858",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) C.Stroud pass incomplete deep left to J.Higgins.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729833870",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #2 by HST at 12:16.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729833881",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) C.Stroud pass incomplete short right to C.Stover. HST-C.Stover was injured during the play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729833898",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 12:09.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729833914",
+            "type": { "text": "Punt" },
+            "text": "T.Townsend punts 69 yards to NE 4, impetus ends at NE 1, Center-A.Brinkman, downed by HST-J.Ingram.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729833943",
+            "type": { "text": "Rush" },
+            "text": "T.Munford reported in as eligible.  R.Stevenson right tackle to NE 12 for 8 yards (S.Rankins).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729833972",
+            "type": { "text": "Rush" },
+            "text": "T.Munford reported in as eligible.  R.Stevenson right tackle to NE 18 for 6 yards (D.Hunter).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729833994",
+            "type": { "text": "Rush" },
+            "text": "T.Munford reported in as eligible.  R.Stevenson right tackle to NE 27 for 9 yards (A.Al-Shaair; C.Bullock).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729834016",
+            "type": { "text": "Rush" },
+            "text": "T.Munford reported in as eligible.  R.Stevenson right tackle to NE 29 for 2 yards (J.Pitre).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729834038",
+            "type": { "text": "Rush" },
+            "text": "T.Munford reported in as eligible.  T.Henderson left guard to NE 35 for 6 yards (K.Lassiter).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729834060",
+            "type": { "text": "Rush" },
+            "text": "T.Munford reported in as eligible.  T.Henderson right end to NE 32 for -3 yards (E.Speed).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729834082",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) D.Maye pass short right to S.Diggs to NE 46 for 14 yards (H.To'oTo'o).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729834107",
+            "type": { "text": "Rush" },
+            "text": "T.Munford reported in as eligible.  R.Stevenson right guard to NE 44 for -2 yards (J.Pitre).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729834133",
+            "type": { "text": "Rush" },
+            "text": "T.Munford reported in as eligible.  R.Stevenson up the middle to NE 48 for 4 yards (D.Stingley).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729834155",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) D.Maye pass incomplete deep left to K.Williams.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729834180",
+            "type": { "text": "Punt" },
+            "text": "B.Baringer punts 38 yards to HST 14, Center-J.Ashby, fair catch by J.Noel.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729834202",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) C.Stroud pass incomplete short right to H.Bryant (C.Woodson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729834230",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) C.Stroud pass short right to H.Bryant to HST 23 for 9 yards (C.Elliss).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729834257",
+            "type": { "text": "Pass Reception" },
+            "text": "(No Huddle, Shotgun) C.Stroud pass short right to H.Bryant to HST 29 for 6 yards (C.Gonzalez; R.Spillane).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729834288",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(No Huddle, Shotgun) C.Stroud pass incomplete deep right [K.Chaisson].",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729834311",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) C.Stroud pass incomplete short middle to X.Hutchinson (C.Gonzalez).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729834334",
+            "type": { "text": "Sack" },
+            "text": "(Shotgun) C.Stroud sacked at HST 21 for -8 yards (K.Tonga).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729834354",
+            "type": { "text": "Punt" },
+            "text": " T.Townsend punts 63 yards to NE 16, Center-A.Brinkman. M.Jones pushed ob at NE 28 for 12 yards (J.Ingram).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729834387",
+            "type": { "text": "Rush" },
+            "text": "T.Munford reported in as eligible.  R.Stevenson right end to NE 37 for 9 yards (A.Al-Shaair).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729834398",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #3 by HST at 03:55.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729834409",
+            "type": { "text": "Rush" },
+            "text": "T.Munford reported in as eligible.  R.Stevenson left tackle to NE 39 for 2 yards (H.To'oTo'o; T.Togiai).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729834424",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #1 by NE at 03:11.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729834438",
+            "type": { "text": "Rush" },
+            "text": "T.Munford and K.Tonga reported in as eligible.  R.Stevenson left tackle to NE 39 for no gain (T.Togiai; N.Jones).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729834471",
+            "type": { "text": "Rush" },
+            "text": "T.Munford reported in as eligible.  R.Stevenson left tackle to NE 39 for no gain (A.Al-Shaair).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729834482",
+            "type": { "text": "Two-minute warning" },
+            "text": "Two-Minute Warning",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729834493",
+            "type": { "text": "Pass Incompletion" },
+            "text": "T.Munford reported in as eligible.  D.Maye pass incomplete deep right to A.Hooper.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729834530",
+            "type": { "text": "Punt" },
+            "text": "B.Baringer punts 40 yards to HST 21, Center-J.Ashby. J.Noel to HST 28 for 7 yards (B.Schooler).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729834556",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) C.Stroud pass short middle to W.Marks to HST 41 for 13 yards (R.Spillane; D.Pettus).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729834583",
+            "type": { "text": "Pass Reception" },
+            "text": "(No Huddle, Shotgun) C.Stroud pass short right to H.Bryant pushed ob at HST 47 for 6 yards (C.Gonzalez).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729834613",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) C.Stroud pass incomplete short middle to J.Noel.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729834636",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) C.Stroud pass incomplete short right to H.Bryant.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729834649",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #2 by NE at 01:11.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          },
+          {
+            "id": "4017729834661",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) C.Stroud pass incomplete deep middle to X.Hutchinson (R.Spillane).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "34" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729834703",
+            "type": { "text": "Rush" },
+            "text": "D.Maye kneels to HST 48 for -1 yards.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729834725",
+            "type": { "text": "Rush" },
+            "text": "D.Maye kneels to HST 49 for -1 yards.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "17" } }
+          },
+          {
+            "id": "4017729834747",
+            "type": { "text": "End of Game" },
+            "text": "END GAME",
+            "scoringPlay": false
+          }
+        ]
+      }
+    ]
+  }
+}

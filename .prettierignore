@@ -6,3 +6,4 @@ pnpm-lock.yaml
 infra
 docs
 .github
+apps/api/src/providers/__fixtures__/espn

@@ -23,6 +23,7 @@ Decided 2026-11-09: the database is **DynamoDB**, so everything stays in AWS. Th
 | League member | `LEAGUE#<leagueId>` | `MEMBER#<userId>` | `USER#<userId>` / `LEAGUE#<leagueId>` | role `commissioner`\|`manager` |
 | Season pointer | `LEAGUE#<leagueId>` | `SEASON#<year>` | — | seasonId, status |
 | Invite | `INVITE#<token>` | `META` | — | leagueId, seasonId, expiresAt (TTL), usedBy? |
+| Ingest state | `INGEST` | `SEASON#<seasonId>` | — | seasonId, leagueId, year, enabled, nextPollAt (ISO or null), lastRunAt?, lastSuccessAt?, lastError? (short, no PII), leaseUntil?, lastSummary? `{games, statLines, changedStatLines, pointsWritten, teamScoresWritten}`, warnings (≤ 100, deduplicated) |
 
 ### Season partition: `pk = SEASON#<seasonId>`
 | Entity | sk | Key attributes |
@@ -35,10 +36,10 @@ Decided 2026-11-09: the database is **DynamoDB**, so everything stays in AWS. Th
 | Draft queue | `QUEUE#<teamId>` | playerIds (ordered list), updatedAt |
 | Roster slot entry | `ROSTER#<teamId>#<slot>#<fromRound>` | teamId, slot, playerId, fromRound (1=WC…4=SB), acquiredVia `draft\|exception`, txnId? |
 | NFL team | `NFLTEAM#<abbr>` | conference, seed, status `alive\|bye\|eliminated\|champion`, eliminatedInRound? |
-| Player | `PLAYER#<playerId>` | name, position, nflTeam, providerPlayerId, injuryStatus, inPool, draftedByTeamId?, draftedAtPick?, rank? |
+| Player | `PLAYER#<playerId>` | name, position, nflTeam, providerPlayerId, espnId? (ESPN athlete id from Sleeper's `espn_id`; matches box scores), injuryStatus, inPool, draftedByTeamId?, draftedAtPick?, rank? |
 | Playoff round | `ROUND#<n>` | code `WC\|DIV\|CONF\|SB`, status `upcoming\|live\|final\|finalized`, finalizedAt?, finalizedBy? |
-| NFL game | `GAME#<gameId>` | round, providerGameId, home, away, kickoff, status, homeScore, awayScore, winner? |
-| Raw stat line | `STATS#<gameId>#<playerId>` | raw (provider fields), canonical (map), fetchedAt, providerHash |
+| NFL game | `GAME#<gameId>` | round, providerGameId (= gameId = ESPN event id), home, away, kickoff, status `scheduled\|in_progress\|final`, homeScore, awayScore, winner?, statsFetchedAt? (when a **final** game's summary was last fetched) |
+| Raw stat line | `STATS#<gameId>#<playerId>` | raw (the compact provider values read for the player, not the whole summary), canonical (map of counts), events? (`{fg_made?: number[], fg_missed?: number[]}` distances in yards, play order), fetchedAt, providerHash (sha256 of the canonical JSON of counts + events) |
 | Stat override | `OVERRIDE#<gameId>#<playerId>#<statKey>` | value, reason, byUserId, at |
 | Player-game points | `POINTS#<gameId>#<playerId>` | round, points, breakdown (`[{ruleIndex, stat, label?, value, points}]`), overridden? (stat keys), rulesetVersion, computedAt |
 | Team round score | `TEAMSCORE#<n>#<teamId>` | points, provisional, computedAt |
@@ -64,6 +65,8 @@ Decided 2026-11-09: the database is **DynamoDB**, so everything stays in AWS. Th
 | A11 | Player page | `Query begins_with(sk, "POINTS#")` filtered in memory by playerId, plus `STATS#` / `OVERRIDE#` for the games (small enough to filter in memory) |
 | A12 | Invites for a season (doc 11) | `Query gsi1 gsi1pk = SEASONINV#<seasonId>` |
 | A14 | Redraft cleanup (§4.8): picks, draft roster entries and drafted-player markers | `Query pk = SEASON#<id>, begins_with(sk, "PICK#" \| "ROSTER#" \| "PLAYER#")` (consistent, paginate), one prefix at a time |
+| A15 | Due ingest seasons (job-ingest) | `Query pk = INGEST` (a tiny partition, one item per season; `enabled` and `nextPollAt` are filtered in memory) |
+| A16 | One game's stat lines (upsert, delete players no longer in the output) | `Query pk = SEASON#<id>, begins_with(sk, "STATS#<gameId>#")` (consistent) |
 
 No Scans anywhere.
 
@@ -86,10 +89,13 @@ Read `DRAFT` (currentPick = n+1) and `PICK#n`. Then one transaction: update `DRA
 Single `UpdateItem` on `DRAFT`, with a condition on the current status (e.g. pause requires `in_progress`), plus an `AUDIT` item in the same transaction.
 
 ### 4.4 Ingest and recompute (job-ingest, override, ruleset change, exception)
-1. Upsert `GAME#` and `STATS#` items. Skip the write when `providerHash` is unchanged, so the job stays idempotent.
-2. Update `NFLTEAM#` statuses on final games (elimination).
-3. Load the season (A1), then call the pure function `computeSeason(snapshot)` → `POINTS#` and `TEAMSCORE#` items **for non-finalized rounds only**.
-4. `BatchWriteItem` (chunks of 25) for the changed points and score items. Broadcast `scores_updated`.
+0. **Registry and lease** (`INGEST#SEASON#<id>`): the scheduler fires `job-ingest` every 2 minutes; it queries the registry (A15) and runs each enabled season whose `nextPollAt` is due (within 30 s). A run takes the lease with a conditional update (`attribute_not_exists(leaseUntil) OR leaseUntil < :now`, 5-minute TTL, so a crashed run's lease expires); a held lease means "skip" (the API's "Refresh now" answers 409 `ingest_busy`). The run ends by releasing the lease and writing `lastRunAt`, `lastSuccessAt` + `lastSummary` or `lastError`, `warnings` and the next `nextPollAt` (doc 04 §3 cadence; `null` once every round is finalized).
+1. Ensure `ROUND#1..4` exist (put, `attribute_not_exists`, status `upcoming`). Upsert `GAME#` items, writing only when a field changed. Upsert `STATS#` items per fetched game (A16): skip a line whose `providerHash` is unchanged and delete the lines of players no longer in that game's parsed output, so the job stays idempotent.
+2. Update `NFLTEAM#` statuses (elimination, champion, bye) and `ROUND#` statuses (`upcoming|live|final`; a `finalized` round is never touched, also guarded by a condition) where they changed.
+3. Load the season (A1), then call the pure function `computeSeason(snapshot)` → `POINTS#` and `TEAMSCORE#` items **for non-finalized rounds only**. Stat lines and overrides feed it (an override for a player-game without provider stats scores too); a round with no `ROUND#` item counts as `upcoming`, so standings always get their zero rows.
+4. `BatchWriteItem` (chunks of 25, `UnprocessedItems` retried with backoff) for the **changed** points and score items (compared by points, breakdown, overridden keys and ruleset version, or points and provisional), and delete `POINTS#`/`TEAMSCORE#` items of non-finalized rounds that recompute no longer produces. Nothing in a `finalized` round is ever written or deleted. Broadcast `scores_updated` on the season's realtime channel when anything changed.
+
+The same recompute (steps 3-4) also runs after a change to the active ruleset's points, after the 90th pick completes the draft, after a redraft finalizes, and after an undo from a completed draft (best-effort: a failure is logged and never fails the commissioner action).
 
 **Finalized rounds are frozen by construction.** Recompute never writes `POINTS#`/`TEAMSCORE#` for a round whose status is `finalized`. Unfreezing (commissioner, audited) sets the round back to `final`, and the next recompute updates it. A new ruleset version therefore applies to non-finalized rounds unless the commissioner unfreezes. This resolves the 04 conflict between "recompute anytime" and "finalized is frozen".
 
@@ -119,7 +125,7 @@ A second call while `resetting` skips phase 1 and resumes at phase 2 (the audit 
 | I-3 one player per slot | `attribute_not_exists` on `ROSTER#<team>#<slot>#<fromRound>` |
 | I-4 eligible slot only | `@dnp/domain` slot eligibility, checked before the transaction; item 4 guards the race |
 | I-5 only the on-clock team picks | Server-side check plus the `currentPick` condition |
-| I-6 ruleset locked / finalized frozen | Condition on `RULESET.locked` for edits; recompute skips finalized rounds |
+| I-6 ruleset locked / finalized frozen | Condition on `RULESET.locked` for edits; recompute skips finalized rounds (`computeSeason` omits them and `writeComputedScores` refuses to write or delete them). Known limit: a round finalized between the recompute's read and its batch write is not caught |
 | I-7 9 teams / 10 slots / 90 picks | Season-setup validation; the pick transaction completes the draft at 90; a redraft (§4.8) clears all three item kinds under the `resetting` lock before the draft can start again |
 
 ## 6. Local dev & tests

@@ -56,7 +56,7 @@ Rulesets live as data in `packages/domain/rulesets/`: `placeholder.v1.json` (the
 
 Received 2026-11-10: QB passing 1 pt per 30 yds; rushing and receiving 1 pt per 10 yds (all **fractional**, rounded once per game to 2 decimals); full-point PPR; every TD 6 (pass, rush, rec, kick/punt return, fumble-recovery, DST defensive/return); 2-pt conversions +2 (passer and receiver each); interception thrown -1, fumble lost -1; no yardage or threshold bonuses. Kicker: XP +1; FG 0-39 yds 3, 40-49 yds 4, 50+ yds 5; -1 per missed or blocked FG or XP. DST points allowed: 0 -> 15, 1-6 -> 10, 7-13 -> 8, 14-20 -> 5, 21-27 -> 2, 28-34 -> 0, 35+ -> -5; 1 pt each per sack, interception, fumble recovery, blocked kick; safety 2; defensive/return TD 6.
 
-**Assumed, pending commissioner confirmation:** points allowed = the opponent's final score (Q13); passing yards by non-QBs score 0.
+**Assumed, pending commissioner confirmation** (08 Q13, Q15, Q16): points allowed = the opponent's final score, which includes points scored against the defense by its own offense's pick-sixes and returns; a blocked punt counts as a blocked kick (`def_block`); a kick/punt return TD scores for both the returner and the team's DST; passing yards by non-QBs score 0.
 
 **Lifecycle:** draft the ruleset → commissioner reviews with a "preview against last year's playoffs" tool → **lock** before the draft. A locked ruleset can only change through a new version, which triggers a full recompute and an audit entry.
 
@@ -65,7 +65,7 @@ Received 2026-11-10: QB passing 1 pt per 30 yds; rushing and receiving 1 pt per 
 - Validation is the domain parser on both client and server. A bad ruleset is a 400 `validation_error` whose `error.ruleErrors` is `[{ruleIndex, stat, message}]` (`ruleIndex` null for whole-ruleset problems) so the UI can show each message on its row.
 - The active version unlocked: "Save changes" edits it in place. Locked: "Save as new version" creates vN+1 and activates it; older versions stay as history and can be made active again.
 - The **preview** table scores the golden-fixture players (2025-26 Wild Card, `@dnp/domain` `GOLDEN_PLAYERS`) under the saved rules and under the unsaved edits. It is the stand-in for the "preview against last year's playoffs" tool until real stats are ingested.
-- A change to the active ruleset's points (seed, edit of the active version, create+activate, activate) calls the `onRulesetChange` hook (`apps/api/src/scoring/hooks.ts`), a no-op today. TODO (Task 9/10, doc 10 §4.4): it must recompute non-finalized rounds and publish `scores_updated`. Locking changes no points and does not call it.
+- A change to the active ruleset's points (seed, edit of the active version, create+activate, activate) calls the `onRulesetChange` hook (`apps/api/src/scoring/hooks.ts`), **live since Task 9**: it recomputes POINTS/TEAMSCORE for every non-finalized round (finalized rounds stay frozen) and publishes `scores_updated`; a recompute failure is logged and never fails the save. Locking changes no points and does not call it. The same recompute runs after the draft completes (90th pick), a redraft, and an undo from a completed draft.
 
 ## 3. Stats pipeline
 
@@ -102,15 +102,19 @@ flowchart LR
     K --> R[Realtime: scores_updated]
 ```
 
-### Ingestion schedule
-| Situation | Frequency |
-|-----------|-----------|
-| A playoff game is in progress | every 1–2 minutes |
-| Game day, no game live | every 15 minutes |
-| Between rounds (stat-correction period) | every 6 hours |
-| Season complete | off |
+### Ingestion schedule (implemented, Task 9)
+The scheduler (`rate(2 minutes)` -> `job-ingest`; `apps/api/src/local.ts` mirrors it every 2 minutes in `pnpm dev`) is only a clock. Each season has a registry item (`INGEST#SEASON#<id>`, doc 10) with `enabled` (the commissioner's switch, Commissioner > Scoring > Live stats) and `nextPollAt`; the job runs the seasons that are due, and every run sets the next time with the pure function `nextPollDelay` (`packages/domain/src/live`):
 
-Jobs are idempotent: re-running with the same provider data changes nothing.
+| Situation | `nextPollAt` = now + |
+|-----------|-----------|
+| A playoff game is in progress | 2 minutes |
+| A game kicks off within 15 minutes | the time until kickoff (at least 2 minutes) |
+| A game kicks off later the same day (within 12 hours), or kicked off but the provider has not marked it final | 15 minutes |
+| Between rounds, stat-correction period, before the playoffs, nothing scheduled | 6 hours |
+| The Super Bowl is final and every round is finalized | off (`nextPollAt = null`) |
+| The last run failed | 15 minutes (`lastError` shows why) |
+
+Because the scheduler ticks every 2 minutes, a season counts as due when its `nextPollAt` is at most 30 seconds away, so a 2-minute delay is not stretched to 4. A commissioner can also press "Refresh now" (runs one ingest inline). Final games are re-fetched every 6 hours until their round is finalized (stat corrections). Jobs are idempotent: re-running with the same provider data writes nothing (doc 10 §4.4). The pipeline, its field mapping and its matching rules are in doc 12.
 
 ### Provider adapter interface
 ```
@@ -126,7 +130,7 @@ A **manual/CSV adapter** implements the same interface as a fallback if the API 
 
 ## 4. Elimination & player status
 
-When a game goes final, the loser's `NFL_TEAM_SEASON.status` becomes `eliminated` (with the round), the winner stays `alive`, and the Super Bowl winner becomes `champion`.
+When a game goes final, the loser's `NFL_TEAM_SEASON.status` becomes `eliminated` (with the round), the winner stays `alive`, and the Super Bowl winner becomes `champion`. The number-1 seeds are `bye` until every Wild Card game is final. Statuses are a pure function of the games (`deriveTeamStatuses`), recomputed on every ingest run, so they never need manual repair.
 
 ```mermaid
 stateDiagram-v2

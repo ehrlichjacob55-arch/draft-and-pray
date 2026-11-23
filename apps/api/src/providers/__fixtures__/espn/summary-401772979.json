@@ -1,0 +1,2076 @@
+{
+  "header": {
+    "competitions": [
+      {
+        "date": "2026-01-10T21:30Z",
+        "status": { "type": { "name": "STATUS_FINAL", "completed": true } },
+        "competitors": [
+          {
+            "homeAway": "home",
+            "score": "31",
+            "winner": false,
+            "team": { "id": "29", "abbreviation": "CAR" }
+          },
+          {
+            "homeAway": "away",
+            "score": "34",
+            "winner": true,
+            "team": { "id": "14", "abbreviation": "LAR" }
+          }
+        ]
+      }
+    ]
+  },
+  "boxscore": {
+    "players": [
+      {
+        "team": { "id": "14", "abbreviation": "LAR" },
+        "statistics": [
+          {
+            "name": "passing",
+            "keys": [
+              "completions/passingAttempts",
+              "passingYards",
+              "yardsPerPassAttempt",
+              "passingTouchdowns",
+              "interceptions",
+              "sacks-sackYardsLost",
+              "adjQBR",
+              "QBRating"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "12483",
+                  "displayName": "Matthew Stafford",
+                  "firstName": "Matthew",
+                  "lastName": "Stafford"
+                },
+                "stats": ["24/42", "304", "7.2", "3", "1", "1-9", "48.7", "93.8"]
+              }
+            ]
+          },
+          {
+            "name": "rushing",
+            "keys": [
+              "rushingAttempts",
+              "rushingYards",
+              "yardsPerRushAttempt",
+              "rushingTouchdowns",
+              "longRushing"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4430737",
+                  "displayName": "Kyren Williams",
+                  "firstName": "Kyren",
+                  "lastName": "Williams"
+                },
+                "stats": ["13", "57", "4.4", "0", "8"]
+              },
+              {
+                "athlete": {
+                  "id": "4429096",
+                  "displayName": "Blake Corum",
+                  "firstName": "Blake",
+                  "lastName": "Corum"
+                },
+                "stats": ["11", "45", "4.1", "0", "8"]
+              },
+              {
+                "athlete": {
+                  "id": "4426515",
+                  "displayName": "Puka Nacua",
+                  "firstName": "Puka",
+                  "lastName": "Nacua"
+                },
+                "stats": ["3", "14", "4.7", "1", "5"]
+              },
+              {
+                "athlete": {
+                  "id": "12483",
+                  "displayName": "Matthew Stafford",
+                  "firstName": "Matthew",
+                  "lastName": "Stafford"
+                },
+                "stats": ["2", "0", "0.0", "0", "2"]
+              }
+            ]
+          },
+          {
+            "name": "receiving",
+            "keys": [
+              "receptions",
+              "receivingYards",
+              "yardsPerReception",
+              "receivingTouchdowns",
+              "longReception",
+              "receivingTargets"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4426515",
+                  "displayName": "Puka Nacua",
+                  "firstName": "Puka",
+                  "lastName": "Nacua"
+                },
+                "stats": ["10", "111", "11.1", "1", "18", "18"]
+              },
+              {
+                "athlete": {
+                  "id": "16800",
+                  "displayName": "Davante Adams",
+                  "firstName": "Davante",
+                  "lastName": "Adams"
+                },
+                "stats": ["5", "72", "14.4", "0", "23", "13"]
+              },
+              {
+                "athlete": {
+                  "id": "2573401",
+                  "displayName": "Tyler Higbee",
+                  "firstName": "Tyler",
+                  "lastName": "Higbee"
+                },
+                "stats": ["2", "45", "22.5", "0", "36", "3"]
+              },
+              {
+                "athlete": {
+                  "id": "4242557",
+                  "displayName": "Colby Parkinson",
+                  "firstName": "Colby",
+                  "lastName": "Parkinson"
+                },
+                "stats": ["2", "34", "17.0", "1", "19", "3"]
+              },
+              {
+                "athlete": {
+                  "id": "4430737",
+                  "displayName": "Kyren Williams",
+                  "firstName": "Kyren",
+                  "lastName": "Williams"
+                },
+                "stats": ["2", "18", "9.0", "1", "13", "2"]
+              },
+              {
+                "athlete": {
+                  "id": "4429096",
+                  "displayName": "Blake Corum",
+                  "firstName": "Blake",
+                  "lastName": "Corum"
+                },
+                "stats": ["2", "13", "6.5", "0", "9", "2"]
+              },
+              {
+                "athlete": {
+                  "id": "4710855",
+                  "displayName": "Konata Mumpfield",
+                  "firstName": "Konata",
+                  "lastName": "Mumpfield"
+                },
+                "stats": ["1", "11", "11.0", "0", "11", "1"]
+              }
+            ]
+          },
+          {
+            "name": "fumbles",
+            "keys": ["fumbles", "fumblesLost", "fumblesRecovered"],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "3116177",
+                  "displayName": "Troy Reeder",
+                  "firstName": "Troy",
+                  "lastName": "Reeder"
+                },
+                "stats": ["0", "0", "1"]
+              }
+            ]
+          },
+          {
+            "name": "kickReturns",
+            "keys": [
+              "kickReturns",
+              "kickReturnYards",
+              "yardsPerKickReturn",
+              "longKickReturn",
+              "kickReturnTouchdowns"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4243003",
+                  "displayName": "Ronnie Rivers",
+                  "firstName": "Ronnie",
+                  "lastName": "Rivers"
+                },
+                "stats": ["3", "73", "24.3", "29", "0"]
+              }
+            ]
+          },
+          {
+            "name": "puntReturns",
+            "keys": [
+              "puntReturns",
+              "puntReturnYards",
+              "yardsPerPuntReturn",
+              "longPuntReturn",
+              "puntReturnTouchdowns"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4386544",
+                  "displayName": "Xavier Smith",
+                  "firstName": "Xavier",
+                  "lastName": "Smith"
+                },
+                "stats": ["1", "-2", "-2.0", "-2", "0"]
+              }
+            ]
+          },
+          {
+            "name": "kicking",
+            "keys": [
+              "fieldGoalsMade/fieldGoalAttempts",
+              "fieldGoalPct",
+              "longFieldGoalMade",
+              "extraPointsMade/extraPointAttempts",
+              "totalKickingPoints"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4574716",
+                  "displayName": "Harrison Mevis",
+                  "firstName": "Harrison",
+                  "lastName": "Mevis"
+                },
+                "stats": ["2/2", "100.0", "46", "4/4", "10"]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "team": { "id": "29", "abbreviation": "CAR" },
+        "statistics": [
+          {
+            "name": "passing",
+            "keys": [
+              "completions/passingAttempts",
+              "passingYards",
+              "yardsPerPassAttempt",
+              "passingTouchdowns",
+              "interceptions",
+              "sacks-sackYardsLost",
+              "adjQBR",
+              "QBRating"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4685720",
+                  "displayName": "Bryce Young",
+                  "firstName": "Bryce",
+                  "lastName": "Young"
+                },
+                "stats": ["21/40", "264", "6.6", "1", "1", "2-14", "71.4", "71.2"]
+              }
+            ]
+          },
+          {
+            "name": "rushing",
+            "keys": [
+              "rushingAttempts",
+              "rushingYards",
+              "yardsPerRushAttempt",
+              "rushingTouchdowns",
+              "longRushing"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4241416",
+                  "displayName": "Chuba Hubbard",
+                  "firstName": "Chuba",
+                  "lastName": "Hubbard"
+                },
+                "stats": ["13", "46", "3.5", "2", "8"]
+              },
+              {
+                "athlete": {
+                  "id": "4685720",
+                  "displayName": "Bryce Young",
+                  "firstName": "Bryce",
+                  "lastName": "Young"
+                },
+                "stats": ["3", "24", "8.0", "1", "16"]
+              },
+              {
+                "athlete": {
+                  "id": "4038815",
+                  "displayName": "Rico Dowdle",
+                  "firstName": "Rico",
+                  "lastName": "Dowdle"
+                },
+                "stats": ["5", "9", "1.8", "0", "8"]
+              },
+              {
+                "athlete": {
+                  "id": "4685350",
+                  "displayName": "Trevor Etienne",
+                  "firstName": "Trevor",
+                  "lastName": "Etienne"
+                },
+                "stats": ["1", "4", "4.0", "0", "4"]
+              }
+            ]
+          },
+          {
+            "name": "receiving",
+            "keys": [
+              "receptions",
+              "receivingYards",
+              "yardsPerReception",
+              "receivingTouchdowns",
+              "longReception",
+              "receivingTargets"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4695883",
+                  "displayName": "Jalen Coker",
+                  "firstName": "Jalen",
+                  "lastName": "Coker"
+                },
+                "stats": ["9", "134", "14.9", "1", "52", "12"]
+              },
+              {
+                "athlete": {
+                  "id": "4685472",
+                  "displayName": "Tetairoa McMillan",
+                  "firstName": "Tetairoa",
+                  "lastName": "McMillan"
+                },
+                "stats": ["5", "81", "16.2", "0", "22", "7"]
+              },
+              {
+                "athlete": {
+                  "id": "4372780",
+                  "displayName": "Tommy Tremble",
+                  "firstName": "Tommy",
+                  "lastName": "Tremble"
+                },
+                "stats": ["3", "22", "7.3", "0", "11", "3"]
+              },
+              {
+                "athlete": {
+                  "id": "4241416",
+                  "displayName": "Chuba Hubbard",
+                  "firstName": "Chuba",
+                  "lastName": "Hubbard"
+                },
+                "stats": ["2", "13", "6.5", "0", "7", "4"]
+              },
+              {
+                "athlete": {
+                  "id": "4430034",
+                  "displayName": "Xavier Legette",
+                  "firstName": "Xavier",
+                  "lastName": "Legette"
+                },
+                "stats": ["1", "8", "8.0", "0", "8", "4"]
+              },
+              {
+                "athlete": {
+                  "id": "4038815",
+                  "displayName": "Rico Dowdle",
+                  "firstName": "Rico",
+                  "lastName": "Dowdle"
+                },
+                "stats": ["1", "6", "6.0", "0", "6", "2"]
+              },
+              {
+                "athlete": {
+                  "id": "4360763",
+                  "displayName": "Brycen Tremayne",
+                  "firstName": "Brycen",
+                  "lastName": "Tremayne"
+                },
+                "stats": ["0", "0", "0.0", "0", "0", "1"]
+              },
+              {
+                "athlete": {
+                  "id": "4361988",
+                  "displayName": "James Mitchell",
+                  "firstName": "James",
+                  "lastName": "Mitchell"
+                },
+                "stats": ["0", "0", "0.0", "0", "0", "1"]
+              },
+              {
+                "athlete": {
+                  "id": "4683243",
+                  "displayName": "Mitchell Evans",
+                  "firstName": "Mitchell",
+                  "lastName": "Evans"
+                },
+                "stats": ["0", "0", "0.0", "0", "0", "1"]
+              },
+              {
+                "athlete": {
+                  "id": "4708486",
+                  "displayName": "Jimmy Horn Jr.",
+                  "firstName": "Jimmy",
+                  "lastName": "Horn Jr."
+                },
+                "stats": ["0", "0", "0.0", "0", "0", "2"]
+              }
+            ]
+          },
+          {
+            "name": "fumbles",
+            "keys": ["fumbles", "fumblesLost", "fumblesRecovered"],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4685350",
+                  "displayName": "Trevor Etienne",
+                  "firstName": "Trevor",
+                  "lastName": "Etienne"
+                },
+                "stats": ["1", "1", "0"]
+              }
+            ]
+          },
+          {
+            "name": "kickReturns",
+            "keys": [
+              "kickReturns",
+              "kickReturnYards",
+              "yardsPerKickReturn",
+              "longKickReturn",
+              "kickReturnTouchdowns"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4685350",
+                  "displayName": "Trevor Etienne",
+                  "firstName": "Trevor",
+                  "lastName": "Etienne"
+                },
+                "stats": ["3", "63", "21.0", "24", "0"]
+              },
+              {
+                "athlete": {
+                  "id": "4430034",
+                  "displayName": "Xavier Legette",
+                  "firstName": "Xavier",
+                  "lastName": "Legette"
+                },
+                "stats": ["2", "44", "22.0", "28", "0"]
+              }
+            ]
+          },
+          {
+            "name": "puntReturns",
+            "keys": [
+              "puntReturns",
+              "puntReturnYards",
+              "yardsPerPuntReturn",
+              "longPuntReturn",
+              "puntReturnTouchdowns"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4685350",
+                  "displayName": "Trevor Etienne",
+                  "firstName": "Trevor",
+                  "lastName": "Etienne"
+                },
+                "stats": ["1", "0", "0.0", "0", "0"]
+              }
+            ]
+          },
+          {
+            "name": "kicking",
+            "keys": [
+              "fieldGoalsMade/fieldGoalAttempts",
+              "fieldGoalPct",
+              "longFieldGoalMade",
+              "extraPointsMade/extraPointAttempts",
+              "totalKickingPoints"
+            ],
+            "athletes": [
+              {
+                "athlete": {
+                  "id": "4568263",
+                  "displayName": "Ryan Fitzgerald",
+                  "firstName": "Ryan",
+                  "lastName": "Fitzgerald"
+                },
+                "stats": ["1/1", "100.0", "46", "4/4", "7"]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "scoringPlays": [
+    {
+      "id": "401772979228",
+      "type": { "text": "Passing Touchdown" },
+      "text": "Puka Nacua 14 Yd pass from Matthew Stafford (Harrison Mevis Kick)",
+      "team": { "id": "14" }
+    },
+    {
+      "id": "401772979981",
+      "type": { "text": "Rushing Touchdown" },
+      "text": "Puka Nacua 5 Yd Rush (Harrison Mevis Kick)",
+      "team": { "id": "14" }
+    },
+    {
+      "id": "4017729791232",
+      "type": { "text": "Rushing Touchdown" },
+      "text": "Chuba Hubbard 1 Yd Rush (Ryan Fitzgerald Kick)",
+      "team": { "id": "29" }
+    },
+    {
+      "id": "4017729791485",
+      "type": { "text": "Field Goal Good" },
+      "text": "Harrison Mevis 46 Yd Field Goal",
+      "team": { "id": "14" }
+    },
+    {
+      "id": "4017729792079",
+      "type": { "text": "Rushing Touchdown" },
+      "text": "Bryce Young 16 Yd Rush (Ryan Fitzgerald Kick)",
+      "team": { "id": "29" }
+    },
+    {
+      "id": "4017729792727",
+      "type": { "text": "Field Goal Good" },
+      "text": "Ryan Fitzgerald 46 Yd Field Goal",
+      "team": { "id": "29" }
+    },
+    {
+      "id": "4017729793015",
+      "type": { "text": "Field Goal Good" },
+      "text": "Harrison Mevis 42 Yd Field Goal",
+      "team": { "id": "14" }
+    },
+    {
+      "id": "4017729793368",
+      "type": { "text": "Rushing Touchdown" },
+      "text": "Chuba Hubbard 3 Yd Rush (Ryan Fitzgerald Kick)",
+      "team": { "id": "29" }
+    },
+    {
+      "id": "4017729793673",
+      "type": { "text": "Passing Touchdown" },
+      "text": "Kyren Williams 13 Yd pass from Matthew Stafford (Harrison Mevis Kick)",
+      "team": { "id": "14" }
+    },
+    {
+      "id": "4017729794127",
+      "type": { "text": "Passing Touchdown" },
+      "text": "Jalen Coker 7 Yd pass from Bryce Young (Ryan Fitzgerald Kick)",
+      "team": { "id": "29" }
+    },
+    {
+      "id": "4017729794368",
+      "type": { "text": "Passing Touchdown" },
+      "text": "Colby Parkinson 19 Yd pass from Matthew Stafford (Harrison Mevis Kick)",
+      "team": { "id": "14" }
+    }
+  ],
+  "drives": {
+    "previous": [
+      {
+        "plays": [
+          {
+            "id": "40177297940",
+            "type": { "text": "Kickoff" },
+            "text": "E.Evans kicks 50 yards from LA 35 to CAR 15. T.Etienne to CAR 36 for 21 yards (J.Stewart).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "40177297963",
+            "type": { "text": "Rush" },
+            "text": "R.Dowdle right tackle to CAR 37 for 1 yard (B.Fiske).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "40177297985",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) B.Young pass incomplete short left to X.Legette.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "401772979108",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) B.Young pass short left to X.Legette to CAR 45 for 8 yards (K.Kinchens).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "401772979133",
+            "type": { "text": "Pass Incompletion" },
+            "text": "B.Young pass incomplete short right to J.Mitchell (Q.Lake).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "401772979156",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) M.Stafford pass short middle to P.Nacua to CAR 29 for 16 yards (T.Moehrig; D.Wonnum).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "401772979181",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) K.Williams right guard to CAR 24 for 5 yards (N.Scourton).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "401772979203",
+            "type": { "text": "Pass Reception" },
+            "text": "M.Stafford pass short right to P.Nacua to CAR 14 for 10 yards (N.Scott).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "401772979228",
+            "type": { "text": "Passing Touchdown" },
+            "text": "(Shotgun) M.Stafford pass short middle to P.Nacua for 14 yards, TOUCHDOWN. H.Mevis extra point is GOOD, Center-J.McQuaide, Holder-E.Evans.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "401772979262",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 11:35.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "401772979269",
+            "type": { "text": "Kickoff" },
+            "text": "E.Evans kicks 61 yards from LA 35 to CAR 4. X.Legette to CAR 20 for 16 yards (J.Hunter).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "401772979299",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) B.Young pass short middle to J.Coker to CAR 27 for 7 yards (Q.Lake).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "401772979324",
+            "type": { "text": "Rush" },
+            "text": "C.Hubbard left guard to CAR 32 for 5 yards (K.Curl).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "401772979346",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) B.Young pass short middle to C.Hubbard to CAR 38 for 6 yards (D.Johnson; N.Landman).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "401772979371",
+            "type": { "text": "Sack" },
+            "text": "(No Huddle, Shotgun) B.Young sacked at CAR 33 for -5 yards (B.Fiske). CAR-I.Ekwonu was injured during the play. Penalty on CAR-I.Ekwonu, Offensive Holding, declined.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "401772979388",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 09:49.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "401772979405",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) B.Young pass incomplete deep left to T.McMillan.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "401772979435",
+            "type": { "text": "Punt" },
+            "text": "S.Martin punts 58 yards to LA 9, Center-J.Jansen. X.Smith to LA 7 for -2 yards (I.Simmons).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "401772979461",
+            "type": { "text": "Rush" },
+            "text": "B.Corum right tackle to LA 11 for 4 yards (D.Brown).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "401772979483",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) M.Stafford pass short middle to P.Nacua to LA 23 for 12 yards (D.Wonnum).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "401772979508",
+            "type": { "text": "Rush" },
+            "text": "B.Corum left tackle to LA 29 for 6 yards (C.Cherelus).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "401772979530",
+            "type": { "text": "Rush" },
+            "text": "B.Corum left tackle to LA 32 for 3 yards (A.Robinson; D.Wonnum).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "401772979552",
+            "type": { "text": "Rush" },
+            "text": "B.Corum left tackle to LA 31 for -1 yards (T.Wharton, C.Cherelus).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "401772979574",
+            "type": { "text": "Punt" },
+            "text": "E.Evans punts 50 yards to CAR 19, Center-J.McQuaide, out of bounds.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "401772979584",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 05:43.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "401772979593",
+            "type": { "text": "Sack" },
+            "text": "B.Young sacked at CAR 10 for -9 yards (P.Ford).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "401772979620",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) B.Young pass short right to T.Tremble to CAR 21 for 11 yards (N.Landman; E.Forbes) [B.Young].",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "401772979645",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) B.Young pass short middle to J.Coker to CAR 32 for 11 yards (Q.Lake).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "401772979670",
+            "type": { "text": "Pass Incompletion" },
+            "text": "B.Young pass incomplete short right.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "401772979693",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) T.Etienne left tackle to CAR 36 for 4 yards (A.Witherspoon). LA-A.Witherspoon was injured during the play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "401772979706",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 03:12.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "401772979718",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) B.Young pass short right to T.Tremble to CAR 43 for 7 yards (J.McCollough) [K.Turner].",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "401772979755",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) B.Young pass short middle to T.McMillan to LA 44 for 13 yards (K.Curl; Q.Lake).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "401772979780",
+            "type": { "text": "Pass Interception Return" },
+            "text": "(Shotgun) B.Young pass deep middle intended for J.Coker INTERCEPTED by C.Durant (Q.Lake) at LA 26. C.Durant ran ob at LA 37 for 11 yards (B.Young).PENALTY on CAR-M.Evans, Unnecessary Roughness, 15 yards, enforced at LA 37.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "401772979823",
+            "type": { "text": "Rush" },
+            "text": "K.Williams left tackle to CAR 40 for 8 yards (N.Scott; C.Cherelus).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "401772979845",
+            "type": { "text": "Pass Reception" },
+            "text": "M.Stafford pass short middle to C.Parkinson to CAR 25 for 15 yards (C.Rozeboom; N.Scott).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "401772979870",
+            "type": { "text": "End Period" },
+            "text": "END QUARTER 1",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "401772979890",
+            "type": { "text": "Rush" },
+            "text": "K.Williams up the middle to CAR 19 for 6 yards (C.Rozeboom; N.Scott).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "401772979912",
+            "type": { "text": "Rush" },
+            "text": "K.Williams right guard to CAR 17 for 2 yards (B.Brown).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "401772979934",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) M.Stafford pass short left to P.Nacua to CAR 10 for 7 yards (C.Rozeboom).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "401772979959",
+            "type": { "text": "Rush" },
+            "text": "K.Williams right end to CAR 5 for 5 yards (C.Rozeboom).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "401772979981",
+            "type": { "text": "Rushing Touchdown" },
+            "text": "P.Nacua left tackle for 5 yards, TOUCHDOWN. H.Mevis extra point is GOOD, Center-J.McQuaide, Holder-E.Evans.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729791012",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 12:16.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729791019",
+            "type": { "text": "Kickoff" },
+            "text": "E.Evans kicks 65 yards from LA 35 to end zone, Touchback to the CAR 35.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729791043",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) C.Hubbard up the middle to CAR 38 for 3 yards (N.Landman; P.Ford). ** Injury Update: LA-A.Witherspoon has returned to the game.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729791065",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) B.Young pass short left to J.Coker pushed ob at LA 47 for 15 yards (K.Curl).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729791098",
+            "type": { "text": "Pass Reception" },
+            "text": "B.Young pass short right to T.McMillan pushed ob at LA 33 for 14 yards (C.Durant).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729791128",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) B.Young pass deep middle to T.McMillan to LA 11 for 22 yards (K.Curl).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729791153",
+            "type": { "text": "Rush" },
+            "text": "C.Hubbard left guard to LA 3 for 8 yards (K.Curl).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729791175",
+            "type": { "text": "Pass Incompletion" },
+            "text": "B.Young pass incomplete short middle to B.Tremayne [T.Davis].",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729791198",
+            "type": { "text": "Penalty" },
+            "text": "(Shotgun) B.Young pass incomplete short right to X.Legette.PENALTY on LA-C.Durant, Defensive Pass Interference, 2 yards, enforced at LA 3 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729791232",
+            "type": { "text": "Rushing Touchdown" },
+            "text": "J.Curhan reported in as eligible.  C.Hubbard left guard for 1 yard, TOUCHDOWN. R.Fitzgerald extra point is GOOD, Center-J.Jansen, Holder-S.Martin.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729791265",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 08:53.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729791272",
+            "type": { "text": "Kickoff" },
+            "text": "R.Fitzgerald kicks 65 yards from CAR 35 to end zone, Touchback to the LA 35.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729791296",
+            "type": { "text": "Rush" },
+            "text": "B.Corum up the middle to LA 40 for 5 yards (C.Cherelus).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729791323",
+            "type": { "text": "Penalty" },
+            "text": "PENALTY on LA-D.Adams, False Start, 5 yards, enforced at LA 40 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729791347",
+            "type": { "text": "Penalty" },
+            "text": "(Shotgun) M.Stafford pass short right to D.Adams to LA 39 for 4 yards (Ja.Horn).PENALTY on LA-X.Smith, Offensive Offside, 5 yards, enforced at LA 35 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729791383",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) M.Stafford pass deep right to T.Higbee to CAR 34 for 36 yards (Ja.Horn).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729791408",
+            "type": { "text": "Rush" },
+            "text": "B.Corum left tackle to CAR 32 for 2 yards (T.Wharton; C.Smith-Wade).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729791419",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #1 by LA at 06:15.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729791430",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) M.Stafford pass short middle to P.Nacua to CAR 28 for 4 yards (T.Moehrig).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729791462",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) M.Stafford pass incomplete deep right to D.Adams (M.Jackson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729791485",
+            "type": { "text": "Field Goal Good" },
+            "text": "H.Mevis 46 yard field goal is GOOD, Center-J.McQuaide, Holder-E.Evans.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729791495",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 05:24.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729791505",
+            "type": { "text": "Kickoff" },
+            "text": "E.Evans kicks 59 yards from LA 35 to CAR 6. T.Etienne to CAR 24 for 18 yards (N.Hampton).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729791535",
+            "type": { "text": "Rush" },
+            "text": "R.Dowdle right guard to CAR 32 for 8 yards (K.Curl; K.Kinchens).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729791562",
+            "type": { "text": "Rush" },
+            "text": "R.Dowdle right end to CAR 32 for no gain (J.Stewart; T.Hamilton).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729791584",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) B.Young pass incomplete short left to C.Hubbard.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729791607",
+            "type": { "text": "Punt" },
+            "text": "S.Martin punts 56 yards to LA 12, Center-J.Jansen, downed by CAR-T.Incoom.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729791620",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 03:41.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729791632",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) K.Williams left tackle to LA 16 for 4 yards (A.Robinson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729791661",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) M.Stafford pass incomplete short left to P.Nacua.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729791673",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #2 by LA at 03:02.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729791684",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) M.Stafford pass incomplete deep left to D.Adams.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729791714",
+            "type": { "text": "Muffed Punt Recovery (Opponent)" },
+            "text": "E.Evans punts 51 yards to CAR 33, Center-J.McQuaide. T.Etienne MUFFS catch, RECOVERED by LA-T.Reeder at CAR 41.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729791747",
+            "type": { "text": "Rush" },
+            "text": "B.Corum right tackle to CAR 34 for 7 yards (C.Cherelus).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729791769",
+            "type": { "text": "Rush" },
+            "text": "B.Corum left tackle to CAR 26 for 8 yards (C.Cherelus; M.Jackson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729791780",
+            "type": { "text": "Two-minute warning" },
+            "text": "Two-Minute Warning",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729791791",
+            "type": { "text": "Penalty" },
+            "text": "M.Stafford pass short left to K.Williams to CAR 15 for 11 yards (C.Rozeboom).PENALTY on LA-S.Avila, Illegal Block Above the Waist, 10 yards, enforced at CAR 26 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729791834",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) K.Williams left tackle to CAR 29 for 7 yards (D.Wonnum).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729791845",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #1 by CAR at 01:46.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729791856",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) B.Corum up the middle to CAR 28 for 1 yard (D.Brown).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729791871",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #2 by CAR at 01:42.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729791885",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) M.Stafford pass short middle to T.Higbee to CAR 19 for 9 yards (N.Scott) [T.Wharton].",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729791901",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #3 by CAR at 01:37.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729791917",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) M.Stafford pass incomplete short right to T.Higbee (D.Wonnum).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729791947",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) R.Dowdle left end to CAR 19 for no gain (J.Verse).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729791969",
+            "type": { "text": "Penalty" },
+            "text": "(No Huddle, Shotgun) B.Young pass incomplete deep middle to J.Coker.PENALTY on LA-Q.Lake, Defensive Pass Interference, 28 yards, enforced at CAR 19 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729792003",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) B.Young pass deep left to J.Coker ran ob at LA 16 for 37 yards (K.Curl).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729792033",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) B.Young pass incomplete deep right to X.Legette.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729792056",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) B.Young pass incomplete short left to R.Dowdle.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729792079",
+            "type": { "text": "Rushing Touchdown" },
+            "text": "(Shotgun) B.Young scrambles right tackle for 16 yards, TOUCHDOWN. R.Fitzgerald extra point is GOOD, Center-J.Jansen, Holder-S.Martin.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "29" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729792117",
+            "type": { "text": "Kickoff" },
+            "text": "R.Fitzgerald kicks 44 yards from CAR 35 to LA 21, short of landing zone.PENALTY on CAR-R.Fitzgerald, Kickoff Short of Landing Zone, placed at LA 40.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729792146",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) M.Stafford pass short right to D.Adams to CAR 46 for 14 yards (Ja.Horn).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729792159",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #3 by LA at 00:31.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729792171",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) M.Stafford pass incomplete deep left to P.Nacua.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729792201",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) M.Stafford pass incomplete short middle to P.Nacua (D.Wonnum) [D.Wonnum].",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729792224",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) M.Stafford pass incomplete deep right to P.Nacua.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729792247",
+            "type": { "text": "Punt" },
+            "text": "E.Evans punts 29 yards to CAR 17, Center-J.McQuaide, out of bounds.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729792266",
+            "type": { "text": "Rush" },
+            "text": "B.Young kneels to CAR 16 for -1 yards.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729792288",
+            "type": { "text": "End of Half" },
+            "text": "END QUARTER 2",
+            "scoringPlay": false
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729792308",
+            "type": { "text": "Kickoff" },
+            "text": "R.Fitzgerald kicks 65 yards from CAR 35 to end zone, Touchback to the LA 35.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729792326",
+            "type": { "text": "Pass Incompletion" },
+            "text": "M.Stafford pass incomplete short right to D.Adams (M.Jackson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729792349",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) M.Stafford pass incomplete deep left to D.Adams (Ja.Horn) [C.Cherelus].",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729792372",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) M.Stafford pass incomplete short right to D.Adams.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729792395",
+            "type": { "text": "Punt" },
+            "text": "E.Evans punts 52 yards to CAR 13, Center-J.McQuaide, fair catch by T.Etienne.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729792415",
+            "type": { "text": "Rush" },
+            "text": "B.Young scrambles left end to CAR 22 for 9 yards (N.Landman). ** Injury Update: CAR-R.Hunt has returned to the game.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729792437",
+            "type": { "text": "Rush" },
+            "text": "C.Hubbard right guard to CAR 28 for 6 yards (N.Landman).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729792462",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) B.Young pass incomplete short middle [K.Curl].",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729792485",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) B.Young pass incomplete short left to T.McMillan.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729792508",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) B.Young pass short right to T.McMillan to CAR 44 for 16 yards (E.Forbes).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729792533",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) C.Hubbard up the middle to CAR 49 for 5 yards (N.Landman).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729792555",
+            "type": { "text": "Rush" },
+            "text": "C.Hubbard right guard to CAR 49 for no gain (O.Speights).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729792577",
+            "type": { "text": "Penalty" },
+            "text": "(Shotgun) B.Young pass incomplete deep right to J.Coker.PENALTY on LA-B.Fiske, Defensive Offside, 5 yards, enforced at CAR 49 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729792611",
+            "type": { "text": "Rush" },
+            "text": "C.Hubbard right guard to LA 42 for 4 yards (O.Speights).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729792633",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) B.Young pass short right to C.Hubbard to LA 35 for 7 yards (N.Landman).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729792658",
+            "type": { "text": "Rush" },
+            "text": "C.Hubbard right guard to LA 33 for 2 yards (K.Curl; T.Hamilton).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729792680",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) C.Hubbard right tackle to LA 32 for 1 yard (N.Landman; T.Davis).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729792702",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) B.Young pass short right to T.Tremble to LA 28 for 4 yards (E.Forbes; N.Landman).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729792727",
+            "type": { "text": "Field Goal Good" },
+            "text": "R.Fitzgerald 46 yard field goal is GOOD, Center-J.Jansen, Holder-S.Martin.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729792737",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 07:29.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729792747",
+            "type": { "text": "Kickoff" },
+            "text": "R.Fitzgerald kicks 64 yards from CAR 35 to LA 1. R.Rivers to LA 30 for 29 yards (M.Njongmeta).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729792782",
+            "type": { "text": "Rush" },
+            "text": "K.Williams up the middle to LA 33 for 3 yards (A.Robinson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729792804",
+            "type": { "text": "Pass Incompletion" },
+            "text": "M.Stafford pass incomplete deep middle to P.Nacua. CAR-C.Cherelus was injured during the play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729792816",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 06:39.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729792827",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) M.Stafford pass short middle to D.Adams to CAR 48 for 19 yards (C.Rozeboom).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729792862",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) M.Stafford pass incomplete short right to P.Nacua (C.Rozeboom). ** Injury Update: CAR-C.Cherelus has returned to the game.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729792885",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) M.Stafford pass short middle to K.Williams to CAR 43 for 5 yards (C.Smith-Wade).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729792913",
+            "type": { "text": "Penalty" },
+            "text": "(Shotgun) M.Stafford pass incomplete deep right to D.Adams.PENALTY on CAR-N.Scott, Unnecessary Roughness, 15 yards, enforced at CAR 43 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729792947",
+            "type": { "text": "Rush" },
+            "text": "K.Williams right end to CAR 24 for 4 yards (T.Gipson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729792969",
+            "type": { "text": "Pass Incompletion" },
+            "text": "M.Stafford pass incomplete short right to C.Parkinson.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729792992",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) M.Stafford pass incomplete deep left to P.Nacua [T.Wharton].",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729793015",
+            "type": { "text": "Field Goal Good" },
+            "text": "H.Mevis 42 yard field goal is GOOD, Center-J.McQuaide, Holder-E.Evans.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729793025",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 04:17.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729793035",
+            "type": { "text": "Kickoff" },
+            "text": "E.Evans kicks 62 yards from LA 35 to CAR 3. X.Legette to CAR 31 for 28 yards (T.Ingle).PENALTY on LA-D.Johnson, Taunting, 15 yards, enforced at CAR 31.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729793076",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) B.Young pass short left to R.Dowdle to LA 48 for 6 yards (E.Forbes).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729793101",
+            "type": { "text": "Rush" },
+            "text": "R.Dowdle up the middle to LA 48 for no gain (E.Forbes).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729793123",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) B.Young pass incomplete short middle to X.Legette (R.McCreary).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729793146",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) B.Young pass incomplete short right to C.Hubbard.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729793158",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 02:46.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729793169",
+            "type": { "text": "Rush" },
+            "text": "B.Corum left tackle to CAR 46 for 6 yards (N.Scott).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729793198",
+            "type": { "text": "Sack" },
+            "text": "M.Stafford sacked at LA 45 for -9 yards (T.Gipson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729793218",
+            "type": { "text": "Pass Interception Return" },
+            "text": "(Shotgun) M.Stafford pass deep left intended for D.Adams INTERCEPTED by M.Jackson [D.Brown] at CAR 38. M.Jackson to CAR 38 for no gain (D.Adams).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729793245",
+            "type": { "text": "Rush" },
+            "text": "C.Hubbard left end to CAR 39 for 1 yard (Q.Lake).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729793267",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) B.Young pass deep middle to J.Coker pushed ob at LA 9 for 52 yards (K.Kinchens).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729793307",
+            "type": { "text": "End Period" },
+            "text": "END QUARTER 3",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729793327",
+            "type": { "text": "Pass Reception" },
+            "text": "B.Young pass short right to J.Coker to LA 6 for 3 yards (Q.Lake; N.Landman).PENALTY on LA-N.Landman, Unnecessary Roughness, 3 yards, enforced at LA 6.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729793368",
+            "type": { "text": "Rushing Touchdown" },
+            "text": "C.Hubbard right tackle for 3 yards, TOUCHDOWN. R.Fitzgerald extra point is GOOD, Center-J.Jansen, Holder-S.Martin.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729793399",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 14:34.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729793406",
+            "type": { "text": "Kickoff" },
+            "text": "R.Fitzgerald kicks 55 yards from CAR 35 to LA 10. R.Rivers to LA 33 for 23 yards (L.Ransom).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729793441",
+            "type": { "text": "Rush" },
+            "text": "P.Nacua right end to LA 38 for 5 yards (C.Cherelus).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729793463",
+            "type": { "text": "Pass Reception" },
+            "text": "M.Stafford pass deep middle to D.Adams ran ob at CAR 39 for 23 yards (M.Jackson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729793493",
+            "type": { "text": "Rush" },
+            "text": "K.Williams right end to CAR 37 for 2 yards (D.Brown).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729793515",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) M.Stafford pass short right to P.Nacua to CAR 30 for 7 yards (C.Cherelus; T.Moehrig).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729793540",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) M.Stafford pass incomplete deep right to P.Nacua.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729793563",
+            "type": { "text": "Rush" },
+            "text": "K.Williams up the middle to CAR 28 for 2 yards (D.Brown; D.Wonnum).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729793585",
+            "type": { "text": "Rush" },
+            "text": "K.Williams left guard to CAR 22 for 6 yards (B.Brown).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729793607",
+            "type": { "text": "Rush" },
+            "text": "K.Williams left tackle to CAR 19 for 3 yards (D.Brown).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729793629",
+            "type": { "text": "Rush" },
+            "text": "M.Stafford up the middle to CAR 17 for 2 yards (B.Brown).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729793651",
+            "type": { "text": "Rush" },
+            "text": "P.Nacua left end to CAR 13 for 4 yards (C.Rozeboom).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729793673",
+            "type": { "text": "Passing Touchdown" },
+            "text": "(Shotgun) M.Stafford pass short middle to K.Williams for 13 yards, TOUCHDOWN. H.Mevis extra point is GOOD, Center-J.McQuaide, Holder-E.Evans.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729793712",
+            "type": { "text": "Official Timeout" },
+            "text": "Official Timeout at 08:47.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729793719",
+            "type": { "text": "Kickoff" },
+            "text": "E.Evans kicks 65 yards from LA 35 to end zone, Touchback to the CAR 35.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729793743",
+            "type": { "text": "Penalty" },
+            "text": "(Shotgun) PENALTY on CAR-C.Mays, False Start, 5 yards, enforced at CAR 35 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729793767",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) B.Young pass short left to J.Coker to CAR 34 for 4 yards (Q.Lake).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729793792",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) B.Young pass short middle to J.Coker to CAR 32 for -2 yards (B.Young, K.Curl).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729793817",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) B.Young pass incomplete deep right to J.Coker (C.Durant).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729793840",
+            "type": { "text": "Punt" },
+            "text": "S.Martin punts 49 yards to LA 19, Center-J.Jansen, fair catch by X.Smith.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729793860",
+            "type": { "text": "Rush" },
+            "text": "B.Corum left end to LA 23 for 4 yards (Ja.Horn; C.Rozeboom).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729793882",
+            "type": { "text": "Pass Reception" },
+            "text": "M.Stafford pass short middle to P.Nacua to LA 39 for 16 yards (Ja.Horn; C.Cherelus). CAR-Ja.Horn was injured during the play. CAR-C.Cherelus was injured during the play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729793910",
+            "type": { "text": "Penalty" },
+            "text": "B.Corum right tackle to LA 46 for 7 yards (T.Gipson).PENALTY on LA-J.Dedich, Offensive Holding, 10 yards, enforced at LA 39 - No Play.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729793946",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) M.Stafford pass incomplete short left to D.Adams (M.Jackson).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729793969",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) M.Stafford pass short right to B.Corum to LA 33 for 4 yards (B.Martin-Scott).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729793994",
+            "type": { "text": "Pass Reception" },
+            "text": "(No Huddle, Shotgun) M.Stafford pass short middle to B.Corum to LA 42 for 9 yards (N.Scott; C.Rozeboom).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729794019",
+            "type": { "text": "Blocked Punt" },
+            "text": "E.Evans punt is BLOCKED by I.Simmons, Center-J.McQuaide, recovered by LA-R.Rivers at LA 30.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729794047",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) B.Young pass short left to T.McMillan to LA 14 for 16 yards (K.Curl; E.Forbes).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729794072",
+            "type": { "text": "Rush" },
+            "text": "(Shotgun) C.Hubbard up the middle to LA 7 for 7 yards (K.Turner).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729794099",
+            "type": { "text": "Pass Incompletion" },
+            "text": "B.Young pass incomplete short right to M.Evans (N.Landman).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729794127",
+            "type": { "text": "Passing Touchdown" },
+            "text": "(Shotgun) B.Young pass short left to J.Coker for 7 yards, TOUCHDOWN [J.Verse]. R.Fitzgerald extra point is GOOD, Center-J.Jansen, Holder-S.Martin.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "29" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729794168",
+            "type": { "text": "Kickoff" },
+            "text": "R.Fitzgerald kicks 57 yards from CAR 35 to LA 8. R.Rivers pushed ob at LA 29 for 21 yards (B.Martin-Scott).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729794201",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) M.Stafford pass short left to P.Nacua to LA 36 for 7 yards (C.Rozeboom).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729794226",
+            "type": { "text": "Pass Reception" },
+            "text": "(No Huddle, Shotgun) M.Stafford pass short left to D.Adams to LA 46 for 10 yards (N.Scott).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729794239",
+            "type": { "text": "Two-minute warning" },
+            "text": "Two-Minute Warning",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729794251",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) M.Stafford pass short right to D.Adams to CAR 48 for 6 yards (C.Smith-Wade).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729794283",
+            "type": { "text": "Pass Reception" },
+            "text": "(No Huddle, Shotgun) M.Stafford pass short middle to P.Nacua to CAR 30 for 18 yards (M.Jackson; N.Scott).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729794308",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(No Huddle, Shotgun) M.Stafford pass incomplete short middle to D.Adams.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729794343",
+            "type": { "text": "Pass Reception" },
+            "text": "(Shotgun) M.Stafford pass short right to K.Mumpfield to CAR 19 for 11 yards (C.Smith-Wade).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729794368",
+            "type": { "text": "Passing Touchdown" },
+            "text": "(No Huddle, Shotgun) M.Stafford pass deep right to C.Parkinson for 19 yards, TOUCHDOWN. H.Mevis extra point is GOOD, Center-J.McQuaide, Holder-E.Evans. ** Injury Update: CAR-C.Cherelus has returned to the game.",
+            "scoringPlay": true,
+            "start": { "team": { "id": "14" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729794409",
+            "type": { "text": "Kickoff" },
+            "text": "E.Evans kicks 61 yards from LA 35 to CAR 4. T.Etienne ran ob at CAR 28 for 24 yards (R.McCreary).",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729794440",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) B.Young pass incomplete deep left [J.Verse].",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729794463",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) B.Young pass incomplete deep left to J.Coker.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729794486",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) B.Young pass incomplete deep left to Ji.Horn.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729794498",
+            "type": { "text": "Timeout" },
+            "text": "Timeout #1 by LA at 00:12.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          },
+          {
+            "id": "4017729794509",
+            "type": { "text": "Pass Incompletion" },
+            "text": "(Shotgun) B.Young pass incomplete deep right to Ji.Horn.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "29" } }
+          }
+        ]
+      },
+      {
+        "plays": [
+          {
+            "id": "4017729794544",
+            "type": { "text": "Rush" },
+            "text": "M.Stafford kneels to CAR 30 for -2 yards.",
+            "scoringPlay": false,
+            "start": { "team": { "id": "14" } }
+          },
+          {
+            "id": "4017729794566",
+            "type": { "text": "End of Game" },
+            "text": "END GAME",
+            "scoringPlay": false
+          }
+        ]
+      }
+    ]
+  }
+}
