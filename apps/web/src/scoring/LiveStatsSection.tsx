@@ -42,6 +42,10 @@ export function relativeTime(iso: string, now: Date): string {
   return ms > 0 ? `in ${text}` : `${text} ago`;
 }
 
+/** For something that already happened: a server clock slightly ahead of ours still reads as past. */
+export const relativePast = (iso: string, now: Date): string =>
+  relativeTime(new Date(Math.min(Date.parse(iso), now.getTime())).toISOString(), now);
+
 const when = (iso: string) =>
   new Date(iso).toLocaleString(undefined, { weekday: "short", hour: "numeric", minute: "2-digit" });
 
@@ -104,7 +108,7 @@ export function LiveStatsSection({ seasonId }: { seasonId: string }) {
               <p className="font-medium">Live stats are {data.enabled ? "on" : "off"}</p>
               <p className="text-muted">
                 {data.lastSuccessAt
-                  ? `Last updated ${relativeTime(data.lastSuccessAt, now)}`
+                  ? `Last updated ${relativePast(data.lastSuccessAt, now)}`
                   : "Not updated yet"}
                 {data.enabled &&
                   (data.nextPollAt
@@ -115,7 +119,7 @@ export function LiveStatsSection({ seasonId }: { seasonId: string }) {
             {data.lastError && (
               <ErrorNote>
                 The last update did not work: {data.lastError}
-                {data.lastRunAt ? ` (${relativeTime(data.lastRunAt, now)})` : ""}
+                {data.lastRunAt ? ` (${relativePast(data.lastRunAt, now)})` : ""}
               </ErrorNote>
             )}
             {error && <ErrorNote>{error}</ErrorNote>}

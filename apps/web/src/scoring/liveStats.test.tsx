@@ -4,7 +4,7 @@ import type { IngestResponse } from "@dnp/contract";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { ApiError } from "../api";
 import { draftData, idleIngest, meMember, renderRoute, seasonData } from "../test/utils";
-import { gameLine, relativeTime } from "./LiveStatsSection";
+import { gameLine, relativePast, relativeTime } from "./LiveStatsSection";
 
 const game = (over: Partial<IngestResponse["rounds"][number]["games"][number]> = {}) => ({
   gameId: "g1",
@@ -201,6 +201,7 @@ describe("helpers", () => {
   it("describes times relative to now", () => {
     expect(relativeTime(at(-10_000), now)).toBe("just now");
     expect(relativeTime(at(10_000), now)).toBe("in a moment");
+    expect(relativePast(at(10_000), now)).toBe("just now");
     expect(relativeTime(at(-5 * 60_000), now)).toBe("5 min ago");
     expect(relativeTime(at(2 * 60_000), now)).toBe("in 2 min");
     expect(relativeTime(at(6 * 3600_000), now)).toBe("in 6 h");
