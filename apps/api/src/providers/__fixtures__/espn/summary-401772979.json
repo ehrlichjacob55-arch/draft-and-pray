@@ -528,66 +528,88 @@
       "id": "401772979228",
       "type": { "text": "Passing Touchdown" },
       "text": "Puka Nacua 14 Yd pass from Matthew Stafford (Harrison Mevis Kick)",
+      "awayScore": 7,
+      "homeScore": 0,
       "team": { "id": "14" }
     },
     {
       "id": "401772979981",
       "type": { "text": "Rushing Touchdown" },
       "text": "Puka Nacua 5 Yd Rush (Harrison Mevis Kick)",
+      "awayScore": 14,
+      "homeScore": 0,
       "team": { "id": "14" }
     },
     {
       "id": "4017729791232",
       "type": { "text": "Rushing Touchdown" },
       "text": "Chuba Hubbard 1 Yd Rush (Ryan Fitzgerald Kick)",
+      "awayScore": 14,
+      "homeScore": 7,
       "team": { "id": "29" }
     },
     {
       "id": "4017729791485",
       "type": { "text": "Field Goal Good" },
       "text": "Harrison Mevis 46 Yd Field Goal",
+      "awayScore": 17,
+      "homeScore": 7,
       "team": { "id": "14" }
     },
     {
       "id": "4017729792079",
       "type": { "text": "Rushing Touchdown" },
       "text": "Bryce Young 16 Yd Rush (Ryan Fitzgerald Kick)",
+      "awayScore": 17,
+      "homeScore": 14,
       "team": { "id": "29" }
     },
     {
       "id": "4017729792727",
       "type": { "text": "Field Goal Good" },
       "text": "Ryan Fitzgerald 46 Yd Field Goal",
+      "awayScore": 17,
+      "homeScore": 17,
       "team": { "id": "29" }
     },
     {
       "id": "4017729793015",
       "type": { "text": "Field Goal Good" },
       "text": "Harrison Mevis 42 Yd Field Goal",
+      "awayScore": 20,
+      "homeScore": 17,
       "team": { "id": "14" }
     },
     {
       "id": "4017729793368",
       "type": { "text": "Rushing Touchdown" },
       "text": "Chuba Hubbard 3 Yd Rush (Ryan Fitzgerald Kick)",
+      "awayScore": 20,
+      "homeScore": 24,
       "team": { "id": "29" }
     },
     {
       "id": "4017729793673",
       "type": { "text": "Passing Touchdown" },
       "text": "Kyren Williams 13 Yd pass from Matthew Stafford (Harrison Mevis Kick)",
+      "awayScore": 27,
+      "homeScore": 24,
       "team": { "id": "14" }
     },
     {
       "id": "4017729794127",
       "type": { "text": "Passing Touchdown" },
       "text": "Jalen Coker 7 Yd pass from Bryce Young (Ryan Fitzgerald Kick)",
+      "awayScore": 27,
+      "homeScore": 31,
       "team": { "id": "29" }
     },
     {
       "id": "4017729794368",
       "type": { "text": "Passing Touchdown" },
       "text": "Colby Parkinson 19 Yd pass from Matthew Stafford (Harrison Mevis Kick)",
+      "awayScore": 34,
+      "homeScore": 31,
       "team": { "id": "14" }
     }
   ],

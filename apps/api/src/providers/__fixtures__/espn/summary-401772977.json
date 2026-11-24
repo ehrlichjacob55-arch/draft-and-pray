@@ -490,54 +490,72 @@
       "id": "401772977684",
       "type": { "text": "Field Goal Good" },
       "text": "Matt Prater 50 Yd Field Goal",
+      "awayScore": 3,
+      "homeScore": 0,
       "team": { "id": "2" }
     },
     {
       "id": "401772977894",
       "type": { "text": "Passing Touchdown" },
       "text": "Brian Thomas Jr. 3 Yd pass from Trevor Lawrence (Cam Little Kick)",
+      "awayScore": 3,
+      "homeScore": 7,
       "team": { "id": "30" }
     },
     {
       "id": "4017729771441",
       "type": { "text": "Rushing Touchdown" },
       "text": "Josh Allen 2 Yd Rush (Matt Prater Kick)",
+      "awayScore": 10,
+      "homeScore": 7,
       "team": { "id": "2" }
     },
     {
       "id": "4017729772408",
       "type": { "text": "Field Goal Good" },
       "text": "Matt Prater 47 Yd Field Goal",
+      "awayScore": 13,
+      "homeScore": 7,
       "team": { "id": "2" }
     },
     {
       "id": "4017729772572",
       "type": { "text": "Field Goal Good" },
       "text": "Cam Little 43 Yd Field Goal",
+      "awayScore": 13,
+      "homeScore": 10,
       "team": { "id": "30" }
     },
     {
       "id": "4017729772972",
       "type": { "text": "Passing Touchdown" },
       "text": "Parker Washington 6 Yd pass from Trevor Lawrence (Cam Little Kick)",
+      "awayScore": 13,
+      "homeScore": 17,
       "team": { "id": "30" }
     },
     {
       "id": "4017729773269",
       "type": { "text": "Passing Touchdown" },
       "text": "Dalton Kincaid 15 Yd pass from Josh Allen (Matt Prater Kick)",
+      "awayScore": 20,
+      "homeScore": 17,
       "team": { "id": "2" }
     },
     {
       "id": "4017729773605",
       "type": { "text": "Passing Touchdown" },
       "text": "Travis Etienne Jr. 14 Yd pass from Trevor Lawrence (Cam Little Kick)",
+      "awayScore": 20,
+      "homeScore": 24,
       "team": { "id": "30" }
     },
     {
       "id": "4017729773924",
       "type": { "text": "Rushing Touchdown" },
       "text": "Josh Allen 1 Yd Rush (Matt Prater Kick)",
+      "awayScore": 27,
+      "homeScore": 24,
       "team": { "id": "2" }
     }
   ],

@@ -372,12 +372,21 @@ export function mapSummaryToStatLines(
 
   // ---- Defense / special teams ----
   const defTds = new Map<string, number>();
+  // Points a team scored on defensive (INT / fumble return) TDs incl. the conversion, by SCORING team id.
+  const defTdPoints = new Map<string, number>();
+  let prevScores: { home: number; away: number } | undefined = { home: 0, away: 0 };
   const blockReturnTds = new Map<string, number>();
   const safeties = new Map<string, number>();
   const bump = (m: Map<string, number>, id: string | undefined) => {
     if (id) m.set(id, (m.get(id) ?? 0) + 1);
   };
   for (const sp of summary.scoringPlays) {
+    const scoresNow =
+      sp.homeScore !== undefined && sp.awayScore !== undefined
+        ? { home: sp.homeScore, away: sp.awayScore }
+        : undefined;
+    const before = prevScores;
+    prevScores = scoresNow;
     if (
       OFFENSE_TD.test(sp.type) ||
       FIELD_GOAL_GOOD.test(sp.type) ||
@@ -396,8 +405,22 @@ export function mapSummaryToStatLines(
       );
       if (found.length === 1) add(draftFor(found[0]!.playerId), "fum_rec_td", 1);
       else warnings.push(`Unclassified scoring play (fumble recovery touchdown): ${sp.text}`);
-    } else if (DEF_TD.test(sp.type) && !SPECIAL_TEAMS_TEXT.test(sp.text)) bump(defTds, sp.teamId);
-    else warnings.push(`Unclassified scoring play (${sp.type || "no type"}): ${sp.text}`);
+    } else if (DEF_TD.test(sp.type) && !SPECIAL_TEAMS_TEXT.test(sp.text)) {
+      bump(defTds, sp.teamId);
+      // The whole scoring drive (6 + conversion) is the change in the scorer's running score.
+      const side =
+        sp.teamId === summary.home.id ? "home" : sp.teamId === summary.away.id ? "away" : undefined;
+      const delta = side && before && scoresNow ? scoresNow[side] - before[side] : undefined;
+      let points: number;
+      if (delta !== undefined && delta >= 6 && delta <= 8) points = delta;
+      else {
+        points = 6 + (/\bKick\)/i.test(sp.text) ? 1 : 0);
+        warnings.push(
+          `Could not read the score change of a defensive touchdown; assumed ${points} points not counted against the defense: ${sp.text}`,
+        );
+      }
+      if (sp.teamId) defTdPoints.set(sp.teamId, (defTdPoints.get(sp.teamId) ?? 0) + points);
+    } else warnings.push(`Unclassified scoring play (${sp.type || "no type"}): ${sp.text}`);
   }
 
   for (const team of teams) {
@@ -414,8 +437,9 @@ export function mapSummaryToStatLines(
       if (a.stats.fumbles) fumblesLost += intOf("fumbles", a.stats.fumbles, "fumblesLost");
     }
     const d = draftFor(`DST-${team.abbr}`);
+    const opponentDefensivePoints = defTdPoints.get(opp.id) ?? 0;
     d.counts = {
-      def_pts_allowed: opp.score,
+      def_pts_allowed: Math.max(opp.score - opponentDefensivePoints, 0),
       def_sack: sacks,
       def_int: ints,
       def_fum_rec: fumblesLost,
@@ -428,7 +452,7 @@ export function mapSummaryToStatLines(
     if (safety > 0) d.counts.def_safety = safety;
     if (defTd > 0) d.counts.def_td = defTd;
     if (retTd > 0) d.counts.ret_td = retTd;
-    d.raw = { opponent: opp.abbr, opponentScore: opp.score };
+    d.raw = { opponent: opp.abbr, opponentScore: opp.score, opponentDefensivePoints };
   }
 
   const out: MappedStatLine[] = [];

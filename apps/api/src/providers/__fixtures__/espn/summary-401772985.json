@@ -545,42 +545,56 @@
       "id": "401772985519",
       "type": { "text": "Rushing Touchdown" },
       "text": "Kyren Williams 4 Yd Rush (Harrison Mevis Kick)",
+      "awayScore": 7,
+      "homeScore": 0,
       "team": { "id": "14" }
     },
     {
       "id": "401772985880",
       "type": { "text": "Passing Touchdown" },
       "text": "DJ Moore 3 Yd pass from Caleb Williams (Cairo Santos Kick)",
+      "awayScore": 7,
+      "homeScore": 7,
       "team": { "id": "3" }
     },
     {
       "id": "4017729851811",
       "type": { "text": "Field Goal Good" },
       "text": "Cairo Santos 48 Yd Field Goal",
+      "awayScore": 7,
+      "homeScore": 10,
       "team": { "id": "3" }
     },
     {
       "id": "4017729852061",
       "type": { "text": "Field Goal Good" },
       "text": "Harrison Mevis 32 Yd Field Goal ",
+      "awayScore": 10,
+      "homeScore": 10,
       "team": { "id": "14" }
     },
     {
       "id": "4017729853335",
       "type": { "text": "Rushing Touchdown" },
       "text": "Kyren Williams 5 Yd Rush (Harrison Mevis Kick)",
+      "awayScore": 17,
+      "homeScore": 10,
       "team": { "id": "14" }
     },
     {
       "id": "4017729854009",
       "type": { "text": "Passing Touchdown" },
       "text": "Cole Kmet 14 Yd pass from Caleb Williams (Cairo Santos Kick)",
+      "awayScore": 17,
+      "homeScore": 17,
       "team": { "id": "3" }
     },
     {
       "id": "4017729854762",
       "type": { "text": "Field Goal Good" },
       "text": "Harrison Mevis 42 Yd Field Goal ",
+      "awayScore": 20,
+      "homeScore": 17,
       "team": { "id": "14" }
     }
   ],

@@ -67,6 +67,8 @@ const summary = z.object({
         type: z.object({ text: z.string() }).optional(),
         text: z.string().default(""),
         team: z.object({ id: z.string() }).optional(),
+        awayScore: z.coerce.number().optional(),
+        homeScore: z.coerce.number().optional(),
       }),
     )
     .default([]),
@@ -103,6 +105,9 @@ export interface SummaryScoringPlay {
   teamId: string | undefined;
   type: string;
   text: string;
+  /** Running score after the play, conversion included; absent when ESPN omitted it. */
+  awayScore?: number;
+  homeScore?: number;
 }
 export interface ParsedSummary {
   status: LiveGameStatus;
@@ -169,6 +174,8 @@ export function parseEspnSummary(json: unknown): ParsedSummary {
       teamId: p.team?.id,
       type: p.type?.text ?? "",
       text: p.text,
+      ...(p.awayScore !== undefined ? { awayScore: p.awayScore } : {}),
+      ...(p.homeScore !== undefined ? { homeScore: p.homeScore } : {}),
     })),
   };
 }

@@ -501,54 +501,72 @@
       "id": "401772988229",
       "type": { "text": "Field Goal Good" },
       "text": "Jason Myers 33 Yd Field Goal",
+      "awayScore": 3,
+      "homeScore": 0,
       "team": { "id": "26" }
     },
     {
       "id": "4017729881159",
       "type": { "text": "Field Goal Good" },
       "text": "Jason Myers 39 Yd Field Goal",
+      "awayScore": 6,
+      "homeScore": 0,
       "team": { "id": "26" }
     },
     {
       "id": "4017729882018",
       "type": { "text": "Field Goal Good" },
       "text": "Jason Myers 41 Yd Field Goal",
+      "awayScore": 9,
+      "homeScore": 0,
       "team": { "id": "26" }
     },
     {
       "id": "4017729882450",
       "type": { "text": "Field Goal Good" },
       "text": "Jason Myers 41 Yd Field Goal ",
+      "awayScore": 12,
+      "homeScore": 0,
       "team": { "id": "26" }
     },
     {
       "id": "4017729883166",
       "type": { "text": "Passing Touchdown" },
       "text": "AJ Barner 16 Yd pass from Sam Darnold (Jason Myers Kick)",
+      "awayScore": 19,
+      "homeScore": 0,
       "team": { "id": "26" }
     },
     {
       "id": "4017729883278",
       "type": { "text": "Passing Touchdown" },
       "text": "Mack Hollins 35 Yd pass from Drake Maye (Andy Borregales Kick)",
+      "awayScore": 19,
+      "homeScore": 7,
       "team": { "id": "17" }
     },
     {
       "id": "4017729883763",
       "type": { "text": "Field Goal Good" },
       "text": "Jason Myers 26 Yd Field Goal",
+      "awayScore": 22,
+      "homeScore": 7,
       "team": { "id": "26" }
     },
     {
       "id": "4017729883910",
       "type": { "text": "Interception Return Touchdown" },
       "text": "Uchenna Nwosu 45 Yd Interception Return (Jason Myers Kick)",
+      "awayScore": 29,
+      "homeScore": 7,
       "team": { "id": "26" }
     },
     {
       "id": "4017729884210",
       "type": { "text": "Passing Touchdown" },
       "text": "Rhamondre Stevenson 7 Yd pass from Drake Maye (Two-Point Pass Conversion Failed)",
+      "awayScore": 29,
+      "homeScore": 13,
       "team": { "id": "17" }
     }
   ],

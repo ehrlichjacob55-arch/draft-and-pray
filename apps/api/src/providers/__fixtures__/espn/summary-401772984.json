@@ -572,54 +572,72 @@
       "id": "40177298440",
       "type": { "text": "Kickoff Return Touchdown" },
       "text": "Rashid Shaheed 95 Yd Kickoff Return (Jason Myers Kick)",
+      "awayScore": 0,
+      "homeScore": 7,
       "team": { "id": "26" }
     },
     {
       "id": "401772984601",
       "type": { "text": "Field Goal Good" },
       "text": "Jason Myers 31 Yd Field Goal",
+      "awayScore": 0,
+      "homeScore": 10,
       "team": { "id": "26" }
     },
     {
       "id": "401772984867",
       "type": { "text": "Passing Touchdown" },
       "text": "Jaxon Smith-Njigba 4 Yd pass from Sam Darnold (Jason Myers Kick)",
+      "awayScore": 0,
+      "homeScore": 17,
       "team": { "id": "26" }
     },
     {
       "id": "4017729841174",
       "type": { "text": "Field Goal Good" },
       "text": "Eddy Pineiro 40 Yd Field Goal",
+      "awayScore": 3,
+      "homeScore": 17,
       "team": { "id": "25" }
     },
     {
       "id": "4017729841549",
       "type": { "text": "Field Goal Good" },
       "text": "Eddy Pineiro 56 Yd Field Goal",
+      "awayScore": 6,
+      "homeScore": 17,
       "team": { "id": "25" }
     },
     {
       "id": "4017729841840",
       "type": { "text": "Rushing Touchdown" },
       "text": "Kenneth Walker III 7 Yd Rush (Jason Myers Kick)",
+      "awayScore": 6,
+      "homeScore": 24,
       "team": { "id": "26" }
     },
     {
       "id": "4017729842412",
       "type": { "text": "Field Goal Good" },
       "text": "Jason Myers 24 Yd Field Goal",
+      "awayScore": 6,
+      "homeScore": 27,
       "team": { "id": "26" }
     },
     {
       "id": "4017729842655",
       "type": { "text": "Rushing Touchdown" },
       "text": "Kenneth Walker III 15 Yd Rush (Jason Myers Kick)",
+      "awayScore": 6,
+      "homeScore": 34,
       "team": { "id": "26" }
     },
     {
       "id": "4017729842964",
       "type": { "text": "Rushing Touchdown" },
       "text": "Kenneth Walker III 6 Yd Rush (Jason Myers Kick)",
+      "awayScore": 6,
+      "homeScore": 41,
       "team": { "id": "26" }
     }
   ],

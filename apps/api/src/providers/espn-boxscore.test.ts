@@ -140,10 +140,22 @@ describe("recorded postseason games", () => {
     expect(counts(g, "HOU D/ST").def_td).toBe(2);
     expect(counts(g, "PIT D/ST").def_td).toBeUndefined();
     expect(lineOf(g, "Ka'imi Fairbairn")!.canonical.xp_missed).toBe(1);
-    expect(counts(g, "PIT D/ST").def_pts_allowed).toBe(s.away.score);
-    expect(counts(g, "PIT D/ST").def_pts_allowed).toBe(30);
+    // HOU's 30 include Bullock's pick-six (PAT failed, 6) and Rankins's fumble return (kick, 7)
+    expect(s.away.score).toBe(30);
+    expect(counts(g, "PIT D/ST").def_pts_allowed).toBe(17);
+    expect(lineOf(g, "PIT D/ST")!.raw.opponentDefensivePoints).toBe(13);
     expect(counts(g, "HOU D/ST").def_pts_allowed).toBe(6);
     // the defensive TDs are not attributed to any offensive player
+    expect(g.game.warnings).toEqual([]);
+  });
+
+  it("HOU @ NE: Marcus Jones's pick-six (with kick) does not count against HOU's D/ST", () => {
+    const s = summary(EVENTS.houNe);
+    const g = mapAll(EVENTS.houNe);
+    expect(counts(g, "NE D/ST").def_td).toBe(1);
+    const hou = lineOf(g, "HOU D/ST")!;
+    expect(hou.raw.opponentDefensivePoints).toBe(7);
+    expect(hou.canonical.def_pts_allowed).toBe(s.home.score - 7);
     expect(g.game.warnings).toEqual([]);
   });
 
@@ -161,6 +173,11 @@ describe("recorded postseason games", () => {
     expect(counts(g, "SEA D/ST").def_td).toBe(1);
     expect(counts(g, "SEA D/ST").def_int).toBe(2);
     expect(counts(g, "NE D/ST").def_td).toBeUndefined();
+    const s = summary(EVENTS.superBowl);
+    const sea = s.home.abbr === "SEA" ? s.home : s.away;
+    const ne = lineOf(g, "NE D/ST")!;
+    expect(ne.raw.opponentDefensivePoints).toBe(7);
+    expect(ne.canonical.def_pts_allowed).toBe(sea.score - 7);
   });
 
   it("every recorded game maps without warnings and gives both DSTs a full base line", () => {
@@ -172,7 +189,9 @@ describe("recorded postseason games", () => {
         const dst = lines.find((l) => l.playerId === `DST-${t.abbr}`)!;
         const base: StatKey[] = ["def_pts_allowed", "def_sack", "def_int", "def_fum_rec"];
         for (const k of base) expect(dst.canonical[k], `${id} ${t.abbr} ${k}`).toBeDefined();
-        expect(dst.canonical.def_pts_allowed).toBe(t === s.home ? s.away.score : s.home.score);
+        const opp = t === s.home ? s.away : s.home;
+        const defPts = dst.raw.opponentDefensivePoints as number;
+        expect(dst.canonical.def_pts_allowed, `${id} ${t.abbr}`).toBe(opp.score - defPts);
       }
     }
   });
@@ -297,29 +316,84 @@ const P = (
   position,
   nflTeam,
 });
+const g2 = (g: MappedGame, abbr: string) =>
+  g.lines.find((l) => l.playerId === `DST-${abbr}`)?.canonical.def_pts_allowed;
 const dstOf = (g: MappedGame, abbr: string) =>
   g.lines.find((l) => l.playerId === `DST-${abbr}`)?.canonical;
 
 describe("scoring-play classification", () => {
-  const sp = (type: string, text: string, teamId = "1") => ({ type, text, teamId });
+  const sp = (
+    type: string,
+    text: string,
+    teamId = "1",
+    homeScore?: number,
+    awayScore?: number,
+  ) => ({
+    type,
+    text,
+    teamId,
+    ...(homeScore !== undefined && awayScore !== undefined ? { homeScore, awayScore } : {}),
+  });
   const map = (scoringPlays: ParsedSummary["scoringPlays"], pool: PoolPlayerRef[] = []) =>
     mapSummaryToStatLines(base({ scoringPlays }), pool);
 
   it("credits safeties, blocked-kick return TDs and defensive TDs to the scoring team's DST", () => {
     const g = map([
-      sp("Safety", "Someone sacked in end zone for a Safety", "1"),
-      sp("Blocked Punt Touchdown", "X 20 Yd Blocked Punt Return (Y Kick)", "2"),
-      sp("Missed Field Goal Return Touchdown", "X 60 Yd Missed FG Return", "2"),
-      sp("Interception Return Touchdown", "Z 30 Yd Interception Return", "2"),
-      sp("Fumble Recovery (Opponent)", "Z 12 Yd Fumble Return", "1"),
-      sp("Passing Touchdown", "A 5 Yd pass from B", "1"),
-      sp("Field Goal Good", "K 40 Yd Field Goal", "1"),
-      sp("Kickoff Return Touchdown", "R 90 Yd Kickoff Return", "1"),
-      sp("Two Point Rush", "K 2 Yd Run", "1"),
+      sp("Safety", "Someone sacked in end zone for a Safety", "1", 2, 0),
+      sp("Blocked Punt Touchdown", "X 20 Yd Blocked Punt Return (Y Kick)", "2", 2, 7),
+      sp("Missed Field Goal Return Touchdown", "X 60 Yd Missed FG Return", "2", 2, 13),
+      sp("Interception Return Touchdown", "Z 30 Yd Interception Return (K Kick)", "2", 2, 20),
+      sp("Fumble Recovery (Opponent)", "Z 12 Yd Fumble Return (K PAT Failed)", "1", 8, 20),
+      sp("Passing Touchdown", "A 5 Yd pass from B", "1", 14, 20),
+      sp("Field Goal Good", "K 40 Yd Field Goal", "1", 17, 20),
+      sp("Kickoff Return Touchdown", "R 90 Yd Kickoff Return", "1", 23, 20),
+      sp("Two Point Rush", "K 2 Yd Run", "1", 25, 20),
     ]);
     expect(dstOf(g, "HOM")).toMatchObject({ def_safety: 1, def_td: 1 });
     expect(dstOf(g, "AWY")).toMatchObject({ ret_td: 2, def_td: 1 });
     expect(g.warnings).toEqual([]);
+  });
+
+  it("points allowed exclude the opponent's defensive TD drives (6 + conversion); return TDs and safeties count", () => {
+    // Home 20 / away 17 in base(). Away's pick-six + kick = 7; home's fumble return + failed PAT = 6.
+    const g = map([
+      sp("Safety", "Someone sacked in end zone for a Safety", "1", 2, 0),
+      sp("Interception Return Touchdown", "Z 30 Yd Interception Return (K Kick)", "2", 2, 7),
+      sp("Fumble Recovery (Opponent)", "Z 12 Yd Fumble Return (K PAT Failed)", "1", 8, 7),
+      sp("Kickoff Return Touchdown", "R 90 Yd Kickoff Return", "2", 8, 13),
+    ]);
+    // HOM allowed 17 - 7 (away's pick-six + kick); AWY allowed 20 - 6 (home's fumble return, PAT failed)
+    expect(dstOf(g, "HOM")?.def_pts_allowed).toBe(17 - 7);
+    expect(dstOf(g, "AWY")?.def_pts_allowed).toBe(20 - 6);
+    expect(g.lines.find((l) => l.playerId === "DST-HOM")?.raw.opponentDefensivePoints).toBe(7);
+    expect(g.lines.find((l) => l.playerId === "DST-AWY")?.raw.opponentDefensivePoints).toBe(6);
+    expect(g.warnings).toEqual([]);
+  });
+
+  it("a successful two-point conversion after a defensive TD is excluded too (8); a missing score change falls back with a warning", () => {
+    const two = map([
+      sp("Interception Return Touchdown", "Z 30 Yd Interception Return", "2", 0, 8),
+    ]);
+    expect(g2(two, "HOM")).toBe(17 - 8);
+    const g = map([
+      sp("Interception Return Touchdown", "Z 30 Yd Interception Return (K Kick)", "2"),
+    ]);
+    expect(dstOf(g, "HOM")?.def_pts_allowed).toBe(17 - 7);
+    expect(g.warnings).toHaveLength(1);
+    expect(g.warnings[0]).toMatch(/score change/);
+  });
+
+  it("never goes below zero", () => {
+    const g = mapSummaryToStatLines(
+      base({
+        away: { id: "2", abbr: "AWY", score: 6 },
+        scoringPlays: [
+          sp("Interception Return Touchdown", "Z 1 Yd Interception Return", "2", 0, 8),
+        ],
+      }),
+      [],
+    );
+    expect(dstOf(g, "HOM")?.def_pts_allowed).toBe(0);
   });
 
   it("warns about a scoring play it cannot classify, and about special-teams fumble TDs", () => {

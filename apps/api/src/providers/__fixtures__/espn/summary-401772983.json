@@ -564,48 +564,64 @@
       "id": "401772983383",
       "type": { "text": "Passing Touchdown" },
       "text": "DeMario Douglas 28 Yd pass from Drake Maye (Andy Borregales Kick)",
+      "awayScore": 0,
+      "homeScore": 7,
       "team": { "id": "17" }
     },
     {
       "id": "401772983749",
       "type": { "text": "Field Goal Good" },
       "text": "Ka'imi Fairbairn 25 Yd Field Goal ",
+      "awayScore": 3,
+      "homeScore": 7,
       "team": { "id": "34" }
     },
     {
       "id": "4017729831298",
       "type": { "text": "Passing Touchdown" },
       "text": "Christian Kirk 10 Yd pass from C.J. Stroud (Ka'imi Fairbairn Kick)",
+      "awayScore": 10,
+      "homeScore": 7,
       "team": { "id": "34" }
     },
     {
       "id": "4017729831545",
       "type": { "text": "Interception Return Touchdown" },
       "text": "Marcus Jones 26 Yd Interception Return (Andy Borregales Kick)",
+      "awayScore": 10,
+      "homeScore": 14,
       "team": { "id": "17" }
     },
     {
       "id": "4017729832032",
       "type": { "text": "Passing Touchdown" },
       "text": "Stefon Diggs 7 Yd pass from Drake Maye (Andy Borregales Kick)",
+      "awayScore": 10,
+      "homeScore": 21,
       "team": { "id": "17" }
     },
     {
       "id": "4017729832972",
       "type": { "text": "Field Goal Good" },
       "text": "Ka'imi Fairbairn 25 Yd Field Goal ",
+      "awayScore": 13,
+      "homeScore": 21,
       "team": { "id": "34" }
     },
     {
       "id": "4017729833514",
       "type": { "text": "Field Goal Good" },
       "text": "Ka'imi Fairbairn 51 Yd Field Goal ",
+      "awayScore": 16,
+      "homeScore": 21,
       "team": { "id": "34" }
     },
     {
       "id": "4017729833730",
       "type": { "text": "Passing Touchdown" },
       "text": "Kayshon Boutte 32 Yd pass from Drake Maye (Andy Borregales Kick)",
+      "awayScore": 16,
+      "homeScore": 28,
       "team": { "id": "17" }
     }
   ],
