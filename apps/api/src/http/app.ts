@@ -42,6 +42,7 @@ import {
   type RulesetChangeHook,
 } from "../scoring/hooks";
 import { registerIngestRoutes } from "../scoring/ingest-routes";
+import { registerRoundRoutes } from "../scoring/round-routes";
 import { registerScoringRoutes } from "../scoring/routes";
 import {
   createEspnLiveSource,
@@ -432,6 +433,7 @@ export function createApp({
   });
 
   registerIngestRoutes(app, { db, now: clock, source: liveSource, publisher });
+  registerRoundRoutes(app, { db, now: clock, publisher });
 
   return app;
 }

@@ -13,6 +13,7 @@ import {
   listRounds,
   loadSeason,
   markGameStatsFetched,
+  markProviderChanged,
   updateNflTeamStatuses,
   updateRoundStatuses,
   upsertGameStats,
@@ -47,7 +48,7 @@ import { recomputeSeason } from "./recompute";
 export const LEASE_TTL_MS = 5 * 60_000;
 /** After a failed run, try again in this long. */
 export const RETRY_AFTER_ERROR_MS = 15 * 60_000;
-/** Final games are re-fetched this often until the commissioner finalizes the round (stat corrections). */
+/** Final games are re-fetched this often (stat corrections, also after finalization to flag provider changes). */
 export const FINAL_REFETCH_MS = 6 * 60 * 60_000;
 /** Concurrent game-summary fetches. */
 export const SUMMARY_CONCURRENCY = 4;
@@ -183,10 +184,9 @@ async function ingestOnce(
     if (g.status !== "final") return false;
     const fetchedAt = known.get(g.gameId)?.statsFetchedAt;
     if (!fetchedAt) return true;
-    return (
-      roundStatus.get(g.round) !== "finalized" &&
-      now.getTime() - Date.parse(fetchedAt) >= FINAL_REFETCH_MS
-    );
+    // A finalized round is re-fetched too: its points stay frozen, but a provider correction is
+    // kept as raw stats and flagged on the ROUND (doc 04 §6).
+    return now.getTime() - Date.parse(fetchedAt) >= FINAL_REFETCH_MS;
   });
 
   // ---- 3. Stats ----
@@ -211,6 +211,8 @@ async function ingestOnce(
       const res = await upsertGameStats(db, seasonId, g.gameId, writes, nowIso);
       statLines += writes.length;
       changedStatLines += res.changed + res.deleted;
+      if (res.changed + res.deleted > 0 && roundStatus.get(g.round) === "finalized")
+        await markProviderChanged(db, seasonId, g.round, nowIso);
       if (g.status === "final") await markGameStatsFetched(db, seasonId, g.gameId, nowIso);
     } catch (err) {
       logError("Game summary failed", err, { gameId: g.gameId });

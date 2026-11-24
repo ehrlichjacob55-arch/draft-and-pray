@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import type { IngestGame, IngestResponse, IngestRound } from "@dnp/contract";
 import { useApi } from "../api";
 import {
@@ -10,17 +10,22 @@ import {
   Loading,
 } from "../components/ui";
 import { friendlyError } from "../lib/messages";
-import { useQuery } from "../useQuery";
+import { useIngestState } from "./IngestState";
 import { Badge } from "./fields";
 
-const ROUND_NAMES: Record<IngestRound["code"], string> = {
+export const ROUND_NAMES: Record<IngestRound["code"], string> = {
   WC: "Wild Card",
   DIV: "Divisional",
   CONF: "Conference",
   SB: "Super Bowl",
 };
-const ROUND_TONE = { upcoming: "muted", live: "accent", final: "ok", finalized: "ok" } as const;
-const ROUND_LABEL = {
+export const ROUND_TONE = {
+  upcoming: "muted",
+  live: "accent",
+  final: "ok",
+  finalized: "ok",
+} as const;
+export const ROUND_LABEL = {
   upcoming: "Upcoming",
   live: "Live",
   final: "Final",
@@ -61,32 +66,21 @@ export function gameLine(g: IngestGame): string {
  */
 export function LiveStatsSection({ seasonId }: { seasonId: string }) {
   const api = useApi();
-  const query = useQuery(`ingest:${seasonId}`, () => api.ingest(seasonId));
-  const [latest, setLatest] = useState<IngestResponse | null>(null);
+  const { query, data, apply } = useIngestState();
   const [busy, setBusy] = useState<"toggle" | "run" | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [now, setNow] = useState(() => new Date());
-  // A newly loaded state replaces what the last action returned.
-  const seen = useRef(query.data);
-  useEffect(() => {
-    if (query.data !== seen.current) {
-      seen.current = query.data;
-      setLatest(null);
-    }
-  }, [query.data]);
   // Keep "5 min ago" honest without refetching.
   useEffect(() => {
     const id = setInterval(() => setNow(new Date()), 30_000);
     return () => clearInterval(id);
   }, []);
 
-  const data = latest ?? (query.status === "ready" ? query.data : undefined);
-
   async function act(kind: "toggle" | "run", call: () => Promise<IngestResponse>) {
     setBusy(kind);
     setError(null);
     try {
-      setLatest(await call());
+      apply(await call());
     } catch (err) {
       setError(friendlyError(err));
     } finally {
@@ -99,7 +93,7 @@ export function LiveStatsSection({ seasonId }: { seasonId: string }) {
       <h3 className="font-semibold">Live stats</h3>
       <div className="mt-2 space-y-4">
         {query.status === "loading" && <Loading />}
-        {query.status === "error" && !latest && (
+        {query.status === "error" && !data && (
           <ErrorWithRetry message={friendlyError(query.error)} onRetry={query.reload} />
         )}
         {data && (

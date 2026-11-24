@@ -1,3 +1,5 @@
+import type { Position } from "../roster";
+
 /**
  * Canonical stat vocabulary (docs/design/04 §2). Every stats provider adapter maps its own
  * fields to these keys, so a ruleset never depends on a provider.
@@ -54,3 +56,46 @@ const STAT_KEY_SET: ReadonlySet<string> = new Set(STAT_KEYS);
 const EVENT_STAT_SET: ReadonlySet<string> = new Set(EVENT_STATS);
 export const isStatKey = (k: string): k is StatKey => STAT_KEY_SET.has(k);
 export const isEventStat = (k: string): k is EventStat => EVENT_STAT_SET.has(k);
+
+const SKILL_KEYS: readonly StatKey[] = [
+  "pass_yds",
+  "pass_td",
+  "pass_int",
+  "pass_2pt",
+  "rush_yds",
+  "rush_td",
+  "rush_2pt",
+  "rec",
+  "rec_yds",
+  "rec_td",
+  "rec_2pt",
+  "fum_lost",
+  "ret_td",
+  "fum_rec_td",
+];
+const KICKER_KEYS: readonly StatKey[] = [
+  "fg_made",
+  "fg_missed",
+  "fg_blocked",
+  "xp_made",
+  "xp_missed",
+  "xp_blocked",
+];
+const DST_KEYS: readonly StatKey[] = [
+  "def_pts_allowed",
+  "def_yds_allowed",
+  "def_sack",
+  "def_int",
+  "def_fum_rec",
+  "def_td",
+  "def_safety",
+  "def_block",
+  "ret_td",
+];
+
+/** The stat keys a commissioner can sensibly correct for a position (the override editor's rows). */
+export function overrideKeysFor(position: Position): readonly StatKey[] {
+  if (position === "K") return KICKER_KEYS;
+  if (position === "DST") return DST_KEYS;
+  return SKILL_KEYS;
+}

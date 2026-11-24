@@ -29,6 +29,11 @@ export const ingestRound = z.object({
   code: z.enum(["WC", "DIV", "CONF", "SB"]),
   status: z.enum(["upcoming", "live", "final", "finalized"]),
   games: z.array(ingestGame),
+  /** Stat overrides on this round's games. */
+  overrideCount: z.number().int(),
+  finalizedAt: z.string().nullable(),
+  /** Set when ESPN changed stats after the round was finalized (docs/design/04 §6). */
+  providerChangedAt: z.string().nullable(),
 });
 export type IngestRound = z.infer<typeof ingestRound>;
 

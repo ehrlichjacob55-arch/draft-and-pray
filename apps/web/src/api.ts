@@ -5,6 +5,8 @@ import {
   apiError,
   autoDraftResponse,
   draftActionResponse,
+  gameLinesResponse,
+  standingsResponse,
   draftSnapshot,
   importPoolResponse,
   ingestResponse,
@@ -29,6 +31,9 @@ import {
   type AutoDraftResponse,
   type DraftActionResponse,
   type DraftSnapshot,
+  type GameLinesResponse,
+  type SetOverrideRequest,
+  type StandingsResponse,
   type ImportPoolResponse,
   type IngestResponse,
   type ListPlayersResponse,
@@ -141,6 +146,19 @@ export interface Api {
   setIngest(seasonId: string, enabled: boolean): Promise<IngestResponse>;
   /** Runs one stats update now; resolves with the new state (a failed update is in `lastError`). */
   runIngest(seasonId: string): Promise<IngestResponse>;
+  // ---- Stat overrides and round finalization (docs/design/04 §6-7; commissioner) ----
+  gameLines(seasonId: string, gameId: string): Promise<GameLinesResponse>;
+  setOverride(seasonId: string, body: SetOverrideRequest): Promise<GameLinesResponse>;
+  clearOverride(
+    seasonId: string,
+    gameId: string,
+    playerId: string,
+    statKey: string,
+  ): Promise<GameLinesResponse>;
+  finalizeRound(seasonId: string, round: number): Promise<IngestResponse>;
+  unfreezeRound(seasonId: string, round: number, reason: string): Promise<IngestResponse>;
+  // ---- Standings (any member) ----
+  standings(seasonId: string): Promise<StandingsResponse>;
 }
 
 export interface ApiOptions {
@@ -274,6 +292,21 @@ export function createApi({ baseUrl, getAuthHeaders }: ApiOptions): Api {
     setIngest: (id, enabled) =>
       request("PUT", `/seasons/${enc(id)}/ingest`, ingestResponse, { enabled }),
     runIngest: (id) => request("POST", `/seasons/${enc(id)}/ingest/run`, ingestResponse, {}),
+    gameLines: (id, gameId) =>
+      request("GET", `/seasons/${enc(id)}/games/${enc(gameId)}/lines`, gameLinesResponse),
+    setOverride: (id, body) =>
+      request("PUT", `/seasons/${enc(id)}/overrides`, gameLinesResponse, body),
+    clearOverride: (id, gameId, playerId, statKey) =>
+      request(
+        "DELETE",
+        `/seasons/${enc(id)}/overrides/${enc(gameId)}/${enc(playerId)}/${enc(statKey)}`,
+        gameLinesResponse,
+      ),
+    finalizeRound: (id, round) =>
+      request("POST", `/seasons/${enc(id)}/rounds/${round}/finalize`, ingestResponse, {}),
+    unfreezeRound: (id, round, reason) =>
+      request("POST", `/seasons/${enc(id)}/rounds/${round}/unfreeze`, ingestResponse, { reason }),
+    standings: (id) => request("GET", `/seasons/${enc(id)}/standings`, standingsResponse),
   };
 }
 

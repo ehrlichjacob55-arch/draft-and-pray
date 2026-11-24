@@ -37,7 +37,7 @@ Decided 2026-11-09: the database is **DynamoDB**, so everything stays in AWS. Th
 | Roster slot entry | `ROSTER#<teamId>#<slot>#<fromRound>` | teamId, slot, playerId, fromRound (1=WC…4=SB), acquiredVia `draft\|exception`, txnId? |
 | NFL team | `NFLTEAM#<abbr>` | conference, seed, status `alive\|bye\|eliminated\|champion`, eliminatedInRound? |
 | Player | `PLAYER#<playerId>` | name, position, nflTeam, providerPlayerId, espnId? (ESPN athlete id from Sleeper's `espn_id`; matches box scores), injuryStatus, inPool, draftedByTeamId?, draftedAtPick?, rank? |
-| Playoff round | `ROUND#<n>` | code `WC\|DIV\|CONF\|SB`, status `upcoming\|live\|final\|finalized`, finalizedAt?, finalizedBy? |
+| Playoff round | `ROUND#<n>` | code `WC\|DIV\|CONF\|SB`, status `upcoming\|live\|final\|finalized`, finalizedAt?, finalizedBy?, providerChangedAt? (set while `finalized` when ingest wrote raw stats for one of the round's games; removed by finalize and unfreeze) |
 | NFL game | `GAME#<gameId>` | round, providerGameId (= gameId = ESPN event id), home, away, kickoff, status `scheduled\|in_progress\|final`, homeScore, awayScore, winner?, statsFetchedAt? (when a **final** game's summary was last fetched) |
 | Raw stat line | `STATS#<gameId>#<playerId>` | raw (the compact provider values read for the player, not the whole summary), canonical (map of counts), events? (`{fg_made?: number[], fg_missed?: number[]}` distances in yards, play order), fetchedAt, providerHash (sha256 of the canonical JSON of counts + events) |
 | Stat override | `OVERRIDE#<gameId>#<playerId>#<statKey>` | value, reason, byUserId, at |
@@ -66,6 +66,7 @@ Decided 2026-11-09: the database is **DynamoDB**, so everything stays in AWS. Th
 | A12 | Invites for a season (doc 11) | `Query gsi1 gsi1pk = SEASONINV#<seasonId>` |
 | A14 | Redraft cleanup (§4.8): picks, draft roster entries and drafted-player markers | `Query pk = SEASON#<id>, begins_with(sk, "PICK#" \| "ROSTER#" \| "PLAYER#")` (consistent, paginate), one prefix at a time |
 | A15 | Due ingest seasons (job-ingest) | `Query pk = INGEST` (a tiny partition, one item per season; `enabled` and `nextPollAt` are filtered in memory) |
+| A17 | A season's overrides; one round's team scores (finalize, Rounds card counts) | `Query pk = SEASON#<id>, begins_with(sk, "OVERRIDE#")` and `begins_with(sk, "TEAMSCORE#<n>#")` (consistent) |
 | A16 | One game's stat lines (upsert, delete players no longer in the output) | `Query pk = SEASON#<id>, begins_with(sk, "STATS#<gameId>#")` (consistent) |
 
 No Scans anywhere.
@@ -106,7 +107,10 @@ Transaction: update `INVITE#` (condition `attribute_not_exists(usedBy) AND expir
 Transaction: put `ROSTER#<team>#<slot>#<effectiveRound>` (condition not exists), put `TXN#`, update the new `PLAYER#` (`draftedByTeamId`, with condition not already owned), put `AUDIT#`.
 
 ### 4.7 Stat override
-Put `OVERRIDE#…` + `AUDIT#` in one transaction, then run recompute (4.4 step 3–4).
+**Set:** one transaction: put `OVERRIDE#<game>#<player>#<statKey>` (replacing any earlier value), a `ConditionCheck` on `ROUND#<n>` (`attribute_not_exists(pk) OR status <> finalized`, so a finalize that lands meanwhile cancels it → 409 `round_finalized`) and `AUDIT#` `override.set` `{gameId, playerId, statKey, from, to, reason}`. Then run recompute (4.4 step 3–4). **Clear:** the same with a `Delete` (condition `attribute_exists(pk)`, else 404) and `override.clear`. Ingest never writes OVERRIDE items, so they survive every re-ingest.
+
+### 4.7a Finalize and unfreeze a round
+**Finalize** (`final` → `finalized`): run recompute (4.4 steps 3–4), read the round's `TEAMSCORE#<n>#` items (A17), then one transaction: `Update ROUND#<n>` `SET status = finalized, finalizedAt, finalizedBy REMOVE providerChangedAt` with condition `status = final`; per TEAMSCORE item `SET provisional = false` with condition `points = :audited` (a score that moved meanwhile cancels the finalize → 409 `conflict`); `AUDIT#` `round.finalize` `{round, teamScores: {teamId: points}}`. The `provisional` flip is the one write ever made to a finalized round's scores and changes nothing else. **Unfreeze** (`finalized` → `final`): one transaction, `Update ROUND#<n>` `SET status = final REMOVE finalizedAt, finalizedBy, providerChangedAt` with condition `status = finalized` (else 409 `round_not_finalized`) plus `AUDIT#` `round.unfreeze` `{round, reason}`; then recompute, which rewrites the round's POINTS and marks its TEAMSCORE provisional again. **Provider changed after finalization:** when ingest upserts or deletes a STATS item of a game whose round is `finalized`, it also runs `Update ROUND#<n> SET providerChangedAt = :now` with condition `status = finalized` (POINTS/TEAMSCORE stay frozen).
 
 ### 4.8 Redraft (commissioner): reset a started draft to `scheduled`
 Allowed from `in_progress`, `paused` or `complete` (any draft that has started) while the season `META` is `drafting` or `in_progress`; otherwise 409 `draft_wrong_status`. 90 picks + up to 90 roster entries + up to 90 player markers exceed the 100-item transaction limit, so the reset is three idempotent phases, driven by `DRAFT.status = resetting` as the lock (a "draft generation/epoch" key scheme was rejected: it would change every pick/roster/player key and every reader for a rare admin action, whereas a status lock reuses the conditions every writer already has):

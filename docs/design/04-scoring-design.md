@@ -116,7 +116,7 @@ The scheduler (`rate(2 minutes)` -> `job-ingest`; `apps/api/src/local.ts` mirror
 | The Super Bowl is final and every round is finalized | off (`nextPollAt = null`) |
 | The last run failed | 15 minutes (`lastError` shows why) |
 
-Because the scheduler ticks every 2 minutes, a season counts as due when its `nextPollAt` is at most 30 seconds away, so a 2-minute delay is not stretched to 4. A commissioner can also press "Refresh now" (runs one ingest inline). Final games are re-fetched every 6 hours until their round is finalized (stat corrections). Jobs are idempotent: re-running with the same provider data writes nothing (doc 10 §4.4). The pipeline, its field mapping and its matching rules are in doc 12.
+Because the scheduler ticks every 2 minutes, a season counts as due when its `nextPollAt` is at most 30 seconds away, so a 2-minute delay is not stretched to 4. A commissioner can also press "Refresh now" (runs one ingest inline). Final games are re-fetched every 6 hours (stat corrections; after finalization only to flag `providerChangedAt`). Jobs are idempotent: re-running with the same provider data writes nothing (doc 10 §4.4). The pipeline, its field mapping and its matching rules are in doc 12.
 
 ### Provider adapter interface
 ```
@@ -161,6 +161,13 @@ team_total(t)             = Σ team_round_points over all rounds
 - Standings sort by `team_total` desc. Ties → tiebreaker rules (Q4); until decided, tied teams share the rank and the commissioner is alerted.
 - Final placings (1st/2nd/3rd) are shown once the Super Bowl round is finalized.
 
+**Standings API (implemented, Task 10).** `GET /seasons/:id/standings` (any league member) loads the season once (A1) and runs `computeStandings`:
+`{ asOf, rounds: [{round, code, status}], rows: [{rank, tied, teamId, teamName, teamAbbr, rounds: [{round, points|null, provisional}], total, playersAlive, playersTotal, maxGamesRemaining}], placings: [{place, teamId}] | null }`.
+- `asOf` is the latest round that has started (round 1 before any has); rows are sorted by rank, then team name. A round that is still `upcoming` has `points: null` (the UI shows a dash) even though it has its zero TEAMSCORE row; `provisional` mirrors the TEAMSCORE item.
+- "Players alive" and "max games remaining" use the roster of the **first round that is not yet final** (`currentRound`), so a roster exception effective next round shows as soon as this round is final; a bye team before the Wild Card is final has 3 games left, an alive one 4.
+- `placings` is `null` until round 4 is `finalized`; then it lists the teams ranked 1-3, and tied teams share the place (Q4 is open, so two teams can both be 1st and the next place is 3rd).
+- No user ids, names or emails: teams are identified by team id, name and abbreviation only.
+
 ## 6. Round finalization
 
 ```mermaid
@@ -176,12 +183,23 @@ stateDiagram-v2
 - **Live/Final**: scores update automatically and are marked provisional.
 - **Finalized**: the round's points are frozen. Ingestion keeps raw stats, but late changes no longer move frozen points (the commissioner sees a "provider changed after finalization" warning and can choose to unfreeze — audited).
 
+**As built (Task 10).** Finalization stays manual (no automatic cutoff: Q10 is open).
+- `POST /seasons/:id/rounds/:n/finalize` (commissioner): the round must be `final` (409 `round_not_final`; 409 `round_finalized` if it already is). It recomputes first, so the latest stats and overrides are in, then in **one transaction** sets the round `finalized` (`finalizedAt`, `finalizedBy`, `providerChangedAt` removed; condition `status = final`), flips the round's TEAMSCORE items to `provisional = false` (each conditioned on the points that were audited) and writes `round.finalize` `{round, teamScores: {teamId: points}}`. This is the only write ever made to a finalized round's scores, and it changes nothing but `provisional`. Response: the `GET .../ingest` body.
+- `POST /seasons/:id/rounds/:n/unfreeze` (commissioner, body `{reason}` 1-200 chars): the round must be `finalized` (409 `round_not_finalized`). One transaction sets it back to `final` (removing `finalizedAt`, `finalizedBy`, `providerChangedAt`) and writes `round.unfreeze` `{round, reason}`; the next recompute (run right away) brings in the current stats and overrides and marks the scores provisional again.
+- **Provider changed after finalization:** a finalized round's final games are still re-fetched every 6 hours. When ingest writes a STATS item (insert, change or delete) for a game of a finalized round, it keeps the raw stats and sets `ROUND.providerChangedAt`; POINTS and TEAMSCORE do not move. The Commissioner → Rounds card then shows "ESPN changed stats after you finalized this round" next to Unfreeze. Unfreezing or re-finalizing clears the flag.
+
 ## 7. Commissioner overrides
 
 - Edit any canonical stat for a player-game (e.g. "rush_td: 1 → 2, reason: stat correction").
 - Overrides are stored separately and re-applied after every ingestion, so the provider can't overwrite them.
 - The player page shows overridden stats with a marker and the reason.
 - Everything is in the audit log.
+
+**As built (Task 10).** All routes are commissioner-only and checked server-side.
+- `GET /seasons/:id/games/:gameId/lines` → `{ game: {gameId, round, roundStatus, home, away, homeScore, awayScore, status}, lines: [{playerId, name, position, nflTeam, provider: {counts, events?} | null, overrides: [{statKey, value, reason, at}], effective: {counts, events?}, points: number | null, breakdown, issue?}] }`. A line is every pool player of the two teams with a STATS item or an override, plus both DSTs, sorted DST last then by points descending. `effective` = the provider line with the overrides applied (`applyOverrides`); `issue` says why a line could not be scored. 404 for an unknown game.
+- `PUT /seasons/:id/overrides` `{gameId, playerId, statKey, value, reason}`: `statKey` is a canonical key; `value` a whole number of 0 or more; `reason` 1-200 characters (trimmed). The player must be in the season pool and on one of the game's teams (DSTs included). Field-goal counts follow the domain rule (lowering keeps the first N distances, raising past the distance list is a 400). A finalized round is 409 `round_finalized` ("Unfreeze the round first"). One transaction puts/replaces the override and writes `override.set` `{gameId, playerId, statKey, from, to, reason}` (`from` = the previous effective value); recompute and `scores_updated` follow, and the refreshed lines of that game are returned.
+- `DELETE /seasons/:id/overrides/:gameId/:playerId/:statKey`: same rules; one transaction deletes the override and writes `override.clear` `{gameId, playerId, statKey, from}` (404 when there is none).
+- A re-ingest never touches OVERRIDE items (they are a separate item type; the acceptance test covers it).
 
 ## 8. Testing strategy for scoring
 

@@ -31,6 +31,10 @@ export const ERROR_CODES = [
   "ruleset_exists",
   // Live stats (docs/design/12)
   "ingest_busy",
+  // Overrides and round finalization (docs/design/04 §6-7)
+  "round_finalized",
+  "round_not_final",
+  "round_not_finalized",
   // Draft (docs/design/14 §4)
   "stale_pick",
   "not_your_turn",
@@ -250,3 +254,4 @@ export type RenameTeamResponse = z.infer<typeof renameTeamResponse>;
 export * from "./draft";
 export * from "./scoring";
 export * from "./ingest";
+export * from "./overrides";

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { applyOverrides, parseStatLine } from "./stat-line";
-import { isEventStat, isStatKey } from "./stat-keys";
+import { isEventStat, isStatKey, overrideKeysFor } from "./stat-keys";
 
 describe("stat keys", () => {
   it("recognizes canonical keys", () => {
@@ -73,5 +73,16 @@ describe("applyOverrides", () => {
     expect(() => applyOverrides({ counts: {} }, { rush_td: 1.5 })).toThrow(
       "Override rush_td must be an integer",
     );
+  });
+});
+
+describe("overrideKeysFor", () => {
+  it("lists canonical keys per position", () => {
+    expect(overrideKeysFor("QB")).toContain("pass_yds");
+    expect(overrideKeysFor("RB")).toBe(overrideKeysFor("TE"));
+    expect(overrideKeysFor("K")).toEqual(expect.arrayContaining(["fg_made", "xp_missed"]));
+    expect(overrideKeysFor("DST")).toEqual(expect.arrayContaining(["def_pts_allowed", "ret_td"]));
+    for (const p of ["QB", "RB", "WR", "TE", "K", "DST"] as const)
+      for (const k of overrideKeysFor(p)) expect(isStatKey(k)).toBe(true);
   });
 });

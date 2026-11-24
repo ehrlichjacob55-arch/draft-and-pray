@@ -103,6 +103,8 @@ Board cells are colour-coded by position.
 ```
 Tap a row → team page. Optional column: max games left.
 
+**Built (Task 10), `/standings`:** the header reads "Standings · <latest started round> <status>" (e.g. "Standings · Divisional Live"). Columns # / Team / WC / DIV / CONF / SB / Total / Alive (`7/10`); a provisional round value carries `*` with a footnote, a round without a score shows "—", tied teams show "T-2", and the medals appear only once the API returns `placings` (Super Bowl finalized). At 375 px the round columns are hidden and each team's rounds appear under its name (the table scrolls inside its own box, never the page). Rows are not links yet: the team page is Task 11. The page refetches on `scores_updated` from the season's realtime channel (members may subscribe) and, only while a round is live and the socket is down, every 60 seconds.
+
 ## 6. Team page
 
 ```
@@ -143,3 +145,10 @@ Tap a row → team page. Optional column: max games left.
 │ [Stat overrides] [Roster exceptions] [Audit]  │
 └───────────────────────────────────────────────┘
 ```
+
+**Built (Task 10).** The **Rounds** card sits above Live stats: one row per round with its code and name, a status badge (Upcoming / Live / Final / Finalized), the number of overrides, and
+- **Finalize** (round is Final), after a confirmation "Freeze Wild Card points? Late stat changes won't move them until you unfreeze.";
+- "Finalized <date>" and **Unfreeze** (round is Finalized), which asks for a required reason;
+- a warning "ESPN changed stats after you finalized this round" when `providerChangedAt` is set.
+
+The card links to **Stat overrides** (`/commissioner/overrides`, commissioner only): pick a round, then a game (`AWY 24 @ HOME 31 · Final`), then see the game's lines (player, position, points, an "Edited" marker). **Edit** opens every canonical key relevant to the position (QB/RB/WR/TE: passing, rushing, receiving, 2-pt, fumble and return keys; K: kicking keys; DST: defensive keys and `ret_td`), each showing ESPN's value, the current override, a number input and Save; one required reason applies to the save; an existing override shows its reason and **Clear**. A finalized round is read-only with a note to unfreeze it first. The Rounds and Live stats cards share one copy of `GET /seasons/:id/ingest`, which also carries per-round `overrideCount`, `finalizedAt` and `providerChangedAt`.

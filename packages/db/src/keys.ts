@@ -149,6 +149,9 @@ export const skPrefix = {
   members: "MEMBER#",
   audit: "AUDIT#",
   teamScores: "TEAMSCORE#",
+  /** One round's team scores (finalize). */
+  teamScoresOfRound: (round: number) => `TEAMSCORE#${round}#`,
+  overrides: "OVERRIDE#",
   points: "POINTS#",
   /** One game's stat lines (A16). */
   statsOfGame: (gameId: string) => `STATS#${gameId}#`,

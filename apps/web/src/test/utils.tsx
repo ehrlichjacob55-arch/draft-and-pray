@@ -83,6 +83,12 @@ export function fakeApi(over: Partial<Api> = {}): Api {
     ingest: async () => idleIngest,
     setIngest: unexpected("setIngest"),
     runIngest: unexpected("runIngest"),
+    gameLines: unexpected("gameLines"),
+    setOverride: unexpected("setOverride"),
+    clearOverride: unexpected("clearOverride"),
+    finalizeRound: unexpected("finalizeRound"),
+    unfreezeRound: unexpected("unfreezeRound"),
+    standings: unexpected("standings"),
     ...over,
   } as Api;
 }
