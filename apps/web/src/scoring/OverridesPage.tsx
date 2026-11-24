@@ -15,8 +15,12 @@ import {
 import { friendlyError } from "../lib/messages";
 import { useLeague } from "../league/LeagueProvider";
 import { useQuery } from "../useQuery";
+import { STAT_LABELS } from "./catalog";
 import { Badge } from "./fields";
 import { gameLine, ROUND_LABEL, ROUND_NAMES, ROUND_TONE } from "./LiveStatsSection";
+
+/** Plain name for a stat key (the scoring editor's labels); unknown keys show as-is. */
+const statLabel = (key: string): string => (STAT_LABELS as Record<string, string>)[key] ?? key;
 
 const pts = (n: number | null) => (n === null ? "—" : String(Math.round(n * 100) / 100));
 
@@ -237,7 +241,7 @@ function OverrideSummary({ line }: { line: GameLine }) {
     <ul className="mt-1 space-y-0.5 text-sm text-muted" aria-label={`${line.name} overrides`}>
       {line.overrides.map((o) => (
         <li key={o.statKey}>
-          <span className="font-mono">{o.statKey}</span> {line.provider?.counts[o.statKey] ?? 0} →{" "}
+          <span>{statLabel(o.statKey)}</span> {line.provider?.counts[o.statKey] ?? 0} →{" "}
           <span className="font-semibold text-text">{o.value}</span> · {o.reason}
         </li>
       ))}
@@ -280,7 +284,7 @@ function LineEditor({
 
   function save(key: string) {
     const text = (drafts[key] ?? "").trim();
-    if (!/^\d+$/.test(text)) return setError(`Enter a whole number of 0 or more for ${key}.`);
+    if (!/^\d+$/.test(text)) return setError(`Enter a whole number of 0 or more for ${statLabel(key)}.`);
     if (!reason.trim()) return setError("Enter a reason for the change.");
     void run(key, async () => {
       await onSave(key, Number(text), reason.trim());
@@ -312,8 +316,8 @@ function LineEditor({
           return (
             <li key={key} className="space-y-1 py-2" data-testid={`stat-${key}`}>
               <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
-                <span className="min-w-0 flex-1 basis-32 font-mono">
-                  {key}
+                <span className="min-w-0 flex-1 basis-32">
+                  {statLabel(key)}
                   {override && <span className="ml-1 text-accent">*</span>}
                 </span>
                 <span className="text-muted">ESPN {provider}</span>

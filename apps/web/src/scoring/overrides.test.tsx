@@ -121,7 +121,7 @@ describe("Stat overrides page", () => {
     expect(hubbard.getByLabelText("Points")).toHaveTextContent("13.6");
     expect(hubbard.getByText("Edited")).toBeInTheDocument();
     expect(hubbard.getByRole("list", { name: "Chuba Hubbard overrides" })).toHaveTextContent(
-      "rush_td 2 → 3 · Scorer fix",
+      "Rushing TDs 2 → 3 · Scorer fix",
     );
     expect(within(rows.getByTestId("line-DST-LAR")).queryByText("Edited")).not.toBeInTheDocument();
     // another round
@@ -247,7 +247,7 @@ describe("Stat overrides page", () => {
     expect(hubbard.queryByRole("button", { name: /Edit/ })).not.toBeInTheDocument();
     expect(hubbard.getByText("Edited")).toBeInTheDocument();
     expect(hubbard.getByRole("list", { name: "Chuba Hubbard overrides" })).toHaveTextContent(
-      "rush_td 2 → 5",
+      "Rushing TDs 2 → 5",
     );
     expect(screen.queryByRole("button", { name: /Clear/ })).not.toBeInTheDocument();
   });
