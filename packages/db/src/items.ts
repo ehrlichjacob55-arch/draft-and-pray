@@ -226,6 +226,8 @@ export const roundItem = z.object({
   status: z.enum(["upcoming", "live", "final", "finalized"]),
   finalizedAt: isoDate.optional(),
   finalizedBy: z.string().optional(),
+  /** Set while `finalized` when ingest wrote raw stats for one of the round's games (doc 04 §6). */
+  providerChangedAt: isoDate.optional(),
 });
 export const gameItem = z.object({
   ...base,

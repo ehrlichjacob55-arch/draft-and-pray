@@ -28,6 +28,9 @@ const live = (over: Partial<IngestResponse> = {}): IngestResponse => ({
       round: 1,
       code: "WC",
       status: "live",
+      overrideCount: 0,
+      finalizedAt: null,
+      providerChangedAt: null,
       games: [
         game(),
         game({
@@ -44,6 +47,9 @@ const live = (over: Partial<IngestResponse> = {}): IngestResponse => ({
       round: 2,
       code: "DIV",
       status: "upcoming",
+      overrideCount: 0,
+      finalizedAt: null,
+      providerChangedAt: null,
       games: [
         game({
           gameId: "g3",
@@ -55,7 +61,15 @@ const live = (over: Partial<IngestResponse> = {}): IngestResponse => ({
         }),
       ],
     },
-    { round: 3, code: "CONF", status: "upcoming", games: [] },
+    {
+      round: 3,
+      code: "CONF",
+      status: "upcoming",
+      overrideCount: 0,
+      finalizedAt: null,
+      providerChangedAt: null,
+      games: [],
+    },
   ],
   ...over,
 });

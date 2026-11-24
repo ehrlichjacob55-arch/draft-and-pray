@@ -10,6 +10,7 @@ import {
   auditIngestRun,
   getIngestState,
   listGames,
+  listOverrides,
   listRounds,
   setIngestEnabled,
   type Dynamo,
@@ -35,11 +36,13 @@ const GAME_STATUSES = ["scheduled", "in_progress", "final"] as const;
 
 /** The commissioner's view: registry state plus every round with its games. */
 export async function ingestView(db: Dynamo, seasonId: string): Promise<IngestResponse> {
-  const [state, rounds, games] = await Promise.all([
+  const [state, rounds, games, overrides] = await Promise.all([
     getIngestState(db, seasonId),
     listRounds(db, seasonId),
     listGames(db, seasonId),
+    listOverrides(db, seasonId),
   ]);
+  const roundOfGame = new Map(games.map((g) => [g.gameId, g.round]));
   return {
     enabled: state?.enabled ?? false,
     nextPollAt: state?.nextPollAt ?? null,
@@ -54,6 +57,9 @@ export async function ingestView(db: Dynamo, seasonId: string): Promise<IngestRe
         round: r.round,
         code: r.code,
         status: r.status,
+        overrideCount: overrides.filter((o) => roundOfGame.get(o.gameId) === r.round).length,
+        finalizedAt: r.finalizedAt ?? null,
+        providerChangedAt: r.providerChangedAt ?? null,
         games: games
           .filter((g) => g.round === r.round)
           .sort((a, b) => a.kickoff.localeCompare(b.kickoff) || a.gameId.localeCompare(b.gameId))

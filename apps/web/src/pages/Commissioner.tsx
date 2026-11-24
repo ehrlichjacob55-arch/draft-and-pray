@@ -20,7 +20,9 @@ import {
 } from "../components/ui";
 import { friendlyError } from "../lib/messages";
 import { useLeague } from "../league/LeagueProvider";
+import { IngestProvider } from "../scoring/IngestState";
 import { LiveStatsSection } from "../scoring/LiveStatsSection";
+import { RoundsSection } from "../scoring/RoundsSection";
 import { ScoringSection } from "../scoring/ScoringSection";
 import { useQuery } from "../useQuery";
 
@@ -134,7 +136,10 @@ function CommissionerConsole({ seasonId }: { seasonId: string }) {
 
       <ScoringSection seasonId={seasonId} />
 
-      <LiveStatsSection seasonId={seasonId} />
+      <IngestProvider seasonId={seasonId}>
+        <RoundsSection seasonId={seasonId} />
+        <LiveStatsSection seasonId={seasonId} />
+      </IngestProvider>
 
       <Card>
         <h3 className="font-semibold">Team names</h3>

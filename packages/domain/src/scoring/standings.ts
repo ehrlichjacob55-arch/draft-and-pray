@@ -36,6 +36,23 @@ export interface StandingRow {
 const LAST_ROUND = 4;
 
 /**
+ * The round whose rosters count for "alive" and "games remaining": the first round that is not
+ * yet final (so a roster exception effective next round already shows once this one is final),
+ * or the Super Bowl when every round is.
+ */
+export function currentRound(rounds: readonly RoundInfo[]): number {
+  const open = [...rounds]
+    .sort((a, b) => a.round - b.round)
+    .find((r) => r.status !== "final" && r.status !== "finalized");
+  return open?.round ?? LAST_ROUND;
+}
+
+/** The latest round that has started (live, final or finalized); round 1 before any has. */
+export function latestStartedRound(rounds: readonly RoundInfo[]): number {
+  return Math.max(1, ...rounds.filter((r) => r.status !== "upcoming").map((r) => r.round));
+}
+
+/**
  * Rounds an alive NFL team could still play (docs/design/04 §4): rounds not yet final, minus the
  * Wild Card for a bye team, minus any round it already won (a final game in that round).
  */
@@ -56,9 +73,7 @@ function gamesRemaining(abbr: string, status: NflTeamStatus, input: StandingsInp
 
 /** Cumulative standings (docs/design/04 §5): total desc, ties share a rank and are flagged. */
 export function computeStandings(input: StandingsInput): StandingRow[] {
-  const asOf =
-    [...input.rounds].sort((a, b) => a.round - b.round).find((r) => r.status !== "finalized")
-      ?.round ?? LAST_ROUND;
+  const asOf = currentRound(input.rounds);
   const players = new Map(input.players.map((p) => [p.playerId, p]));
   const nfl = new Map(input.nflTeams.map((t) => [t.abbr, t.status]));
 

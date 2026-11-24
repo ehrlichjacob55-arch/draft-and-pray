@@ -5,7 +5,9 @@ import { DraftRoom } from "./draft/DraftRoom";
 import { Commissioner } from "./pages/Commissioner";
 import { LeagueHome } from "./pages/LeagueHome";
 import { Placeholder } from "./pages/Placeholder";
+import { OverridesPage } from "./scoring/OverridesPage";
 import { RulesPage } from "./scoring/RulesView";
+import { StandingsPage } from "./scoring/StandingsPage";
 import { SignIn } from "./pages/SignIn";
 import { Welcome } from "./pages/Welcome";
 
@@ -26,7 +28,7 @@ export const routes: RouteObject[] = [
           },
           {
             path: "standings",
-            element: <Placeholder title="Standings" note="Cumulative points (task 11)." />,
+            element: <StandingsPage />,
           },
           {
             path: "my-team",
@@ -37,6 +39,7 @@ export const routes: RouteObject[] = [
             element: <RulesPage />,
           },
           { path: "commissioner", element: <Commissioner /> },
+          { path: "commissioner/overrides", element: <OverridesPage /> },
         ],
       },
       { path: "*", element: <Placeholder title="Not found" note="That page does not exist." /> },

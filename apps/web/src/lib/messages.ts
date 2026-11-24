@@ -46,6 +46,12 @@ export function friendlyError(err: unknown): string {
         return "This season already has scoring rules. Refresh to see them.";
       case "ingest_busy":
         return "A stats update is already running. Give it a moment and try again.";
+      case "round_finalized":
+        return "That round is finalized. Unfreeze the round first.";
+      case "round_not_final":
+        return "A round can be finalized once all its games are final.";
+      case "round_not_finalized":
+        return "That round is not finalized.";
       case "conflict":
         return "That changed while you were working. Refresh and try again.";
       case "not_found":

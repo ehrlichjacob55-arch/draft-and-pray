@@ -1,8 +1,13 @@
 import { describe, expect, it } from "vitest";
 import { rosterPlayersForRound, type RosterAssignment } from "./roster-rounds";
 import { parseRuleset } from "./ruleset";
-import { computeSeason, sumPoints, type SeasonInput } from "./season";
-import { computeStandings, type StandingsInput } from "./standings";
+import { computeSeason, sumPoints, type RoundStatus, type SeasonInput } from "./season";
+import {
+  computeStandings,
+  currentRound,
+  latestStartedRound,
+  type StandingsInput,
+} from "./standings";
 
 const ruleset = parseRuleset({
   version: 7,
@@ -278,9 +283,43 @@ describe("computeStandings", () => {
     expect(b.maxGamesRemaining).toBe(0);
   });
 
+  it("counts the roster of the first round that is not final yet, so a next-round exception shows", () => {
+    const i = input();
+    i.rounds = [
+      { round: 1, status: "final" },
+      { round: 2, status: "upcoming" },
+      { round: 3, status: "upcoming" },
+      { round: 4, status: "upcoming" },
+    ];
+    i.teams[1]!.assignments.push({ slot: "QB", playerId: "w-out", fromRound: 2 });
+    const b = computeStandings(i).find((r) => r.teamId === "B")!;
+    expect(b.playersTotal).toBe(1);
+    expect(b.playersAlive).toBe(0); // round 2's QB is the eliminated w-out
+    i.rounds[0] = { round: 1, status: "live" };
+    expect(computeStandings(i).find((r) => r.teamId === "B")!.playersAlive).toBe(1);
+  });
+
   it("works with no rounds yet", () => {
     const i = input();
     i.rounds = [];
     expect(computeStandings(i)).toHaveLength(4);
+  });
+});
+
+describe("currentRound / latestStartedRound", () => {
+  const rs = (...statuses: RoundStatus[]) =>
+    statuses.map((status, i) => ({ round: i + 1, status }));
+  it("currentRound is the first round that is not final", () => {
+    expect(currentRound(rs("upcoming", "upcoming", "upcoming", "upcoming"))).toBe(1);
+    expect(currentRound(rs("finalized", "final", "live", "upcoming"))).toBe(3);
+    expect(currentRound([...rs("final", "upcoming")].reverse())).toBe(2);
+    expect(currentRound(rs("final", "final", "final", "final"))).toBe(4);
+    expect(currentRound([])).toBe(4);
+  });
+  it("latestStartedRound is the last round that left upcoming, at least 1", () => {
+    expect(latestStartedRound(rs("upcoming", "upcoming"))).toBe(1);
+    expect(latestStartedRound([])).toBe(1);
+    expect(latestStartedRound(rs("finalized", "live", "upcoming", "upcoming"))).toBe(2);
+    expect(latestStartedRound(rs("final", "final", "final", "final"))).toBe(4);
   });
 });
